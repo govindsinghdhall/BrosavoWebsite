@@ -106,7 +106,7 @@ export function Hero() {
               <Globe2 className="h-3.5 w-3.5" />
             </motion.div>
             <span className="text-[11px] font-medium uppercase tracking-[0.28em] text-foreground/75 sm:text-xs">
-              🇨🇦 Canada × 🇮🇳 India · Global Technology Company
+              Canada × India · Global Technology Company
             </span>
           </motion.div>
 

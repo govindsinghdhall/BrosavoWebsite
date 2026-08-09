@@ -98,6 +98,12 @@ export function buildOrganizationJsonLd() {
     url: SITE_URL,
     logo: absoluteUrl("/favicon.png"),
     description: COMPANY_DESCRIPTION,
+    sameAs: [
+      "YOUR_LINKEDIN_URL",
+      "YOUR_INSTAGRAM_URL",
+      "YOUR_FACEBOOK_URL",
+      "YOUR_GITHUB_URL",
+    ],
   };
 }
 
