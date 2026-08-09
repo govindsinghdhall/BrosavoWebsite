@@ -100,11 +100,8 @@ export function buildOrganizationJsonLd() {
     description: COMPANY_DESCRIPTION,
 
     sameAs: [
-      "linkedin.com/company/brosavo",
-      "YOUR_GITHUB_ORGANIZATION_URL",
-      "YOUR_INSTAGRAM_URL",
-      "YOUR_FACEBOOK_URL",
-      "YOUR_YOUTUBE_URL",
+      "https://www.linkedin.com/company/brosavo/",
+      "https://github.com/brosavotechnologies",
     ],
   };
 }

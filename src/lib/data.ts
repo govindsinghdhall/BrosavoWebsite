@@ -40,6 +40,7 @@ export const NAV_LINKS = [
 
 export const FOOTER_LINKS = {
   Company: [
+    { label: "About Brosavo", href: "/about" },
     { label: "Why Us", href: "/why-us" },
     { label: "Meet the Team", href: "/team" },
     { label: "Founders Office", href: "/founders-office" },
