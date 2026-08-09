@@ -35,6 +35,7 @@ export const NAV_LINKS = [
   { label: "Why Us", href: "/why-us" },
   { label: "Team", href: "/team" },
   { label: "Founders", href: "/founders-office" },
+  { label: "About", href: "/about" },
 ] as const;
 
 export const FOOTER_LINKS = {
