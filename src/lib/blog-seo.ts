@@ -98,11 +98,13 @@ export function buildOrganizationJsonLd() {
     url: SITE_URL,
     logo: absoluteUrl("/favicon.png"),
     description: COMPANY_DESCRIPTION,
+
     sameAs: [
-      "YOUR_LINKEDIN_URL",
+      "linkedin.com/company/brosavo",
+      "YOUR_GITHUB_ORGANIZATION_URL",
       "YOUR_INSTAGRAM_URL",
       "YOUR_FACEBOOK_URL",
-      "YOUR_GITHUB_URL",
+      "YOUR_YOUTUBE_URL",
     ],
   };
 }
