@@ -1,9 +1,11 @@
 /**
- * Brand entity constants — keep identical across website, social, and listings.
+ * Brand entity constants — keep identical across website,
+ * social profiles, listings, and structured data.
  */
 
 export const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") || "https://brosavo.com";
+  process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") ||
+  "https://brosavo.com";
 
 /** Display company name used in UI and SEO titles. */
 export const SITE_NAME = "Brosavo";
@@ -11,41 +13,66 @@ export const SITE_NAME = "Brosavo";
 /** Legal company name for schema / footer. */
 export const LEGAL_NAME = "Brosavo Technologies";
 
+/**
+ * Primary Brosavo product.
+ *
+ * Brosavo is not limited to this product.
+ */
 export const PRODUCT_NAME = "Brosavo Real Estate CRM";
 
 export const PRODUCT_ONE_LINER =
-  "Brosavo Real Estate CRM is an AI-powered CRM that helps real estate agencies manage leads, properties, sales, marketing, automation, and customer relationships from one platform.";
+  "An AI-powered real estate management platform that helps agencies, brokers, builders, and developers manage leads, properties, follow-ups, sales, marketing, and customer relationships from one platform.";
 
+/**
+ * Company-level description.
+ *
+ * Important: Brosavo is a technology company, not only
+ * a real estate CRM company.
+ */
 export const COMPANY_DESCRIPTION =
-  "Brosavo develops AI-powered software for the real estate industry. Our flagship product, Brosavo Real Estate CRM, helps brokers, builders, developers, and agencies manage leads, automate follow-ups, organize property inventory, and close more deals through one modern cloud platform.";
+  "Brosavo Technologies is a global technology company building modern websites, custom software, AI-powered applications, SaaS products, automation solutions, and industry-specific business management systems for businesses worldwide.";
 
 export const DEFAULT_OG_IMAGE = "/images/og/default-blog.webp";
 
-export const DEFAULT_BLOG_COVER = "/images/blog/real-estate-crm-benefits.webp";
+export const DEFAULT_BLOG_COVER =
+  "/images/blog/real-estate-crm-benefits.webp";
 
 export const BLOG_TITLE_SUFFIX = " | Brosavo Blog";
 
+/**
+ * General Brosavo CTA.
+ */
 export const DEFAULT_CTA = {
-  heading: "Ready to Grow Your Real Estate Business?",
-  text: "Discover how Brosavo Real Estate CRM helps agencies capture more leads, automate follow-ups, manage properties, and close deals faster.",
-  primaryLabel: "Book a Free Demo",
+  heading: "Ready to Build Something Better?",
+  text: "Whether you need a modern website, custom software, AI-powered automation, or a complete business management platform, Brosavo can help turn your idea into a scalable digital solution.",
+  primaryLabel: "Start a Conversation",
   primaryHref: "/contact",
-  secondaryLabel: "Explore Brosavo CRM",
-  secondaryHref: "/products#real-estate-crm",
+  secondaryLabel: "Explore Our Solutions",
+  secondaryHref: "/services",
 } as const;
 
+/**
+ * Real Estate CRM specific CTA.
+ */
 export const PRODUCT_CTA = {
   heading: "Transform Your Real Estate Business with Brosavo",
-  text: "Join modern real estate professionals who use Brosavo to capture more leads, automate follow-ups, manage properties, and close deals faster with an AI-powered CRM built for growth.",
+  text: "Brosavo Real Estate CRM helps real estate professionals capture leads, automate follow-ups, manage properties, organize customer relationships, and streamline their daily operations from one modern platform.",
   primaryLabel: "Book a Free Demo",
   primaryHref: "/contact",
   secondaryLabel: "Explore Brosavo Real Estate CRM",
   secondaryHref: "/products#real-estate-crm",
 } as const;
 
+/**
+ * Default blog content template.
+ *
+ * This is industry-neutral so Brosavo can publish content
+ * about websites, AI, software, SaaS, real estate,
+ * automotive, technology, and other business solutions.
+ */
 export const BLOG_CONTENT_TEMPLATE = `# Introduction
 
-Write a clear opening that defines the topic and why it matters.
+Write a clear opening that defines the topic and explains why it matters.
 
 ## Key Takeaways
 
@@ -53,13 +80,13 @@ Write a clear opening that defines the topic and why it matters.
 - Takeaway two
 - Takeaway three
 
-## What is ______?
+## What is _____?
 
 Give a direct definition near the top.
 
 ## Why it Matters
 
-Explain the business impact.
+Explain the business and practical impact.
 
 ## Benefits
 
@@ -94,7 +121,7 @@ List mistakes to avoid.
 | Option | Best For | Key Advantage |
 | ------ | -------- | ------------- |
 | Option A | Teams | Advantage |
-| Option B | Solo agents | Advantage |
+| Option B | Businesses | Advantage |
 
 ## Industry Statistics
 
@@ -117,5 +144,5 @@ Summarize the main points and reinforce the primary keyword.
 
 ## Call to Action
 
-Invite readers to book a demo or explore Brosavo Real Estate CRM.
+Invite readers to contact Brosavo, explore a relevant solution, or learn more about the applicable Brosavo product or service.
 `;

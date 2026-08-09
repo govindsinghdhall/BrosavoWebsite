@@ -128,7 +128,7 @@ export function Hero() {
             transition={{ delay: 0.35, duration: 0.8 }}
             className="mb-8 max-w-[700px] text-base leading-8 text-muted sm:text-lg"
           >
-            Home of our flagship Real Estate Property Management CRM — plus AI, Cloud, SaaS, and enterprise systems that help ambitious businesses scale.
+            We design and build modern websites, software products, AI solutions, SaaS platforms, and industry-specific business systems that help ambitious businesses grow.
           </motion.p>
 
           <motion.div
@@ -142,7 +142,7 @@ export function Hero() {
               variant="primary"
               className="!px-8 !py-3.5 !text-sm sm:!px-10 sm:!py-4"
             >
-              Explore Real Estate CRM
+              Explore Our Solutions
               <ArrowRight className="h-4 w-4" />
             </MagneticButton>
             <MagneticButton

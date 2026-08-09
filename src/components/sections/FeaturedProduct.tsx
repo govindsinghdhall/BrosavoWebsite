@@ -31,7 +31,7 @@ export function FeaturedProduct() {
               className="mb-4 inline-flex items-center gap-2 text-xs font-mono uppercase tracking-[0.22em] text-accent-cyan"
             >
               <span className="h-px w-8 bg-accent-cyan/50" />
-              Flagship platform
+              Featured product
             </motion.span>
 
             <motion.h2
