@@ -4,17 +4,22 @@ import { Footer } from "@/components/layout/Footer";
 import { SmoothScroll } from "@/components/providers/SmoothScroll";
 import { GSAPProvider } from "@/components/providers/GSAPProvider";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
-import "../globals.css";
+import "./globals.module.css";
 
 export const metadata: Metadata = {
-  title: "BROSAVO — Global Technology Company | AI, Software & Enterprise Systems",
+  title:
+    "BROSAVO — Global Technology Company | AI, Software & Enterprise Systems",
+
   description:
     "BROSAVO is a global technology company with offices in Canada and India, engineering mission-critical software, AI products, and digital infrastructure for businesses worldwide.",
+
+  metadataBase: new URL("https://brosavo.com"),
+
   icons: {
     icon: "/favicon.svg",
     apple: "/favicon.svg",
   },
-  metadataBase: new URL("https://brosavo.com"),
+
   keywords: [
     "BROSAVO",
     "Brosavo",
@@ -26,7 +31,9 @@ export const metadata: Metadata = {
     "digital transformation",
     "cloud infrastructure",
   ],
+
   authors: [{ name: "Brosavo Technologies" }],
+
   openGraph: {
     title: "BROSAVO — Building The Future Of Digital Infrastructure",
     description:
@@ -35,15 +42,25 @@ export const metadata: Metadata = {
     siteName: "BROSAVO",
     type: "website",
   },
+
   twitter: {
     card: "summary_large_image",
     title: "BROSAVO — Global Technology Company",
-    description: "Engineering excellence across continents. AI. Software. Automation. Scale.",
+    description:
+      "Engineering excellence across continents. AI. Software. Automation. Scale.",
   },
-  robots: { index: true, follow: true },
+
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
-export default function SiteLayout({ children }: { children: React.ReactNode }) {
+export default function SiteLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html lang="en" suppressHydrationWarning>
       <body className="antialiased bg-background text-foreground">

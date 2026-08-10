@@ -142,7 +142,7 @@ export function Hero() {
               variant="primary"
               className="!px-8 !py-3.5 !text-sm sm:!px-10 sm:!py-4"
             >
-              Explore Our Solutions
+              Get a Free Consultation
               <ArrowRight className="h-4 w-4" />
             </MagneticButton>
             <MagneticButton

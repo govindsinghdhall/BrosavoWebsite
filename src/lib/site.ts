@@ -47,7 +47,7 @@ export const DEFAULT_CTA = {
   text: "Whether you need a modern website, custom software, AI-powered automation, or a complete business management platform, Brosavo can help turn your idea into a scalable digital solution.",
   primaryLabel: "Start a Conversation",
   primaryHref: "/contact",
-  secondaryLabel: "Explore Our Solutions",
+  secondaryLabel: "Get a Free Consultation",
   secondaryHref: "/services",
 } as const;
 
