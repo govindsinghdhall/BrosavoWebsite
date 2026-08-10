@@ -307,11 +307,11 @@ export const SERVICES = [
 
 export const FEATURED_PRODUCT = {
   id: "real-estate-crm",
-  name: "Real Estate CRM",
-  tagline: "Property Management Software CRM",
+  name: "BROSAVO Real Estate CRM",
+  tagline: "Industry-Specific Business Software",
   headline: "The operating system for real estate teams",
   description:
-    "A multi-tenant real estate CRM that unifies contacts, leads, properties, bookings, site visits, organizations, users, roles, and reporting in one dashboard — with marketing automation and WhatsApp outreach built in.",
+    "One of BROSAVO's industry-specific software platforms, this multi-tenant real estate CRM unifies contacts, leads, properties, bookings, site visits, organizations, users, roles, reporting, marketing automation, and WhatsApp outreach in one dashboard.",
   summary:
     "Built with a modern React + TypeScript frontend and a Node.js + Express + MongoDB backend, this platform combines operational CRM workflows with marketing tools so real estate businesses can manage relationships and outreach from a single system.",
   color: "#3b82f6",

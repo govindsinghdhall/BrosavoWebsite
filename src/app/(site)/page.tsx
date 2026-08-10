@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+
 import { Hero } from "@/components/sections/Hero";
 import { FeaturedProduct } from "@/components/sections/FeaturedProduct";
 import { HomeOverview } from "@/components/sections/HomeOverview";
@@ -9,22 +10,24 @@ import { buildOrganizationJsonLd } from "@/lib/blog-seo";
 import { SITE_NAME, SITE_URL } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Brosavo | Technology & Software Solutions",
+  title:
+    "BROSAVO — Global Technology Company | AI, Software & Enterprise Systems",
+
   description:
-    "Brosavo Technologies builds modern websites, custom software, AI-powered applications, SaaS products, and industry-specific business management systems for businesses worldwide.",
+    "BROSAVO is a global technology company engineering AI products, enterprise software, SaaS platforms, automation, and digital infrastructure for businesses worldwide.",
+
   keywords: [
-    "Brosavo",
+    "BROSAVO",
     "Brosavo Technologies",
-    "technology company",
-    "software development",
-    "website development",
+    "global technology company",
     "AI development",
+    "enterprise software",
     "SaaS development",
     "custom software",
-    "business management software",
-    "enterprise software",
+    "software engineering",
     "digital transformation",
-    "cloud solutions",
+    "cloud infrastructure",
+    "business software",
   ],
 };
 

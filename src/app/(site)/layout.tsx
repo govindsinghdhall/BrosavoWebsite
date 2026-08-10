@@ -4,7 +4,7 @@ import { Footer } from "@/components/layout/Footer";
 import { SmoothScroll } from "@/components/providers/SmoothScroll";
 import { GSAPProvider } from "@/components/providers/GSAPProvider";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
-import "./globals.module.css";
+import "../globals.module.css";
 
 export const metadata: Metadata = {
   title:
@@ -36,16 +36,22 @@ export const metadata: Metadata = {
 
   openGraph: {
     title: "BROSAVO — Building The Future Of Digital Infrastructure",
+
     description:
       "Global technology company engineering AI, software, automation, and enterprise systems. Canada × India.",
+
     url: "https://brosavo.com",
+
     siteName: "BROSAVO",
+
     type: "website",
   },
 
   twitter: {
     card: "summary_large_image",
+
     title: "BROSAVO — Global Technology Company",
+
     description:
       "Engineering excellence across continents. AI. Software. Automation. Scale.",
   },
@@ -68,7 +74,9 @@ export default function SiteLayout({
           <SmoothScroll>
             <GSAPProvider>
               <Navigation />
+
               <main>{children}</main>
+
               <Footer />
             </GSAPProvider>
           </SmoothScroll>
