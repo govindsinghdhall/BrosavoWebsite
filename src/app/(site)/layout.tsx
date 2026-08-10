@@ -4,7 +4,7 @@ import { Footer } from "@/components/layout/Footer";
 import { SmoothScroll } from "@/components/providers/SmoothScroll";
 import { GSAPProvider } from "@/components/providers/GSAPProvider";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
-import "../globals.module.css";
+import "../globals.css";
 
 export const metadata: Metadata = {
   title:

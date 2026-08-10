@@ -81,7 +81,7 @@ export const TERMS_SECTIONS = [
   {
     title: "Governing Law",
     content: [
-      "These Terms are governed by the laws of the Province of Ontario, Canada, without regard to conflict of law principles. Disputes shall be resolved in the courts of Vancouver, Ontario.",
+      "These Terms are governed by the laws of the Province of Ontario, Canada, without regard to conflict of law principles. Disputes shall be resolved in the courts of Gurugram, Haryana, India.",
     ],
   },
   {
@@ -94,6 +94,69 @@ export const TERMS_SECTIONS = [
     title: "Contact",
     content: [
       "For questions about these Terms, contact hellobrosavo@gmail.com or +1 236 818 4654 (Canada) / +91 99991 07733 (India).",
+    ],
+  },
+] as const;
+
+export const DATA_DELETION_SECTIONS = [
+  {
+    title: "Data Deletion Request",
+    content: [
+      "BROSAVO Technologies (\"BROSAVO\", \"we\", \"us\", or \"our\") respects your privacy and provides users with the ability to request deletion of personal information associated with their BROSAVO account and services.",
+      "If you have used BROSAVO through Facebook, Instagram, WhatsApp, or another Meta service and would like your personal data deleted, you may submit a data deletion request using the process described below.",
+    ],
+  },
+  {
+    title: "How to Request Data Deletion",
+    content: [
+      "To request deletion of your personal data, send an email to hellobrosavo@gmail.com using the subject line \"Data Deletion Request\".",
+      "Please include your full name, registered email address, phone number, company or organization name if applicable, and any other information that may help us identify your account and the data associated with your request.",
+      "For your security, please do not include passwords, access tokens, payment card information, or other authentication credentials in your deletion request.",
+    ],
+  },
+  {
+    title: "Verification of Your Request",
+    content: [
+      "For security and privacy reasons, BROSAVO may need to verify your identity or confirm that you are authorized to request deletion of the relevant account or personal data.",
+      "We may request additional information where reasonably necessary to verify the request and prevent unauthorized deletion of another person's information.",
+    ],
+  },
+  {
+    title: "What Happens After Your Request",
+    content: [
+      "Once we receive and verify your request, we will review the personal information associated with your account and process the deletion of eligible data.",
+      "Personal information that is eligible for deletion will be removed from our active systems within a reasonable period after the request has been verified.",
+      "We will notify you using the contact information provided with your request once the deletion process has been completed.",
+    ],
+  },
+  {
+    title: "Information We May Retain",
+    content: [
+      "Certain information may be retained where retention is required or permitted by applicable law, regulation, legal proceedings, fraud prevention requirements, security requirements, or other legitimate business obligations.",
+      "We may also retain information that has been anonymized or aggregated in a manner that can no longer reasonably be used to identify you.",
+      "Where information is required to be retained, it will be retained only for the period necessary for the applicable purpose and handled in accordance with our privacy practices.",
+    ],
+  },
+  {
+    title: "Facebook and Meta Connections",
+    content: [
+      "If you connected your BROSAVO account with Facebook, Instagram, WhatsApp, or another Meta service, you may also remove the BROSAVO connection through the relevant settings provided by Meta.",
+      "Removing the connection from your Meta account does not necessarily delete information already stored by BROSAVO. To request deletion of information stored by BROSAVO, please submit a data deletion request using the process described on this page.",
+    ],
+  },
+  {
+    title: "Processing Time",
+    content: [
+      "BROSAVO will make reasonable efforts to process verified data deletion requests promptly. The time required may vary depending on the nature of the request, the amount of information involved, and any legal or technical requirements that apply.",
+      "If additional verification or information is required, processing of your request may take longer.",
+    ],
+  },
+  {
+    title: "Contact Us",
+    content: [
+      "For data deletion requests or questions regarding your personal data, contact BROSAVO Technologies at hellobrosavo@gmail.com.",
+      "Please use the subject line \"Data Deletion Request\" so that your request can be routed to the appropriate team.",
+      "You may also contact us at +1 236 818 4654 (Canada) or +91 99991 07733 (India).",
     ],
   },
 ] as const;
