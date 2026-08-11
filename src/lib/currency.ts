@@ -81,7 +81,7 @@ export const CURRENCIES: Currency[] = [
  * ₹999 × 0.019 CAD ≈ CA$19
  * ₹999 × 0.015 USD ≈ $15
  */
-let exchangeRates: Record<CurrencyCode, number> = {
+const exchangeRates: Record<CurrencyCode, number> = {
   INR: 1,
 
   // 1 INR ≈ 0.015 USD
