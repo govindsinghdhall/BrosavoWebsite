@@ -12,7 +12,7 @@ tags:
   - real estate automation
   - Brosavo Real Estate CRM
   - property management software
-image: /images/blog/real-estate-crm-benefits.webp
+image: "/blog/real-estate-crm-benefits/cover.webp"
 imageAlt: "Brosavo Real Estate CRM dashboard showing lead pipeline and sales analytics."
 slug: real-estate-crm-benefits
 seoTitle: "15 Benefits of a Real Estate CRM | Brosavo Blog"
