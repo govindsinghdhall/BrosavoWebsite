@@ -34,7 +34,15 @@ const organizationSchema = {
   logo: `${SITE_URL}/favicon.png`,
   description: COMPANY_DESCRIPTION,
   sameAs: [
-    "https://www.linkedin.com/company/brosavo",
+    "https://www.linkedin.com/company/brosavo/",
+    "https://github.com/brosavotechnologies",
+    "https://www.youtube.com/@brosavo",
+    "https://www.instagram.com/brosavo/",
+    "https://www.facebook.com/brosavo/",
+    "https://www.twitter.com/hellobrosavo/",
+    // "https://www.tiktok.com/@brosavotechnologies/",
+    // "https://www.pinterest.com/brosavotechnologies/",
+    // "https://www.reddit.com/r/brosavotechnologies/",
   ],
 };
 
