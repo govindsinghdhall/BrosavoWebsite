@@ -19,7 +19,7 @@ export function buildArticleJsonLd(
 ) {
   return {
     "@context": "https://schema.org",
-    "@type": "Article",
+    "@type": "BlogPosting",
     headline: post.title,
     description: post.seoDescription || post.description,
     image: [absoluteUrl(post.image)],
@@ -38,7 +38,7 @@ export function buildArticleJsonLd(
       url: SITE_URL,
       logo: {
         "@type": "ImageObject",
-        url: absoluteUrl("/favicon.png"),
+        url: absoluteUrl("/logo.svg"),
       },
     },
     mainEntityOfPage: {
