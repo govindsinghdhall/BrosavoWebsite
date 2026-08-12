@@ -55,7 +55,7 @@ function CrmDashboardVisual({ priority = false }: { priority?: boolean }) {
 
           <div className="ml-3 flex flex-1 items-center justify-center">
             <div className="rounded-full bg-background/80 px-4 py-1 text-[10px] font-mono tracking-wide text-muted">
-              app.brosavo.com / dashboard
+              app.brosavo.com / real-estate-crm
             </div>
           </div>
         </div>
@@ -63,7 +63,10 @@ function CrmDashboardVisual({ priority = false }: { priority?: boolean }) {
         <div className="relative aspect-[3/2] w-full bg-surface">
           <Image
             src={FEATURED_PRODUCT.image}
-            alt={FEATURED_PRODUCT.imageAlt}
+            alt={
+              FEATURED_PRODUCT.imageAlt ||
+              "Brosavo real estate CRM dashboard"
+            }
             fill
             priority={priority}
             sizes="768px"
@@ -86,22 +89,22 @@ function FeaturedCrm() {
             viewport={{ once: true }}
             className="mb-4 inline-flex items-center gap-2 rounded-full border border-accent-blue/25 bg-accent-blue/10 px-3 py-1.5 text-[11px] font-mono uppercase tracking-[0.22em] text-accent-blue"
           >
-            <span>Featured product</span>
+            <span>Flagship Product · Real Estate CRM</span>
           </motion.span>
 
-          <motion.h2
+          <motion.h1
             initial={{ opacity: 0, y: 18 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.05 }}
             className="text-3xl font-semibold leading-[1.08] tracking-tight sm:text-4xl md:text-5xl lg:text-[3.25rem]"
           >
-            {FEATURED_PRODUCT.name}
+            Real Estate CRM for Realtors, Brokers &amp; Real Estate Teams
 
             <span className="mt-2 block text-2xl text-gradient-accent sm:text-3xl md:text-4xl">
-              {FEATURED_PRODUCT.tagline}
+              Manage Leads, Properties &amp; Sales in One Place
             </span>
-          </motion.h2>
+          </motion.h1>
 
           <motion.p
             initial={{ opacity: 0, y: 16 }}
@@ -110,7 +113,10 @@ function FeaturedCrm() {
             transition={{ delay: 0.12 }}
             className="mt-5 max-w-2xl text-base leading-relaxed text-muted md:text-lg"
           >
-            {FEATURED_PRODUCT.description}
+            Brosavo&apos;s flagship Real Estate CRM helps realtors, brokers,
+            property consultants, and real estate sales teams manage leads,
+            properties, follow-ups, WhatsApp conversations, appointments, and
+            sales from one centralized platform.
           </motion.p>
         </div>
 
@@ -126,7 +132,10 @@ function FeaturedCrm() {
               viewport={{ once: true }}
               className="text-sm leading-relaxed text-foreground/80 md:text-base"
             >
-              {FEATURED_PRODUCT.summary}
+              A complete real estate CRM designed to bring lead management,
+              property inventory, customer communication, follow-ups, team
+              workflows, appointments, and sales tracking together in one
+              platform.
             </motion.p>
 
             <div className="mt-6 flex flex-wrap gap-2">
@@ -177,9 +186,9 @@ function FeaturedCrm() {
                     <Icon className="h-4 w-4" />
                   </div>
 
-                  <h3 className="text-sm font-semibold tracking-tight">
+                  <h2 className="text-sm font-semibold tracking-tight">
                     {capability.title}
-                  </h3>
+                  </h2>
 
                   <p className="mt-1 text-xs leading-relaxed text-muted">
                     {capability.description}
@@ -300,11 +309,7 @@ export function Products({ showHeader = true }: { showHeader?: boolean }) {
     offset: ["start end", "end start"],
   });
 
-  const x = useTransform(
-    scrollYProgress,
-    [0, 1],
-    ["0%", "-15%"]
-  );
+  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-15%"]);
 
   const secondaryProducts = PRODUCTS.filter(
     (product) => !product.featured
