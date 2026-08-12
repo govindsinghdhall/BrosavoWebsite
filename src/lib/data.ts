@@ -1,7 +1,7 @@
 export const CONTACT = {
   email: "hellobrosavo@gmail.com",
   instagram: {
-    handle: "hellobrosavo",
+    handle: "brosavo",
     href: "https://www.instagram.com/brosavo/",
   },
   phones: [
