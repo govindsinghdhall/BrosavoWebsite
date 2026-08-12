@@ -10,25 +10,29 @@ import { buildOrganizationJsonLd } from "@/lib/blog-seo";
 import { SITE_NAME, SITE_URL } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title:
-    "BROSAVO — Global Technology Company | AI, Software & Enterprise Systems",
+  title: "Brosavo | Global Technology Company & Real Estate CRM",
 
   description:
-    "BROSAVO is a global technology company engineering AI products, enterprise software, SaaS platforms, automation, and digital infrastructure for businesses worldwide.",
+    "Brosavo is a global technology company building AI, software, SaaS platforms, and digital infrastructure, with Real Estate CRM as its flagship product.",
 
   keywords: [
-    "BROSAVO",
+    "Brosavo",
     "Brosavo Technologies",
     "global technology company",
-    "AI development",
+    "real estate CRM",
+    "real estate CRM software",
+    "CRM for real estate",
+    "CRM for realtors",
+    "real estate lead management",
+    "real estate sales CRM",
+    "AI software",
+    "SaaS platforms",
     "enterprise software",
-    "SaaS development",
-    "custom software",
-    "software engineering",
-    "digital transformation",
-    "cloud infrastructure",
-    "business software",
   ],
+
+  alternates: {
+    canonical: "https://brosavo.com/",
+  },
 };
 
 export default function HomePage() {

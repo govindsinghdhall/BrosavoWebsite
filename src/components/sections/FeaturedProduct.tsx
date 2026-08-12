@@ -31,7 +31,7 @@ export function FeaturedProduct() {
               className="mb-4 inline-flex items-center gap-2 text-xs font-mono uppercase tracking-[0.22em] text-accent-cyan"
             >
               <span className="h-px w-8 bg-accent-cyan/50" />
-              Featured product
+              Our Flagship Product · Real Estate CRM
             </motion.span>
 
             <motion.h2
@@ -41,7 +41,7 @@ export function FeaturedProduct() {
               transition={{ delay: 0.05 }}
               className="text-3xl font-semibold tracking-tight sm:text-4xl md:text-5xl leading-[1.08]"
             >
-              {FEATURED_PRODUCT.headline}
+              Real Estate CRM for Modern Real Estate Teams
             </motion.h2>
 
             <motion.p
@@ -51,7 +51,9 @@ export function FeaturedProduct() {
               transition={{ delay: 0.1 }}
               className="mt-5 max-w-xl text-base text-muted leading-relaxed"
             >
-              {FEATURED_PRODUCT.description}
+              Brosavo&apos;s flagship Real Estate CRM helps realtors, brokers,
+              and real estate teams manage leads, properties, follow-ups,
+              WhatsApp conversations, and sales in one place.
             </motion.p>
 
             <div className="mt-6 flex flex-wrap gap-2">
@@ -75,6 +77,7 @@ export function FeaturedProduct() {
                 See the Real Estate CRM
                 <ArrowRight className="h-4 w-4" />
               </MagneticButton>
+
               <Link
                 href="/contact"
                 className="inline-flex items-center gap-1 text-sm text-muted hover:text-foreground transition-colors px-2"
@@ -90,11 +93,15 @@ export function FeaturedProduct() {
               initial={{ opacity: 0, y: 28 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+              transition={{
+                duration: 0.8,
+                ease: [0.22, 1, 0.36, 1],
+              }}
               whileHover={{ y: -4 }}
               className="relative"
             >
               <div className="absolute -inset-4 rounded-[2rem] bg-[radial-gradient(circle_at_40%_30%,rgba(59,130,246,0.22),transparent_55%)] blur-xl opacity-80 group-hover:opacity-100 transition-opacity" />
+
               <div className="relative mx-auto w-full max-w-[768px] overflow-hidden rounded-[1.5rem] border border-border/80 bg-background shadow-[0_24px_80px_rgba(0,0,0,0.14)]">
                 <div className="flex items-center gap-2 border-b border-border/60 bg-surface/40 px-4 py-3">
                   <div className="flex gap-1.5">
@@ -102,10 +109,12 @@ export function FeaturedProduct() {
                     <span className="h-2 w-2 rounded-full bg-[#febc2e]" />
                     <span className="h-2 w-2 rounded-full bg-[#28c840]" />
                   </div>
+
                   <span className="ml-2 text-[10px] font-mono text-muted tracking-wide">
                     Real Estate CRM · Dashboard
                   </span>
                 </div>
+
                 <div className="relative aspect-[3/2] w-full">
                   <Image
                     src={FEATURED_PRODUCT.image}
