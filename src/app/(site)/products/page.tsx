@@ -41,9 +41,8 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Real Estate CRM & Business Software | Brosavo",
     description:
-      "Explore Brosavo's software products and platforms, including our flagship real estate CRM.",
-  },
-
+  "Explore Brosavo's software products, including our flagship real estate CRM for realtors, brokers, lead management, automation, AI, and business platforms.",
+},
   robots: {
     index: true,
     follow: true,
