@@ -33,7 +33,6 @@ export default function NewBlogAdminPage() {
   const [toast, setToast] = useState<ToastState>(null);
   const [publishing, setPublishing] = useState(false);
 
-  // Blog wallpaper
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [imagePreview, setImagePreview] = useState<string | null>(null);
 
@@ -106,16 +105,11 @@ export default function NewBlogAdminPage() {
     setToast(null);
 
     try {
-      /*
-       * FormData allows us to send:
-       *
-       * 1. Blog fields
-       * 2. Actual image file
-       *
-       * together in one request.
-       */
       const formData = new FormData();
 
+      /*
+       * Blog fields
+       */
       formData.append(
         "title",
         values.title
@@ -143,7 +137,7 @@ export default function NewBlogAdminPage() {
 
       formData.append(
         "tags",
-        values.tags
+        values.tags || ""
       );
 
       formData.append(
@@ -177,7 +171,7 @@ export default function NewBlogAdminPage() {
       );
 
       /*
-       * Add the actual wallpaper file.
+       * Add selected wallpaper
        */
       if (imageFile) {
         formData.append(
@@ -187,11 +181,9 @@ export default function NewBlogAdminPage() {
       }
 
       /*
-       * Send to the EXISTING publish route.
+       * Send to existing publish API
        *
-       * Do NOT set Content-Type manually.
-       * Browser automatically sets multipart/form-data
-       * boundary.
+       * Do not manually set Content-Type.
        */
       const response = await fetch(
         "/api/blog/publish",
@@ -436,7 +428,7 @@ export default function NewBlogAdminPage() {
                     if (!file) return;
 
                     /*
-                     * Basic client-side validation
+                     * Validate image type
                      */
                     const allowedTypes = [
                       "image/jpeg",
@@ -460,6 +452,9 @@ export default function NewBlogAdminPage() {
                       return;
                     }
 
+                    /*
+                     * Validate image size
+                     */
                     if (
                       file.size >
                       10 * 1024 * 1024
