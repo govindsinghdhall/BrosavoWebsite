@@ -33,7 +33,6 @@ type FormState = {
   name: string;
   phone: string;
   email: string;
-  company: string;
   city: string;
   role: string;
 };
@@ -90,7 +89,6 @@ export function ContactPopup() {
       name: "",
       phone: "",
       email: "",
-      company: "",
       city: "",
       role: "",
     });
@@ -467,9 +465,13 @@ export function ContactPopup() {
               shadow-2xl
               sm:max-h-[92vh]
               sm:rounded-[2rem]
+              lg:max-w-3xl
+              lg:max-h-[90vh]
             "
           >
-            {/* Sticky header */}
+            {/* =====================================================
+                HEADER
+            ====================================================== */}
             <div className="relative shrink-0 border-b border-border px-5 py-5 sm:px-8 sm:py-6">
               <button
                 type="button"
@@ -506,25 +508,29 @@ export function ContactPopup() {
                   </p>
 
                   <h2 className="mt-1.5 text-xl font-bold tracking-tight text-foreground sm:text-3xl">
-                    Let&apos;s Talk About Your Business
+                    Request a Demo
                   </h2>
 
                   <p className="mt-2 max-w-xl text-xs leading-5 text-muted sm:text-sm sm:leading-6">
-                    Tell us about your business and
-                    our team will get in touch with
-                    you.
+                    See how Brosavo can help
+                    your business manage
+                    leads, properties,
+                    communication, and sales
+                    more efficiently.
                   </p>
                 </div>
               ) : null}
             </div>
 
-            {/* Scrollable content */}
+            {/* =====================================================
+                SCROLLABLE CONTENT
+            ====================================================== */}
             <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain">
               {submitted ? (
                 /*
-                 * ======================================================
+                 * ==================================================
                  * SUCCESS STATE
-                 * ======================================================
+                 * ==================================================
                  */
                 <div className="flex min-h-[430px] flex-col items-center justify-center px-5 py-10 text-center sm:px-8 sm:py-12">
                   <CheckCircle className="h-14 w-14 text-green-400 sm:h-16 sm:w-16" />
@@ -608,9 +614,7 @@ export function ContactPopup() {
 
                   <button
                     type="button"
-                    onClick={
-                      closePopup
-                    }
+                    onClick={closePopup}
                     className="mt-5 min-h-10 px-3 text-sm font-medium text-accent-blue transition-opacity hover:opacity-80"
                   >
                     Continue Browsing
@@ -618,17 +622,40 @@ export function ContactPopup() {
                 </div>
               ) : (
                 /*
-                 * ======================================================
+                 * ==================================================
                  * FORM
-                 * ======================================================
+                 *
+                 * Mobile:
+                 * 1 column
+                 *
+                 * Desktop:
+                 * 2 columns
+                 *
+                 * Name     | Phone
+                 * Email    | City
+                 * I AM A   | I AM A
+                 * (full width)
+                 * ==================================================
                  */
                 <form
-                  onSubmit={
-                    handleSubmit
-                  }
-                  className="space-y-4 px-5 py-5 sm:space-y-5 sm:px-8 sm:py-7"
+                  onSubmit={handleSubmit}
+                  className="
+                    grid
+                    grid-cols-1
+                    gap-4
+                    px-5
+                    py-5
+                    sm:gap-5
+                    sm:px-8
+                    sm:py-7
+                    lg:grid-cols-2
+                    lg:gap-x-5
+                    lg:gap-y-4
+                  "
                 >
-                  {/* Name */}
+                  {/* =================================================
+                      NAME
+                  ================================================== */}
                   <div>
                     <label
                       htmlFor="popup-name"
@@ -651,8 +678,7 @@ export function ContactPopup() {
                       onChange={(event) =>
                         updateField(
                           "name",
-                          event.target
-                            .value
+                          event.target.value
                         )
                       }
                       className={cn(
@@ -670,7 +696,9 @@ export function ContactPopup() {
                     ) : null}
                   </div>
 
-                  {/* Phone */}
+                  {/* =================================================
+                      PHONE
+                  ================================================== */}
                   <div>
                     <label
                       htmlFor="popup-phone"
@@ -693,8 +721,7 @@ export function ContactPopup() {
                       onChange={(event) =>
                         updateField(
                           "phone",
-                          event.target
-                            .value
+                          event.target.value
                         )
                       }
                       className={cn(
@@ -712,7 +739,9 @@ export function ContactPopup() {
                     ) : null}
                   </div>
 
-                  {/* Email */}
+                  {/* =================================================
+                      EMAIL
+                  ================================================== */}
                   <div>
                     <label
                       htmlFor="popup-email"
@@ -735,8 +764,7 @@ export function ContactPopup() {
                       onChange={(event) =>
                         updateField(
                           "email",
-                          event.target
-                            .value
+                          event.target.value
                         )
                       }
                       className={cn(
@@ -754,38 +782,9 @@ export function ContactPopup() {
                     ) : null}
                   </div>
 
-                  {/* Company */}
-                  <div>
-                    <label
-                      htmlFor="popup-company"
-                      className="mb-1.5 block text-[10px] font-mono uppercase tracking-wider text-muted sm:mb-2 sm:text-xs"
-                    >
-                      Agency / Builder / Brokerage
-                    </label>
-
-                    <input
-                      id="popup-company"
-                      type="text"
-                      autoComplete="organization"
-                      placeholder="Your agency or brokerage"
-                      value={
-                        formState.company
-                      }
-                      disabled={
-                        submitting
-                      }
-                      onChange={(event) =>
-                        updateField(
-                          "company",
-                          event.target
-                            .value
-                        )
-                      }
-                      className="min-h-11 w-full rounded-xl border border-border bg-surface px-3.5 py-2.5 text-sm outline-none transition focus:border-accent-blue/50 sm:min-h-12 sm:px-4 sm:py-3"
-                    />
-                  </div>
-
-                  {/* City */}
+                  {/* =================================================
+                      CITY
+                  ================================================== */}
                   <div>
                     <label
                       htmlFor="popup-city"
@@ -808,8 +807,7 @@ export function ContactPopup() {
                       onChange={(event) =>
                         updateField(
                           "city",
-                          event.target
-                            .value
+                          event.target.value
                         )
                       }
                       className={cn(
@@ -827,13 +825,15 @@ export function ContactPopup() {
                     ) : null}
                   </div>
 
-                  {/* Role */}
-                  <div>
+                  {/* =================================================
+                      ROLE
+                  ================================================== */}
+                  <div className="lg:col-span-2">
                     <p className="mb-2 block text-[10px] font-mono uppercase tracking-wider text-muted sm:mb-3 sm:text-xs">
                       I am a
                     </p>
 
-                    <div className="grid grid-cols-2 gap-2">
+                    <div className="grid grid-cols-2 gap-2 lg:grid-cols-4">
                       {CONTACT_ROLES.map(
                         (role) => {
                           const selected =
@@ -877,19 +877,21 @@ export function ContactPopup() {
                     ) : null}
                   </div>
 
-                  {/* Submit error */}
+                  {/* =================================================
+                      SUBMIT ERROR
+                  ================================================== */}
                   {submitError ? (
-                    <p className="rounded-xl border border-red-500/30 bg-red-500/5 px-3.5 py-3 text-xs leading-5 text-red-400 sm:px-4 sm:text-sm sm:leading-6">
+                    <p className="rounded-xl border border-red-500/30 bg-red-500/5 px-3.5 py-3 text-xs leading-5 text-red-400 sm:px-4 sm:text-sm sm:leading-6 lg:col-span-2">
                       {submitError}
                     </p>
                   ) : null}
 
-                  {/* Submit */}
+                  {/* =================================================
+                      SUBMIT BUTTON
+                  ================================================== */}
                   <button
                     type="submit"
-                    disabled={
-                      submitting
-                    }
+                    disabled={submitting}
                     className="
                       flex
                       min-h-12
@@ -911,6 +913,7 @@ export function ContactPopup() {
                       disabled:cursor-not-allowed
                       disabled:opacity-60
                       sm:min-h-13
+                      lg:col-span-2
                     "
                   >
                     {submitting ? (
@@ -921,12 +924,15 @@ export function ContactPopup() {
                     ) : (
                       <>
                         <Send className="h-4 w-4" />
-                        Request Free Demo
+                        Request a Demo
                       </>
                     )}
                   </button>
 
-                  <p className="pb-1 text-center text-[10px] leading-4 text-muted sm:text-xs">
+                  {/* =================================================
+                      DISCLAIMER
+                  ================================================== */}
+                  <p className="pb-1 text-center text-[10px] leading-4 text-muted sm:text-xs lg:col-span-2">
                     By submitting this form,
                     you agree to be contacted
                     by the Brosavo team.
