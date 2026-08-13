@@ -1,5 +1,5 @@
 ---
-title: "Real Estate CRM in InHow Agents and Property Businesses Can Manage Leads Better"
+title: "Real Estate CRM in India: How Agents and Property Businesses Can Manage Leads Better"
 description: "Discover how a real estate CRM helps Indian property agents manage leads, follow-ups, properties, WhatsApp conversations, and sales from one place."
 date: 2026-08-13
 updatedAt: 2026-08-13
