@@ -63,9 +63,6 @@ export default function NewBlogAdminPage() {
 
   const title = watch("title");
 
-  /*
-   * Automatically generate slug from title
-   */
   useEffect(() => {
     if (!slugManual && title) {
       setValue(
@@ -81,131 +78,69 @@ export default function NewBlogAdminPage() {
     }
   }, [title, slugManual, setValue]);
 
-  /*
-   * Clear toast automatically
-   */
   useEffect(() => {
     if (!toast) return;
 
-    const timer = window.setTimeout(
-      () => setToast(null),
-      4500
-    );
+    const timer = window.setTimeout(() => {
+      setToast(null);
+    }, 4500);
 
     return () => window.clearTimeout(timer);
   }, [toast]);
 
-  /*
-   * Publish blog
-   */
-  async function onSubmit(
-    values: PublishBlogFormValues
-  ) {
+  async function onSubmit(values: PublishBlogFormValues) {
+    if (!imageFile) {
+      setToast({
+        type: "error",
+        message: "Please choose a blog wallpaper before publishing.",
+      });
+
+      return;
+    }
+
     setPublishing(true);
     setToast(null);
 
     try {
       const formData = new FormData();
 
-      /*
-       * Blog fields
-       */
-      formData.append(
-        "title",
-        values.title
-      );
-
-      formData.append(
-        "slug",
-        values.slug
-      );
-
-      formData.append(
-        "description",
-        values.description
-      );
-
-      formData.append(
-        "category",
-        values.category
-      );
-
-      formData.append(
-        "author",
-        values.author
-      );
-
-      formData.append(
-        "tags",
-        values.tags || ""
-      );
-
-      formData.append(
-        "image",
-        values.image || ""
-      );
-
-      formData.append(
-        "imageAlt",
-        values.imageAlt || ""
-      );
-
-      formData.append(
-        "seoTitle",
-        values.seoTitle || ""
-      );
-
+      formData.append("title", values.title);
+      formData.append("slug", values.slug);
+      formData.append("description", values.description);
+      formData.append("category", values.category);
+      formData.append("author", values.author);
+      formData.append("tags", values.tags || "");
+      formData.append("image", "");
+      formData.append("imageAlt", values.imageAlt || "");
+      formData.append("seoTitle", values.seoTitle || "");
       formData.append(
         "seoDescription",
         values.seoDescription || ""
       );
-
       formData.append(
         "keyTakeaways",
         values.keyTakeaways || ""
       );
+      formData.append("markdown", values.markdown);
 
-      formData.append(
-        "markdown",
-        values.markdown
-      );
+      formData.append("imageFile", imageFile);
 
-      /*
-       * Add selected wallpaper
-       */
-      if (imageFile) {
-        formData.append(
-          "imageFile",
-          imageFile
-        );
-      }
+      const response = await fetch("/api/blog/publish", {
+        method: "POST",
+        body: formData,
+      });
 
-      /*
-       * Send to existing publish API
-       *
-       * Do not manually set Content-Type.
-       */
-      const response = await fetch(
-        "/api/blog/publish",
-        {
-          method: "POST",
-          body: formData,
-        }
-      );
-
-      const data =
-        (await response.json()) as {
-          error?: string;
-          url?: string;
-          slug?: string;
-        };
+      const data = (await response.json()) as {
+        error?: string;
+        url?: string;
+        slug?: string;
+      };
 
       if (!response.ok) {
         setToast({
           type: "error",
           message:
-            data.error ||
-            "Failed to publish blog",
+            data.error || "Failed to publish blog",
         });
 
         return;
@@ -215,16 +150,11 @@ export default function NewBlogAdminPage() {
         type: "success",
         message:
           `Published successfully${
-            data.slug
-              ? `: ${data.slug}`
-              : ""
+            data.slug ? `: ${data.slug}` : ""
           }`,
       });
     } catch (error) {
-      console.error(
-        "Publish error:",
-        error
-      );
+      console.error("Publish error:", error);
 
       setToast({
         type: "error",
@@ -247,8 +177,6 @@ export default function NewBlogAdminPage() {
       <div className="pointer-events-none absolute inset-0 mesh-gradient opacity-50" />
 
       <div className="relative mx-auto max-w-5xl">
-
-        {/* Header */}
         <header className="mb-8">
           <p className="text-xs font-semibold uppercase tracking-[0.28em] text-accent-blue">
             Admin CMS
@@ -265,15 +193,11 @@ export default function NewBlogAdminPage() {
           </p>
         </header>
 
-        {/* Form */}
         <form
           onSubmit={handleSubmit(onSubmit)}
           className="glass space-y-6 rounded-[2rem] p-6 sm:p-8"
         >
-
-          {/* Title + Slug */}
           <div className="grid gap-6 md:grid-cols-2">
-
             <label className={labelClass}>
               Title
 
@@ -316,10 +240,8 @@ export default function NewBlogAdminPage() {
                 </span>
               ) : null}
             </label>
-
           </div>
 
-          {/* Description */}
           <label className={labelClass}>
             Meta Description (150–160 characters)
 
@@ -337,9 +259,7 @@ export default function NewBlogAdminPage() {
             ) : null}
           </label>
 
-          {/* Category + Author */}
           <div className="grid gap-6 md:grid-cols-2">
-
             <label className={labelClass}>
               Category
 
@@ -363,16 +283,14 @@ export default function NewBlogAdminPage() {
                 {...register("author")}
                 className={fieldClass}
               >
-                {AUTHOR_OPTIONS.map(
-                  (author) => (
-                    <option
-                      key={author.value}
-                      value={author.value}
-                    >
-                      {author.label}
-                    </option>
-                  )
-                )}
+                {AUTHOR_OPTIONS.map((author) => (
+                  <option
+                    key={author.value}
+                    value={author.value}
+                  >
+                    {author.label}
+                  </option>
+                ))}
               </select>
 
               {errors.author ? (
@@ -381,13 +299,9 @@ export default function NewBlogAdminPage() {
                 </span>
               ) : null}
             </label>
-
           </div>
 
-          {/* Tags + Wallpaper */}
           <div className="grid gap-6 md:grid-cols-2">
-
-            {/* Tags */}
             <label className={labelClass}>
               Tags (comma separated)
 
@@ -398,7 +312,6 @@ export default function NewBlogAdminPage() {
               />
             </label>
 
-            {/* Blog Wallpaper */}
             <div>
               <label className={labelClass}>
                 Blog Wallpaper
@@ -427,9 +340,6 @@ export default function NewBlogAdminPage() {
 
                     if (!file) return;
 
-                    /*
-                     * Validate image type
-                     */
                     const allowedTypes = [
                       "image/jpeg",
                       "image/png",
@@ -437,11 +347,7 @@ export default function NewBlogAdminPage() {
                       "image/avif",
                     ];
 
-                    if (
-                      !allowedTypes.includes(
-                        file.type
-                      )
-                    ) {
+                    if (!allowedTypes.includes(file.type)) {
                       setToast({
                         type: "error",
                         message:
@@ -452,13 +358,7 @@ export default function NewBlogAdminPage() {
                       return;
                     }
 
-                    /*
-                     * Validate image size
-                     */
-                    if (
-                      file.size >
-                      10 * 1024 * 1024
-                    ) {
+                    if (file.size > 10 * 1024 * 1024) {
                       setToast({
                         type: "error",
                         message:
@@ -493,17 +393,9 @@ export default function NewBlogAdminPage() {
                   />
                 </div>
               ) : null}
-
-              {errors.image ? (
-                <span className="mt-1 block text-xs text-red-500">
-                  {errors.image.message}
-                </span>
-              ) : null}
             </div>
-
           </div>
 
-          {/* Cover Image Alt Text */}
           <label className={labelClass}>
             Cover Image Alt Text
 
@@ -514,9 +406,7 @@ export default function NewBlogAdminPage() {
             />
           </label>
 
-          {/* SEO */}
           <div className="grid gap-6 md:grid-cols-2">
-
             <label className={labelClass}>
               SEO Title
 
@@ -536,10 +426,8 @@ export default function NewBlogAdminPage() {
                 placeholder="Optional — defaults to Meta Description"
               />
             </label>
-
           </div>
 
-          {/* Key Takeaways */}
           <label className={labelClass}>
             Key Takeaways (one per line)
 
@@ -553,7 +441,6 @@ export default function NewBlogAdminPage() {
             />
           </label>
 
-          {/* Markdown */}
           <label className={labelClass}>
             Markdown Content
 
@@ -571,9 +458,7 @@ export default function NewBlogAdminPage() {
             ) : null}
           </label>
 
-          {/* Footer */}
           <div className="flex flex-wrap items-center justify-between gap-4 pt-2">
-
             <p className="text-xs text-muted">
               Commits to{" "}
               <code>
@@ -596,13 +481,10 @@ export default function NewBlogAdminPage() {
                 "Publish"
               )}
             </button>
-
           </div>
-
         </form>
       </div>
 
-      {/* Toast */}
       {toast ? (
         <div
           className={`fixed bottom-6 right-6 z-50 flex max-w-sm items-start gap-3 rounded-2xl border px-4 py-3 shadow-lg ${
