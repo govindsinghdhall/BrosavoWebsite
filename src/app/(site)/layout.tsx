@@ -10,6 +10,7 @@ import "../globals.css";
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
+  viewportFit: "cover",
 };
 
 export const metadata: Metadata = {
@@ -41,8 +42,7 @@ export const metadata: Metadata = {
   authors: [{ name: "Brosavo Technologies" }],
 
   openGraph: {
-    title:
-      "BROSAVO — Building The Future Of Digital Infrastructure",
+    title: "BROSAVO — Building The Future Of Digital Infrastructure",
 
     description:
       "Global technology company engineering AI, software, automation, and enterprise systems. Canada × India.",
@@ -75,17 +75,16 @@ export default function SiteLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html
-      lang="en"
-      suppressHydrationWarning
-    >
-      <body className="antialiased bg-background text-foreground">
+    <html lang="en" suppressHydrationWarning>
+      <body className="w-full max-w-full overflow-x-hidden antialiased bg-background text-foreground">
         <ThemeProvider>
           <SmoothScroll>
             <GSAPProvider>
               <Navigation />
 
-              <main>{children}</main>
+              <main className="w-full max-w-full overflow-x-hidden">
+                {children}
+              </main>
 
               <Footer />
 
