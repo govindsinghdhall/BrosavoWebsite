@@ -149,8 +149,7 @@ export default function NewBlogAdminPage() {
       setToast({
         type: "success",
         message:
-          `Published successfully${
-            data.slug ? `: ${data.slug}` : ""
+          `Published successfully${data.slug ? `: ${data.slug}` : ""
           }`,
       });
     } catch (error) {
@@ -371,6 +370,11 @@ export default function NewBlogAdminPage() {
 
                     setImageFile(file);
 
+                    setValue("image", file.name, {
+                      shouldValidate: true,
+                      shouldDirty: true,
+                    });
+
                     setImagePreview(
                       URL.createObjectURL(file)
                     );
@@ -487,11 +491,10 @@ export default function NewBlogAdminPage() {
 
       {toast ? (
         <div
-          className={`fixed bottom-6 right-6 z-50 flex max-w-sm items-start gap-3 rounded-2xl border px-4 py-3 shadow-lg ${
-            toast.type === "success"
+          className={`fixed bottom-6 right-6 z-50 flex max-w-sm items-start gap-3 rounded-2xl border px-4 py-3 shadow-lg ${toast.type === "success"
               ? "border-emerald-500/30 bg-background text-foreground"
               : "border-red-500/30 bg-background text-foreground"
-          }`}
+            }`}
           role="status"
         >
           {toast.type === "success" ? (
