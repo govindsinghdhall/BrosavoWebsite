@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Navigation } from "@/components/layout/Navigation";
 import { Footer } from "@/components/layout/Footer";
 import { SmoothScroll } from "@/components/providers/SmoothScroll";
@@ -6,6 +6,11 @@ import { GSAPProvider } from "@/components/providers/GSAPProvider";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import { ContactPopup } from "@/components/ui/ContactPopup";
 import "../globals.css";
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+};
 
 export const metadata: Metadata = {
   title:
@@ -36,7 +41,8 @@ export const metadata: Metadata = {
   authors: [{ name: "Brosavo Technologies" }],
 
   openGraph: {
-    title: "BROSAVO — Building The Future Of Digital Infrastructure",
+    title:
+      "BROSAVO — Building The Future Of Digital Infrastructure",
 
     description:
       "Global technology company engineering AI, software, automation, and enterprise systems. Canada × India.",
@@ -69,7 +75,10 @@ export default function SiteLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html
+      lang="en"
+      suppressHydrationWarning
+    >
       <body className="antialiased bg-background text-foreground">
         <ThemeProvider>
           <SmoothScroll>
