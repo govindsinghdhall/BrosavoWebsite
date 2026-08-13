@@ -96,3 +96,58 @@ export async function publishBlogToGitHub(input: {
     commitSha: payload.commit?.sha,
   };
 }
+
+export async function publishImageToGitHub(input: {
+  path: string;
+  base64: string;
+  message: string;
+}): Promise<{ path: string; commitSha?: string }> {
+  const { token, owner, repo, branch } = getGitHubConfig();
+
+  const apiBase =
+    `https://api.github.com/repos/${owner}/${repo}/contents/${input.path}`;
+
+  const headers = {
+    Accept: "application/vnd.github+json",
+    Authorization: `Bearer ${token}`,
+    "X-GitHub-Api-Version": "2022-11-28",
+    "User-Agent": "brosavo-blog-publisher",
+  };
+
+  const response = await fetch(apiBase, {
+    method: "PUT",
+
+    headers: {
+      ...headers,
+      "Content-Type": "application/json",
+    },
+
+    body: JSON.stringify({
+      message: input.message,
+      content: input.base64,
+      branch,
+    }),
+
+    cache: "no-store",
+  });
+
+  if (!response.ok) {
+    const detail = await response.text();
+
+    throw new GitHubPublishError(
+      `GitHub image upload failed (${response.status}): ${detail}`,
+      502
+    );
+  }
+
+  const payload = (await response.json()) as {
+    commit?: {
+      sha?: string;
+    };
+  };
+
+  return {
+    path: input.path,
+    commitSha: payload.commit?.sha,
+  };
+}

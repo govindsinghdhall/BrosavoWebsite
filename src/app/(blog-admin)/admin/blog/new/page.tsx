@@ -4,19 +4,23 @@ import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import slugify from "slugify";
-import { CheckCircle2, Loader2, XCircle } from "lucide-react";
+import {
+  CheckCircle2,
+  Loader2,
+  Upload,
+  XCircle,
+} from "lucide-react";
+
 import { AUTHOR_OPTIONS } from "@/lib/authors";
 import {
   normalizeTagsInput,
   normalizeTakeawaysInput,
   publishBlogFormSchema,
   type PublishBlogFormValues,
-  type PublishBlogInput,
 } from "@/lib/blog-schema";
 import {
   BLOG_CONTENT_TEMPLATE,
   BLOG_TITLE_SUFFIX,
-  DEFAULT_BLOG_COVER,
 } from "@/lib/site";
 
 type ToastState =
@@ -29,6 +33,10 @@ export default function NewBlogAdminPage() {
   const [toast, setToast] = useState<ToastState>(null);
   const [publishing, setPublishing] = useState(false);
 
+  // Blog wallpaper
+  const [imageFile, setImageFile] = useState<File | null>(null);
+  const [imagePreview, setImagePreview] = useState<string | null>(null);
+
   const {
     register,
     handleSubmit,
@@ -37,6 +45,7 @@ export default function NewBlogAdminPage() {
     formState: { errors },
   } = useForm<PublishBlogFormValues>({
     resolver: zodResolver(publishBlogFormSchema),
+
     defaultValues: {
       title: "",
       slug: "",
@@ -44,7 +53,7 @@ export default function NewBlogAdminPage() {
       category: "Real Estate Tech",
       author: "Govind Dhall",
       tags: "",
-      image: DEFAULT_BLOG_COVER,
+      image: "",
       imageAlt: "",
       seoTitle: "",
       seoDescription: "",
@@ -55,64 +64,180 @@ export default function NewBlogAdminPage() {
 
   const title = watch("title");
 
+  /*
+   * Automatically generate slug from title
+   */
   useEffect(() => {
     if (!slugManual && title) {
       setValue(
         "slug",
-        slugify(title, { lower: true, strict: true }),
-        { shouldValidate: true }
+        slugify(title, {
+          lower: true,
+          strict: true,
+        }),
+        {
+          shouldValidate: true,
+        }
       );
     }
   }, [title, slugManual, setValue]);
 
+  /*
+   * Clear toast automatically
+   */
   useEffect(() => {
     if (!toast) return;
-    const timer = window.setTimeout(() => setToast(null), 4500);
+
+    const timer = window.setTimeout(
+      () => setToast(null),
+      4500
+    );
+
     return () => window.clearTimeout(timer);
   }, [toast]);
 
-  async function onSubmit(values: PublishBlogFormValues) {
+  /*
+   * Publish blog
+   */
+  async function onSubmit(
+    values: PublishBlogFormValues
+  ) {
     setPublishing(true);
     setToast(null);
 
     try {
-      const payload: PublishBlogInput = {
-        ...values,
-        tags: normalizeTagsInput(values.tags),
-        keyTakeaways: normalizeTakeawaysInput(values.keyTakeaways),
-        imageAlt: values.imageAlt || values.title,
-        seoTitle: values.seoTitle || `${values.title}${BLOG_TITLE_SUFFIX}`,
-        seoDescription: values.seoDescription || values.description,
-      };
+      /*
+       * FormData allows us to send:
+       *
+       * 1. Blog fields
+       * 2. Actual image file
+       *
+       * together in one request.
+       */
+      const formData = new FormData();
 
-      const response = await fetch("/api/blog/publish", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-      });
+      formData.append(
+        "title",
+        values.title
+      );
 
-      const data = (await response.json()) as {
-        error?: string;
-        url?: string;
-        slug?: string;
-      };
+      formData.append(
+        "slug",
+        values.slug
+      );
+
+      formData.append(
+        "description",
+        values.description
+      );
+
+      formData.append(
+        "category",
+        values.category
+      );
+
+      formData.append(
+        "author",
+        values.author
+      );
+
+      formData.append(
+        "tags",
+        values.tags
+      );
+
+      formData.append(
+        "image",
+        values.image || ""
+      );
+
+      formData.append(
+        "imageAlt",
+        values.imageAlt || ""
+      );
+
+      formData.append(
+        "seoTitle",
+        values.seoTitle || ""
+      );
+
+      formData.append(
+        "seoDescription",
+        values.seoDescription || ""
+      );
+
+      formData.append(
+        "keyTakeaways",
+        values.keyTakeaways || ""
+      );
+
+      formData.append(
+        "markdown",
+        values.markdown
+      );
+
+      /*
+       * Add the actual wallpaper file.
+       */
+      if (imageFile) {
+        formData.append(
+          "imageFile",
+          imageFile
+        );
+      }
+
+      /*
+       * Send to the EXISTING publish route.
+       *
+       * Do NOT set Content-Type manually.
+       * Browser automatically sets multipart/form-data
+       * boundary.
+       */
+      const response = await fetch(
+        "/api/blog/publish",
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
+
+      const data =
+        (await response.json()) as {
+          error?: string;
+          url?: string;
+          slug?: string;
+        };
 
       if (!response.ok) {
         setToast({
           type: "error",
-          message: data.error || "Failed to publish blog",
+          message:
+            data.error ||
+            "Failed to publish blog",
         });
+
         return;
       }
 
       setToast({
         type: "success",
-        message: `Published successfully${data.slug ? `: ${data.slug}` : ""}`,
+        message:
+          `Published successfully${
+            data.slug
+              ? `: ${data.slug}`
+              : ""
+          }`,
       });
-    } catch {
+    } catch (error) {
+      console.error(
+        "Publish error:",
+        error
+      );
+
       setToast({
         type: "error",
-        message: "Network error while publishing. Please try again.",
+        message:
+          "Network error while publishing. Please try again.",
       });
     } finally {
       setPublishing(false);
@@ -121,38 +246,51 @@ export default function NewBlogAdminPage() {
 
   const fieldClass =
     "mt-2 w-full rounded-2xl border border-border bg-background/70 px-4 py-3 text-sm outline-none ring-accent-blue/30 placeholder:text-muted focus:ring-2";
-  const labelClass = "block text-sm font-medium text-foreground";
+
+  const labelClass =
+    "block text-sm font-medium text-foreground";
 
   return (
     <main className="relative min-h-screen px-6 py-10 sm:px-10">
       <div className="pointer-events-none absolute inset-0 mesh-gradient opacity-50" />
 
       <div className="relative mx-auto max-w-5xl">
+
+        {/* Header */}
         <header className="mb-8">
           <p className="text-xs font-semibold uppercase tracking-[0.28em] text-accent-blue">
             Admin CMS
           </p>
+
           <h1 className="mt-2 text-3xl font-black tracking-tight text-foreground sm:text-4xl">
             Create New Blog
           </h1>
+
           <p className="mt-2 max-w-2xl text-sm text-muted">
-            Publish a markdown post directly to GitHub. It will appear on the
-            site after the next deploy / ISR refresh.
+            Publish a markdown post directly to GitHub.
+            It will appear on the site after the next
+            deploy / ISR refresh.
           </p>
         </header>
 
+        {/* Form */}
         <form
           onSubmit={handleSubmit(onSubmit)}
           className="glass space-y-6 rounded-[2rem] p-6 sm:p-8"
         >
+
+          {/* Title + Slug */}
           <div className="grid gap-6 md:grid-cols-2">
+
             <label className={labelClass}>
               Title
+
               <input
                 {...register("title")}
                 className={fieldClass}
                 placeholder="15 Benefits of a Real Estate CRM"
               />
+
               {errors.title ? (
                 <span className="mt-1 block text-xs text-red-500">
                   {errors.title.message}
@@ -162,31 +300,44 @@ export default function NewBlogAdminPage() {
 
             <label className={labelClass}>
               Slug
+
               <input
                 {...register("slug")}
                 className={fieldClass}
                 placeholder="real-estate-crm-benefits"
                 onChange={(event) => {
                   setSlugManual(true);
-                  setValue("slug", event.target.value, { shouldValidate: true });
+
+                  setValue(
+                    "slug",
+                    event.target.value,
+                    {
+                      shouldValidate: true,
+                    }
+                  );
                 }}
               />
+
               {errors.slug ? (
                 <span className="mt-1 block text-xs text-red-500">
                   {errors.slug.message}
                 </span>
               ) : null}
             </label>
+
           </div>
 
+          {/* Description */}
           <label className={labelClass}>
             Meta Description (150–160 characters)
+
             <textarea
               {...register("description")}
               rows={3}
               className={fieldClass}
               placeholder="Short summary shown on cards and SEO"
             />
+
             {errors.description ? (
               <span className="mt-1 block text-xs text-red-500">
                 {errors.description.message}
@@ -194,14 +345,18 @@ export default function NewBlogAdminPage() {
             ) : null}
           </label>
 
+          {/* Category + Author */}
           <div className="grid gap-6 md:grid-cols-2">
+
             <label className={labelClass}>
               Category
+
               <input
                 {...register("category")}
                 className={fieldClass}
                 placeholder="Real Estate Tech"
               />
+
               {errors.category ? (
                 <span className="mt-1 block text-xs text-red-500">
                   {errors.category.message}
@@ -211,24 +366,39 @@ export default function NewBlogAdminPage() {
 
             <label className={labelClass}>
               Author
-              <select {...register("author")} className={fieldClass}>
-                {AUTHOR_OPTIONS.map((author) => (
-                  <option key={author.value} value={author.value}>
-                    {author.label}
-                  </option>
-                ))}
+
+              <select
+                {...register("author")}
+                className={fieldClass}
+              >
+                {AUTHOR_OPTIONS.map(
+                  (author) => (
+                    <option
+                      key={author.value}
+                      value={author.value}
+                    >
+                      {author.label}
+                    </option>
+                  )
+                )}
               </select>
+
               {errors.author ? (
                 <span className="mt-1 block text-xs text-red-500">
                   {errors.author.message}
                 </span>
               ) : null}
             </label>
+
           </div>
 
+          {/* Tags + Wallpaper */}
           <div className="grid gap-6 md:grid-cols-2">
+
+            {/* Tags */}
             <label className={labelClass}>
               Tags (comma separated)
+
               <input
                 {...register("tags")}
                 className={fieldClass}
@@ -236,23 +406,112 @@ export default function NewBlogAdminPage() {
               />
             </label>
 
-            <label className={labelClass}>
-              Cover Image Path
-              <input
-                {...register("image")}
-                className={fieldClass}
-                placeholder="/images/blog/real-estate-crm-benefits.webp"
-              />
+            {/* Blog Wallpaper */}
+            <div>
+              <label className={labelClass}>
+                Blog Wallpaper
+              </label>
+
+              <label
+                htmlFor="blog-wallpaper"
+                className="mt-2 flex cursor-pointer items-center gap-3 rounded-2xl border border-border bg-background/70 px-4 py-3 transition hover:border-accent-blue"
+              >
+                <Upload className="h-5 w-5 shrink-0 text-accent-blue" />
+
+                <span className="truncate text-sm text-foreground">
+                  {imageFile
+                    ? imageFile.name
+                    : "Choose blog wallpaper"}
+                </span>
+
+                <input
+                  id="blog-wallpaper"
+                  type="file"
+                  accept="image/jpeg,image/png,image/webp,image/avif"
+                  className="hidden"
+                  onChange={(event) => {
+                    const file =
+                      event.target.files?.[0];
+
+                    if (!file) return;
+
+                    /*
+                     * Basic client-side validation
+                     */
+                    const allowedTypes = [
+                      "image/jpeg",
+                      "image/png",
+                      "image/webp",
+                      "image/avif",
+                    ];
+
+                    if (
+                      !allowedTypes.includes(
+                        file.type
+                      )
+                    ) {
+                      setToast({
+                        type: "error",
+                        message:
+                          "Please upload JPG, PNG, WebP or AVIF.",
+                      });
+
+                      event.target.value = "";
+                      return;
+                    }
+
+                    if (
+                      file.size >
+                      10 * 1024 * 1024
+                    ) {
+                      setToast({
+                        type: "error",
+                        message:
+                          "Image must be smaller than 10MB.",
+                      });
+
+                      event.target.value = "";
+                      return;
+                    }
+
+                    setImageFile(file);
+
+                    setImagePreview(
+                      URL.createObjectURL(file)
+                    );
+
+                    setToast(null);
+                  }}
+                />
+              </label>
+
+              <p className="mt-2 text-xs text-muted">
+                JPG, PNG, WebP or AVIF · Maximum 10MB
+              </p>
+
+              {imagePreview ? (
+                <div className="mt-3 overflow-hidden rounded-2xl border border-border">
+                  <img
+                    src={imagePreview}
+                    alt="Blog wallpaper preview"
+                    className="h-40 w-full object-cover"
+                  />
+                </div>
+              ) : null}
+
               {errors.image ? (
                 <span className="mt-1 block text-xs text-red-500">
                   {errors.image.message}
                 </span>
               ) : null}
-            </label>
+            </div>
+
           </div>
 
+          {/* Cover Image Alt Text */}
           <label className={labelClass}>
             Cover Image Alt Text
+
             <input
               {...register("imageAlt")}
               className={fieldClass}
@@ -260,9 +519,12 @@ export default function NewBlogAdminPage() {
             />
           </label>
 
+          {/* SEO */}
           <div className="grid gap-6 md:grid-cols-2">
+
             <label className={labelClass}>
               SEO Title
+
               <input
                 {...register("seoTitle")}
                 className={fieldClass}
@@ -272,32 +534,41 @@ export default function NewBlogAdminPage() {
 
             <label className={labelClass}>
               SEO Description
+
               <input
                 {...register("seoDescription")}
                 className={fieldClass}
                 placeholder="Optional — defaults to Meta Description"
               />
             </label>
+
           </div>
 
+          {/* Key Takeaways */}
           <label className={labelClass}>
             Key Takeaways (one per line)
+
             <textarea
               {...register("keyTakeaways")}
               rows={5}
               className={fieldClass}
-              placeholder={"A Real Estate CRM centralizes leads...\nAutomation reduces manual follow-ups..."}
+              placeholder={
+                "A Real Estate CRM centralizes leads...\nAutomation reduces manual follow-ups..."
+              }
             />
           </label>
 
+          {/* Markdown */}
           <label className={labelClass}>
             Markdown Content
+
             <textarea
               {...register("markdown")}
               rows={22}
               className={`${fieldClass} font-mono text-[13px] leading-6`}
               placeholder="Follow the standard Brosavo blog template..."
             />
+
             {errors.markdown ? (
               <span className="mt-1 block text-xs text-red-500">
                 {errors.markdown.message}
@@ -305,10 +576,17 @@ export default function NewBlogAdminPage() {
             ) : null}
           </label>
 
+          {/* Footer */}
           <div className="flex flex-wrap items-center justify-between gap-4 pt-2">
+
             <p className="text-xs text-muted">
-              Commits to <code>content/blogs/{"{slug}"}.md</code> via GitHub.
+              Commits to{" "}
+              <code>
+                content/blogs/{"{slug}"}.md
+              </code>{" "}
+              via GitHub.
             </p>
+
             <button
               type="submit"
               disabled={publishing}
@@ -323,10 +601,13 @@ export default function NewBlogAdminPage() {
                 "Publish"
               )}
             </button>
+
           </div>
+
         </form>
       </div>
 
+      {/* Toast */}
       {toast ? (
         <div
           className={`fixed bottom-6 right-6 z-50 flex max-w-sm items-start gap-3 rounded-2xl border px-4 py-3 shadow-lg ${
@@ -341,7 +622,10 @@ export default function NewBlogAdminPage() {
           ) : (
             <XCircle className="mt-0.5 h-5 w-5 shrink-0 text-red-500" />
           )}
-          <p className="text-sm leading-6">{toast.message}</p>
+
+          <p className="text-sm leading-6">
+            {toast.message}
+          </p>
         </div>
       ) : null}
     </main>
