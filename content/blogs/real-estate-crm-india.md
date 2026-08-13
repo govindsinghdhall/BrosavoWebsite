@@ -15,7 +15,7 @@ tags:
   - "realtor CRM"
   - "property management software"
   - "real estate sales"
-image: /images/blog/real-estate-crm-india/cover.webp
+image: /images/blog/real-estate-crm-india.jpg
 imageAlt: "Real estate agent using a CRM to manage property leads and follow-ups in India"
 slug: real-estate-crm-india
 seoTitle: "Real Estate CRM in India | Manage Leads & Sales Better"
