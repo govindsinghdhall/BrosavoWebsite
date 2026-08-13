@@ -4,6 +4,7 @@ import { Footer } from "@/components/layout/Footer";
 import { SmoothScroll } from "@/components/providers/SmoothScroll";
 import { GSAPProvider } from "@/components/providers/GSAPProvider";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
+import { ContactPopup } from "@/components/ui/ContactPopup";
 import "../globals.css";
 
 export const metadata: Metadata = {
@@ -78,6 +79,8 @@ export default function SiteLayout({
               <main>{children}</main>
 
               <Footer />
+
+              <ContactPopup />
             </GSAPProvider>
           </SmoothScroll>
         </ThemeProvider>
