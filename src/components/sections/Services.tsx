@@ -1,10 +1,24 @@
 "use client";
 
 import { useRef, useState } from "react";
-import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import {
-  Brain, Code, Cloud, Building2, Users, CreditCard,
-  Server, Smartphone, Zap, RefreshCw, Database, Layers,
+  motion,
+  useMotionValue,
+  useSpring,
+  useTransform,
+} from "framer-motion";
+import {
+  Brain,
+  Code,
+  Cloud,
+  Building2,
+  CreditCard,
+  Server,
+  Smartphone,
+  Zap,
+  RefreshCw,
+  Database,
+  Layers,
 } from "lucide-react";
 import { SERVICES } from "@/lib/data";
 import { SectionHeader } from "@/components/ui/SectionHeader";
@@ -15,7 +29,6 @@ const ICON_MAP = {
   code: Code,
   cloud: Cloud,
   building: Building2,
-  users: Users,
   "credit-card": CreditCard,
   server: Server,
   smartphone: Smartphone,
@@ -34,18 +47,41 @@ function ServiceCard({
 }) {
   const ref = useRef<HTMLDivElement>(null);
   const [hovered, setHovered] = useState(false);
+
   const x = useMotionValue(0);
   const y = useMotionValue(0);
-  const rotateX = useSpring(useTransform(y, [-0.5, 0.5], [8, -8]), { stiffness: 300, damping: 30 });
-  const rotateY = useSpring(useTransform(x, [-0.5, 0.5], [-8, 8]), { stiffness: 300, damping: 30 });
 
-  const Icon = ICON_MAP[service.icon as keyof typeof ICON_MAP];
+  const rotateX = useSpring(
+    useTransform(y, [-0.5, 0.5], [6, -6]),
+    {
+      stiffness: 300,
+      damping: 30,
+    }
+  );
 
-  const handleMouse = (e: React.MouseEvent) => {
+  const rotateY = useSpring(
+    useTransform(x, [-0.5, 0.5], [-6, 6]),
+    {
+      stiffness: 300,
+      damping: 30,
+    }
+  );
+
+  const Icon =
+    ICON_MAP[service.icon as keyof typeof ICON_MAP];
+
+  const handleMouse = (e: React.MouseEvent<HTMLDivElement>) => {
     const rect = ref.current?.getBoundingClientRect();
+
     if (!rect) return;
-    x.set((e.clientX - rect.left) / rect.width - 0.5);
-    y.set((e.clientY - rect.top) / rect.height - 0.5);
+
+    x.set(
+      (e.clientX - rect.left) / rect.width - 0.5
+    );
+
+    y.set(
+      (e.clientY - rect.top) / rect.height - 0.5
+    );
   };
 
   const reset = () => {
@@ -57,51 +93,114 @@ function ServiceCard({
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, y: 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-50px" }}
-      transition={{ duration: 0.6, delay: index * 0.05 }}
+      initial={{
+        opacity: 0,
+        y: 24,
+      }}
+      whileInView={{
+        opacity: 1,
+        y: 0,
+      }}
+      viewport={{
+        once: true,
+        margin: "-40px",
+      }}
+      transition={{
+        duration: 0.55,
+        delay: index * 0.04,
+      }}
       onMouseMove={handleMouse}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={reset}
-      style={{ rotateX, rotateY, transformPerspective: 1000 }}
+      style={{
+        rotateX,
+        rotateY,
+        transformPerspective: 1000,
+      }}
       className={cn(
-        "group relative rounded-2xl p-6 md:p-8 overflow-hidden cursor-default",
-        "glass border border-border hover:border-border transition-colors duration-500",
+        "group relative overflow-hidden rounded-2xl",
+        "glass border border-border/70",
+        "p-5 md:p-6",
+        "transition-colors duration-500",
+        "hover:border-border",
+        "cursor-default",
         service.span
       )}
     >
+      {/* Hover gradient */}
       <div
         className={cn(
-          "absolute inset-0 bg-gradient-to-br opacity-0 group-hover:opacity-100 transition-opacity duration-700",
+          "pointer-events-none absolute inset-0",
+          "bg-gradient-to-br",
+          "opacity-0 group-hover:opacity-100",
+          "transition-opacity duration-700",
           service.gradient
         )}
       />
 
+      {/* Glow */}
       <motion.div
-        className="absolute -top-20 -right-20 w-40 h-40 rounded-full blur-3xl opacity-0 group-hover:opacity-30 transition-opacity duration-700"
-        style={{ backgroundColor: service.accent }}
-        animate={hovered ? { scale: [1, 1.2, 1] } : {}}
-        transition={{ duration: 2, repeat: Infinity }}
+        className="pointer-events-none absolute -right-16 -top-16 h-32 w-32 rounded-full blur-3xl opacity-0 group-hover:opacity-25 transition-opacity duration-700"
+        style={{
+          backgroundColor: service.accent,
+        }}
+        animate={
+          hovered
+            ? {
+                scale: [1, 1.15, 1],
+              }
+            : {}
+        }
+        transition={{
+          duration: 2,
+          repeat: Infinity,
+        }}
       />
 
       <div className="relative z-10">
+        {/* Icon */}
         <div
-          className="w-12 h-12 rounded-xl flex items-center justify-center mb-6 transition-transform duration-500 group-hover:scale-110"
-          style={{ backgroundColor: `${service.accent}15`, color: service.accent }}
+          className="mb-5 flex h-11 w-11 items-center justify-center rounded-xl transition-transform duration-500 group-hover:scale-110"
+          style={{
+            backgroundColor: `${service.accent}15`,
+            color: service.accent,
+          }}
         >
-          <Icon className="w-6 h-6" />
+          <Icon className="h-5 w-5" />
         </div>
 
-        <h3 className="text-xl font-semibold mb-3 tracking-tight">{service.title}</h3>
-        <p className="text-sm text-muted leading-relaxed">{service.description}</p>
+        {/* Title */}
+        <h3 className="mb-2.5 text-lg font-semibold tracking-tight md:text-xl">
+          {service.title}
+        </h3>
 
+        {/* Description */}
+        <p className="max-w-md text-sm leading-relaxed text-muted">
+          {service.description}
+        </p>
+
+        {/* Learn more */}
         <motion.div
-          className="mt-6 flex items-center gap-2 text-xs font-mono uppercase tracking-wider opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-          style={{ color: service.accent }}
+          className="mt-5 flex items-center gap-2 text-[11px] font-mono uppercase tracking-[0.16em] opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+          style={{
+            color: service.accent,
+          }}
         >
-          <span>Learn more</span>
-          <motion.span animate={hovered ? { x: [0, 4, 0] } : {}} transition={{ duration: 1, repeat: Infinity }}>
+          <span>Explore service</span>
+
+          <motion.span
+            animate={
+              hovered
+                ? {
+                    x: [0, 4, 0],
+                  }
+                : {}
+            }
+            transition={{
+              duration: 1,
+              repeat: Infinity,
+            }}
+          >
             →
           </motion.span>
         </motion.div>
@@ -110,21 +209,38 @@ function ServiceCard({
   );
 }
 
-export function Services({ showHeader = true }: { showHeader?: boolean }) {
+export function Services({
+  showHeader = true,
+}: {
+  showHeader?: boolean;
+}) {
   return (
-    <section className="section-padding relative">
+    <section className="relative section-padding !pt-8 md:!pt-10 !pb-16 md:!pb-24">
       <div className="container-wide">
         {showHeader && (
           <SectionHeader
-            label="Services Universe"
-            title="Engineering Excellence At Every Layer"
-            description="From AI-native platforms to enterprise infrastructure — we architect, build, and scale technology that powers global businesses."
+            label="Software & Technology"
+            title="Technology Solutions Built Around Your Business"
+            description="Brosavo designs and builds custom software, AI solutions, SaaS platforms, automation systems, cloud infrastructure, and industry-specific technology that helps businesses operate, automate, and scale."
           />
         )}
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 auto-rows-[minmax(200px,auto)]">
-          {SERVICES.map((service, i) => (
-            <ServiceCard key={service.id} service={service} index={i} />
+        <div className="mb-10 md:mb-12 max-w-2xl">
+          <p className="text-sm leading-relaxed text-muted">
+            Explore our technology capabilities across software
+            development, artificial intelligence, SaaS, cloud,
+            automation, enterprise systems, and real estate
+            technology.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4 auto-rows-[minmax(180px,auto)]">
+          {SERVICES.map((service, index) => (
+            <ServiceCard
+              key={service.id}
+              service={service}
+              index={index}
+            />
           ))}
         </div>
       </div>

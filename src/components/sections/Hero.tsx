@@ -5,7 +5,7 @@ import dynamic from "next/dynamic";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { MagneticButton } from "@/components/ui/MagneticButton";
-import { ArrowRight, Globe2 } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 const ParticleScene = dynamic(
   () =>
@@ -44,7 +44,7 @@ export function Hero() {
         <div className="absolute inset-x-0 bottom-0 top-16 lg:hidden">
           <Image
             src="/wallpapers/hero-day.png"
-            alt="Brosavo technology and digital infrastructure"
+            alt="Brosavo software and technology solutions"
             fill
             priority
             sizes="100vw"
@@ -53,7 +53,7 @@ export function Hero() {
 
           <Image
             src="/wallpapers/hero-night.png"
-            alt="Brosavo technology and digital infrastructure"
+            alt="Brosavo software and technology solutions"
             fill
             priority
             sizes="100vw"
@@ -69,7 +69,7 @@ export function Hero() {
         <div className="absolute bottom-0 right-0 top-24 hidden w-[54%] mask-[linear-gradient(to_right,transparent,black_22%)] lg:block">
           <Image
             src="/wallpapers/hero-day.png"
-            alt="Brosavo technology and digital infrastructure"
+            alt="Brosavo software and technology solutions"
             fill
             priority
             sizes="55vw"
@@ -78,7 +78,7 @@ export function Hero() {
 
           <Image
             src="/wallpapers/hero-night.png"
-            alt="Brosavo technology and digital infrastructure"
+            alt="Brosavo software and technology solutions"
             fill
             priority
             sizes="55vw"
@@ -151,45 +151,8 @@ export function Hero() {
             damping: 18,
             mass: 0.2,
           }}
-          className="flex w-full flex-col items-center text-center lg:max-w-[520px] lg:items-start lg:text-left xl:max-w-[600px]"
+          className="flex w-full flex-col items-center text-center lg:max-w-[560px] lg:items-start lg:text-left xl:max-w-[620px]"
         >
-          {/* =====================================================
-              BADGE
-          ===================================================== */}
-          <motion.div
-            initial={{
-              opacity: 0,
-              y: 18,
-            }}
-            animate={{
-              opacity: 1,
-              y: 0,
-            }}
-            transition={{
-              delay: 0.15,
-              duration: 0.7,
-            }}
-            className="glass mb-8 inline-flex max-w-full items-center gap-2 rounded-full border border-white/50 px-4 py-2 shadow-[0_10px_40px_rgba(0,0,0,0.06)] backdrop-blur-xl sm:px-5"
-          >
-            <motion.div
-              animate={{
-                y: [0, -4, 0],
-              }}
-              transition={{
-                duration: 3,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
-              className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-white/70 text-accent-blue"
-            >
-              <Globe2 className="h-3.5 w-3.5" />
-            </motion.div>
-
-            <span className="text-[11px] font-medium uppercase tracking-[0.28em] text-foreground/75 sm:text-xs">
-              Canada × India · Global Technology Company
-            </span>
-          </motion.div>
-
           {/* =====================================================
               HEADING
           ===================================================== */}
@@ -206,14 +169,14 @@ export function Hero() {
               delay: 0.2,
               duration: 0.9,
             }}
-            className="mb-6 max-w-5xl px-4 py-4 text-[1.6rem] font-black leading-[1.2] tracking-[-0.04em] text-foreground sm:px-6 sm:text-[2rem] md:px-8 md:text-[2.6rem] lg:px-0 lg:text-[3.2rem] xl:text-[3.8rem]"
+            className="mb-6 max-w-5xl px-4 py-4 text-[1.6rem] font-black leading-[1.15] tracking-[-0.04em] text-foreground sm:px-6 sm:text-[2rem] md:px-8 md:text-[2.6rem] lg:px-0 lg:text-[3.2rem] xl:text-[3.8rem]"
           >
             <span className="block">
-              Building the Future of
+              Software & Technology
             </span>
 
             <span className="mt-2 block bg-[length:200%_100%] text-gradient-accent sm:mt-3">
-              Digital Infrastructure
+              for Modern Businesses
             </span>
           </motion.h1>
 
@@ -235,10 +198,18 @@ export function Hero() {
             }}
             className="mb-8 max-w-[700px] text-base leading-8 text-muted sm:text-lg"
           >
-            We design and build modern websites, software
-            products, AI solutions, SaaS platforms, and
-            industry-specific business systems that help
-            ambitious businesses grow.
+            Brosavo is a global software and technology company building custom
+            software, AI solutions, SaaS platforms, and digital products for modern
+            businesses — including{" "}
+            <strong className="font-semibold text-foreground">
+              Real Estate CRM
+            </strong>
+            , Lead Management,{" "}
+            <br />
+            <strong className="font-semibold text-foreground">
+              WhatsApp Automation
+            </strong>
+            , property management, and sales solutions.
           </motion.p>
 
           {/* =====================================================
@@ -260,11 +231,11 @@ export function Hero() {
             className="flex flex-col items-center gap-3 sm:flex-row sm:gap-4"
           >
             <MagneticButton
-              href="/products#real-estate-crm"
+              href="/services"
               variant="primary"
               className="!px-8 !py-3.5 !text-sm sm:!px-10 sm:!py-4"
             >
-              Get a Free Consultation
+              Explore Our Solutions
               <ArrowRight className="h-4 w-4" />
             </MagneticButton>
 
@@ -273,7 +244,7 @@ export function Hero() {
               variant="secondary"
               className="!px-8 !py-3.5 !text-sm sm:!px-10 sm:!py-4"
             >
-              Request a Demo
+              Build With Brosavo
             </MagneticButton>
           </motion.div>
         </motion.div>
