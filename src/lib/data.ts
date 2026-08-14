@@ -1,9 +1,44 @@
 export const CONTACT = {
   email: "hellobrosavo@gmail.com",
+
   instagram: {
     handle: "brosavo",
     href: "https://www.instagram.com/brosavo/",
   },
+
+  social: {
+    instagram: {
+      label: "Instagram",
+      handle: "@brosavo",
+      href: "https://www.instagram.com/brosavo/",
+    },
+    facebook: {
+      label: "Facebook",
+      handle: "@brosavo",
+      href: "https://www.facebook.com/brosavo/",
+    },
+    linkedin: {
+      label: "LinkedIn",
+      handle: "Brosavo",
+      href: "https://www.linkedin.com/company/brosavo/",
+    },
+    youtube: {
+      label: "YouTube",
+      handle: "@brosavo",
+      href: "https://www.youtube.com/@brosavo",
+    },
+    x: {
+      label: "X",
+      handle: "@brosavo",
+      href: "https://x.com/hellobrosavo",
+    },
+    github: {
+      label: "GitHub",
+      handle: "brosavo",
+      href: "https://github.com/brosavotechnologies",
+    },
+  },
+
   phones: [
     {
       label: "Canada",
@@ -18,11 +53,13 @@ export const CONTACT = {
       flag: "🇮🇳",
     },
   ],
+
   whatsapp: {
     label: "WhatsApp",
     number: "+91 99991 07733",
     href: "https://wa.me/919999107733?text=Hi%20Brosavo%2C%20I%20just%20submitted%20the%20contact%20form%20and%20would%20like%20to%20connect.",
   },
+
   offices: "Vancouver 🇨🇦 · Gurugram 🇮🇳",
 } as const;
 
