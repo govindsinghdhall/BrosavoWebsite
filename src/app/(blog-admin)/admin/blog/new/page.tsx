@@ -1,20 +1,20 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import slugify from "slugify";
 import {
   CheckCircle2,
+  ImageIcon,
   Loader2,
+  Trash2,
   Upload,
   XCircle,
 } from "lucide-react";
 
 import { AUTHOR_OPTIONS } from "@/lib/authors";
 import {
-  normalizeTagsInput,
-  normalizeTakeawaysInput,
   publishBlogFormSchema,
   type PublishBlogFormValues,
 } from "@/lib/blog-schema";
@@ -28,13 +28,31 @@ type ToastState =
   | { type: "error"; message: string }
   | null;
 
+const MAX_IMAGE_SIZE = 10 * 1024 * 1024;
+
+const ALLOWED_IMAGE_TYPES = [
+  "image/jpeg",
+  "image/png",
+  "image/webp",
+  "image/avif",
+];
+
 export default function NewBlogAdminPage() {
   const [slugManual, setSlugManual] = useState(false);
   const [toast, setToast] = useState<ToastState>(null);
   const [publishing, setPublishing] = useState(false);
 
-  const [imageFile, setImageFile] = useState<File | null>(null);
-  const [imagePreview, setImagePreview] = useState<string | null>(null);
+  const [imageFile, setImageFile] =
+    useState<File | null>(null);
+
+  const [imagePreview, setImagePreview] =
+    useState<string | null>(null);
+
+  const [isDragging, setIsDragging] =
+    useState(false);
+
+  const fileInputRef =
+    useRef<HTMLInputElement | null>(null);
 
   const {
     register,
@@ -43,7 +61,9 @@ export default function NewBlogAdminPage() {
     setValue,
     formState: { errors },
   } = useForm<PublishBlogFormValues>({
-    resolver: zodResolver(publishBlogFormSchema),
+    resolver: zodResolver(
+      publishBlogFormSchema
+    ),
 
     defaultValues: {
       title: "",
@@ -63,6 +83,9 @@ export default function NewBlogAdminPage() {
 
   const title = watch("title");
 
+  /*
+   * Automatically generate slug from title.
+   */
   useEffect(() => {
     if (!slugManual && title) {
       setValue(
@@ -76,23 +99,211 @@ export default function NewBlogAdminPage() {
         }
       );
     }
-  }, [title, slugManual, setValue]);
+  }, [
+    title,
+    slugManual,
+    setValue,
+  ]);
 
+  /*
+   * Clear toast automatically.
+   */
   useEffect(() => {
     if (!toast) return;
 
-    const timer = window.setTimeout(() => {
-      setToast(null);
-    }, 4500);
+    const timer = window.setTimeout(
+      () => setToast(null),
+      4500
+    );
 
-    return () => window.clearTimeout(timer);
+    return () =>
+      window.clearTimeout(timer);
   }, [toast]);
 
-  async function onSubmit(values: PublishBlogFormValues) {
+  /*
+   * Cleanup object URL when component
+   * unmounts or image changes.
+   */
+  useEffect(() => {
+    return () => {
+      if (imagePreview) {
+        URL.revokeObjectURL(
+          imagePreview
+        );
+      }
+    };
+  }, [imagePreview]);
+
+  /*
+   * Handle selected image.
+   */
+  function handleImageFile(
+    file: File
+  ) {
+    if (
+      !ALLOWED_IMAGE_TYPES.includes(
+        file.type
+      )
+    ) {
+      setToast({
+        type: "error",
+        message:
+          "Please upload JPG, PNG, WebP or AVIF.",
+      });
+
+      return;
+    }
+
+    if (file.size > MAX_IMAGE_SIZE) {
+      setToast({
+        type: "error",
+        message:
+          "Image must be smaller than 10MB.",
+      });
+
+      return;
+    }
+
+    /*
+     * Remove previous preview URL.
+     */
+    if (imagePreview) {
+      URL.revokeObjectURL(
+        imagePreview
+      );
+    }
+
+    const previewUrl =
+      URL.createObjectURL(file);
+
+    setImageFile(file);
+    setImagePreview(previewUrl);
+
+    /*
+     * Keep form validation happy.
+     * The server still receives the actual
+     * File through imageFile.
+     */
+    setValue("image", file.name, {
+      shouldValidate: true,
+      shouldDirty: true,
+    });
+
+    setToast(null);
+  }
+
+  /*
+   * Remove currently selected image.
+   */
+  function removeImage() {
+    if (imagePreview) {
+      URL.revokeObjectURL(
+        imagePreview
+      );
+    }
+
+    setImageFile(null);
+    setImagePreview(null);
+
+    setValue("image", "", {
+      shouldValidate: true,
+      shouldDirty: true,
+    });
+
+    if (fileInputRef.current) {
+      fileInputRef.current.value = "";
+    }
+  }
+
+  /*
+   * File picker change.
+   */
+  function handleFileInput(
+    event: React.ChangeEvent<HTMLInputElement>
+  ) {
+    const file =
+      event.target.files?.[0];
+
+    if (!file) return;
+
+    handleImageFile(file);
+  }
+
+  /*
+   * Drag enter.
+   */
+  function handleDragEnter(
+    event: React.DragEvent<HTMLDivElement>
+  ) {
+    event.preventDefault();
+    event.stopPropagation();
+
+    setIsDragging(true);
+  }
+
+  /*
+   * Drag over.
+   */
+  function handleDragOver(
+    event: React.DragEvent<HTMLDivElement>
+  ) {
+    event.preventDefault();
+    event.stopPropagation();
+
+    setIsDragging(true);
+  }
+
+  /*
+   * Drag leave.
+   */
+  function handleDragLeave(
+    event: React.DragEvent<HTMLDivElement>
+  ) {
+    event.preventDefault();
+    event.stopPropagation();
+
+    /*
+     * Only remove drag state when leaving
+     * the actual drop zone.
+     */
+    if (
+      event.currentTarget ===
+      event.target
+    ) {
+      setIsDragging(false);
+    }
+  }
+
+  /*
+   * Drop.
+   */
+  function handleDrop(
+    event: React.DragEvent<HTMLDivElement>
+  ) {
+    event.preventDefault();
+    event.stopPropagation();
+
+    setIsDragging(false);
+
+    const file =
+      event.dataTransfer.files?.[0];
+
+    if (!file) return;
+
+    handleImageFile(file);
+  }
+
+  /*
+   * Publish blog.
+   */
+  async function onSubmit(
+    values: PublishBlogFormValues
+  ) {
     if (!imageFile) {
       setToast({
         type: "error",
-        message: "Please choose a blog wallpaper before publishing.",
+        message:
+          "Please choose a blog wallpaper before publishing.",
       });
 
       return;
@@ -102,45 +313,102 @@ export default function NewBlogAdminPage() {
     setToast(null);
 
     try {
-      const formData = new FormData();
+      const formData =
+        new FormData();
 
-      formData.append("title", values.title);
-      formData.append("slug", values.slug);
-      formData.append("description", values.description);
-      formData.append("category", values.category);
-      formData.append("author", values.author);
-      formData.append("tags", values.tags || "");
-      formData.append("image", "");
-      formData.append("imageAlt", values.imageAlt || "");
-      formData.append("seoTitle", values.seoTitle || "");
+      formData.append(
+        "title",
+        values.title
+      );
+
+      formData.append(
+        "slug",
+        values.slug
+      );
+
+      formData.append(
+        "description",
+        values.description
+      );
+
+      formData.append(
+        "category",
+        values.category
+      );
+
+      formData.append(
+        "author",
+        values.author
+      );
+
+      formData.append(
+        "tags",
+        values.tags || ""
+      );
+
+      /*
+       * The server creates the final image path.
+       */
+      formData.append(
+        "image",
+        ""
+      );
+
+      formData.append(
+        "imageAlt",
+        values.imageAlt || ""
+      );
+
+      formData.append(
+        "seoTitle",
+        values.seoTitle || ""
+      );
+
       formData.append(
         "seoDescription",
         values.seoDescription || ""
       );
+
       formData.append(
         "keyTakeaways",
         values.keyTakeaways || ""
       );
-      formData.append("markdown", values.markdown);
 
-      formData.append("imageFile", imageFile);
+      formData.append(
+        "markdown",
+        values.markdown
+      );
 
-      const response = await fetch("/api/blog/publish", {
-        method: "POST",
-        body: formData,
-      });
+      /*
+       * Actual uploaded image.
+       */
+      formData.append(
+        "imageFile",
+        imageFile
+      );
 
-      const data = (await response.json()) as {
-        error?: string;
-        url?: string;
-        slug?: string;
-      };
+      const response =
+        await fetch(
+          "/api/blog/publish",
+          {
+            method: "POST",
+            body: formData,
+          }
+        );
+
+      const data =
+        (await response.json()) as {
+          error?: string;
+          url?: string;
+          slug?: string;
+        };
 
       if (!response.ok) {
         setToast({
           type: "error",
           message:
-            data.error || "Failed to publish blog",
+            data.error ||
+            "Failed to publish blog",
         });
 
         return;
@@ -149,11 +417,23 @@ export default function NewBlogAdminPage() {
       setToast({
         type: "success",
         message:
-          `Published successfully${data.slug ? `: ${data.slug}` : ""
+          `Published successfully${
+            data.slug
+              ? `: ${data.slug}`
+              : ""
           }`,
       });
+
+      /*
+       * Clear the selected image after
+       * successful publishing.
+       */
+      removeImage();
     } catch (error) {
-      console.error("Publish error:", error);
+      console.error(
+        "Publish error:",
+        error
+      );
 
       setToast({
         type: "error",
@@ -186,16 +466,20 @@ export default function NewBlogAdminPage() {
           </h1>
 
           <p className="mt-2 max-w-2xl text-sm text-muted">
-            Publish a markdown post directly to GitHub.
-            It will appear on the site after the next
-            deploy / ISR refresh.
+            Publish a markdown post directly
+            to GitHub. It will appear on the
+            site after the next deploy / ISR
+            refresh.
           </p>
         </header>
 
         <form
-          onSubmit={handleSubmit(onSubmit)}
+          onSubmit={handleSubmit(
+            onSubmit
+          )}
           className="glass space-y-6 rounded-[2rem] p-6 sm:p-8"
         >
+          {/* Title + Slug */}
           <div className="grid gap-6 md:grid-cols-2">
             <label className={labelClass}>
               Title
@@ -241,8 +525,10 @@ export default function NewBlogAdminPage() {
             </label>
           </div>
 
+          {/* Description */}
           <label className={labelClass}>
-            Meta Description (150–160 characters)
+            Meta Description (150–160
+            characters)
 
             <textarea
               {...register("description")}
@@ -258,6 +544,7 @@ export default function NewBlogAdminPage() {
             ) : null}
           </label>
 
+          {/* Category + Author */}
           <div className="grid gap-6 md:grid-cols-2">
             <label className={labelClass}>
               Category
@@ -282,14 +569,16 @@ export default function NewBlogAdminPage() {
                 {...register("author")}
                 className={fieldClass}
               >
-                {AUTHOR_OPTIONS.map((author) => (
-                  <option
-                    key={author.value}
-                    value={author.value}
-                  >
-                    {author.label}
-                  </option>
-                ))}
+                {AUTHOR_OPTIONS.map(
+                  (author) => (
+                    <option
+                      key={author.value}
+                      value={author.value}
+                    >
+                      {author.label}
+                    </option>
+                  )
+                )}
               </select>
 
               {errors.author ? (
@@ -300,6 +589,7 @@ export default function NewBlogAdminPage() {
             </label>
           </div>
 
+          {/* Tags + Wallpaper */}
           <div className="grid gap-6 md:grid-cols-2">
             <label className={labelClass}>
               Tags (comma separated)
@@ -311,95 +601,184 @@ export default function NewBlogAdminPage() {
               />
             </label>
 
+            {/* Drag & Drop Wallpaper */}
             <div>
               <label className={labelClass}>
                 Blog Wallpaper
               </label>
 
-              <label
-                htmlFor="blog-wallpaper"
-                className="mt-2 flex cursor-pointer items-center gap-3 rounded-2xl border border-border bg-background/70 px-4 py-3 transition hover:border-accent-blue"
-              >
-                <Upload className="h-5 w-5 shrink-0 text-accent-blue" />
-
-                <span className="truncate text-sm text-foreground">
-                  {imageFile
-                    ? imageFile.name
-                    : "Choose blog wallpaper"}
-                </span>
-
-                <input
-                  id="blog-wallpaper"
-                  type="file"
-                  accept="image/jpeg,image/png,image/webp,image/avif"
-                  className="hidden"
-                  onChange={(event) => {
-                    const file =
-                      event.target.files?.[0];
-
-                    if (!file) return;
-
-                    const allowedTypes = [
-                      "image/jpeg",
-                      "image/png",
-                      "image/webp",
-                      "image/avif",
-                    ];
-
-                    if (!allowedTypes.includes(file.type)) {
-                      setToast({
-                        type: "error",
-                        message:
-                          "Please upload JPG, PNG, WebP or AVIF.",
-                      });
-
-                      event.target.value = "";
-                      return;
-                    }
-
-                    if (file.size > 10 * 1024 * 1024) {
-                      setToast({
-                        type: "error",
-                        message:
-                          "Image must be smaller than 10MB.",
-                      });
-
-                      event.target.value = "";
-                      return;
-                    }
-
-                    setImageFile(file);
-
-                    setValue("image", file.name, {
-                      shouldValidate: true,
-                      shouldDirty: true,
-                    });
-
-                    setImagePreview(
-                      URL.createObjectURL(file)
-                    );
-
-                    setToast(null);
-                  }}
-                />
-              </label>
-
-              <p className="mt-2 text-xs text-muted">
-                JPG, PNG, WebP or AVIF · Maximum 10MB
-              </p>
-
               {imagePreview ? (
-                <div className="mt-3 overflow-hidden rounded-2xl border border-border">
-                  <img
-                    src={imagePreview}
-                    alt="Blog wallpaper preview"
-                    className="h-40 w-full object-cover"
+                <div className="mt-2 overflow-hidden rounded-2xl border border-border bg-background/70">
+                  <div className="relative">
+                    <img
+                      src={imagePreview}
+                      alt="Blog wallpaper preview"
+                      className="h-48 w-full object-cover"
+                    />
+
+                    <div className="absolute inset-x-0 bottom-0 flex items-center justify-between gap-3 bg-black/60 px-4 py-3 backdrop-blur-sm">
+                      <div className="min-w-0">
+                        <p className="truncate text-sm font-medium text-white">
+                          {imageFile?.name}
+                        </p>
+
+                        {imageFile ? (
+                          <p className="mt-0.5 text-xs text-white/70">
+                            {(
+                              imageFile.size /
+                              1024 /
+                              1024
+                            ).toFixed(
+                              2
+                            )}{" "}
+                            MB
+                          </p>
+                        ) : null}
+                      </div>
+
+                      <button
+                        type="button"
+                        onClick={
+                          removeImage
+                        }
+                        disabled={
+                          publishing
+                        }
+                        className="inline-flex shrink-0 items-center gap-2 rounded-xl border border-white/20 bg-white/10 px-3 py-2 text-xs font-medium text-white transition hover:bg-red-500/30 disabled:cursor-not-allowed disabled:opacity-50"
+                      >
+                        <Trash2 className="h-4 w-4" />
+                        Remove
+                      </button>
+                    </div>
+                  </div>
+
+                  <button
+                    type="button"
+                    onClick={() =>
+                      fileInputRef.current?.click()
+                    }
+                    disabled={
+                      publishing
+                    }
+                    className="flex w-full items-center justify-center gap-2 border-t border-border px-4 py-3 text-sm font-medium text-foreground transition hover:bg-surface-hover disabled:cursor-not-allowed disabled:opacity-50"
+                  >
+                    <Upload className="h-4 w-4" />
+                    Replace Image
+                  </button>
+                </div>
+              ) : (
+                <div
+                  role="button"
+                  tabIndex={0}
+                  onClick={() =>
+                    fileInputRef.current?.click()
+                  }
+                  onKeyDown={(event) => {
+                    if (
+                      event.key ===
+                        "Enter" ||
+                      event.key === " "
+                    ) {
+                      event.preventDefault();
+
+                      fileInputRef.current?.click();
+                    }
+                  }}
+                  onDragEnter={
+                    handleDragEnter
+                  }
+                  onDragOver={
+                    handleDragOver
+                  }
+                  onDragLeave={
+                    handleDragLeave
+                  }
+                  onDrop={handleDrop}
+                  className={`
+                    mt-2
+                    flex
+                    min-h-48
+                    cursor-pointer
+                    flex-col
+                    items-center
+                    justify-center
+                    rounded-2xl
+                    border-2
+                    border-dashed
+                    px-6
+                    py-8
+                    text-center
+                    transition-all
+                    duration-200
+                    ${
+                      isDragging
+                        ? "border-accent-blue bg-accent-blue/10 shadow-[0_0_30px_rgba(59,130,246,0.12)]"
+                        : "border-border bg-background/70 hover:border-accent-blue/50 hover:bg-surface-hover"
+                    }
+                  `}
+                >
+                  <div
+                    className={`
+                      flex
+                      h-14
+                      w-14
+                      items-center
+                      justify-center
+                      rounded-2xl
+                      transition-colors
+                      ${
+                        isDragging
+                          ? "bg-accent-blue/20"
+                          : "bg-accent-blue/10"
+                      }
+                    `}
+                  >
+                    {isDragging ? (
+                      <Upload className="h-7 w-7 text-accent-blue" />
+                    ) : (
+                      <ImageIcon className="h-7 w-7 text-accent-blue" />
+                    )}
+                  </div>
+
+                  <p className="mt-4 text-sm font-semibold text-foreground">
+                    {isDragging
+                      ? "Drop your image here"
+                      : "Drag & drop your wallpaper"}
+                  </p>
+
+                  <p className="mt-1 text-xs text-muted">
+                    or click to browse
+                  </p>
+
+                  <p className="mt-4 text-[11px] text-muted">
+                    JPG, PNG, WebP or AVIF ·
+                    Maximum 10MB
+                  </p>
+
+                  <input
+                    ref={fileInputRef}
+                    id="blog-wallpaper"
+                    type="file"
+                    accept="image/jpeg,image/png,image/webp,image/avif"
+                    className="hidden"
+                    onChange={
+                      handleFileInput
+                    }
                   />
                 </div>
+              )}
+
+              {!imageFile ? (
+                <p className="mt-2 text-xs text-muted">
+                  Your image will be automatically
+                  named and uploaded to GitHub when
+                  the blog is published.
+                </p>
               ) : null}
             </div>
           </div>
 
+          {/* Alt text */}
           <label className={labelClass}>
             Cover Image Alt Text
 
@@ -410,6 +789,7 @@ export default function NewBlogAdminPage() {
             />
           </label>
 
+          {/* SEO */}
           <div className="grid gap-6 md:grid-cols-2">
             <label className={labelClass}>
               SEO Title
@@ -425,18 +805,23 @@ export default function NewBlogAdminPage() {
               SEO Description
 
               <input
-                {...register("seoDescription")}
+                {...register(
+                  "seoDescription"
+                )}
                 className={fieldClass}
                 placeholder="Optional — defaults to Meta Description"
               />
             </label>
           </div>
 
+          {/* Key Takeaways */}
           <label className={labelClass}>
             Key Takeaways (one per line)
 
             <textarea
-              {...register("keyTakeaways")}
+              {...register(
+                "keyTakeaways"
+              )}
               rows={5}
               className={fieldClass}
               placeholder={
@@ -445,6 +830,7 @@ export default function NewBlogAdminPage() {
             />
           </label>
 
+          {/* Markdown */}
           <label className={labelClass}>
             Markdown Content
 
@@ -462,6 +848,7 @@ export default function NewBlogAdminPage() {
             ) : null}
           </label>
 
+          {/* Footer */}
           <div className="flex flex-wrap items-center justify-between gap-4 pt-2">
             <p className="text-xs text-muted">
               Commits to{" "}
@@ -489,12 +876,14 @@ export default function NewBlogAdminPage() {
         </form>
       </div>
 
+      {/* Toast */}
       {toast ? (
         <div
-          className={`fixed bottom-6 right-6 z-50 flex max-w-sm items-start gap-3 rounded-2xl border px-4 py-3 shadow-lg ${toast.type === "success"
+          className={`fixed bottom-6 right-6 z-50 flex max-w-sm items-start gap-3 rounded-2xl border px-4 py-3 shadow-lg ${
+            toast.type === "success"
               ? "border-emerald-500/30 bg-background text-foreground"
               : "border-red-500/30 bg-background text-foreground"
-            }`}
+          }`}
           role="status"
         >
           {toast.type === "success" ? (
