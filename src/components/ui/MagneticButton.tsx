@@ -33,7 +33,8 @@ export function MagneticButton({
   type = "button",
   disabled = false,
 }: MagneticButtonProps) {
-  const ref = useRef<HTMLButtonElement | HTMLAnchorElement>(null);
+  const buttonRef = useRef<HTMLButtonElement>(null);
+  const anchorRef = useRef<HTMLAnchorElement>(null);
 
   const [position, setPosition] = useState({
     x: 0,
@@ -47,7 +48,8 @@ export function MagneticButton({
   const handleMouse = (e: React.MouseEvent<HTMLElement>) => {
     if (isDisabled) return;
 
-    const el = ref.current;
+    const el =
+      anchorRef.current || buttonRef.current;
 
     if (!el) return;
 
@@ -96,11 +98,13 @@ export function MagneticButton({
   );
 
   /*
-   * Keep the original content in the layout at all times.
-   * The spinner is positioned absolutely on top of it.
+   * The original content stays in the layout.
    *
-   * This guarantees that loading does NOT change the
-   * button width or height.
+   * When loading:
+   * - text becomes invisible
+   * - spinner is positioned over it
+   * - button width does NOT change
+   * - button height does NOT change
    */
   const buttonContent = (
     <>
@@ -134,7 +138,9 @@ export function MagneticButton({
   );
 
   /*
-   * External links
+   * ============================================================
+   * EXTERNAL / MAILTO / TEL
+   * ============================================================
    */
   if (href) {
     const isExternal =
@@ -145,7 +151,7 @@ export function MagneticButton({
     if (isExternal) {
       return (
         <motion.a
-          ref={ref}
+          ref={anchorRef}
           href={isDisabled ? undefined : href}
           target={
             href.startsWith("http")
@@ -188,7 +194,9 @@ export function MagneticButton({
     }
 
     /*
-     * Internal Next.js links
+     * ============================================================
+     * INTERNAL NEXT.JS LINK
+     * ============================================================
      */
     return (
       <Link
@@ -208,11 +216,12 @@ export function MagneticButton({
         }}
         className={cn(
           "inline-block",
-          className?.includes("w-full") && "block w-full"
+          className?.includes("w-full") &&
+            "block w-full"
         )}
       >
         <motion.span
-          ref={ref}
+          ref={anchorRef}
           onMouseMove={handleMouse}
           onMouseLeave={reset}
           animate={{
@@ -234,12 +243,14 @@ export function MagneticButton({
   }
 
   /*
-   * Normal buttons / form buttons
+   * ============================================================
+   * NORMAL BUTTON / FORM BUTTON
+   * ============================================================
    */
   return (
     <motion.button
       type={type}
-      ref={ref}
+      ref={buttonRef}
       disabled={isDisabled}
       aria-busy={loading}
       onMouseMove={handleMouse}
