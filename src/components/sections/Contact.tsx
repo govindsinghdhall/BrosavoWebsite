@@ -242,7 +242,7 @@ export function Contact({ showHeader = true }: { showHeader?: boolean }) {
       if (!response.ok) {
         setSubmitError(
           data.error ||
-          "Failed to send message. Please try again."
+            "Failed to send message. Please try again."
         );
 
         return;
@@ -352,24 +352,342 @@ export function Contact({ showHeader = true }: { showHeader?: boolean }) {
             </div>
           </motion.div>
         ) : (
-          /*
-           * ======================================================
-           * HERO
-           * ======================================================
-           *
-           * Desktop:
-           * LEFT  = headline + compact contact information
-           * RIGHT = compact enquiry form
-           *
-           * Everything is intentionally kept inside the first
-           * viewport so this behaves like a proper hero section.
-           */
           <div className="grid w-full items-center gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:gap-12 xl:gap-16">
-            {/* ==================================================
-                LEFT SIDE
-            ================================================== */}
 
-            <div className="max-w-xl">
+            {/* ==================================================
+                FORM — FIRST ON MOBILE
+                ================================================== */}
+
+            <div className="order-1 lg:order-2">
+              <BlurReveal delay={0.15}>
+                <div className="w-full rounded-2xl border border-border/80 bg-surface/55 p-5 shadow-[0_25px_80px_rgba(0,0,0,0.07)] backdrop-blur-xl sm:p-6 lg:p-7">
+                  <div className="mb-5">
+                    <div className="mb-2 flex items-center gap-2 text-[10px] font-mono uppercase tracking-[0.2em] text-accent-cyan">
+                      <Sparkles className="h-3 w-3" />
+                      Start a conversation
+                    </div>
+
+                    <h2 className="text-xl font-semibold tracking-tight sm:text-2xl">
+                      Tell us about your project
+                    </h2>
+
+                    <p className="mt-1.5 text-xs leading-5 text-muted">
+                      Share a few details and our team will get back to
+                      you with the right next step.
+                    </p>
+                  </div>
+
+                  <form
+                    onSubmit={handleSubmit}
+                    className="space-y-4"
+                  >
+                    {(formState.plan ||
+                      formState.intent ||
+                      formState.addon) && (
+                      <div className="rounded-lg border border-accent-blue/20 bg-accent-blue/5 px-3 py-2 text-xs text-foreground/75">
+                        <span className="font-medium">
+                          Enquiry:
+                        </span>{" "}
+                        {[
+                          formState.intent,
+                          formState.plan,
+                          formState.addon,
+                        ]
+                          .filter(Boolean)
+                          .join(" · ")}
+                      </div>
+                    )}
+
+                    {/* Name + Phone */}
+                    <div className="grid gap-4 sm:grid-cols-2">
+                      <div>
+                        <label
+                          htmlFor="name"
+                          className={fieldLabelClass}
+                        >
+                          Full Name{" "}
+                          <span className="text-accent-blue">*</span>
+                        </label>
+
+                        <input
+                          id="name"
+                          type="text"
+                          placeholder="John Doe"
+                          autoComplete="name"
+                          value={formState.name}
+                          onChange={(e) =>
+                            setFormState((p) => ({
+                              ...p,
+                              name: e.target.value,
+                            }))
+                          }
+                          onFocus={() => setFocused("name")}
+                          onBlur={() => setFocused(null)}
+                          disabled={submitting}
+                          className={inputClass("name")}
+                        />
+
+                        {errors.name && (
+                          <p className="mt-1 text-[10px] text-red-400">
+                            {errors.name}
+                          </p>
+                        )}
+                      </div>
+
+                      <div>
+                        <label
+                          htmlFor="phone"
+                          className={fieldLabelClass}
+                        >
+                          Phone Number{" "}
+                          <span className="text-accent-blue">*</span>
+                        </label>
+
+                        <input
+                          id="phone"
+                          type="tel"
+                          placeholder="+91 98765 43210"
+                          autoComplete="tel"
+                          value={formState.phone}
+                          onChange={(e) =>
+                            setFormState((p) => ({
+                              ...p,
+                              phone: e.target.value,
+                            }))
+                          }
+                          onFocus={() => setFocused("phone")}
+                          onBlur={() => setFocused(null)}
+                          disabled={submitting}
+                          className={inputClass("phone")}
+                        />
+
+                        {errors.phone && (
+                          <p className="mt-1 text-[10px] text-red-400">
+                            {errors.phone}
+                          </p>
+                        )}
+                      </div>
+                    </div>
+
+                    {/* Email + Company */}
+                    <div className="grid gap-4 sm:grid-cols-2">
+                      <div>
+                        <label
+                          htmlFor="email"
+                          className={fieldLabelClass}
+                        >
+                          Email Address{" "}
+                          <span className="text-accent-blue">*</span>
+                        </label>
+
+                        <input
+                          id="email"
+                          type="email"
+                          placeholder="john@company.com"
+                          autoComplete="email"
+                          value={formState.email}
+                          onChange={(e) =>
+                            setFormState((p) => ({
+                              ...p,
+                              email: e.target.value,
+                            }))
+                          }
+                          onFocus={() => setFocused("email")}
+                          onBlur={() => setFocused(null)}
+                          disabled={submitting}
+                          className={inputClass("email")}
+                        />
+
+                        {errors.email && (
+                          <p className="mt-1 text-[10px] text-red-400">
+                            {errors.email}
+                          </p>
+                        )}
+                      </div>
+
+                      <div>
+                        <label
+                          htmlFor="company"
+                          className={fieldLabelClass}
+                        >
+                          Company / Business Name
+                        </label>
+
+                        <input
+                          id="company"
+                          type="text"
+                          placeholder="Your company or business"
+                          autoComplete="organization"
+                          value={formState.company}
+                          onChange={(e) =>
+                            setFormState((p) => ({
+                              ...p,
+                              company: e.target.value,
+                            }))
+                          }
+                          onFocus={() => setFocused("company")}
+                          onBlur={() => setFocused(null)}
+                          disabled={submitting}
+                          className={inputClass("company")}
+                        />
+                      </div>
+                    </div>
+
+                    {/* City + Interest */}
+                    <div className="grid gap-4 sm:grid-cols-2">
+                      <div>
+                        <label
+                          htmlFor="city"
+                          className={fieldLabelClass}
+                        >
+                          City / Location{" "}
+                          <span className="text-accent-blue">*</span>
+                        </label>
+
+                        <input
+                          id="city"
+                          type="text"
+                          placeholder="Gurugram"
+                          autoComplete="address-level2"
+                          value={formState.city}
+                          onChange={(e) =>
+                            setFormState((p) => ({
+                              ...p,
+                              city: e.target.value,
+                            }))
+                          }
+                          onFocus={() => setFocused("city")}
+                          onBlur={() => setFocused(null)}
+                          disabled={submitting}
+                          className={inputClass("city")}
+                        />
+
+                        {errors.city && (
+                          <p className="mt-1 text-[10px] text-red-400">
+                            {errors.city}
+                          </p>
+                        )}
+                      </div>
+
+                      <div>
+                        <label
+                          htmlFor="interest"
+                          className={fieldLabelClass}
+                        >
+                          What are you looking for?{" "}
+                          <span className="text-accent-blue">*</span>
+                        </label>
+
+                        <select
+                          id="interest"
+                          value={formState.interest}
+                          onChange={(e) =>
+                            setFormState((p) => ({
+                              ...p,
+                              interest: e.target.value,
+                              role: e.target.value,
+                            }))
+                          }
+                          onFocus={() => setFocused("interest")}
+                          onBlur={() => setFocused(null)}
+                          disabled={submitting}
+                          className={cn(
+                            inputClass("interest"),
+                            !formState.interest && "text-muted"
+                          )}
+                        >
+                          <option value="">
+                            Select a service
+                          </option>
+
+                          {CONTACT_INTERESTS.map((interest) => (
+                            <option
+                              key={interest}
+                              value={interest}
+                            >
+                              {interest}
+                            </option>
+                          ))}
+                        </select>
+
+                        {errors.interest && (
+                          <p className="mt-1 text-[10px] text-red-400">
+                            {errors.interest}
+                          </p>
+                        )}
+                      </div>
+                    </div>
+
+                    {/* Requirement */}
+                    <div>
+                      <label
+                        htmlFor="requirement"
+                        className={fieldLabelClass}
+                      >
+                        Tell us about your requirement
+                      </label>
+
+                      <textarea
+                        id="requirement"
+                        rows={3}
+                        placeholder="Briefly tell us what you want to build, improve, or automate..."
+                        value={formState.requirement}
+                        onChange={(e) =>
+                          setFormState((p) => ({
+                            ...p,
+                            requirement: e.target.value,
+                          }))
+                        }
+                        onFocus={() => setFocused("requirement")}
+                        onBlur={() => setFocused(null)}
+                        disabled={submitting}
+                        className={cn(
+                          inputClass("requirement"),
+                          "resize-none"
+                        )}
+                      />
+                    </div>
+
+                    {submitError && (
+                      <p className="rounded-lg border border-red-500/30 bg-red-500/5 px-3 py-2 text-xs text-red-400">
+                        {submitError}
+                      </p>
+                    )}
+
+                    {/* Submit */}
+                    <MagneticButton
+                      type="submit"
+                      variant="primary"
+                      className="group w-full !rounded-xl !py-3.5 !text-sm"
+                      disabled={submitting}
+                    >
+                      {submitting ? (
+                        <>
+                          <Loader2 className="h-4 w-4 animate-spin" />
+                          Submitting...
+                        </>
+                      ) : (
+                        <>
+                          Get in Touch
+                          <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                        </>
+                      )}
+                    </MagneticButton>
+
+                    <p className="text-center text-[9px] leading-4 text-muted">
+                      By submitting this form, you agree to be contacted
+                      by Brosavo regarding your enquiry.
+                    </p>
+                  </form>
+                </div>
+              </BlurReveal>
+            </div>
+
+            {/* ==================================================
+                LEFT CONTENT — SECOND ON MOBILE
+                ================================================== */}
+
+            <div className="order-2 max-w-xl lg:order-1">
               <BlurReveal>
                 <p className="mb-3 text-[11px] font-mono uppercase tracking-[0.28em] text-accent-blue">
                   Contact Brosavo
@@ -390,7 +708,7 @@ export function Contact({ showHeader = true }: { showHeader?: boolean }) {
                 </p>
               </BlurReveal>
 
-              {/* Compact contact information */}
+              {/* Contact information */}
               <BlurReveal delay={0.1}>
                 <div className="mt-7 grid gap-2.5 sm:grid-cols-2">
                   <a
@@ -468,335 +786,6 @@ export function Contact({ showHeader = true }: { showHeader?: boolean }) {
                 </div>
               </BlurReveal>
             </div>
-
-            {/* ==================================================
-                RIGHT SIDE — FORM
-            ================================================== */}
-
-            <BlurReveal delay={0.15}>
-              <div className="w-full rounded-2xl border border-border/80 bg-surface/55 p-5 shadow-[0_25px_80px_rgba(0,0,0,0.07)] backdrop-blur-xl sm:p-6 lg:p-7">
-                <div className="mb-5">
-                  <div className="mb-2 flex items-center gap-2 text-[10px] font-mono uppercase tracking-[0.2em] text-accent-cyan">
-                    <Sparkles className="h-3 w-3" />
-                    Start a conversation
-                  </div>
-
-                  <h2 className="text-xl font-semibold tracking-tight sm:text-2xl">
-                    Tell us about your project
-                  </h2>
-
-                  <p className="mt-1.5 text-xs leading-5 text-muted">
-                    Share a few details and our team will get back to
-                    you with the right next step.
-                  </p>
-                </div>
-
-                <form
-                  onSubmit={handleSubmit}
-                  className="space-y-4"
-                >
-                  {/* Existing URL context */}
-                  {(formState.plan ||
-                    formState.intent ||
-                    formState.addon) && (
-                      <div className="rounded-lg border border-accent-blue/20 bg-accent-blue/5 px-3 py-2 text-xs text-foreground/75">
-                        <span className="font-medium">
-                          Enquiry:
-                        </span>{" "}
-                        {[
-                          formState.intent,
-                          formState.plan,
-                          formState.addon,
-                        ]
-                          .filter(Boolean)
-                          .join(" · ")}
-                      </div>
-                    )}
-
-                  {/* Name + Phone */}
-                  <div className="grid gap-4 sm:grid-cols-2">
-                    <div>
-                      <label
-                        htmlFor="name"
-                        className={fieldLabelClass}
-                      >
-                        Full Name{" "}
-                        <span className="text-accent-blue">*</span>
-                      </label>
-
-                      <input
-                        id="name"
-                        type="text"
-                        placeholder="John Doe"
-                        autoComplete="name"
-                        value={formState.name}
-                        onChange={(e) =>
-                          setFormState((p) => ({
-                            ...p,
-                            name: e.target.value,
-                          }))
-                        }
-                        onFocus={() => setFocused("name")}
-                        onBlur={() => setFocused(null)}
-                        disabled={submitting}
-                        className={inputClass("name")}
-                      />
-
-                      {errors.name && (
-                        <p className="mt-1 text-[10px] text-red-400">
-                          {errors.name}
-                        </p>
-                      )}
-                    </div>
-
-                    <div>
-                      <label
-                        htmlFor="phone"
-                        className={fieldLabelClass}
-                      >
-                        Phone Number{" "}
-                        <span className="text-accent-blue">*</span>
-                      </label>
-
-                      <input
-                        id="phone"
-                        type="tel"
-                        placeholder="+91 98765 43210"
-                        autoComplete="tel"
-                        value={formState.phone}
-                        onChange={(e) =>
-                          setFormState((p) => ({
-                            ...p,
-                            phone: e.target.value,
-                          }))
-                        }
-                        onFocus={() => setFocused("phone")}
-                        onBlur={() => setFocused(null)}
-                        disabled={submitting}
-                        className={inputClass("phone")}
-                      />
-
-                      {errors.phone && (
-                        <p className="mt-1 text-[10px] text-red-400">
-                          {errors.phone}
-                        </p>
-                      )}
-                    </div>
-                  </div>
-
-                  {/* Email + Company */}
-                  <div className="grid gap-4 sm:grid-cols-2">
-                    <div>
-                      <label
-                        htmlFor="email"
-                        className={fieldLabelClass}
-                      >
-                        Email Address{" "}
-                        <span className="text-accent-blue">*</span>
-                      </label>
-
-                      <input
-                        id="email"
-                        type="email"
-                        placeholder="john@company.com"
-                        autoComplete="email"
-                        value={formState.email}
-                        onChange={(e) =>
-                          setFormState((p) => ({
-                            ...p,
-                            email: e.target.value,
-                          }))
-                        }
-                        onFocus={() => setFocused("email")}
-                        onBlur={() => setFocused(null)}
-                        disabled={submitting}
-                        className={inputClass("email")}
-                      />
-
-                      {errors.email && (
-                        <p className="mt-1 text-[10px] text-red-400">
-                          {errors.email}
-                        </p>
-                      )}
-                    </div>
-
-                    <div>
-                      <label
-                        htmlFor="company"
-                        className={fieldLabelClass}
-                      >
-                        Company / Business Name
-                      </label>
-
-                      <input
-                        id="company"
-                        type="text"
-                        placeholder="Your company or business"
-                        autoComplete="organization"
-                        value={formState.company}
-                        onChange={(e) =>
-                          setFormState((p) => ({
-                            ...p,
-                            company: e.target.value,
-                          }))
-                        }
-                        onFocus={() => setFocused("company")}
-                        onBlur={() => setFocused(null)}
-                        disabled={submitting}
-                        className={inputClass("company")}
-                      />
-                    </div>
-                  </div>
-
-                  {/* City + Interest */}
-                  <div className="grid gap-4 sm:grid-cols-2">
-                    <div>
-                      <label
-                        htmlFor="city"
-                        className={fieldLabelClass}
-                      >
-                        City / Location{" "}
-                        <span className="text-accent-blue">*</span>
-                      </label>
-
-                      <input
-                        id="city"
-                        type="text"
-                        placeholder="Gurugram"
-                        autoComplete="address-level2"
-                        value={formState.city}
-                        onChange={(e) =>
-                          setFormState((p) => ({
-                            ...p,
-                            city: e.target.value,
-                          }))
-                        }
-                        onFocus={() => setFocused("city")}
-                        onBlur={() => setFocused(null)}
-                        disabled={submitting}
-                        className={inputClass("city")}
-                      />
-
-                      {errors.city && (
-                        <p className="mt-1 text-[10px] text-red-400">
-                          {errors.city}
-                        </p>
-                      )}
-                    </div>
-
-                    <div>
-                      <label
-                        htmlFor="interest"
-                        className={fieldLabelClass}
-                      >
-                        What are you looking for?{" "}
-                        <span className="text-accent-blue">*</span>
-                      </label>
-
-                      <select
-                        id="interest"
-                        value={formState.interest}
-                        onChange={(e) =>
-                          setFormState((p) => ({
-                            ...p,
-                            interest: e.target.value,
-                            role: e.target.value,
-                          }))
-                        }
-                        onFocus={() => setFocused("interest")}
-                        onBlur={() => setFocused(null)}
-                        disabled={submitting}
-                        className={cn(
-                          inputClass("interest"),
-                          !formState.interest &&
-                          "text-muted"
-                        )}
-                      >
-                        <option value="">
-                          Select a service
-                        </option>
-
-                        {CONTACT_INTERESTS.map((interest) => (
-                          <option
-                            key={interest}
-                            value={interest}
-                          >
-                            {interest}
-                          </option>
-                        ))}
-                      </select>
-
-                      {errors.interest && (
-                        <p className="mt-1 text-[10px] text-red-400">
-                          {errors.interest}
-                        </p>
-                      )}
-                    </div>
-                  </div>
-
-                  {/* Requirement */}
-                  <div>
-                    <label
-                      htmlFor="requirement"
-                      className={fieldLabelClass}
-                    >
-                      Tell us about your requirement
-                    </label>
-
-                    <textarea
-                      id="requirement"
-                      rows={3}
-                      placeholder="Briefly tell us what you want to build, improve, or automate..."
-                      value={formState.requirement}
-                      onChange={(e) =>
-                        setFormState((p) => ({
-                          ...p,
-                          requirement: e.target.value,
-                        }))
-                      }
-                      onFocus={() => setFocused("requirement")}
-                      onBlur={() => setFocused(null)}
-                      disabled={submitting}
-                      className={cn(
-                        inputClass("requirement"),
-                        "resize-none"
-                      )}
-                    />
-                  </div>
-
-                  {submitError && (
-                    <p className="rounded-lg border border-red-500/30 bg-red-500/5 px-3 py-2 text-xs text-red-400">
-                      {submitError}
-                    </p>
-                  )}
-
-                  {/* Submit */}
-                  <MagneticButton
-                    type="submit"
-                    variant="primary"
-                    className="group w-full !rounded-xl !py-3.5 !text-sm"
-                    disabled={submitting}
-                  >
-                    {submitting ? (
-                      <>
-                        <Loader2 className="h-4 w-4 animate-spin" />
-                        Submitting...
-                      </>
-                    ) : (
-                      <>
-                        Get in Touch
-                        <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-                      </>
-                    )}
-                  </MagneticButton>
-
-                  <p className="text-center text-[9px] leading-4 text-muted">
-                    By submitting this form, you agree to be contacted
-                    by Brosavo regarding your enquiry.
-                  </p>
-                </form>
-              </div>
-            </BlurReveal>
           </div>
         )}
       </div>

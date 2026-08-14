@@ -1,10 +1,11 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
+
 import { NAV_LINKS } from "@/lib/data";
 import { cn } from "@/lib/utils";
 import { MagneticButton } from "@/components/ui/MagneticButton";
@@ -18,29 +19,31 @@ export function Navigation() {
   const [isNavigating, setIsNavigating] = useState(false);
 
   /* =========================================================
-     SCROLL STATE
+     SCROLL
   ========================================================= */
 
   useEffect(() => {
-    const onScroll = () => {
+    const handleScroll = () => {
       setScrolled(window.scrollY > 50);
     };
 
-    window.addEventListener("scroll", onScroll, {
+    window.addEventListener("scroll", handleScroll, {
       passive: true,
     });
 
     return () => {
-      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
   /* =========================================================
-     LOCK BODY WHEN MOBILE MENU IS OPEN
+     MOBILE BODY LOCK
   ========================================================= */
 
   useEffect(() => {
-    document.body.style.overflow = mobileOpen ? "hidden" : "";
+    document.body.style.overflow = mobileOpen
+      ? "hidden"
+      : "";
 
     return () => {
       document.body.style.overflow = "";
@@ -48,7 +51,9 @@ export function Navigation() {
   }, [mobileOpen]);
 
   /* =========================================================
-     ROUTE CHANGED
+     ROUTE CHANGE
+     
+     Once Next.js changes pathname, remove the loading state.
   ========================================================= */
 
   useEffect(() => {
@@ -57,7 +62,10 @@ export function Navigation() {
   }, [pathname]);
 
   /* =========================================================
-     SAFETY TIMEOUT
+     SAFETY RESET
+     
+     This prevents a navigation indicator from ever becoming
+     permanently stuck.
   ========================================================= */
 
   useEffect(() => {
@@ -65,7 +73,7 @@ export function Navigation() {
 
     const timeout = window.setTimeout(() => {
       setIsNavigating(false);
-    }, 15000);
+    }, 5000);
 
     return () => {
       window.clearTimeout(timeout);
@@ -73,50 +81,109 @@ export function Navigation() {
   }, [isNavigating]);
 
   /* =========================================================
-     NAVIGATION LOADING HANDLER
+     NORMALIZE PATH
   ========================================================= */
 
-  const startNavigation = () => {
+  const normalizePath = (value: string) => {
+    const clean = value
+      .split("?")[0]
+      .split("#")[0];
+
+    if (!clean || clean === "/") {
+      return "/";
+    }
+
+    return clean.endsWith("/")
+      ? clean.slice(0, -1)
+      : clean;
+  };
+
+  /* =========================================================
+     START NAVIGATION
+  ========================================================= */
+
+  const startNavigation = (href: string) => {
+    const current = normalizePath(pathname);
+    const target = normalizePath(href);
+
+    /*
+     * If we're already on the target page:
+     *
+     * - don't show loading
+     * - don't change state
+     * - don't create a loop
+     */
+    if (current === target) {
+      return;
+    }
+
     setIsNavigating(true);
   };
 
   /* =========================================================
-     ACTIVE NAVIGATION
+     ACTIVE LINK
   ========================================================= */
 
-  const isActive = (href: string) =>
-    href === "/" ? pathname === "/" : pathname.startsWith(href);
+  const isActive = (href: string) => {
+    const current = normalizePath(pathname);
+    const target = normalizePath(href);
+
+    if (target === "/") {
+      return current === "/";
+    }
+
+    return (
+      current === target ||
+      current.startsWith(`${target}/`)
+    );
+  };
+
+  /* =========================================================
+     CLOSE MOBILE MENU
+  ========================================================= */
+
+  const closeMobileMenu = () => {
+    setMobileOpen(false);
+  };
 
   return (
     <>
-      {/* =======================================================
-          NAVIGATION
-      ======================================================= */}
+      {/* =====================================================
+          HEADER
+      ===================================================== */}
 
       <header
         className={cn(
-          "fixed top-0 left-0 right-0 z-50 px-3 py-3 sm:px-4 sm:py-4 md:px-8",
+          "fixed left-0 right-0 top-0 z-50",
+          "px-3 py-3 sm:px-4 sm:py-4 md:px-8",
           "transition-all duration-500",
           scrolled && "py-2.5 sm:py-3"
         )}
       >
         <nav
           className={cn(
-            "container-wide mx-auto flex items-center justify-between",
-            "rounded-2xl px-3 py-2.5 sm:px-4 md:px-6 md:py-3",
+            "container-wide mx-auto",
+            "flex items-center justify-between",
+            "rounded-2xl",
+            "px-3 py-2.5 sm:px-4 md:px-6 md:py-3",
+            "glass-strong",
+            "shadow-[0_4px_24px_var(--nav-shadow)]",
             "transition-all duration-500",
-            "glass-strong shadow-[0_4px_24px_var(--nav-shadow)]",
-            scrolled && "shadow-[0_8px_32px_var(--nav-shadow)]"
+            scrolled &&
+              "shadow-[0_8px_32px_var(--nav-shadow)]"
           )}
         >
-          {/* ===================================================
+          {/* =================================================
               LOGO
-          =================================================== */}
+          ================================================= */}
 
           <Link
             href="/"
-            onClick={startNavigation}
-            className="group flex items-center gap-2.5 sm:gap-3 shrink-0"
+            onClick={() => {
+              startNavigation("/");
+              closeMobileMenu();
+            }}
+            className="group flex shrink-0 items-center gap-2.5 sm:gap-3"
           >
             <div className="relative h-8 w-8 overflow-hidden rounded-2xl border border-white/10 bg-slate-950/5 shadow-[0_0_40px_rgba(59,130,246,0.12)]">
               <img
@@ -126,23 +193,27 @@ export function Navigation() {
               />
             </div>
 
-            <span className="text-base sm:text-lg font-semibold tracking-wider">
+            <span className="text-base font-semibold tracking-wider sm:text-lg">
               BROS
-              <span style={{ color: "#5B74F6" }}>Λ</span>
+              <span style={{ color: "#5B74F6" }}>
+                Λ
+              </span>
               VO
             </span>
           </Link>
 
-          {/* ===================================================
+          {/* =================================================
               DESKTOP NAVIGATION
-          =================================================== */}
+          ================================================= */}
 
           <div className="hidden items-center gap-0.5 xl:flex">
             {NAV_LINKS.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                onClick={startNavigation}
+                onClick={() =>
+                  startNavigation(link.href)
+                }
                 className={cn(
                   "group relative px-3 py-2 text-sm transition-colors",
                   isActive(link.href)
@@ -165,16 +236,20 @@ export function Navigation() {
             ))}
           </div>
 
-          {/* ===================================================
+          {/* =================================================
               DESKTOP ACTIONS
-          =================================================== */}
+          ================================================= */}
 
           <div className="hidden items-center gap-2 xl:flex">
             <ThemeToggle />
 
             <Link
               href="/authentication"
-              onClick={startNavigation}
+              onClick={() =>
+                startNavigation(
+                  "/authentication"
+                )
+              }
               className={cn(
                 "px-3 py-2 text-sm transition-colors",
                 isActive("/authentication")
@@ -189,47 +264,84 @@ export function Navigation() {
               href="/contact"
               variant="primary"
               className="!px-6 !py-2.5 !text-sm"
-              onClick={startNavigation}
+              onClick={() =>
+                startNavigation("/contact")
+              }
             >
               Contact Us
             </MagneticButton>
           </div>
 
-          {/* ===================================================
+          {/* =================================================
               TABLET / MOBILE ACTIONS
-              
-              Contact Us is intentionally always visible.
-          =================================================== */}
+          ================================================= */}
 
           <div className="flex items-center gap-1.5 xl:hidden">
             <ThemeToggle />
 
-            {/* Compact Contact Us */}
-            <MagneticButton
-              href="/contact"
-              variant="primary"
-              className="!px-3 !py-2 !text-xs sm:!px-4 sm:!py-2.5 sm:!text-sm"
-              onClick={startNavigation}
-            >
-              Contact Us
-            </MagneticButton>
+            {/* -----------------------------------------------
+                CONTACT US
+                
+                Visible when drawer is closed.
+                Hidden when drawer is open.
+            ------------------------------------------------ */}
 
-            {/* Menu */}
+            <AnimatePresence initial={false}>
+              {!mobileOpen && (
+                <motion.div
+                  initial={{
+                    opacity: 0,
+                    scale: 0.9,
+                  }}
+                  animate={{
+                    opacity: 1,
+                    scale: 1,
+                  }}
+                  exit={{
+                    opacity: 0,
+                    scale: 0.9,
+                  }}
+                  transition={{
+                    duration: 0.18,
+                  }}
+                >
+                  <MagneticButton
+                    href="/contact"
+                    variant="primary"
+                    className="!px-3 !py-2 !text-xs sm:!px-4 sm:!py-2.5 sm:!text-sm"
+                    onClick={() =>
+                      startNavigation("/contact")
+                    }
+                  >
+                    Contact Us
+                  </MagneticButton>
+                </motion.div>
+              )}
+            </AnimatePresence>
+
+            {/* -----------------------------------------------
+                MENU
+            ------------------------------------------------ */}
+
             <button
               type="button"
-              className="relative flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center"
-              onClick={() => setMobileOpen(!mobileOpen)}
+              onClick={() =>
+                setMobileOpen((open) => !open)
+              }
               aria-label={
-                mobileOpen ? "Close menu" : "Open menu"
+                mobileOpen
+                  ? "Close menu"
+                  : "Open menu"
               }
               aria-expanded={mobileOpen}
+              className="relative flex h-9 w-9 items-center justify-center sm:h-10 sm:w-10"
             >
               <motion.div
                 animate={{
                   rotate: mobileOpen ? 90 : 0,
                 }}
                 transition={{
-                  duration: 0.3,
+                  duration: 0.25,
                 }}
               >
                 {mobileOpen ? (
@@ -251,20 +363,14 @@ export function Navigation() {
             <motion.div
               initial={{
                 opacity: 0,
-                scaleX: 0,
               }}
               animate={{
                 opacity: 1,
-                scaleX: 1,
               }}
               exit={{
                 opacity: 0,
-                scaleX: 0,
               }}
-              transition={{
-                duration: 0.2,
-              }}
-              className="pointer-events-none absolute bottom-0 left-0 right-0 h-[2px] origin-left overflow-hidden"
+              className="pointer-events-none absolute bottom-0 left-0 right-0 h-[2px] overflow-hidden"
             >
               <motion.div
                 initial={{
@@ -274,11 +380,11 @@ export function Navigation() {
                   x: "100%",
                 }}
                 transition={{
-                  duration: 1.1,
+                  duration: 1,
                   repeat: Infinity,
-                  ease: "easeInOut",
+                  ease: "linear",
                 }}
-                className="h-full w-1/2 bg-gradient-to-r from-accent-blue via-accent-violet to-accent-cyan shadow-[0_0_12px_rgba(59,130,246,0.7)]"
+                className="h-full w-1/2 bg-gradient-to-r from-accent-blue via-accent-violet to-accent-cyan"
               />
             </motion.div>
           )}
@@ -286,7 +392,7 @@ export function Navigation() {
       </header>
 
       {/* =======================================================
-          MOBILE MENU
+          MOBILE DRAWER
       ======================================================= */}
 
       <AnimatePresence>
@@ -303,14 +409,14 @@ export function Navigation() {
             }}
             className="fixed inset-0 z-40 xl:hidden"
           >
-            {/* Background overlay */}
+            {/* Background */}
 
             <motion.div
               className="absolute inset-0 bg-overlay backdrop-blur-xl"
-              onClick={() => setMobileOpen(false)}
+              onClick={closeMobileMenu}
             />
 
-            {/* Mobile drawer */}
+            {/* Drawer */}
 
             <motion.nav
               initial={{
@@ -329,9 +435,11 @@ export function Navigation() {
               }}
               className="absolute bottom-0 right-0 top-0 flex w-full max-w-sm flex-col gap-1 overflow-y-auto glass-strong p-8 pt-24"
             >
-              {/* Mobile navigation links */}
+              {/* ---------------------------------------------
+                  LINKS
+              --------------------------------------------- */}
 
-              {NAV_LINKS.map((link, i) => (
+              {NAV_LINKS.map((link, index) => (
                 <motion.div
                   key={link.href}
                   initial={{
@@ -343,14 +451,16 @@ export function Navigation() {
                     x: 0,
                   }}
                   transition={{
-                    delay: i * 0.05,
+                    delay: index * 0.05,
                   }}
                 >
                   <Link
                     href={link.href}
                     onClick={() => {
-                      startNavigation();
-                      setMobileOpen(false);
+                      startNavigation(
+                        link.href
+                      );
+                      closeMobileMenu();
                     }}
                     className={cn(
                       "block border-b border-border py-3 text-xl font-medium transition-colors",
@@ -364,7 +474,9 @@ export function Navigation() {
                 </motion.div>
               ))}
 
-              {/* Mobile actions */}
+              {/* ---------------------------------------------
+                  MOBILE ACTIONS
+              --------------------------------------------- */}
 
               <motion.div
                 initial={{
@@ -385,33 +497,26 @@ export function Navigation() {
                   variant="secondary"
                   className="w-full"
                   onClick={() => {
-                    startNavigation();
-                    setMobileOpen(false);
+                    startNavigation(
+                      "/authentication"
+                    );
+                    closeMobileMenu();
                   }}
                 >
                   Login
                 </MagneticButton>
 
-                <AnimatePresence initial={false}>
-                  {!mobileOpen && (
-                    <motion.div
-                      initial={{ opacity: 0, scale: 0.9, width: 0 }}
-                      animate={{ opacity: 1, scale: 1, width: "auto" }}
-                      exit={{ opacity: 0, scale: 0.9, width: 0 }}
-                      transition={{ duration: 0.2 }}
-                      className="overflow-hidden"
-                    >
-                      <MagneticButton
-                        href="/contact"
-                        variant="primary"
-                        className="!px-3 !py-2 !text-xs sm:!px-4 sm:!py-2.5 sm:!text-sm"
-                        onClick={startNavigation}
-                      >
-                        Contact Us
-                      </MagneticButton>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
+                <MagneticButton
+                  href="/contact"
+                  variant="primary"
+                  className="w-full"
+                  onClick={() => {
+                    startNavigation("/contact");
+                    closeMobileMenu();
+                  }}
+                >
+                  Contact Us
+                </MagneticButton>
               </motion.div>
             </motion.nav>
           </motion.div>

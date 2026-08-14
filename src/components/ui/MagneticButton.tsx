@@ -2,6 +2,7 @@
 
 import { useRef, useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
@@ -33,6 +34,8 @@ export function MagneticButton({
   type = "button",
   disabled = false,
 }: MagneticButtonProps) {
+  const pathname = usePathname();
+
   const buttonRef = useRef<HTMLButtonElement>(null);
   const anchorRef = useRef<HTMLAnchorElement>(null);
 
@@ -45,11 +48,37 @@ export function MagneticButton({
 
   const isDisabled = disabled || loading;
 
-  const handleMouse = (e: React.MouseEvent<HTMLElement>) => {
+  const normalizePath = (value: string) => {
+    if (!value) return "";
+
+    const withoutQuery = value.split("?")[0];
+    const withoutHash = withoutQuery.split("#")[0];
+
+    if (
+      withoutHash.length > 1 &&
+      withoutHash.endsWith("/")
+    ) {
+      return withoutHash.slice(0, -1);
+    }
+
+    return withoutHash || "/";
+  };
+
+  const isSamePage =
+    !!href &&
+    !href.startsWith("http") &&
+    !href.startsWith("mailto:") &&
+    !href.startsWith("tel:") &&
+    normalizePath(href) === normalizePath(pathname);
+
+  const handleMouse = (
+    e: React.MouseEvent<HTMLElement>
+  ) => {
     if (isDisabled) return;
 
     const el =
-      anchorRef.current || buttonRef.current;
+      anchorRef.current ||
+      buttonRef.current;
 
     if (!el) return;
 
@@ -93,18 +122,16 @@ export function MagneticButton({
     "relative inline-flex items-center justify-center gap-2 rounded-full px-8 py-3.5 text-sm font-medium transition-all duration-300",
     "cursor-pointer",
     variants[variant],
-    isDisabled && "cursor-not-allowed opacity-60",
+    isDisabled &&
+      "cursor-not-allowed opacity-60",
     className
   );
 
   /*
-   * The original content stays in the layout.
+   * Keep the original content in the layout.
    *
-   * When loading:
-   * - text becomes invisible
-   * - spinner is positioned over it
-   * - button width does NOT change
-   * - button height does NOT change
+   * This prevents the button from changing width
+   * when the loader appears.
    */
   const buttonContent = (
     <>
@@ -137,16 +164,19 @@ export function MagneticButton({
     </>
   );
 
-  /*
-   * ============================================================
-   * EXTERNAL / MAILTO / TEL
-   * ============================================================
-   */
+  /* ============================================================
+     LINKS
+  ============================================================ */
+
   if (href) {
     const isExternal =
       href.startsWith("http") ||
       href.startsWith("mailto:") ||
       href.startsWith("tel:");
+
+    /* ==========================================================
+       EXTERNAL LINK
+    ========================================================== */
 
     if (isExternal) {
       return (
@@ -193,11 +223,10 @@ export function MagneticButton({
       );
     }
 
-    /*
-     * ============================================================
-     * INTERNAL NEXT.JS LINK
-     * ============================================================
-     */
+    /* ==========================================================
+       INTERNAL LINK
+    ========================================================== */
+
     return (
       <Link
         href={href}
@@ -206,6 +235,18 @@ export function MagneticButton({
         aria-busy={loading}
         tabIndex={isDisabled ? -1 : undefined}
         onClick={(event) => {
+          /*
+           * IMPORTANT:
+           *
+           * If we're already on this page, do NOT activate
+           * the loading spinner.
+           */
+          if (isSamePage) {
+            event.preventDefault();
+            onClick?.();
+            return;
+          }
+
           if (isDisabled) {
             event.preventDefault();
             return;
@@ -242,11 +283,10 @@ export function MagneticButton({
     );
   }
 
-  /*
-   * ============================================================
-   * NORMAL BUTTON / FORM BUTTON
-   * ============================================================
-   */
+  /* ============================================================
+     NORMAL BUTTON / FORM BUTTON
+  ============================================================ */
+
   return (
     <motion.button
       type={type}
