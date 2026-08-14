@@ -1,5 +1,5 @@
 export const CONTACT = {
-  email: "hellobrosavo@gmail.com",
+  email: "hello@brosavo.com",
 
   instagram: {
     handle: "brosavo",

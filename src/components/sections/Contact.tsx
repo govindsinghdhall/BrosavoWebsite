@@ -12,12 +12,23 @@ import {
   Phone,
   CheckCircle,
   Loader2,
+  ArrowRight,
+  Sparkles,
 } from "lucide-react";
 import { CONTACT } from "@/lib/data";
-import { CONTACT_ROLES } from "@/lib/contact";
 import { cn } from "@/lib/utils";
 
 const CONTACT_SUCCESS_KEY = "brosavo-contact-demo-submitted";
+
+const CONTACT_INTERESTS = [
+  "Software Development",
+  "Website Development",
+  "AI Solutions",
+  "SaaS Development",
+  "Business Automation",
+  "Real Estate CRM",
+  "Other",
+] as const;
 
 function WhatsAppIcon({ className }: { className?: string }) {
   return (
@@ -54,73 +65,8 @@ function getDeviceType() {
   return "desktop";
 }
 
-function OptionGroup({
-  label,
-  options,
-  value,
-  error,
-  disabled,
-  onChange,
-}: {
-  label: string;
-  options: readonly string[];
-  value: string;
-  error?: string;
-  disabled?: boolean;
-  onChange: (value: string) => void;
-}) {
-  return (
-    <div>
-      <p className="mb-3 block text-xs font-mono uppercase tracking-wider text-muted">
-        {label}
-      </p>
-
-      <div
-        className="grid gap-2 sm:grid-cols-2"
-        role="radiogroup"
-        aria-label={label}
-      >
-        {options.map((option) => {
-          const selected = value === option;
-
-          return (
-            <button
-              key={option}
-              type="button"
-              role="radio"
-              aria-checked={selected}
-              disabled={disabled}
-              onClick={() => onChange(option)}
-              className={cn(
-                "rounded-xl border px-4 py-3 text-left text-sm font-medium transition-all duration-200",
-                selected
-                  ? "border-accent-blue/50 bg-accent-blue/10 text-foreground shadow-[0_0_20px_rgba(59,130,246,0.08)]"
-                  : "border-border bg-surface text-foreground/80 hover:border-glass-border hover:bg-surface-hover",
-                error && !value && "border-red-500/50"
-              )}
-            >
-              {option}
-            </button>
-          );
-        })}
-      </div>
-
-      {error ? (
-        <motion.p
-          initial={{ opacity: 0, y: -4 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="mt-2 text-xs text-red-400"
-        >
-          {error}
-        </motion.p>
-      ) : null}
-    </div>
-  );
-}
-
 export function Contact({ showHeader = true }: { showHeader?: boolean }) {
   const searchParams = useSearchParams();
-
   const successRef = useRef<HTMLDivElement>(null);
 
   const [formState, setFormState] = useState({
@@ -135,6 +81,7 @@ export function Contact({ showHeader = true }: { showHeader?: boolean }) {
     plan: "",
     intent: "",
     addon: "",
+    requirement: "",
   });
 
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -216,8 +163,8 @@ export function Contact({ showHeader = true }: { showHeader?: boolean }) {
       newErrors.city = "City / Location is required";
     }
 
-    if (!formState.role.trim()) {
-      newErrors.role = "Please select who you are";
+    if (!formState.interest.trim()) {
+      newErrors.interest = "Please select a requirement";
     }
 
     setErrors(newErrors);
@@ -240,8 +187,8 @@ export function Contact({ showHeader = true }: { showHeader?: boolean }) {
       const payload = {
         ...formState,
 
+        role: formState.interest,
         teamSize: formState.teamSize || undefined,
-        interest: formState.interest || undefined,
 
         utm_source: searchParams.get("utm_source") || "",
         utm_medium: searchParams.get("utm_medium") || "",
@@ -250,7 +197,9 @@ export function Contact({ showHeader = true }: { showHeader?: boolean }) {
         utm_content: searchParams.get("utm_content") || "",
 
         referrer:
-          typeof document !== "undefined" ? document.referrer : "",
+          typeof document !== "undefined"
+            ? document.referrer
+            : "",
 
         current_page:
           typeof window !== "undefined"
@@ -293,7 +242,7 @@ export function Contact({ showHeader = true }: { showHeader?: boolean }) {
       if (!response.ok) {
         setSubmitError(
           data.error ||
-            "Failed to send message. Please try again."
+          "Failed to send message. Please try again."
         );
 
         return;
@@ -309,362 +258,547 @@ export function Contact({ showHeader = true }: { showHeader?: boolean }) {
     }
   };
 
-  const fields = [
-    {
-      id: "name" as const,
-      label: "Full Name",
-      type: "text",
-      placeholder: "John Doe",
-      autoComplete: "name",
-    },
-    {
-      id: "phone" as const,
-      label: "Phone Number",
-      type: "tel",
-      placeholder: "+91 98765 43210",
-      autoComplete: "tel",
-    },
-    {
-      id: "email" as const,
-      label: "Email Address",
-      type: "email",
-      placeholder: "john@company.com",
-      autoComplete: "email",
-    },
-    {
-      id: "company" as const,
-      label: "Agency / Builder / Brokerage Name",
-      type: "text",
-      placeholder: "Your agency or brokerage",
-      autoComplete: "organization",
-    },
-    {
-      id: "city" as const,
-      label: "City / Location",
-      type: "text",
-      placeholder: "Gurugram",
-      autoComplete: "address-level2",
-    },
-  ];
+  const inputClass = (id: string) =>
+    cn(
+      "w-full rounded-xl border bg-background/50 px-4 py-3 text-sm outline-none transition-all duration-300 placeholder:text-muted/60",
+      focused === id
+        ? "border-accent-blue/50 bg-background shadow-[0_0_20px_rgba(59,130,246,0.08)]"
+        : "border-border hover:border-glass-border",
+      errors[id] && "border-red-500/50"
+    );
+
+  const fieldLabelClass =
+    "mb-1.5 block text-[10px] font-mono uppercase tracking-[0.16em] text-muted";
 
   return (
-    <section className="section-padding relative overflow-hidden">
-      <div className="absolute inset-0 mesh-gradient opacity-50" />
+    <section className="relative min-h-[calc(100svh-100px)] overflow-hidden bg-background">
+      {/* Background */}
+      <div className="absolute inset-0 mesh-gradient opacity-60" />
 
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-accent-blue/5 blur-[200px] rounded-full" />
+      <div className="absolute left-1/2 top-1/2 h-[600px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent-blue/5 blur-[160px]" />
 
-      <div className="container-wide relative">
+      <div className="absolute right-[-10%] top-[10%] h-[350px] w-[350px] rounded-full bg-accent-violet/5 blur-[130px]" />
 
-        {/* =========================================================
-            SEO / ACCESSIBILITY H1
-            This is intentionally rendered directly in this component
-            so Bing and other crawlers can clearly identify the page topic.
-        ========================================================= */}
+      <div className="container-wide relative z-10 flex min-h-[calc(100svh-80px)] items-center px-4 pt-28 pb-8 sm:px-6 md:px-8 md:pt-28 md:pb-10 lg:px-10 lg:pt-32 lg:pb-12 xl:px-12">
+        {submitted ? (
+          <motion.div
+            ref={successRef}
+            role="status"
+            aria-live="polite"
+            initial={{
+              opacity: 0,
+              scale: 0.96,
+              y: 12,
+            }}
+            animate={{
+              opacity: 1,
+              scale: 1,
+              y: 0,
+            }}
+            transition={{
+              duration: 0.35,
+            }}
+            className="mx-auto w-full max-w-2xl rounded-3xl border border-green-500/30 bg-green-500/5 p-8 text-center shadow-[0_0_60px_rgba(34,197,94,0.12)] md:p-12"
+          >
+            <CheckCircle className="mx-auto mb-5 h-14 w-14 text-green-400" />
 
-        <div className="mb-10 text-center">
-          <p className="mb-3 text-xs font-mono uppercase tracking-[0.25em] text-accent-blue">
-            Contact Brosavo
-          </p>
+            <h1 className="text-3xl font-black tracking-tight text-foreground md:text-4xl">
+              Request Received!
+            </h1>
 
-          <h1 className="text-3xl font-black tracking-[-0.03em] text-foreground sm:text-4xl md:text-5xl">
-            Let&apos;s Build Something Extraordinary
-          </h1>
+            <p className="mx-auto mt-4 max-w-xl text-sm leading-7 text-muted">
+              Thank you for contacting Brosavo.
+              <br />
+              <br />
+              One of our product specialists will contact you
+              within 2 business hours.
+            </p>
 
-          <p className="mx-auto mt-4 max-w-2xl text-base leading-7 text-muted sm:text-lg">
-            Ready to transform your technology? Talk to Brosavo about
-            software development, AI solutions, SaaS products, business
-            automation, digital infrastructure, and our Real Estate CRM.
-          </p>
-        </div>
-
-        {/* Existing optional header is removed from the SEO heading
-            hierarchy so that this page has ONE clear H1. */}
-
-        <div className="grid lg:grid-cols-5 gap-8 max-w-5xl mx-auto">
-
-          <div className="lg:col-span-2 space-y-4">
-            {[
-              {
-                icon: Mail,
-                label: "Email",
-                value: CONTACT.email,
-                href: `mailto:${CONTACT.email}`,
-              },
-
-              ...CONTACT.phones.map((p) => ({
-                icon: Phone,
-                label: p.label,
-                value: `${p.flag} ${p.number}`,
-                href: p.href,
-              })),
-
-              {
-                icon: MapPin,
-                label: "Offices",
-                value: CONTACT.offices,
-                href: undefined,
-              },
-            ].map((item, i) => (
-              <BlurReveal
-                key={`${item.label}-${i}`}
-                delay={i * 0.1}
+            <div className="mx-auto mt-7 flex max-w-md flex-col gap-3">
+              <a
+                href={CONTACT.whatsapp.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex w-full items-center justify-center gap-3 rounded-xl bg-[#25D366] px-6 py-3.5 text-sm font-semibold text-white shadow-[0_10px_30px_rgba(37,211,102,0.35)] transition-all hover:-translate-y-0.5 hover:bg-[#1ebe57]"
               >
-                <motion.div
-                  whileHover={{ x: 4 }}
-                  className="glass rounded-xl p-4 flex items-center gap-4"
-                >
-                  <div className="w-10 h-10 rounded-lg bg-accent-blue/10 flex items-center justify-center">
-                    <item.icon className="w-4 h-4 text-accent-blue" />
-                  </div>
+                <span className="flex h-8 w-8 items-center justify-center rounded-full bg-white/20">
+                  <WhatsAppIcon className="h-5 w-5" />
+                </span>
 
-                  <div>
-                    <div className="text-xs text-muted uppercase tracking-wider">
-                      {item.label}
+                Chat on WhatsApp
+              </a>
+
+              <div className="grid gap-3 sm:grid-cols-2">
+                {CONTACT.phones.map((phone) => (
+                  <MagneticButton
+                    key={phone.href}
+                    href={phone.href}
+                    variant="secondary"
+                    className="w-full !rounded-xl"
+                  >
+                    <Phone className="h-4 w-4" />
+                    Call {phone.label}
+                  </MagneticButton>
+                ))}
+              </div>
+
+              <button
+                type="button"
+                onClick={resetForm}
+                className="mt-1 text-sm font-medium text-accent-blue hover:opacity-80"
+              >
+                Submit another request
+              </button>
+            </div>
+          </motion.div>
+        ) : (
+          /*
+           * ======================================================
+           * HERO
+           * ======================================================
+           *
+           * Desktop:
+           * LEFT  = headline + compact contact information
+           * RIGHT = compact enquiry form
+           *
+           * Everything is intentionally kept inside the first
+           * viewport so this behaves like a proper hero section.
+           */
+          <div className="grid w-full items-center gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:gap-12 xl:gap-16">
+            {/* ==================================================
+                LEFT SIDE
+            ================================================== */}
+
+            <div className="max-w-xl">
+              <BlurReveal>
+                <p className="mb-3 text-[11px] font-mono uppercase tracking-[0.28em] text-accent-blue">
+                  Contact Brosavo
+                </p>
+
+                <h1 className="text-4xl font-black leading-[0.98] tracking-[-0.045em] text-foreground sm:text-5xl md:text-6xl xl:text-[4.2rem]">
+                  Let&apos;s Build Something{" "}
+                  <span className="text-gradient-accent">
+                    Extraordinary
+                  </span>
+                </h1>
+
+                <p className="mt-5 max-w-lg text-sm leading-6 text-muted sm:text-base">
+                  Tell us what you&apos;re building or what you want
+                  to improve. Brosavo builds software, websites, AI
+                  solutions, SaaS products, business automation, and
+                  Real Estate CRM platforms.
+                </p>
+              </BlurReveal>
+
+              {/* Compact contact information */}
+              <BlurReveal delay={0.1}>
+                <div className="mt-7 grid gap-2.5 sm:grid-cols-2">
+                  <a
+                    href={`mailto:${CONTACT.email}`}
+                    className="group flex min-w-0 items-center gap-3 rounded-xl border border-border/70 bg-surface/40 px-3.5 py-3 backdrop-blur-sm transition-colors hover:border-accent-blue/30"
+                  >
+                    <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-accent-blue/10">
+                      <Mail className="h-3.5 w-3.5 text-accent-blue" />
                     </div>
 
-                    {item.href ? (
-                      <a
-                        href={item.href}
-                        className="text-sm font-medium hover:text-accent-blue transition-colors"
-                      >
-                        {item.value}
-                      </a>
-                    ) : (
-                      <div className="text-sm font-medium">
-                        {item.value}
-                      </div>
-                    )}
-                  </div>
-                </motion.div>
-              </BlurReveal>
-            ))}
+                    <div className="min-w-0">
+                      <p className="text-[9px] uppercase tracking-wider text-muted">
+                        Email
+                      </p>
 
-            <BlurReveal delay={0.4}>
-              <div className="glass rounded-xl p-4 mt-6">
-                <div className="flex items-center gap-2 text-xs font-mono text-green-400 mb-2">
-                  <motion.div
-                    className="w-2 h-2 rounded-full bg-green-400"
-                    animate={{ opacity: [1, 0.3, 1] }}
-                    transition={{
-                      duration: 2,
-                      repeat: Infinity,
-                    }}
-                  />
-
-                  System Online — Response within 2h
-                </div>
-
-                <p className="text-xs text-muted">
-                  Our engineering team operates across time zones
-                  for rapid response.
-                </p>
-              </div>
-            </BlurReveal>
-          </div>
-
-          <div className="lg:col-span-3">
-            {submitted ? (
-              <motion.div
-                ref={successRef}
-                role="status"
-                aria-live="polite"
-                initial={{
-                  opacity: 0,
-                  scale: 0.96,
-                  y: 12,
-                }}
-                animate={{
-                  opacity: 1,
-                  scale: 1,
-                  y: 0,
-                }}
-                transition={{
-                  duration: 0.35,
-                }}
-                className="glass rounded-2xl p-8 md:p-12 text-center border border-green-500/30 bg-green-500/5 shadow-[0_0_40px_rgba(34,197,94,0.12)]"
-              >
-                <CheckCircle className="w-16 h-16 text-green-400 mx-auto mb-6" />
-
-                <h2 className="text-2xl font-semibold mb-2 text-foreground">
-                  Request Received!
-                </h2>
-
-                <p className="text-muted max-w-md mx-auto leading-7">
-                  Thank you for contacting Brosavo.
-                  <br />
-                  <br />
-                  One of our product specialists will contact you
-                  within 2 business hours to understand your
-                  requirements and schedule a personalized demo.
-                </p>
-
-                <div className="mt-8 flex flex-col gap-3 sm:mx-auto sm:max-w-md">
-                  <a
-                    href={CONTACT.whatsapp.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group inline-flex w-full items-center justify-center gap-3 rounded-xl bg-[#25D366] px-6 py-3.5 text-sm font-semibold text-white shadow-[0_10px_30px_rgba(37,211,102,0.35)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#1ebe57] hover:shadow-[0_14px_36px_rgba(37,211,102,0.45)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#25D366]/60 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
-                    aria-label={`Chat on WhatsApp at ${CONTACT.whatsapp.number}`}
-                  >
-                    <span className="flex h-8 w-8 items-center justify-center rounded-full bg-white/20">
-                      <WhatsAppIcon className="h-5 w-5" />
-                    </span>
-
-                    Chat on WhatsApp
+                      <p className="truncate text-xs font-medium">
+                        {CONTACT.email}
+                      </p>
+                    </div>
                   </a>
 
-                  <div className="grid gap-3 sm:grid-cols-2">
-                    {CONTACT.phones.map((phone) => (
-                      <MagneticButton
-                        key={phone.href}
-                        href={phone.href}
-                        variant="secondary"
-                        className="w-full !rounded-xl"
-                      >
-                        <Phone className="w-4 h-4" />
-                        Call {phone.label}
-                      </MagneticButton>
-                    ))}
+                  {CONTACT.phones.slice(0, 1).map((phone) => (
+                    <a
+                      key={phone.href}
+                      href={phone.href}
+                      className="group flex min-w-0 items-center gap-3 rounded-xl border border-border/70 bg-surface/40 px-3.5 py-3 backdrop-blur-sm transition-colors hover:border-accent-blue/30"
+                    >
+                      <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-accent-blue/10">
+                        <Phone className="h-3.5 w-3.5 text-accent-blue" />
+                      </div>
+
+                      <div>
+                        <p className="text-[9px] uppercase tracking-wider text-muted">
+                          {phone.label}
+                        </p>
+
+                        <p className="text-xs font-medium">
+                          {phone.flag} {phone.number}
+                        </p>
+                      </div>
+                    </a>
+                  ))}
+
+                  <div className="flex min-w-0 items-center gap-3 rounded-xl border border-border/70 bg-surface/40 px-3.5 py-3 backdrop-blur-sm">
+                    <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-accent-blue/10">
+                      <MapPin className="h-3.5 w-3.5 text-accent-blue" />
+                    </div>
+
+                    <div className="min-w-0">
+                      <p className="text-[9px] uppercase tracking-wider text-muted">
+                        Offices
+                      </p>
+
+                      <p className="truncate text-xs font-medium">
+                        {CONTACT.offices}
+                      </p>
+                    </div>
                   </div>
 
-                  <button
-                    type="button"
-                    onClick={resetForm}
-                    className="mt-1 text-sm font-medium text-accent-blue transition-opacity hover:opacity-80"
-                  >
-                    Submit another request
-                  </button>
+                  <div className="flex min-w-0 items-center gap-3 rounded-xl border border-border/70 bg-surface/40 px-3.5 py-3 backdrop-blur-sm">
+                    <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-green-500/10">
+                      <span className="h-2 w-2 animate-pulse rounded-full bg-green-400" />
+                    </div>
+
+                    <div>
+                      <p className="text-[9px] uppercase tracking-wider text-muted">
+                        Availability
+                      </p>
+
+                      <p className="text-xs font-medium text-green-400">
+                        Response within 2h
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </BlurReveal>
+            </div>
+
+            {/* ==================================================
+                RIGHT SIDE — FORM
+            ================================================== */}
+
+            <BlurReveal delay={0.15}>
+              <div className="w-full rounded-2xl border border-border/80 bg-surface/55 p-5 shadow-[0_25px_80px_rgba(0,0,0,0.07)] backdrop-blur-xl sm:p-6 lg:p-7">
+                <div className="mb-5">
+                  <div className="mb-2 flex items-center gap-2 text-[10px] font-mono uppercase tracking-[0.2em] text-accent-cyan">
+                    <Sparkles className="h-3 w-3" />
+                    Start a conversation
+                  </div>
+
+                  <h2 className="text-xl font-semibold tracking-tight sm:text-2xl">
+                    Tell us about your project
+                  </h2>
+
+                  <p className="mt-1.5 text-xs leading-5 text-muted">
+                    Share a few details and our team will get back to
+                    you with the right next step.
+                  </p>
                 </div>
 
-                <p className="mt-5 text-xs text-muted">
-                  WhatsApp · {CONTACT.whatsapp.number}
-                </p>
-              </motion.div>
-            ) : (
-              <form
-                onSubmit={handleSubmit}
-                className="glass rounded-2xl p-6 md:p-8 border border-border space-y-5"
-              >
-                {(formState.plan ||
-                  formState.intent ||
-                  formState.addon) && (
-                  <div className="rounded-xl border border-accent-blue/20 bg-accent-blue/8 px-4 py-3 text-sm text-foreground/80">
-                    Enquiry context:{" "}
-                    {[
-                      formState.intent,
-                      formState.plan,
-                      formState.addon,
-                    ]
-                      .filter(Boolean)
-                      .join(" · ")}
-                  </div>
-                )}
+                <form
+                  onSubmit={handleSubmit}
+                  className="space-y-4"
+                >
+                  {/* Existing URL context */}
+                  {(formState.plan ||
+                    formState.intent ||
+                    formState.addon) && (
+                      <div className="rounded-lg border border-accent-blue/20 bg-accent-blue/5 px-3 py-2 text-xs text-foreground/75">
+                        <span className="font-medium">
+                          Enquiry:
+                        </span>{" "}
+                        {[
+                          formState.intent,
+                          formState.plan,
+                          formState.addon,
+                        ]
+                          .filter(Boolean)
+                          .join(" · ")}
+                      </div>
+                    )}
 
-                {fields.map((field) => (
-                  <div key={field.id}>
-                    <label
-                      htmlFor={field.id}
-                      className="mb-2 block text-xs font-mono uppercase tracking-wider text-muted"
-                    >
-                      {field.label}
-                    </label>
+                  {/* Name + Phone */}
+                  <div className="grid gap-4 sm:grid-cols-2">
+                    <div>
+                      <label
+                        htmlFor="name"
+                        className={fieldLabelClass}
+                      >
+                        Full Name{" "}
+                        <span className="text-accent-blue">*</span>
+                      </label>
 
-                    <div className="relative">
                       <input
-                        id={field.id}
-                        type={field.type}
-                        placeholder={field.placeholder}
-                        autoComplete={field.autoComplete}
-                        value={formState[field.id]}
+                        id="name"
+                        type="text"
+                        placeholder="John Doe"
+                        autoComplete="name"
+                        value={formState.name}
                         onChange={(e) =>
                           setFormState((p) => ({
                             ...p,
-                            [field.id]: e.target.value,
+                            name: e.target.value,
                           }))
                         }
-                        onFocus={() => setFocused(field.id)}
+                        onFocus={() => setFocused("name")}
                         onBlur={() => setFocused(null)}
                         disabled={submitting}
-                        className={cn(
-                          "w-full rounded-xl border bg-surface px-4 py-3 text-sm outline-none transition-all duration-300",
-
-                          focused === field.id
-                            ? "border-accent-blue/50 bg-surface shadow-[0_0_20px_rgba(59,130,246,0.1)]"
-                            : "border-border hover:border-glass-border",
-
-                          errors[field.id] &&
-                            "border-red-500/50"
-                        )}
+                        className={inputClass("name")}
                       />
 
-                      {errors[field.id] && (
-                        <motion.p
-                          initial={{
-                            opacity: 0,
-                            y: -4,
-                          }}
-                          animate={{
-                            opacity: 1,
-                            y: 0,
-                          }}
-                          className="mt-1 text-xs text-red-400"
-                        >
-                          {errors[field.id]}
-                        </motion.p>
+                      {errors.name && (
+                        <p className="mt-1 text-[10px] text-red-400">
+                          {errors.name}
+                        </p>
+                      )}
+                    </div>
+
+                    <div>
+                      <label
+                        htmlFor="phone"
+                        className={fieldLabelClass}
+                      >
+                        Phone Number{" "}
+                        <span className="text-accent-blue">*</span>
+                      </label>
+
+                      <input
+                        id="phone"
+                        type="tel"
+                        placeholder="+91 98765 43210"
+                        autoComplete="tel"
+                        value={formState.phone}
+                        onChange={(e) =>
+                          setFormState((p) => ({
+                            ...p,
+                            phone: e.target.value,
+                          }))
+                        }
+                        onFocus={() => setFocused("phone")}
+                        onBlur={() => setFocused(null)}
+                        disabled={submitting}
+                        className={inputClass("phone")}
+                      />
+
+                      {errors.phone && (
+                        <p className="mt-1 text-[10px] text-red-400">
+                          {errors.phone}
+                        </p>
                       )}
                     </div>
                   </div>
-                ))}
 
-                <OptionGroup
-                  label="I am a"
-                  options={CONTACT_ROLES}
-                  value={formState.role}
-                  error={errors.role}
-                  disabled={submitting}
-                  onChange={(role) =>
-                    setFormState((p) => ({
-                      ...p,
-                      role,
-                    }))
-                  }
-                />
+                  {/* Email + Company */}
+                  <div className="grid gap-4 sm:grid-cols-2">
+                    <div>
+                      <label
+                        htmlFor="email"
+                        className={fieldLabelClass}
+                      >
+                        Email Address{" "}
+                        <span className="text-accent-blue">*</span>
+                      </label>
 
-                {Object.keys(errors).length > 0 ? (
-                  <p className="rounded-xl border border-red-500/30 bg-red-500/5 px-4 py-3 text-sm text-red-400">
-                    Please fill in the required fields highlighted
-                    above.
-                  </p>
-                ) : null}
+                      <input
+                        id="email"
+                        type="email"
+                        placeholder="john@company.com"
+                        autoComplete="email"
+                        value={formState.email}
+                        onChange={(e) =>
+                          setFormState((p) => ({
+                            ...p,
+                            email: e.target.value,
+                          }))
+                        }
+                        onFocus={() => setFocused("email")}
+                        onBlur={() => setFocused(null)}
+                        disabled={submitting}
+                        className={inputClass("email")}
+                      />
 
-                {submitError ? (
-                  <p className="rounded-xl border border-red-500/30 bg-red-500/5 px-4 py-3 text-sm text-red-400">
-                    {submitError}
-                  </p>
-                ) : null}
+                      {errors.email && (
+                        <p className="mt-1 text-[10px] text-red-400">
+                          {errors.email}
+                        </p>
+                      )}
+                    </div>
 
-                <MagneticButton
-                  type="submit"
-                  variant="primary"
-                  className="w-full !rounded-xl"
-                  disabled={submitting}
-                >
-                  {submitting ? (
-                    <>
-                      <Loader2 className="h-4 w-4 animate-spin" />
-                      Submitting...
-                    </>
-                  ) : (
-                    <>
-                      <Send className="h-4 w-4" />
-                      Request Free Demo
-                    </>
+                    <div>
+                      <label
+                        htmlFor="company"
+                        className={fieldLabelClass}
+                      >
+                        Company / Business Name
+                      </label>
+
+                      <input
+                        id="company"
+                        type="text"
+                        placeholder="Your company or business"
+                        autoComplete="organization"
+                        value={formState.company}
+                        onChange={(e) =>
+                          setFormState((p) => ({
+                            ...p,
+                            company: e.target.value,
+                          }))
+                        }
+                        onFocus={() => setFocused("company")}
+                        onBlur={() => setFocused(null)}
+                        disabled={submitting}
+                        className={inputClass("company")}
+                      />
+                    </div>
+                  </div>
+
+                  {/* City + Interest */}
+                  <div className="grid gap-4 sm:grid-cols-2">
+                    <div>
+                      <label
+                        htmlFor="city"
+                        className={fieldLabelClass}
+                      >
+                        City / Location{" "}
+                        <span className="text-accent-blue">*</span>
+                      </label>
+
+                      <input
+                        id="city"
+                        type="text"
+                        placeholder="Gurugram"
+                        autoComplete="address-level2"
+                        value={formState.city}
+                        onChange={(e) =>
+                          setFormState((p) => ({
+                            ...p,
+                            city: e.target.value,
+                          }))
+                        }
+                        onFocus={() => setFocused("city")}
+                        onBlur={() => setFocused(null)}
+                        disabled={submitting}
+                        className={inputClass("city")}
+                      />
+
+                      {errors.city && (
+                        <p className="mt-1 text-[10px] text-red-400">
+                          {errors.city}
+                        </p>
+                      )}
+                    </div>
+
+                    <div>
+                      <label
+                        htmlFor="interest"
+                        className={fieldLabelClass}
+                      >
+                        What are you looking for?{" "}
+                        <span className="text-accent-blue">*</span>
+                      </label>
+
+                      <select
+                        id="interest"
+                        value={formState.interest}
+                        onChange={(e) =>
+                          setFormState((p) => ({
+                            ...p,
+                            interest: e.target.value,
+                            role: e.target.value,
+                          }))
+                        }
+                        onFocus={() => setFocused("interest")}
+                        onBlur={() => setFocused(null)}
+                        disabled={submitting}
+                        className={cn(
+                          inputClass("interest"),
+                          !formState.interest &&
+                          "text-muted"
+                        )}
+                      >
+                        <option value="">
+                          Select a service
+                        </option>
+
+                        {CONTACT_INTERESTS.map((interest) => (
+                          <option
+                            key={interest}
+                            value={interest}
+                          >
+                            {interest}
+                          </option>
+                        ))}
+                      </select>
+
+                      {errors.interest && (
+                        <p className="mt-1 text-[10px] text-red-400">
+                          {errors.interest}
+                        </p>
+                      )}
+                    </div>
+                  </div>
+
+                  {/* Requirement */}
+                  <div>
+                    <label
+                      htmlFor="requirement"
+                      className={fieldLabelClass}
+                    >
+                      Tell us about your requirement
+                    </label>
+
+                    <textarea
+                      id="requirement"
+                      rows={3}
+                      placeholder="Briefly tell us what you want to build, improve, or automate..."
+                      value={formState.requirement}
+                      onChange={(e) =>
+                        setFormState((p) => ({
+                          ...p,
+                          requirement: e.target.value,
+                        }))
+                      }
+                      onFocus={() => setFocused("requirement")}
+                      onBlur={() => setFocused(null)}
+                      disabled={submitting}
+                      className={cn(
+                        inputClass("requirement"),
+                        "resize-none"
+                      )}
+                    />
+                  </div>
+
+                  {submitError && (
+                    <p className="rounded-lg border border-red-500/30 bg-red-500/5 px-3 py-2 text-xs text-red-400">
+                      {submitError}
+                    </p>
                   )}
-                </MagneticButton>
-              </form>
-            )}
+
+                  {/* Submit */}
+                  <MagneticButton
+                    type="submit"
+                    variant="primary"
+                    className="group w-full !rounded-xl !py-3.5 !text-sm"
+                    disabled={submitting}
+                  >
+                    {submitting ? (
+                      <>
+                        <Loader2 className="h-4 w-4 animate-spin" />
+                        Submitting...
+                      </>
+                    ) : (
+                      <>
+                        Get in Touch
+                        <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                      </>
+                    )}
+                  </MagneticButton>
+
+                  <p className="text-center text-[9px] leading-4 text-muted">
+                    By submitting this form, you agree to be contacted
+                    by Brosavo regarding your enquiry.
+                  </p>
+                </form>
+              </div>
+            </BlurReveal>
           </div>
-        </div>
+        )}
       </div>
     </section>
   );

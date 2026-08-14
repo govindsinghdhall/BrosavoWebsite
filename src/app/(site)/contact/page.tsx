@@ -3,21 +3,53 @@ import { Suspense } from "react";
 import { Contact } from "@/components/sections/Contact";
 
 export const metadata: Metadata = {
-  title: "Contact — BROSAVO",
+  title: "Contact Brosavo | Software, AI & Business Solutions",
+
   description:
-    "Get in touch with BROSAVO. Canada: +1 236 818 4654 · India: +91 99991 07733 · hellobrosavo@gmail.com",
+    "Contact Brosavo to discuss software development, AI solutions, SaaS products, business automation, digital infrastructure, or our flagship Real Estate CRM.",
+
+  alternates: {
+    canonical: "https://www.brosavo.com/contact",
+  },
+
+  openGraph: {
+    title: "Contact Brosavo | Software, AI & Business Solutions",
+    description:
+      "Talk to Brosavo about software, AI, SaaS, automation, digital infrastructure, and our flagship Real Estate CRM.",
+    url: "https://www.brosavo.com/contact",
+    siteName: "Brosavo",
+    type: "website",
+  },
+
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function ContactPage() {
   return (
-    <Suspense
-      fallback={
-        <div className="section-padding container-wide text-center text-muted">
-          Loading contact form…
-        </div>
-      }
-    >
-      <Contact showHeader={false} />
+    <>
+      <Suspense
+        fallback={
+          <section className="section-padding">
+            <div className="container-wide">
+              <div className="mx-auto max-w-3xl rounded-2xl border border-border bg-surface/40 p-8 text-center">
+                <h2 className="text-2xl font-semibold tracking-tight">
+                  Contact Brosavo
+                </h2>
+
+                <p className="mt-3 text-muted">
+                  Tell us about your project, business requirements, or
+                  technology goals.
+                </p>
+              </div>
+            </div>
+          </section>
+        }
+      >
+        <Contact showHeader={true} />
+      </Suspense>
 
       {/* Office Location */}
       <section className="container-wide section-padding">
@@ -53,6 +85,6 @@ export default function ContactPage() {
           />
         </div>
       </section>
-    </Suspense>
+    </>
   );
 }
