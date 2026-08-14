@@ -49,9 +49,6 @@ export function Navigation() {
 
   /* =========================================================
      ROUTE CHANGED
-     
-     Once Next.js finishes navigating to the new route,
-     pathname changes and we remove the loading state.
   ========================================================= */
 
   useEffect(() => {
@@ -61,9 +58,6 @@ export function Navigation() {
 
   /* =========================================================
      SAFETY TIMEOUT
-     
-     Prevents the loading bar from staying forever if something
-     goes wrong with a navigation.
   ========================================================= */
 
   useEffect(() => {
@@ -101,15 +95,15 @@ export function Navigation() {
 
       <header
         className={cn(
-          "fixed top-0 left-0 right-0 z-50 px-4 py-4 md:px-8",
+          "fixed top-0 left-0 right-0 z-50 px-3 py-3 sm:px-4 sm:py-4 md:px-8",
           "transition-all duration-500",
-          scrolled && "py-3"
+          scrolled && "py-2.5 sm:py-3"
         )}
       >
         <nav
           className={cn(
             "container-wide mx-auto flex items-center justify-between",
-            "rounded-2xl px-6 py-3",
+            "rounded-2xl px-3 py-2.5 sm:px-4 md:px-6 md:py-3",
             "transition-all duration-500",
             "glass-strong shadow-[0_4px_24px_var(--nav-shadow)]",
             scrolled && "shadow-[0_8px_32px_var(--nav-shadow)]"
@@ -122,7 +116,7 @@ export function Navigation() {
           <Link
             href="/"
             onClick={startNavigation}
-            className="group flex items-center gap-3"
+            className="group flex items-center gap-2.5 sm:gap-3 shrink-0"
           >
             <div className="relative h-8 w-8 overflow-hidden rounded-2xl border border-white/10 bg-slate-950/5 shadow-[0_0_40px_rgba(59,130,246,0.12)]">
               <img
@@ -132,7 +126,7 @@ export function Navigation() {
               />
             </div>
 
-            <span className="text-lg font-semibold tracking-wider">
+            <span className="text-base sm:text-lg font-semibold tracking-wider">
               BROS
               <span style={{ color: "#5B74F6" }}>Λ</span>
               VO
@@ -202,15 +196,28 @@ export function Navigation() {
           </div>
 
           {/* ===================================================
-              MOBILE ACTIONS
+              TABLET / MOBILE ACTIONS
+              
+              Contact Us is intentionally always visible.
           =================================================== */}
 
-          <div className="flex items-center gap-1 xl:hidden">
+          <div className="flex items-center gap-1.5 xl:hidden">
             <ThemeToggle />
 
+            {/* Compact Contact Us */}
+            <MagneticButton
+              href="/contact"
+              variant="primary"
+              className="!px-3 !py-2 !text-xs sm:!px-4 sm:!py-2.5 sm:!text-sm"
+              onClick={startNavigation}
+            >
+              Contact Us
+            </MagneticButton>
+
+            {/* Menu */}
             <button
               type="button"
-              className="relative flex h-10 w-10 items-center justify-center"
+              className="relative flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center"
               onClick={() => setMobileOpen(!mobileOpen)}
               aria-label={
                 mobileOpen ? "Close menu" : "Open menu"
@@ -226,9 +233,9 @@ export function Navigation() {
                 }}
               >
                 {mobileOpen ? (
-                  <X size={22} />
+                  <X size={21} />
                 ) : (
-                  <Menu size={22} />
+                  <Menu size={21} />
                 )}
               </motion.div>
             </button>
@@ -385,17 +392,26 @@ export function Navigation() {
                   Login
                 </MagneticButton>
 
-                <MagneticButton
-                  href="/contact"
-                  variant="primary"
-                  className="w-full"
-                  onClick={() => {
-                    startNavigation();
-                    setMobileOpen(false);
-                  }}
-                >
-                  Contact Us
-                </MagneticButton>
+                <AnimatePresence initial={false}>
+                  {!mobileOpen && (
+                    <motion.div
+                      initial={{ opacity: 0, scale: 0.9, width: 0 }}
+                      animate={{ opacity: 1, scale: 1, width: "auto" }}
+                      exit={{ opacity: 0, scale: 0.9, width: 0 }}
+                      transition={{ duration: 0.2 }}
+                      className="overflow-hidden"
+                    >
+                      <MagneticButton
+                        href="/contact"
+                        variant="primary"
+                        className="!px-3 !py-2 !text-xs sm:!px-4 sm:!py-2.5 sm:!text-sm"
+                        onClick={startNavigation}
+                      >
+                        Contact Us
+                      </MagneticButton>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </motion.div>
             </motion.nav>
           </motion.div>
