@@ -5,6 +5,7 @@ import { SmoothScroll } from "@/components/providers/SmoothScroll";
 import { GSAPProvider } from "@/components/providers/GSAPProvider";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import { ContactPopup } from "@/components/ui/ContactPopup";
+import { GoogleTagManager } from "@next/third-parties/google";
 import "../globals.css";
 
 export const viewport: Viewport = {
@@ -77,6 +78,10 @@ export default function SiteLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className="w-full max-w-full overflow-x-hidden antialiased bg-background text-foreground">
+        <GoogleTagManager
+          gtmId={process.env.NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID!}
+        />
+
         <ThemeProvider>
           <SmoothScroll>
             <GSAPProvider>
