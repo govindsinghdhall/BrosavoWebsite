@@ -31,7 +31,7 @@ export const metadata: Metadata = {
   ],
 
   alternates: {
-    canonical: "https://brosavo.com/",
+    canonical: "/",
   },
 };
 

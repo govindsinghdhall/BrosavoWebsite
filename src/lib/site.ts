@@ -5,7 +5,7 @@
 
 export const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") ||
-  "https://brosavo.com";
+  "https://www.brosavo.com";
 
 /** Display company name used in UI and SEO titles. */
 export const SITE_NAME = "Brosavo";
