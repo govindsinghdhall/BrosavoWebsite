@@ -77,7 +77,7 @@ const STATIC_ROUTES = [
   },
 
   // ============================================================
-  // REAL ESTATE CRM SEO CLUSTER
+  // REAL ESTATE CRM — CORE
   // ============================================================
 
   {
@@ -87,13 +87,29 @@ const STATIC_ROUTES = [
   },
 
   {
-    route: "/best-real-estate-crm-india",
+    route: "/best-real-estate-crm",
     priority: 0.95,
-    changeFrequency: "weekly" as const,
+    changeFrequency: "monthly" as const,
   },
 
   {
+    route: "/real-estate-crm-pricing",
+    priority: 0.9,
+    changeFrequency: "monthly" as const,
+  },
+
+  // ============================================================
+  // REAL ESTATE CRM — AUDIENCE
+  // ============================================================
+
+  {
     route: "/real-estate-crm-for-agents",
+    priority: 0.9,
+    changeFrequency: "monthly" as const,
+  },
+
+  {
+    route: "/real-estate-crm-for-realtors",
     priority: 0.9,
     changeFrequency: "monthly" as const,
   },
@@ -105,10 +121,20 @@ const STATIC_ROUTES = [
   },
 
   {
-    route: "/real-estate-crm-for-developers",
-    priority: 0.85,
+    route: "/real-estate-crm-for-brokerages",
+    priority: 0.9,
     changeFrequency: "monthly" as const,
   },
+
+  {
+    route: "/real-estate-crm-for-developers",
+    priority: 0.9,
+    changeFrequency: "monthly" as const,
+  },
+
+  // ============================================================
+  // REAL ESTATE CRM — FEATURE / PROBLEM
+  // ============================================================
 
   {
     route: "/real-estate-lead-management",
@@ -134,15 +160,13 @@ const STATIC_ROUTES = [
     changeFrequency: "monthly" as const,
   },
 
-  {
-    route: "/free-real-estate-crm",
-    priority: 0.85,
-    changeFrequency: "monthly" as const,
-  },
+  // ============================================================
+  // REAL ESTATE CRM — COMPARISON
+  // ============================================================
 
   {
-    route: "/real-estate-crm-pricing",
-    priority: 0.9,
+    route: "/follow-up-boss-alternatives",
+    priority: 0.85,
     changeFrequency: "monthly" as const,
   },
 
