@@ -16,12 +16,17 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   title:
-    "BROSAVO — Global Technology Company | AI, Software & Enterprise Systems",
+    "Brosavo | Global Technology Company & Real Estate CRM",
 
   description:
-    "BROSAVO is a global technology company with offices in Canada and India, engineering mission-critical software, AI products, and digital infrastructure for businesses worldwide.",
+    "Brosavo is a global technology company building real estate CRM, AI solutions, SaaS platforms, custom software, WhatsApp automation, and digital products for modern businesses.",
 
-  metadataBase: new URL("https://brosavo.com"),
+  // IMPORTANT: Use the same canonical domain everywhere
+  metadataBase: new URL("https://www.brosavo.com"),
+
+  alternates: {
+    canonical: "/",
+  },
 
   icons: {
     icon: "/favicon.svg",
@@ -29,28 +34,29 @@ export const metadata: Metadata = {
   },
 
   keywords: [
-    "BROSAVO",
     "Brosavo",
-    "global technology company",
-    "AI development",
-    "enterprise software",
+    "real estate CRM",
+    "real estate CRM software",
+    "CRM for real estate agents",
+    "real estate lead management",
+    "WhatsApp CRM",
+    "property management CRM",
+    "AI solutions",
     "SaaS development",
-    "Canada India technology",
-    "digital transformation",
-    "cloud infrastructure",
+    "enterprise software",
   ],
 
   authors: [{ name: "Brosavo Technologies" }],
 
   openGraph: {
-    title: "BROSAVO — Building The Future Of Digital Infrastructure",
+    title: "Brosavo | Global Technology Company & Real Estate CRM",
 
     description:
-      "Global technology company engineering AI, software, automation, and enterprise systems. Canada × India.",
+      "Brosavo builds real estate CRM, AI solutions, SaaS platforms, WhatsApp automation, and custom software for modern businesses.",
 
-    url: "https://brosavo.com",
+    url: "https://www.brosavo.com",
 
-    siteName: "BROSAVO",
+    siteName: "Brosavo",
 
     type: "website",
   },
@@ -58,10 +64,10 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
 
-    title: "BROSAVO — Global Technology Company",
+    title: "Brosavo | Global Technology Company & Real Estate CRM",
 
     description:
-      "Engineering excellence across continents. AI. Software. Automation. Scale.",
+      "Real estate CRM, AI solutions, SaaS platforms, WhatsApp automation, and custom software by Brosavo.",
   },
 
   robots: {
