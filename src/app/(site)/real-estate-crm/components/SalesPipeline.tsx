@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 const pipelineStages = [
   {
@@ -25,13 +26,11 @@ export default function SalesPipeline() {
       className="section-padding"
     >
       <div className="container-wide grid items-center gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
-
         {/* ============================================================
             CONTENT
         ============================================================ */}
 
         <div className="max-w-xl">
-
           <span className="inline-flex items-center text-xs font-mono uppercase tracking-[0.2em] text-accent-blue">
             Real Estate Sales Pipeline
           </span>
@@ -42,7 +41,8 @@ export default function SalesPipeline() {
           >
             Know where every opportunity
             <span className="text-gradient-accent">
-              {" "}stands next.
+              {" "}
+              stands next.
             </span>
           </h2>
 
@@ -61,7 +61,7 @@ export default function SalesPipeline() {
             {pipelineStages.map((stage) => (
               <div
                 key={stage.number}
-                className="rounded-xl border border-border/70 bg-background/60 p-3.5"
+                className="group rounded-xl border border-border/70 bg-background/60 p-3.5 transition-all duration-300 hover:-translate-y-0.5 hover:border-accent-blue/20 hover:shadow-[0_10px_30px_rgba(0,0,0,0.05)]"
               >
                 <div className="flex items-center gap-2">
                   <span className="font-mono text-[9px] text-accent-blue/70">
@@ -79,6 +79,25 @@ export default function SalesPipeline() {
               </div>
             ))}
           </div>
+
+          {/* ==========================================================
+              INTERNAL LINK
+          ========================================================== */}
+
+          <div className="mt-7">
+            <Link
+              href="/real-estate-sales-crm"
+              className="group inline-flex items-center gap-2 text-sm font-medium text-foreground transition-colors hover:text-accent-blue"
+            >
+              Explore Brosavo real estate sales CRM
+              <span
+                aria-hidden="true"
+                className="transition-transform duration-200 group-hover:translate-x-1"
+              >
+                →
+              </span>
+            </Link>
+          </div>
         </div>
 
         {/* ============================================================
@@ -86,7 +105,6 @@ export default function SalesPipeline() {
         ============================================================ */}
 
         <div className="relative mx-auto w-full max-w-2xl">
-
           {/* Visual glow */}
 
           <div

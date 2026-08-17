@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 
@@ -92,7 +93,6 @@ export default function Pricing() {
       </div>
 
       <div className="container-wide relative">
-
         {/* ============================================================
             HEADER
         ============================================================ */}
@@ -183,26 +183,17 @@ export default function Pricing() {
               ====================================================== */}
 
               <div className="flex flex-1 flex-col p-5 sm:p-6">
-
-                {/* Plan */}
-
                 <div className="pr-24 text-sm font-semibold text-foreground">
                   {plan.name}
                 </div>
-
-                {/* Description */}
 
                 <p className="mt-1.5 max-w-[90%] text-sm leading-5 text-muted">
                   {plan.description}
                 </p>
 
-                {/* Best for */}
-
                 <div className="mt-4 inline-flex w-fit items-center rounded-full border border-border/60 bg-surface px-2.5 py-1 text-[9px] font-medium uppercase tracking-[0.12em] text-muted">
                   Best for · {plan.bestFor}
                 </div>
-
-                {/* Price */}
 
                 <div className="mt-5">
                   <div className="flex items-baseline gap-1">
@@ -217,8 +208,6 @@ export default function Pricing() {
                     )}
                   </div>
 
-                  {/* Old price */}
-
                   {plan.oldPrice && (
                     <div className="mt-1.5 flex items-center gap-2 text-xs">
                       <span className="text-muted line-through">
@@ -232,13 +221,9 @@ export default function Pricing() {
                   )}
                 </div>
 
-                {/* Note */}
-
                 <p className="mt-4 min-h-[72px] text-sm leading-6 text-muted">
                   {plan.note}
                 </p>
-
-                {/* CTA */}
 
                 <Link
                   href={plan.href}
@@ -253,17 +238,11 @@ export default function Pricing() {
                     : "Start Free 14-Day Trial"}
                 </Link>
 
-                {/* Divider */}
-
                 <div className="my-5 h-px bg-border/70" />
-
-                {/* Includes */}
 
                 <div className="mb-3 text-[10px] font-mono uppercase tracking-[0.18em] text-muted/60">
                   Includes
                 </div>
-
-                {/* Features */}
 
                 <ul className="space-y-2.5 text-sm text-muted">
                   {plan.features.map((feature) => (
@@ -285,8 +264,6 @@ export default function Pricing() {
                   ))}
                 </ul>
               </div>
-
-              {/* Bottom accent */}
 
               <div
                 aria-hidden="true"
@@ -318,11 +295,28 @@ export default function Pricing() {
             duration: 0.5,
             delay: 0.25,
           }}
-          className="mt-7 flex flex-col items-center justify-center gap-2 text-center"
+          className="mt-7 flex flex-col items-center justify-center gap-3 text-center"
         >
           <p className="text-sm text-muted">
             Mobile app available as an add-on.
           </p>
+
+          {/* ==========================================================
+              INTERNAL LINK
+          ========================================================== */}
+
+          <Link
+            href="/real-estate-crm-pricing"
+            className="group inline-flex items-center gap-2 text-sm font-medium text-foreground transition-colors hover:text-accent-blue"
+          >
+            Compare Brosavo real estate CRM plans
+            <span
+              aria-hidden="true"
+              className="transition-transform duration-200 group-hover:translate-x-1"
+            >
+              →
+            </span>
+          </Link>
 
           <div className="flex items-center gap-3 text-[9px] uppercase tracking-[0.16em] text-muted/45">
             <span className="h-px w-8 bg-border" />

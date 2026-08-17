@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 const leadWorkflow = [
   {
@@ -25,13 +26,11 @@ export default function LeadManagement() {
       className="section-padding"
     >
       <div className="container-wide grid items-center gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
-
         {/* ============================================================
             CONTENT
         ============================================================ */}
 
         <div className="max-w-xl">
-
           <span className="inline-flex items-center text-xs font-mono uppercase tracking-[0.2em] text-accent-blue">
             Real Estate Lead Management
           </span>
@@ -42,7 +41,8 @@ export default function LeadManagement() {
           >
             Turn every enquiry into a
             <span className="text-gradient-accent">
-              {" "}clear next action.
+              {" "}
+              clear next action.
             </span>
           </h2>
 
@@ -61,7 +61,7 @@ export default function LeadManagement() {
             {leadWorkflow.map((item) => (
               <div
                 key={item.number}
-                className="rounded-xl border border-border/70 bg-background/60 p-3.5"
+                className="rounded-xl border border-border/70 bg-background/60 p-3.5 transition-colors duration-300 hover:border-accent-blue/20"
               >
                 <div className="flex items-center gap-2">
                   <span className="font-mono text-[9px] text-accent-blue/70">
@@ -79,6 +79,26 @@ export default function LeadManagement() {
               </div>
             ))}
           </div>
+
+          {/* ==========================================================
+              INTERNAL LINK
+              Contextual link to dedicated lead-management page.
+          ========================================================== */}
+
+          <div className="mt-7">
+            <Link
+              href="/real-estate-lead-management"
+              className="group inline-flex items-center gap-2 text-sm font-medium text-foreground transition-colors hover:text-accent-blue"
+            >
+              Explore real estate lead management
+              <span
+                aria-hidden="true"
+                className="transition-transform duration-200 group-hover:translate-x-1"
+              >
+                →
+              </span>
+            </Link>
+          </div>
         </div>
 
         {/* ============================================================
@@ -86,7 +106,6 @@ export default function LeadManagement() {
         ============================================================ */}
 
         <div className="relative mx-auto w-full max-w-2xl">
-
           {/* Visual glow */}
 
           <div
