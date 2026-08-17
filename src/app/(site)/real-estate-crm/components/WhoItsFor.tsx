@@ -1,27 +1,189 @@
+"use client";
+
+import { motion } from "framer-motion";
+
 const audiences = [
-  ["01", "Agents", "Manage leads, properties and follow-ups without spreadsheets."],
-  ["02", "Brokers", "Give your brokerage a centralized system for sales and inventory."],
-  ["03", "Agencies", "Connect website leads, property listings and team activity."],
-  ["04", "Developers", "Build scalable sales operations across projects and teams."],
-] as const;
+  {
+    number: "01",
+    title: "Real Estate Agents",
+    description:
+      "Manage leads, properties and follow-ups from one place instead of relying on spreadsheets and scattered tools.",
+  },
+  {
+    number: "02",
+    title: "Real Estate Brokers",
+    description:
+      "Give your brokerage a centralized system for managing sales, property inventory, leads and team activity.",
+  },
+  {
+    number: "03",
+    title: "Real Estate Agencies",
+    description:
+      "Connect website enquiries, property listings, customer requirements and team workflows in one CRM.",
+  },
+  {
+    number: "04",
+    title: "Property Developers",
+    description:
+      "Build scalable sales operations across projects, teams, inventory and customer opportunities.",
+  },
+];
 
 export default function WhoItsFor() {
   return (
-    <section className="section-padding">
+    <section
+      aria-labelledby="who-its-for-heading"
+      className="relative overflow-hidden py-14 sm:py-16 lg:py-20"
+    >
+      {/* ============================================================
+          BACKGROUND
+      ============================================================ */}
+
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 -z-10"
+      >
+        <div className="absolute left-1/2 top-[30%] h-72 w-[760px] -translate-x-1/2 rounded-full bg-violet-500/[0.025] blur-[120px]" />
+      </div>
+
       <div className="container-wide">
-        <div className="mx-auto max-w-3xl text-center">
-          <span className="text-xs font-mono uppercase tracking-[0.22em] text-accent-blue">Who it&apos;s for</span>
-          <h2 className="mt-5 text-4xl font-semibold tracking-[-0.045em] sm:text-5xl">Built around the way real estate businesses actually work.</h2>
-        </div>
-        <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-          {audiences.map(([number, title, description]) => (
-            <article key={title} className="rounded-2xl border border-border/70 bg-background p-7 transition hover:-translate-y-1 hover:shadow-lg">
-              <div className="text-4xl font-semibold text-accent-blue/20">{number}</div>
-              <h3 className="mt-6 text-xl font-semibold">{title}</h3>
-              <p className="mt-3 text-sm leading-6 text-muted">{description}</p>
-            </article>
+
+        {/* ============================================================
+            HEADER
+        ============================================================ */}
+
+        <motion.div
+          initial={{
+            opacity: 0,
+            y: 18,
+          }}
+          whileInView={{
+            opacity: 1,
+            y: 0,
+          }}
+          viewport={{
+            once: true,
+            amount: 0.25,
+          }}
+          transition={{
+            duration: 0.6,
+            ease: [0.22, 1, 0.36, 1],
+          }}
+          className="mx-auto max-w-3xl text-center"
+        >
+          <span className="inline-flex items-center rounded-full border border-blue-500/15 bg-blue-500/[0.04] px-3.5 py-1.5 text-[10px] font-medium uppercase tracking-[0.22em] text-accent-blue">
+            Who It&apos;s For
+          </span>
+
+          <h2
+            id="who-its-for-heading"
+            className="mt-4 text-3xl font-semibold leading-[1.05] tracking-[-0.045em] text-foreground sm:text-4xl lg:text-[2.65rem]"
+          >
+            Built around how
+            <br />
+            <span className="text-gradient-accent">
+              real estate businesses work.
+            </span>
+          </h2>
+
+          <p className="mx-auto mt-3 max-w-2xl text-sm leading-6 text-muted sm:text-base sm:leading-7">
+            Whether you work independently, manage a brokerage, run an agency
+            or sell across multiple projects, Brosavo gives your team one
+            connected sales workflow.
+          </p>
+        </motion.div>
+
+        {/* ============================================================
+            AUDIENCE GRID
+        ============================================================ */}
+
+        <div className="mx-auto mt-9 grid max-w-6xl gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {audiences.map((audience, index) => (
+            <motion.article
+              key={audience.title}
+              initial={{
+                opacity: 0,
+                y: 18,
+              }}
+              whileInView={{
+                opacity: 1,
+                y: 0,
+              }}
+              viewport={{
+                once: true,
+                amount: 0.12,
+              }}
+              transition={{
+                duration: 0.5,
+                delay: index * 0.05,
+                ease: [0.22, 1, 0.36, 1],
+              }}
+              whileHover={{
+                y: -4,
+              }}
+              className="group relative overflow-hidden rounded-2xl border border-border/70 bg-background p-5 transition-all duration-300 hover:border-blue-500/15 hover:shadow-[0_18px_50px_rgba(0,0,0,0.07)] sm:p-6"
+            >
+              {/* Number */}
+
+              <div className="flex items-start justify-between">
+                <span className="font-mono text-3xl font-semibold tracking-[-0.05em] text-accent-blue/20 transition-colors duration-300 group-hover:text-accent-blue/35">
+                  {audience.number}
+                </span>
+
+                <span
+                  aria-hidden="true"
+                  className="mt-2 h-1.5 w-1.5 rounded-full bg-accent-blue/40 transition-all duration-300 group-hover:bg-accent-blue group-hover:shadow-[0_0_12px_rgba(59,130,246,0.45)]"
+                />
+              </div>
+
+              {/* Content */}
+
+              <h3 className="mt-5 text-lg font-semibold leading-tight tracking-[-0.02em] text-foreground">
+                {audience.title}
+              </h3>
+
+              <p className="mt-2.5 text-sm leading-6 text-muted">
+                {audience.description}
+              </p>
+
+              {/* Bottom accent */}
+
+              <div
+                aria-hidden="true"
+                className="absolute bottom-0 left-0 h-px w-0 bg-gradient-to-r from-blue-500 via-violet-500 to-cyan-500 transition-all duration-500 group-hover:w-full"
+              />
+            </motion.article>
           ))}
         </div>
+
+        {/* ============================================================
+            BOTTOM MICRO-LINE
+        ============================================================ */}
+
+        <motion.div
+          initial={{
+            opacity: 0,
+          }}
+          whileInView={{
+            opacity: 1,
+          }}
+          viewport={{
+            once: true,
+          }}
+          transition={{
+            duration: 0.5,
+            delay: 0.25,
+          }}
+          className="mt-7 flex items-center justify-center gap-3 text-[9px] uppercase tracking-[0.16em] text-muted/50"
+        >
+          <span className="h-px w-8 bg-border" />
+
+          <span>
+            Agents · Brokers · Agencies · Developers
+          </span>
+
+          <span className="h-px w-8 bg-border" />
+        </motion.div>
       </div>
     </section>
   );

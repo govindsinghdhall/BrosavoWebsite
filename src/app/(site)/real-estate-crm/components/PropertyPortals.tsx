@@ -1,40 +1,206 @@
+"use client";
+
 import Image from "next/image";
+import { motion } from "framer-motion";
 
 const portals = [
-  ["/images/99acres.jpeg", "99acres", "Property listings & enquiries"],
-  ["/images/magicbricks.jpeg", "Magicbricks", "Property discovery & enquiries"],
-  ["/images/housing.jpeg", "Housing.com", "Property discovery & enquiries"],
+  {
+    number: "01",
+    image: "/images/99acres.jpeg",
+    name: "99acres",
+    description: "Property listings & enquiries",
+  },
+  {
+    number: "02",
+    image: "/images/magicbricks.jpeg",
+    name: "Magicbricks",
+    description: "Property discovery & enquiries",
+  },
+  {
+    number: "03",
+    image: "/images/housing.jpeg",
+    name: "Housing.com",
+    description: "Property discovery & enquiries",
+  },
 ];
 
 export default function PropertyPortals() {
   return (
-    <section className="section-padding bg-surface">
-      <div className="container-wide">
-        <div className="mx-auto max-w-3xl text-center">
-          <span className="text-xs font-mono uppercase tracking-[0.2em] text-accent-blue">Property ecosystem</span>
-          <h2 className="mt-5 text-4xl font-semibold tracking-[-0.045em] sm:text-5xl">
+    <section
+      aria-labelledby="property-ecosystem-heading"
+      className="relative overflow-hidden bg-surface py-14 sm:py-16 lg:py-20"
+    >
+      {/* ============================================================
+          BACKGROUND
+      ============================================================ */}
+
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0"
+      >
+        <div className="absolute left-1/2 top-0 h-72 w-[760px] -translate-x-1/2 rounded-full bg-blue-500/[0.025] blur-[120px]" />
+      </div>
+
+      <div className="container-wide relative">
+
+        {/* ============================================================
+            HEADER
+        ============================================================ */}
+
+        <motion.div
+          initial={{
+            opacity: 0,
+            y: 18,
+          }}
+          whileInView={{
+            opacity: 1,
+            y: 0,
+          }}
+          viewport={{
+            once: true,
+            amount: 0.25,
+          }}
+          transition={{
+            duration: 0.6,
+            ease: [0.22, 1, 0.36, 1],
+          }}
+          className="mx-auto max-w-3xl text-center"
+        >
+          <span className="inline-flex items-center rounded-full border border-blue-500/15 bg-blue-500/[0.04] px-3.5 py-1.5 text-[10px] font-medium uppercase tracking-[0.2em] text-accent-blue">
+            Property Ecosystem
+          </span>
+
+          <h2
+            id="property-ecosystem-heading"
+            className="mt-4 text-3xl font-semibold leading-[1.05] tracking-[-0.045em] text-foreground sm:text-4xl lg:text-[2.65rem]"
+          >
             Your property channels.
             <br />
-            <span className="text-gradient-accent">One intelligent CRM.</span>
+            <span className="text-gradient-accent">
+              One intelligent CRM.
+            </span>
           </h2>
-          <p className="mt-5 text-base leading-8 text-muted sm:text-lg">
-            Bring property listings, enquiries and customer requirements closer to the same sales workflow your team already uses.
-          </p>
-        </div>
 
-        <div className="mt-14 grid gap-5 md:grid-cols-3">
-          {portals.map(([image, name, description]) => (
-            <article key={name} className="overflow-hidden rounded-3xl border border-border/70 bg-background">
-              <div className="flex h-48 items-center justify-center bg-white p-8">
-                <Image src={image} alt={`${name} real estate portal`} width={360} height={180} className="max-h-28 w-auto max-w-[260px] object-contain" />
+          <p className="mx-auto mt-3 max-w-2xl text-sm leading-6 text-muted sm:text-base sm:leading-7">
+            Bring property listings, enquiries and customer requirements
+            closer to the same sales workflow your team already uses.
+          </p>
+        </motion.div>
+
+        {/* ============================================================
+            PORTALS
+        ============================================================ */}
+
+        <div className="mx-auto mt-9 grid max-w-6xl gap-4 md:grid-cols-3">
+          {portals.map((portal, index) => (
+            <motion.article
+              key={portal.name}
+              initial={{
+                opacity: 0,
+                y: 18,
+              }}
+              whileInView={{
+                opacity: 1,
+                y: 0,
+              }}
+              viewport={{
+                once: true,
+                amount: 0.15,
+              }}
+              transition={{
+                duration: 0.5,
+                delay: index * 0.06,
+                ease: [0.22, 1, 0.36, 1],
+              }}
+              whileHover={{
+                y: -4,
+              }}
+              className="group relative overflow-hidden rounded-2xl border border-border/70 bg-background transition-all duration-300 hover:border-blue-500/15 hover:shadow-[0_18px_50px_rgba(0,0,0,0.07)]"
+            >
+              {/* ======================================================
+                  PORTAL IMAGE
+              ====================================================== */}
+
+              <div className="relative flex h-40 items-center justify-center overflow-hidden border-b border-border/60 bg-white p-7 dark:bg-zinc-950">
+                {/* Background glow */}
+
+                <div
+                  aria-hidden="true"
+                  className="pointer-events-none absolute left-1/2 top-1/2 h-32 w-32 -translate-x-1/2 -translate-y-1/2 rounded-full bg-blue-500/[0.035] blur-3xl"
+                />
+
+                <Image
+                  src={portal.image}
+                  alt={`${portal.name} property portal`}
+                  width={360}
+                  height={180}
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                  className="relative max-h-24 w-auto max-w-[230px] object-contain transition-transform duration-500 group-hover:scale-[1.04]"
+                />
               </div>
-              <div className="border-t border-border/60 p-6">
-                <h3 className="text-lg font-semibold">{name}</h3>
-                <p className="mt-1 text-sm text-muted">{description}</p>
+
+              {/* ======================================================
+                  CONTENT
+              ====================================================== */}
+
+              <div className="p-5 sm:p-6">
+                <div className="flex items-center justify-between">
+                  <span className="text-[9px] font-mono uppercase tracking-[0.18em] text-accent-blue/70">
+                    Property Channel
+                  </span>
+
+                  <span className="font-mono text-[9px] text-muted/45">
+                    {portal.number}
+                  </span>
+                </div>
+
+                <h3 className="mt-3 text-lg font-semibold tracking-[-0.02em] text-foreground">
+                  {portal.name}
+                </h3>
+
+                <p className="mt-1.5 text-sm leading-6 text-muted">
+                  {portal.description}
+                </p>
               </div>
-            </article>
+
+              {/* Hover accent */}
+
+              <div
+                aria-hidden="true"
+                className="absolute bottom-0 left-0 h-px w-0 bg-gradient-to-r from-blue-500 via-violet-500 to-cyan-500 transition-all duration-500 group-hover:w-full"
+              />
+            </motion.article>
           ))}
         </div>
+
+        {/* ============================================================
+            BOTTOM STATEMENT
+        ============================================================ */}
+
+        <motion.div
+          initial={{
+            opacity: 0,
+          }}
+          whileInView={{
+            opacity: 1,
+          }}
+          viewport={{
+            once: true,
+          }}
+          transition={{
+            duration: 0.5,
+            delay: 0.2,
+          }}
+          className="mt-7 flex items-center justify-center gap-3 text-[9px] uppercase tracking-[0.16em] text-muted/50"
+        >
+          <span className="h-px w-8 bg-border" />
+
+          <span>
+            Listings · Enquiries · Customer Requirements
+          </span>
+
+          <span className="h-px w-8 bg-border" />
+        </motion.div>
       </div>
     </section>
   );

@@ -16,8 +16,12 @@ const capabilities = [
     color: "bg-blue-500",
   },
   {
-    label: "Sales Pipeline",
+    label: "Property Matching",
     color: "bg-violet-500",
+  },
+  {
+    label: "Sales Pipeline",
+    color: "bg-indigo-500",
   },
   {
     label: "WhatsApp",
@@ -27,12 +31,18 @@ const capabilities = [
 
 export function Hero() {
   return (
-    <section className="relative overflow-hidden pb-12 pt-20 sm:pb-16 sm:pt-24 lg:pb-20 lg:pt-28">
+    <section
+      aria-labelledby="real-estate-crm-heading"
+      className="relative overflow-hidden pb-12 pt-20 sm:pb-16 sm:pt-24 lg:pb-20 lg:pt-28"
+    >
       {/* ============================================================
           BACKGROUND
       ============================================================ */}
 
-      <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 -z-10 overflow-hidden"
+      >
         {/* Primary glow */}
         <div className="absolute left-1/2 top-[-180px] h-[520px] w-[850px] -translate-x-1/2 rounded-full bg-blue-500/[0.055] blur-[140px]" />
 
@@ -67,7 +77,7 @@ export function Hero() {
           }}
           className="mx-auto flex w-full max-w-5xl flex-col items-center text-center"
         >
-          {/* Badge */}
+          {/* Eyebrow */}
 
           <motion.div
             initial={{ opacity: 0, y: 8 }}
@@ -83,14 +93,15 @@ export function Hero() {
               <span className="relative h-1.5 w-1.5 rounded-full bg-blue-500" />
             </span>
 
-            Real Estate CRM
+            Real Estate CRM Software
           </motion.div>
 
           {/* ==========================================================
-              HEADLINE
+              SEO-FIRST HEADLINE
           ========================================================== */}
 
           <motion.h1
+            id="real-estate-crm-heading"
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{
@@ -101,15 +112,15 @@ export function Hero() {
             className="mx-auto mt-6 max-w-4xl text-center text-[3rem] font-semibold leading-[0.98] tracking-[-0.055em] text-foreground sm:text-5xl md:text-6xl lg:text-[4rem] xl:text-[4.25rem]"
           >
             <span className="block">
-              Everything your sales team
+              Real Estate CRM for
             </span>
 
             <span className="block">
-              needs.
+              Agents, Brokers & Teams.
             </span>
 
             <span className="mt-1 block text-gradient-accent">
-              In one CRM.
+              Everything in one place.
             </span>
           </motion.h1>
 
@@ -126,9 +137,9 @@ export function Hero() {
             }}
             className="mx-auto mt-5 max-w-2xl text-center text-[15px] leading-7 text-muted sm:text-base sm:leading-7"
           >
-            Manage leads, properties, follow-ups, sales pipelines and
-            customer relationships from one intelligent real estate CRM
-            built for modern agents, brokers and teams.
+            Manage real estate leads, properties, customer relationships,
+            follow-ups and sales pipelines from one intelligent CRM built
+            for modern real estate businesses.
           </motion.p>
 
           {/* ==========================================================
@@ -146,11 +157,15 @@ export function Hero() {
           >
             <Link
               href="https://crm.brosavo.com"
+              aria-label="Start your free 14-day Brosavo Real Estate CRM trial"
               className="group inline-flex items-center rounded-full bg-foreground px-6 py-3 text-sm font-medium text-background shadow-[0_8px_25px_rgba(0,0,0,0.10)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_12px_30px_rgba(0,0,0,0.15)]"
             >
               Start Free Trial
 
-              <span className="ml-2 transition-transform duration-300 group-hover:translate-x-1">
+              <span
+                aria-hidden="true"
+                className="ml-2 transition-transform duration-300 group-hover:translate-x-1"
+              >
                 →
               </span>
             </Link>
@@ -163,19 +178,23 @@ export function Hero() {
             </Link>
           </motion.div>
 
-          {/* Supporting text */}
+          {/* Trust / supporting text */}
 
-          <motion.p
+          <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{
               duration: 0.5,
               delay: 0.4,
             }}
-            className="mt-4 text-[11px] text-muted/75"
+            className="mt-4 flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-[11px] text-muted/75"
           >
-            Built for agents, brokers, agencies and real estate teams.
-          </motion.p>
+            <span>14-day free trial</span>
+            <span aria-hidden="true">·</span>
+            <span>Built for real estate teams</span>
+            <span aria-hidden="true">·</span>
+            <span>Leads · Properties · Sales</span>
+          </motion.div>
         </motion.div>
 
         {/* ============================================================
@@ -202,7 +221,10 @@ export function Hero() {
         >
           {/* Dashboard glow */}
 
-          <div className="pointer-events-none absolute left-1/2 top-1/2 h-[260px] w-[65%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-blue-500/[0.09] blur-[100px]" />
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute left-1/2 top-1/2 h-[260px] w-[65%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-blue-500/[0.09] blur-[100px]"
+          />
 
           {/* Browser */}
 
@@ -213,9 +235,18 @@ export function Hero() {
 
               <div className="flex h-9 items-center border-b border-black/[0.06] bg-zinc-50 px-3 dark:border-white/[0.06] dark:bg-zinc-900 sm:h-10 sm:px-4">
                 <div className="flex items-center gap-1.5">
-                  <span className="h-2.5 w-2.5 rounded-full bg-red-400/80" />
-                  <span className="h-2.5 w-2.5 rounded-full bg-yellow-400/80" />
-                  <span className="h-2.5 w-2.5 rounded-full bg-green-400/80" />
+                  <span
+                    aria-hidden="true"
+                    className="h-2.5 w-2.5 rounded-full bg-red-400/80"
+                  />
+                  <span
+                    aria-hidden="true"
+                    className="h-2.5 w-2.5 rounded-full bg-yellow-400/80"
+                  />
+                  <span
+                    aria-hidden="true"
+                    className="h-2.5 w-2.5 rounded-full bg-green-400/80"
+                  />
                 </div>
 
                 <div className="mx-auto hidden h-6 w-[40%] items-center justify-center rounded-md border border-black/[0.04] bg-white text-[9px] text-zinc-400 shadow-sm dark:border-white/[0.04] dark:bg-zinc-800 dark:text-zinc-500 sm:flex">
@@ -230,10 +261,11 @@ export function Hero() {
               <div className="relative overflow-hidden bg-white dark:bg-zinc-950">
                 <Image
                   src={HERO_IMAGE}
-                  alt="Brosavo real estate CRM dashboard"
+                  alt="Brosavo Real Estate CRM dashboard showing leads, property inventory and sales workflow"
                   width={1800}
                   height={1100}
                   priority
+                  sizes="(max-width: 1024px) 100vw, 896px"
                   className="block h-auto w-full object-contain"
                 />
               </div>
@@ -318,13 +350,17 @@ export function Hero() {
               className="flex items-center gap-2 text-[11px] text-muted"
             >
               <span
+                aria-hidden="true"
                 className={`h-1.5 w-1.5 rounded-full ${item.color}`}
               />
 
               <span>{item.label}</span>
 
               {index !== capabilities.length - 1 && (
-                <span className="ml-3 hidden h-3 w-px bg-border sm:block" />
+                <span
+                  aria-hidden="true"
+                  className="ml-3 hidden h-3 w-px bg-border sm:block"
+                />
               )}
             </div>
           ))}

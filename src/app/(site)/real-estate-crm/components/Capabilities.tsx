@@ -6,48 +6,51 @@ const features = [
   [
     "01",
     "Lead Management",
-    "Capture, organize and track leads from inquiry through conversion.",
+    "Capture and track real estate leads from enquiry to conversion.",
   ],
   [
     "02",
     "Customer Management",
-    "Keep customer details, requirements and property interests together.",
+    "Keep customer requirements, property interests and conversations together.",
   ],
   [
     "03",
     "Property Inventory",
-    "Manage listings, availability, pricing and property information.",
+    "Manage properties, availability, pricing and listings in one place.",
   ],
   [
     "04",
     "Sales Pipeline",
-    "Move opportunities through a structured pipeline and see what happens next.",
+    "Track opportunities through your sales stages and know what happens next.",
   ],
   [
     "05",
     "Follow-ups & Tasks",
-    "Schedule tasks and follow-ups so opportunities never disappear.",
+    "Schedule reminders and follow-ups so opportunities keep moving.",
   ],
   [
     "06",
-    "WhatsApp",
-    "Connect WhatsApp notifications and API-powered engagement workflows.",
+    "WhatsApp CRM",
+    "Connect WhatsApp notifications and engagement workflows to your CRM.",
   ],
   [
     "07",
     "Website Lead Capture",
-    "Capture property inquiries directly from your real estate website.",
+    "Capture property enquiries from your website directly into Brosavo.",
   ],
   [
     "08",
     "Reports & Analytics",
-    "Understand leads, conversions, pipeline performance and team activity.",
+    "Monitor leads, conversions, pipeline performance and team activity.",
   ],
 ] as const;
 
 export default function Capabilities() {
   return (
-    <section className="relative py-12 sm:py-14 lg:py-16">
+    <section
+      aria-labelledby="real-estate-crm-features-heading"
+      className="relative py-12 sm:py-14 lg:py-16"
+    >
       <div className="container-wide px-6 lg:px-10">
 
         {/* ============================================================
@@ -65,21 +68,23 @@ export default function Capabilities() {
           className="mx-auto max-w-3xl text-center"
         >
           <span className="inline-flex items-center rounded-full border border-violet-500/15 bg-violet-500/[0.04] px-3.5 py-1.5 text-[10px] font-medium uppercase tracking-[0.2em] text-violet-500">
-            CRM Platform
+            Real Estate CRM Features
           </span>
 
-          <h2 className="mt-4 text-3xl font-semibold leading-tight tracking-[-0.045em] text-foreground sm:text-4xl lg:text-[2.75rem]">
-            More than a CRM.
+          <h2
+            id="real-estate-crm-features-heading"
+            className="mt-4 text-3xl font-semibold leading-[1.05] tracking-[-0.045em] text-foreground sm:text-4xl lg:text-[2.65rem]"
+          >
+            Everything your real estate team needs.
             <br />
-
             <span className="text-gradient-accent">
-              Your real estate operating system.
+              One connected CRM.
             </span>
           </h2>
 
           <p className="mx-auto mt-3 max-w-2xl text-sm leading-6 text-muted sm:text-base">
-            Everything your real estate team needs to manage leads,
-            properties, customers and sales from one connected platform.
+            Manage leads, customers, properties and sales activity from one
+            connected real estate CRM built around your team&apos;s workflow.
           </p>
         </motion.div>
 
@@ -87,7 +92,7 @@ export default function Capabilities() {
             FEATURE GRID
         ============================================================ */}
 
-        <div className="mx-auto mt-8 max-w-6xl">
+        <div className="mx-auto mt-7 max-w-6xl">
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
 
             {features.map(([number, title, description], index) => (
@@ -95,7 +100,7 @@ export default function Capabilities() {
                 key={number}
                 initial={{
                   opacity: 0,
-                  y: 18,
+                  y: 14,
                 }}
                 whileInView={{
                   opacity: 1,
@@ -103,47 +108,56 @@ export default function Capabilities() {
                 }}
                 viewport={{
                   once: true,
-                  amount: 0.15,
+                  amount: 0.12,
                 }}
                 transition={{
-                  duration: 0.5,
-                  delay: index * 0.04,
+                  duration: 0.45,
+                  delay: index * 0.035,
                   ease: [0.22, 1, 0.36, 1],
                 }}
                 whileHover={{
                   y: -3,
                 }}
-                className="group relative min-h-[170px] overflow-hidden rounded-xl border border-border/70 bg-background/80 p-4 transition-all duration-300 hover:border-blue-500/20 hover:shadow-[0_12px_35px_rgba(0,0,0,0.07)]"
+                className="group relative min-h-[145px] overflow-hidden rounded-xl border border-border/70 bg-background/80 p-4 transition-all duration-300 hover:border-blue-500/20 hover:shadow-[0_12px_35px_rgba(0,0,0,0.06)]"
               >
-                {/* Subtle hover glow */}
+                {/* Hover glow */}
 
-                <div className="pointer-events-none absolute -right-10 -top-10 h-24 w-24 rounded-full bg-blue-500/[0.04] opacity-0 blur-2xl transition-opacity duration-500 group-hover:opacity-100" />
+                <div
+                  aria-hidden="true"
+                  className="pointer-events-none absolute -right-8 -top-8 h-20 w-20 rounded-full bg-blue-500/[0.045] opacity-0 blur-2xl transition-opacity duration-500 group-hover:opacity-100"
+                />
 
                 {/* Top row */}
 
                 <div className="relative flex items-center justify-between">
-                  <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-500/[0.08] text-xs text-blue-500">
+                  <span
+                    aria-hidden="true"
+                    className="flex h-7 w-7 items-center justify-center rounded-lg bg-blue-500/[0.08] text-[11px] text-blue-500"
+                  >
                     ✦
                   </span>
 
-                  <span className="font-mono text-[10px] text-muted/60">
+                  <span className="font-mono text-[9px] text-muted/55">
                     {number}
                   </span>
                 </div>
 
                 {/* Content */}
 
-                <h3 className="relative mt-4 text-[15px] font-semibold tracking-[-0.01em] text-foreground">
+                <h3 className="relative mt-3.5 text-[14px] font-semibold tracking-[-0.01em] text-foreground">
                   {title}
                 </h3>
 
-                <p className="relative mt-1.5 text-xs leading-5 text-muted">
+                <p className="relative mt-1.5 text-[11px] leading-[1.55] text-muted">
                   {description}
                 </p>
 
                 {/* Bottom accent */}
 
-                <div className="absolute bottom-0 left-0 h-px w-0 bg-gradient-to-r from-blue-500 via-violet-500 to-cyan-500 transition-all duration-500 group-hover:w-full" />
+                <div
+                  aria-hidden="true"
+                  className="absolute bottom-0 left-0 h-px w-0 bg-gradient-to-r from-blue-500 via-violet-500 to-cyan-500 transition-all duration-500 group-hover:w-full"
+                />
               </motion.article>
             ))}
 
@@ -158,16 +172,16 @@ export default function Capabilities() {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          className="mt-6 flex items-center justify-center gap-3 text-[10px] uppercase tracking-[0.16em] text-muted/60"
+          transition={{ duration: 0.5, delay: 0.25 }}
+          className="mt-5 flex items-center justify-center gap-3 text-[9px] uppercase tracking-[0.16em] text-muted/55"
         >
-          <span className="h-px w-10 bg-border" />
+          <span className="h-px w-8 bg-border" />
 
           <span>
-            One platform · One workflow · One source of truth
+            Leads · Properties · Follow-ups · Sales
           </span>
 
-          <span className="h-px w-10 bg-border" />
+          <span className="h-px w-8 bg-border" />
         </motion.div>
       </div>
     </section>
