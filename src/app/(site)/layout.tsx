@@ -4,6 +4,7 @@ import { Footer } from "@/components/layout/Footer";
 import { SmoothScroll } from "@/components/providers/SmoothScroll";
 import { GSAPProvider } from "@/components/providers/GSAPProvider";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
+import { ScrollToTop } from "@/components/providers/ScrollToTop";
 import { ContactPopup } from "@/components/ui/ContactPopup";
 import { GoogleTagManager } from "@next/third-parties/google";
 import "../globals.css";
@@ -15,13 +16,11 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title:
-    "Brosavo | Global Technology Company & Real Estate CRM",
+  title: "Brosavo | Global Technology Company & Real Estate CRM",
 
   description:
     "Brosavo is a global technology company building real estate CRM, AI solutions, SaaS platforms, custom software, WhatsApp automation, and digital products for modern businesses.",
 
-  // IMPORTANT: Use the same canonical domain everywhere
   metadataBase: new URL("https://www.brosavo.com"),
 
   alternates: {
@@ -84,6 +83,9 @@ export default function SiteLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className="w-full max-w-full overflow-x-hidden antialiased bg-background text-foreground">
+        {/* Reset scroll position when navigating to a new page */}
+        <ScrollToTop />
+
         <GoogleTagManager
           gtmId={process.env.NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID!}
         />
