@@ -64,15 +64,106 @@ export const CONTACT = {
 } as const;
 
 export const NAV_LINKS = [
-  { label: "Services", href: "/services" },
-  { label: "Technology", href: "/technology" },
-  { label: "Products", href: "/products" },
-  { label: "Pricing", href: "/pricing" },
-  { label: "Blog", href: "/blog" },
-  { label: "Why Us", href: "/why-us" },
-  { label: "Team", href: "/team" },
-  { label: "Founders", href: "/founders-office" },
-  { label: "About", href: "/about" },
+  {
+    label: "Services",
+    href: "/services",
+    description: "Technology services for modern businesses.",
+    items: [
+      {
+        label: "Software Development",
+        href: "/services",
+        description: "Custom software and digital products.",
+      },
+      {
+        label: "AI Solutions",
+        href: "/services",
+        description: "AI-powered systems and automation.",
+      },
+      {
+        label: "Cloud & Infrastructure",
+        href: "/services",
+        description: "Scalable cloud and DevOps infrastructure.",
+      },
+      {
+        label: "Technology & Engineering",
+        href: "/technology",
+        description: "Modern engineering and technology architecture.",
+      },
+    ],
+  },
+
+  {
+    label: "Products",
+    href: "/products",
+    description: "Products built by Brosavo.",
+    items: [
+      {
+        label: "Real Estate CRM",
+        href: "/real-estate-crm",
+        description:
+          "Leads, properties, pipeline, WhatsApp and sales management.",
+        featured: true,
+      },
+      {
+        label: "AI Products",
+        href: "/products",
+        description: "Intelligent products for modern businesses.",
+      },
+      {
+        label: "SaaS Platforms",
+        href: "/products",
+        description: "Scalable software platforms and business systems.",
+      },
+      {
+        label: "WhatsApp Automation",
+        href: "/products#whatsapp",
+        description: "Communication and workflow automation.",
+      },
+    ],
+  },
+
+  {
+    label: "Pricing",
+    href: "/pricing",
+  },
+
+  {
+    label: "Company",
+    href: "/about",
+    description: "Learn more about Brosavo.",
+    items: [
+      {
+        label: "About Brosavo",
+        href: "/about",
+        description: "Who we are and what we build.",
+      },
+      {
+        label: "Why Brosavo",
+        href: "/why-us",
+        description: "Why businesses choose Brosavo.",
+      },
+      {
+        label: "Our Team",
+        href: "/team",
+        description: "Meet the people behind Brosavo.",
+      },
+      {
+        label: "Founder's Office",
+        href: "/founders-office",
+        description: "Leadership, vision and company direction.",
+      },
+      {
+        label: "Global Presence",
+        href: "/global",
+        description: "Brosavo's global delivery network.",
+      },
+    ],
+  },
+
+  {
+    label: "Blog",
+    href: "/blog",
+  },
 ] as const;
 
 export const FOOTER_LINKS = {
@@ -93,7 +184,7 @@ export const FOOTER_LINKS = {
   ],
 
   Products: [
-    { label: "Real Estate CRM", href: "/products#real-estate-crm" },
+    { label: "Real Estate CRM", href: "/real-estate-crm" },
     { label: "Lead Management", href: "/products#leads" },
     { label: "WhatsApp Automation", href: "/products#whatsapp" },
     { label: "AI Assistant", href: "/products#ai-assistant" },

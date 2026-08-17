@@ -60,7 +60,7 @@ export const PRODUCT_CTA = {
   primaryLabel: "Book a Free Demo",
   primaryHref: "/contact",
   secondaryLabel: "Explore Brosavo Real Estate CRM",
-  secondaryHref: "/products#real-estate-crm",
+  secondaryHref: "/real-estate-crm",
 } as const;
 
 /**
