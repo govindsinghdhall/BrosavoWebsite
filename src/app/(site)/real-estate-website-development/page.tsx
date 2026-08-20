@@ -71,7 +71,7 @@ export default function Page() {
               <Link href="/contact" className="rounded-full bg-foreground px-6 py-3.5 text-sm font-medium text-background transition hover:-translate-y-0.5">
                 Book a Website Demo
               </Link>
-              <Link href=/real-estate-crm className="rounded-full border border-border/70 bg-background px-6 py-3.5 text-sm font-medium transition hover:-translate-y-0.5">
+              <Link href="/real-estate-crm" className="rounded-full border border-border/70 bg-background px-6 py-3.5 text-sm font-medium transition hover:-translate-y-0.5">
                 Explore Real Estate CRM
               </Link>
             </div>
@@ -180,7 +180,7 @@ export default function Page() {
               WhatsApp workflows, analytics and team management.
             </p>
             <div className="mt-7 flex flex-col gap-3 sm:flex-row">
-              <Link href=/real-estate-crm className="rounded-full bg-background px-6 py-3.5 text-center text-sm font-medium text-foreground">
+              <Link href="/real-estate-crm" className="rounded-full bg-background px-6 py-3.5 text-center text-sm font-medium text-foreground">
                 Explore Real Estate CRM
               </Link>
               <Link href="/contact" className="rounded-full border border-background/20 px-6 py-3.5 text-center text-sm font-medium text-background">

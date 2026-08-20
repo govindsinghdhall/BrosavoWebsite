@@ -71,7 +71,7 @@ export default function Page() {
               <Link href="/contact" className="rounded-full bg-foreground px-6 py-3.5 text-sm font-medium text-background transition hover:-translate-y-0.5">
                 Book a Website Demo
               </Link>
-              <Link href=/real-estate-crm-for-agents className="rounded-full border border-border/70 bg-background px-6 py-3.5 text-sm font-medium transition hover:-translate-y-0.5">
+              <Link href="/real-estate-crm-for-agents" className="rounded-full border border-border/70 bg-background px-6 py-3.5 text-sm font-medium transition hover:-translate-y-0.5">
                 Explore CRM for Agents
               </Link>
             </div>
@@ -83,21 +83,21 @@ export default function Page() {
         <div className="container-wide px-6 lg:px-10">
           <div className="mx-auto grid max-w-6xl gap-5 md:grid-cols-2 lg:grid-cols-4">
             <article className="rounded-2xl border border-border/70 bg-background p-6">
-      <h2 className="text-base font-semibold">Property Listings</h2>
-      <p className="mt-2 text-sm leading-6 text-muted">Showcase properties with structured details, images and clear enquiry actions.</p>
-    </article>
-<article className="rounded-2xl border border-border/70 bg-background p-6">
-      <h2 className="text-base font-semibold">Lead Capture</h2>
-      <p className="mt-2 text-sm leading-6 text-muted">Turn website visitors and property interest into structured enquiries.</p>
-    </article>
-<article className="rounded-2xl border border-border/70 bg-background p-6">
-      <h2 className="text-base font-semibold">CRM Integration</h2>
-      <p className="mt-2 text-sm leading-6 text-muted">Connect website activity with Brosavo lead management and sales workflows.</p>
-    </article>
-<article className="rounded-2xl border border-border/70 bg-background p-6">
-      <h2 className="text-base font-semibold">SEO Foundation</h2>
-      <p className="mt-2 text-sm leading-6 text-muted">Build useful pages and information architecture that can be discovered organically.</p>
-    </article>
+              <h2 className="text-base font-semibold">Property Listings</h2>
+              <p className="mt-2 text-sm leading-6 text-muted">Showcase properties with structured details, images and clear enquiry actions.</p>
+            </article>
+            <article className="rounded-2xl border border-border/70 bg-background p-6">
+              <h2 className="text-base font-semibold">Lead Capture</h2>
+              <p className="mt-2 text-sm leading-6 text-muted">Turn website visitors and property interest into structured enquiries.</p>
+            </article>
+            <article className="rounded-2xl border border-border/70 bg-background p-6">
+              <h2 className="text-base font-semibold">CRM Integration</h2>
+              <p className="mt-2 text-sm leading-6 text-muted">Connect website activity with Brosavo lead management and sales workflows.</p>
+            </article>
+            <article className="rounded-2xl border border-border/70 bg-background p-6">
+              <h2 className="text-base font-semibold">SEO Foundation</h2>
+              <p className="mt-2 text-sm leading-6 text-muted">Build useful pages and information architecture that can be discovered organically.</p>
+            </article>
           </div>
         </div>
       </section>
@@ -116,13 +116,13 @@ export default function Page() {
               </p>
               <ul className="mt-7 space-y-3 text-sm text-muted">
                 <li className="flex gap-3"><span className="text-accent-blue">✓</span><span>Professional responsive design</span></li>
-<li className="flex gap-3"><span className="text-accent-blue">✓</span><span>Property or project presentation</span></li>
-<li className="flex gap-3"><span className="text-accent-blue">✓</span><span>Enquiry and contact forms</span></li>
-<li className="flex gap-3"><span className="text-accent-blue">✓</span><span>Clear conversion-focused calls to action</span></li>
-<li className="flex gap-3"><span className="text-accent-blue">✓</span><span>CRM-connected lead capture</span></li>
-<li className="flex gap-3"><span className="text-accent-blue">✓</span><span>SEO-ready page structure</span></li>
-<li className="flex gap-3"><span className="text-accent-blue">✓</span><span>Mobile-friendly experience</span></li>
-<li className="flex gap-3"><span className="text-accent-blue">✓</span><span>Scalable content and location pages</span></li>
+                <li className="flex gap-3"><span className="text-accent-blue">✓</span><span>Property or project presentation</span></li>
+                <li className="flex gap-3"><span className="text-accent-blue">✓</span><span>Enquiry and contact forms</span></li>
+                <li className="flex gap-3"><span className="text-accent-blue">✓</span><span>Clear conversion-focused calls to action</span></li>
+                <li className="flex gap-3"><span className="text-accent-blue">✓</span><span>CRM-connected lead capture</span></li>
+                <li className="flex gap-3"><span className="text-accent-blue">✓</span><span>SEO-ready page structure</span></li>
+                <li className="flex gap-3"><span className="text-accent-blue">✓</span><span>Mobile-friendly experience</span></li>
+                <li className="flex gap-3"><span className="text-accent-blue">✓</span><span>Scalable content and location pages</span></li>
               </ul>
             </div>
 
@@ -146,23 +146,23 @@ export default function Page() {
             <h2 className="text-3xl font-semibold tracking-[-0.04em] sm:text-4xl">Frequently asked questions</h2>
             <div className="mt-8 space-y-3">
               <details key="What should a real estate website include?" className="group rounded-2xl border border-border/70 bg-background">
-      <summary className="flex cursor-pointer list-none items-center justify-between gap-5 px-6 py-5 text-sm font-medium">
-        <span>What should a real estate website include?</span><span className="text-xl text-muted transition-transform group-open:rotate-45">+</span>
-      </summary>
-      <div className="border-t border-border/60 px-6 py-5 text-sm leading-7 text-muted">A useful real estate website should present properties or projects clearly, explain the business or services, provide strong enquiry paths and work well on mobile devices.</div>
-    </details>
-<details key="Can the website connect with a CRM?" className="group rounded-2xl border border-border/70 bg-background">
-      <summary className="flex cursor-pointer list-none items-center justify-between gap-5 px-6 py-5 text-sm font-medium">
-        <span>Can the website connect with a CRM?</span><span className="text-xl text-muted transition-transform group-open:rotate-45">+</span>
-      </summary>
-      <div className="border-t border-border/60 px-6 py-5 text-sm leading-7 text-muted">Yes. Brosavo is designed to connect website enquiries with its real estate CRM workflow so leads can be organized, assigned and followed up.</div>
-    </details>
-<details key="Is the website designed for search engines?" className="group rounded-2xl border border-border/70 bg-background">
-      <summary className="flex cursor-pointer list-none items-center justify-between gap-5 px-6 py-5 text-sm font-medium">
-        <span>Is the website designed for search engines?</span><span className="text-xl text-muted transition-transform group-open:rotate-45">+</span>
-      </summary>
-      <div className="border-t border-border/60 px-6 py-5 text-sm leading-7 text-muted">The page architecture can be built with descriptive metadata, internal links, structured content and search-friendly information architecture.</div>
-    </details>
+                <summary className="flex cursor-pointer list-none items-center justify-between gap-5 px-6 py-5 text-sm font-medium">
+                  <span>What should a real estate website include?</span><span className="text-xl text-muted transition-transform group-open:rotate-45">+</span>
+                </summary>
+                <div className="border-t border-border/60 px-6 py-5 text-sm leading-7 text-muted">A useful real estate website should present properties or projects clearly, explain the business or services, provide strong enquiry paths and work well on mobile devices.</div>
+              </details>
+              <details key="Can the website connect with a CRM?" className="group rounded-2xl border border-border/70 bg-background">
+                <summary className="flex cursor-pointer list-none items-center justify-between gap-5 px-6 py-5 text-sm font-medium">
+                  <span>Can the website connect with a CRM?</span><span className="text-xl text-muted transition-transform group-open:rotate-45">+</span>
+                </summary>
+                <div className="border-t border-border/60 px-6 py-5 text-sm leading-7 text-muted">Yes. Brosavo is designed to connect website enquiries with its real estate CRM workflow so leads can be organized, assigned and followed up.</div>
+              </details>
+              <details key="Is the website designed for search engines?" className="group rounded-2xl border border-border/70 bg-background">
+                <summary className="flex cursor-pointer list-none items-center justify-between gap-5 px-6 py-5 text-sm font-medium">
+                  <span>Is the website designed for search engines?</span><span className="text-xl text-muted transition-transform group-open:rotate-45">+</span>
+                </summary>
+                <div className="border-t border-border/60 px-6 py-5 text-sm leading-7 text-muted">The page architecture can be built with descriptive metadata, internal links, structured content and search-friendly information architecture.</div>
+              </details>
             </div>
           </div>
         </div>
@@ -180,7 +180,7 @@ export default function Page() {
               WhatsApp workflows, analytics and team management.
             </p>
             <div className="mt-7 flex flex-col gap-3 sm:flex-row">
-              <Link href=/real-estate-crm-for-agents className="rounded-full bg-background px-6 py-3.5 text-center text-sm font-medium text-foreground">
+              <Link href="/real-estate-crm-for-agents" className="rounded-full bg-background px-6 py-3.5 text-center text-sm font-medium text-foreground">
                 Explore CRM for Agents
               </Link>
               <Link href="/contact" className="rounded-full border border-background/20 px-6 py-3.5 text-center text-sm font-medium text-background">
