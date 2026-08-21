@@ -3,7 +3,14 @@
 import { motion } from "framer-motion";
 import { WHY_US } from "@/lib/data";
 import { BlurReveal } from "@/components/animations/TextReveal";
-import { Globe, Shield, Brain, Layers, Handshake, BarChart3 } from "lucide-react";
+import {
+  Globe,
+  Shield,
+  Brain,
+  Layers,
+  Handshake,
+  BarChart3,
+} from "lucide-react";
 
 const ICON_MAP = {
   globe: Globe,
@@ -18,20 +25,27 @@ export function WhyUsContent() {
   return (
     <section className="section-padding relative">
       <div className="container-wide">
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {WHY_US.map((item, i) => {
             const Icon = ICON_MAP[item.icon as keyof typeof ICON_MAP];
+
             return (
               <BlurReveal key={item.title} delay={i * 0.08}>
                 <motion.div
                   whileHover={{ y: -4 }}
-                  className="glass rounded-2xl p-8 border border-border hover:border-border transition-all duration-500 h-full"
+                  className="glass h-full rounded-2xl border border-border p-8 transition-all duration-500 hover:border-border"
                 >
-                  <div className="w-12 h-12 rounded-xl bg-accent-violet/10 flex items-center justify-center mb-6">
-                    <Icon className="w-6 h-6 text-accent-violet" />
+                  <div className="mb-6 flex h-12 w-12 items-center justify-center rounded-xl bg-accent-violet/10">
+                    <Icon className="h-6 w-6 text-accent-violet" />
                   </div>
-                  <h3 className="text-xl font-semibold mb-3">{item.title}</h3>
-                  <p className="text-sm text-muted leading-relaxed">{item.description}</p>
+
+                  <h2 className="mb-3 text-xl font-semibold">
+                    {item.title}
+                  </h2>
+
+                  <p className="text-sm leading-relaxed text-muted">
+                    {item.description}
+                  </p>
                 </motion.div>
               </BlurReveal>
             );
