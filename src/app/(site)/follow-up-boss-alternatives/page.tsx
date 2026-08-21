@@ -192,26 +192,47 @@ export default function Page() {
         </div>
       </section>
 
-      <section className="py-14 sm:py-18">
-        <div className="container-wide px-6 lg:px-10">
-          <div className="mx-auto max-w-5xl">
-            <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-              {config.primaryKeywords.map((keyword) => (
-                <div
-                  key={keyword}
-                  className="rounded-2xl border border-border/70 bg-background p-5"
-                >
-                  <span className="text-accent-blue">✦</span>
-                  <h2 className="mt-3 text-sm font-semibold">{keyword}</h2>
-                  <p className="mt-2 text-xs leading-5 text-muted">
-                    A focused part of the Brosavo real estate sales workflow.
-                  </p>
-                </div>
-              ))}
-            </div>
+      <section
+  aria-labelledby="key-capabilities-heading"
+  className="py-14 sm:py-18"
+>
+  <div className="container-wide px-6 lg:px-10">
+    <div className="mx-auto max-w-5xl">
+
+      <h2
+        id="key-capabilities-heading"
+        className="text-3xl font-semibold tracking-[-0.04em] sm:text-4xl"
+      >
+        Key capabilities to compare
+      </h2>
+
+      <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        {config.primaryKeywords.map((keyword) => (
+          <div
+            key={keyword}
+            className="rounded-2xl border border-border/70 bg-background p-5"
+          >
+            <span
+              aria-hidden="true"
+              className="text-accent-blue"
+            >
+              ✦
+            </span>
+
+            <h3 className="mt-3 text-sm font-semibold">
+              {keyword}
+            </h3>
+
+            <p className="mt-2 text-xs leading-5 text-muted">
+              A focused part of the Brosavo real estate sales workflow.
+            </p>
           </div>
-        </div>
-      </section>
+        ))}
+      </div>
+
+    </div>
+  </div>
+</section>
 
       {config.sections.map((section) => (
         <section
