@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Products } from "@/components/sections/Products";
+import { SITE_URL } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Real Estate CRM & Business Software | Brosavo",
@@ -25,14 +26,14 @@ export const metadata: Metadata = {
   ],
 
   alternates: {
-    canonical: "https://brosavo.com/products",
+    canonical: `${SITE_URL}/products`,
   },
 
   openGraph: {
     title: "Real Estate CRM & Business Software | Brosavo",
     description:
       "Explore Brosavo's software products and business platforms, including our flagship real estate CRM for leads, properties, follow-ups, WhatsApp, and sales.",
-    url: "https://brosavo.com/products",
+    url: `${SITE_URL}/products`,
     siteName: "Brosavo",
     type: "website",
   },

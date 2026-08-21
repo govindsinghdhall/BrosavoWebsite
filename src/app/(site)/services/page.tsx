@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { PageHero } from "@/components/layout/PageHero";
 import { Services } from "@/components/sections/Services";
+import { SITE_URL } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Software Development & Technology Services | Brosavo",
@@ -28,7 +29,7 @@ export const metadata: Metadata = {
   ],
 
   alternates: {
-    canonical: "https://brosavo.com/services",
+    canonical: `${SITE_URL}/services`,
   },
 };
 

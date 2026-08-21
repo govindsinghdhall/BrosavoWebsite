@@ -4,8 +4,14 @@ import { useState, type MouseEvent } from "react";
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import {
+  ArrowRight,
+  Globe2,
+  Rocket,
+  ShieldCheck,
+  Users,
+} from "lucide-react";
 import { MagneticButton } from "@/components/ui/MagneticButton";
-import { ArrowRight } from "lucide-react";
 
 const ParticleScene = dynamic(
   () =>
@@ -66,13 +72,13 @@ export function Hero() {
         {/* ---------------------------------------------------------
             Desktop Background
         --------------------------------------------------------- */}
-        <div className="absolute bottom-0 right-0 top-24 hidden w-[54%] mask-[linear-gradient(to_right,transparent,black_22%)] lg:block">
+        <div className="absolute bottom-0 right-0 top-24 hidden w-[56%] mask-[linear-gradient(to_right,transparent,black_22%)] lg:block">
           <Image
             src="/wallpapers/hero-day.png"
             alt="Brosavo software and technology solutions"
             fill
             priority
-            sizes="55vw"
+            sizes="56vw"
             className="object-cover object-center dark:hidden"
           />
 
@@ -81,16 +87,16 @@ export function Hero() {
             alt="Brosavo software and technology solutions"
             fill
             priority
-            sizes="55vw"
+            sizes="56vw"
             className="hidden object-cover object-center dark:block"
           />
         </div>
 
         {/* Desktop Gradient */}
-        <div className="absolute inset-0 hidden bg-linear-to-r from-background via-background/15 to-transparent lg:block" />
+        <div className="absolute inset-0 hidden bg-linear-to-r from-background via-background/20 to-transparent lg:block" />
 
         {/* Bottom Fade */}
-        <div className="absolute inset-x-0 bottom-0 hidden h-32 bg-linear-to-t from-background to-transparent lg:block" />
+        <div className="absolute inset-x-0 bottom-0 hidden h-40 bg-linear-to-t from-background to-transparent lg:block" />
       </div>
 
       {/* =========================================================
@@ -138,7 +144,16 @@ export function Hero() {
             y: 0,
           })
         }
-        className="relative z-10 mx-auto flex min-h-screen w-full max-w-[1280px] items-center justify-center px-6 py-24 sm:px-8 lg:justify-start lg:px-12"
+        className="
+          relative z-10 mx-auto flex min-h-screen w-full
+          max-w-[1440px] items-center
+          px-6 py-24
+          sm:px-8
+          lg:justify-start
+          lg:px-12
+          xl:px-16
+          lg:pt-32
+        "
       >
         <motion.div
           animate={{
@@ -151,7 +166,13 @@ export function Hero() {
             damping: 18,
             mass: 0.2,
           }}
-          className="flex w-full flex-col items-center text-center lg:max-w-[560px] lg:items-start lg:text-left xl:max-w-[620px]"
+          className="
+            flex w-full flex-col
+            items-center text-center
+            lg:max-w-[860px]
+            lg:items-start lg:text-left
+            xl:max-w-[880px]
+          "
         >
           {/* =====================================================
               HEADING
@@ -169,13 +190,99 @@ export function Hero() {
               delay: 0.2,
               duration: 0.9,
             }}
-            className="mb-6 max-w-5xl px-4 py-4 text-[1.6rem] font-black leading-[1.15] tracking-[-0.04em] text-foreground sm:px-6 sm:text-[2rem] md:px-8 md:text-[2.6rem] lg:px-0 lg:text-[3.2rem] xl:text-[3.8rem]"
+            className="
+              mb-7
+              max-w-[880px]
+              px-0
+              font-black
+              tracking-[-0.055em]
+              text-foreground
+            "
           >
-            <span className="block">
-              Software & Technology
+            {/* -------------------------------------------------
+                BRAND NAME
+            ------------------------------------------------- */}
+            <span
+  className="
+    relative mb-4 block w-fit
+    text-foreground/60
+    text-[1.8rem]
+    leading-none
+    sm:text-[2rem]
+    md:text-[2.2rem]
+    lg:text-[2.35rem]
+    xl:text-[2.5rem]
+  "
+>
+  BROS
+  <span
+    className="
+      bg-linear-to-r
+      from-accent-blue
+      via-accent-violet
+      to-accent-cyan
+      bg-clip-text
+      text-transparent
+    "
+  >
+    A
+  </span>
+  VO
+
+  {/* Brand accent line */}
+  <span
+    className="
+      absolute
+      -bottom-2
+      left-0
+      h-0.75
+      w-12
+      rounded-full
+      bg-linear-to-r
+      from-accent-blue
+      via-accent-violet
+      to-accent-cyan
+      opacity-70
+    "
+  />
+</span>
+
+            {/* -------------------------------------------------
+                MAIN HEADLINE
+            ------------------------------------------------- */}
+            <span
+              className="
+                block
+                whitespace-nowrap
+                text-[2.65rem]
+                leading-[0.98]
+                sm:text-[3.25rem]
+                md:text-[3.6rem]
+                lg:text-[4rem]
+                xl:text-[4.25rem]
+              "
+            >
+              Software &amp; Technology
             </span>
 
-            <span className="mt-2 block bg-[length:200%_100%] text-gradient-accent sm:mt-3">
+            {/* -------------------------------------------------
+                GRADIENT HEADLINE
+            ------------------------------------------------- */}
+            <span
+              className="
+                mt-2
+                block
+                whitespace-nowrap
+                bg-[length:200%_100%]
+                text-gradient-accent
+                text-[2.65rem]
+                leading-[0.98]
+                sm:text-[3.25rem]
+                md:text-[3.6rem]
+                lg:text-[4rem]
+                xl:text-[4.25rem]
+              "
+            >
               for Modern Businesses
             </span>
           </motion.h1>
@@ -196,16 +303,25 @@ export function Hero() {
               delay: 0.35,
               duration: 0.8,
             }}
-            className="mb-8 max-w-[700px] text-base leading-8 text-muted sm:text-lg"
+            className="
+              mb-9
+              max-w-[640px]
+              text-base
+              leading-7
+              text-muted
+              sm:text-lg
+              sm:leading-8
+              lg:text-[1.1rem]
+              lg:leading-8
+            "
           >
-            Brosavo is a global software and technology company building custom
-            software, AI solutions, SaaS platforms, and digital products for modern
-            businesses — including{" "}
+            Brosavo is a global software and technology company
+            building custom software, AI solutions, SaaS platforms,
+            and digital products for modern businesses — including{" "}
             <strong className="font-semibold text-foreground">
               Real Estate CRM
             </strong>
             , Lead Management,{" "}
-            <br />
             <strong className="font-semibold text-foreground">
               WhatsApp Automation
             </strong>
@@ -228,12 +344,25 @@ export function Hero() {
               delay: 0.45,
               duration: 0.8,
             }}
-            className="flex flex-col items-center gap-3 sm:flex-row sm:gap-4"
+            className="
+              flex
+              flex-col
+              items-center
+              gap-3
+              sm:flex-row
+              sm:gap-4
+            "
           >
             <MagneticButton
               href="/services"
               variant="primary"
-              className="!px-8 !py-3.5 !text-sm sm:!px-10 sm:!py-4"
+              className="
+                !px-8
+                !py-3.5
+                !text-sm
+                sm:!px-10
+                sm:!py-4
+              "
             >
               Explore Our Solutions
               <ArrowRight className="h-4 w-4" />
@@ -242,10 +371,252 @@ export function Hero() {
             <MagneticButton
               href="/contact"
               variant="secondary"
-              className="!px-8 !py-3.5 !text-sm sm:!px-10 sm:!py-4"
+              className="
+                !px-8
+                !py-3.5
+                !text-sm
+                sm:!px-10
+                sm:!py-4
+              "
             >
               Build With Brosavo
             </MagneticButton>
+          </motion.div>
+
+          {/* =====================================================
+              TRUST / VALUE CARDS
+          ===================================================== */}
+          <motion.div
+            initial={{
+              opacity: 0,
+              y: 20,
+            }}
+            animate={{
+              opacity: 1,
+              y: 0,
+            }}
+            transition={{
+              delay: 0.6,
+              duration: 0.8,
+            }}
+            className="
+              mt-10
+              grid
+              w-full
+              grid-cols-1
+              gap-3
+              sm:grid-cols-2
+              lg:grid-cols-4
+              lg:gap-3
+            "
+          >
+            {/* -------------------------------------------------
+                GLOBAL REACH
+            ------------------------------------------------- */}
+            <div
+              className="
+                group
+                flex
+                min-h-[76px]
+                items-center
+                gap-3
+                rounded-xl
+                border
+                border-border/60
+                bg-background/60
+                px-3
+                py-3
+                backdrop-blur-md
+                transition-all
+                duration-300
+                hover:-translate-y-1
+                hover:border-accent-blue/30
+                hover:bg-background/80
+              "
+            >
+              <div
+                className="
+                  flex
+                  h-10
+                  w-10
+                  shrink-0
+                  items-center
+                  justify-center
+                  rounded-lg
+                  bg-accent-blue/10
+                  transition-transform
+                  duration-300
+                  group-hover:scale-105
+                "
+              >
+                <Globe2 className="h-5 w-5 text-accent-blue" />
+              </div>
+
+              <div className="min-w-0">
+                <p className="truncate text-xs font-semibold text-foreground">
+                  Global Reach
+                </p>
+                <p className="mt-0.5 text-[11px] leading-4 text-muted">
+                  Serving businesses worldwide
+                </p>
+              </div>
+            </div>
+
+            {/* -------------------------------------------------
+                BUSINESS FOCUS
+            ------------------------------------------------- */}
+            <div
+              className="
+                group
+                flex
+                min-h-[76px]
+                items-center
+                gap-3
+                rounded-xl
+                border
+                border-border/60
+                bg-background/60
+                px-3
+                py-3
+                backdrop-blur-md
+                transition-all
+                duration-300
+                hover:-translate-y-1
+                hover:border-accent-blue/30
+                hover:bg-background/80
+              "
+            >
+              <div
+                className="
+                  flex
+                  h-10
+                  w-10
+                  shrink-0
+                  items-center
+                  justify-center
+                  rounded-lg
+                  bg-accent-blue/10
+                  transition-transform
+                  duration-300
+                  group-hover:scale-105
+                "
+              >
+                <Users className="h-5 w-5 text-accent-blue" />
+              </div>
+
+              <div className="min-w-0">
+                <p className="truncate text-xs font-semibold text-foreground">
+                  Business Focus
+                </p>
+                <p className="mt-0.5 text-[11px] leading-4 text-muted">
+                  Built for modern teams
+                </p>
+              </div>
+            </div>
+
+            {/* -------------------------------------------------
+                TRUSTED TECHNOLOGY
+            ------------------------------------------------- */}
+            <div
+              className="
+                group
+                flex
+                min-h-[76px]
+                items-center
+                gap-3
+                rounded-xl
+                border
+                border-border/60
+                bg-background/60
+                px-3
+                py-3
+                backdrop-blur-md
+                transition-all
+                duration-300
+                hover:-translate-y-1
+                hover:border-accent-violet/30
+                hover:bg-background/80
+              "
+            >
+              <div
+                className="
+                  flex
+                  h-10
+                  w-10
+                  shrink-0
+                  items-center
+                  justify-center
+                  rounded-lg
+                  bg-accent-violet/10
+                  transition-transform
+                  duration-300
+                  group-hover:scale-105
+                "
+              >
+                <ShieldCheck className="h-5 w-5 text-accent-violet" />
+              </div>
+
+              <div className="min-w-0">
+                <p className="truncate text-xs font-semibold text-foreground">
+                  Trusted Technology
+                </p>
+                <p className="mt-0.5 text-[11px] leading-4 text-muted">
+                  Secure &amp; reliable
+                </p>
+              </div>
+            </div>
+
+            {/* -------------------------------------------------
+                INNOVATIVE SOLUTIONS
+            ------------------------------------------------- */}
+            <div
+              className="
+                group
+                flex
+                min-h-[76px]
+                items-center
+                gap-3
+                rounded-xl
+                border
+                border-border/60
+                bg-background/60
+                px-3
+                py-3
+                backdrop-blur-md
+                transition-all
+                duration-300
+                hover:-translate-y-1
+                hover:border-accent-cyan/30
+                hover:bg-background/80
+              "
+            >
+              <div
+                className="
+                  flex
+                  h-10
+                  w-10
+                  shrink-0
+                  items-center
+                  justify-center
+                  rounded-lg
+                  bg-accent-cyan/10
+                  transition-transform
+                  duration-300
+                  group-hover:scale-105
+                "
+              >
+                <Rocket className="h-5 w-5 text-accent-cyan" />
+              </div>
+
+              <div className="min-w-0">
+                <p className="truncate text-xs font-semibold text-foreground">
+                  Innovative Solutions
+                </p>
+                <p className="mt-0.5 text-[11px] leading-4 text-muted">
+                  Built for growth
+                </p>
+              </div>
+            </div>
           </motion.div>
         </motion.div>
       </motion.div>
@@ -265,7 +636,15 @@ export function Hero() {
           repeat: Infinity,
           ease: "easeInOut",
         }}
-        className="pointer-events-none absolute bottom-8 left-1/2 hidden -translate-x-1/2 md:block"
+        className="
+          pointer-events-none
+          absolute
+          bottom-8
+          left-1/2
+          hidden
+          -translate-x-1/2
+          md:block
+        "
       >
         <div className="flex h-10 w-6 items-start justify-center rounded-full border border-white/40 bg-white/10 p-1 backdrop-blur-sm">
           <div className="h-2.5 w-1 rounded-full bg-foreground/50" />

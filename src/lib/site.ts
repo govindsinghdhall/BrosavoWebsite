@@ -13,6 +13,18 @@ export const SITE_NAME = "Brosavo";
 /** Legal company name for schema / footer. */
 export const LEGAL_NAME = "Brosavo Technologies";
 
+export const ORGANIZATION_ID = `${SITE_URL}/#organization`;
+export const WEBSITE_ID = `${SITE_URL}/#website`;
+export const BRAND_ID = `${SITE_URL}/#brand`;
+
+/** Names Google should treat as the same brand entity — not Bravo. */
+export const BRAND_ALTERNATE_NAMES = [
+  "Brosavo Technologies",
+  "Brosavo CRM",
+  "Brosavo Real Estate CRM",
+  "brosavo.com",
+] as const;
+
 /**
  * Primary Brosavo product.
  *

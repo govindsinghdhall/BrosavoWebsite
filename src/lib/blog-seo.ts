@@ -1,10 +1,15 @@
 import type { AuthorProfile } from "@/lib/authors";
 import {
+  BRAND_ALTERNATE_NAMES,
+  BRAND_ID,
   COMPANY_DESCRIPTION,
+  DEFAULT_OG_IMAGE,
   LEGAL_NAME,
+  ORGANIZATION_ID,
   PRODUCT_NAME,
   SITE_NAME,
   SITE_URL,
+  WEBSITE_ID,
 } from "@/lib/site";
 import { CONTACT } from "@/lib/data";
 import type { BlogFaq, BlogPost, TocHeading } from "@/types/blog";
@@ -161,15 +166,49 @@ export function buildOrganizationJsonLd() {
     "@context": "https://schema.org",
     "@type": "Organization",
 
+    "@id": ORGANIZATION_ID,
+
     name: SITE_NAME,
+
+    alternateName: [...BRAND_ALTERNATE_NAMES],
 
     legalName: LEGAL_NAME,
 
     url: SITE_URL,
 
-    logo: absoluteUrl("/favicon.png"),
+    logo: {
+      "@type": "ImageObject",
+      url: absoluteUrl("/logo.svg"),
+      contentUrl: absoluteUrl("/logo.svg"),
+    },
+
+    image: absoluteUrl(DEFAULT_OG_IMAGE),
+
+    email: CONTACT.email,
+
+    telephone: CONTACT.phones[0]?.number,
 
     description: COMPANY_DESCRIPTION,
+
+    brand: {
+      "@type": "Brand",
+      "@id": BRAND_ID,
+      name: SITE_NAME,
+      alternateName: [...BRAND_ALTERNATE_NAMES],
+      url: SITE_URL,
+      logo: absoluteUrl("/logo.svg"),
+    },
+
+    contactPoint: [
+      {
+        "@type": "ContactPoint",
+        contactType: "customer support",
+        email: CONTACT.email,
+        telephone: CONTACT.phones[0]?.number,
+        url: absoluteUrl("/contact"),
+        availableLanguage: ["English"],
+      },
+    ],
 
     /*
      * Helps search engines understand the
@@ -241,19 +280,22 @@ export function buildWebsiteJsonLd() {
     "@context": "https://schema.org",
     "@type": "WebSite",
 
+    "@id": WEBSITE_ID,
+
     name: SITE_NAME,
 
-    alternateName: [
-      "Brosavo Technologies",
-      "Brosavo",
-    ],
+    alternateName: [...BRAND_ALTERNATE_NAMES],
 
     url: SITE_URL,
 
+    inLanguage: "en",
+
     publisher: {
-      "@type": "Organization",
-      name: SITE_NAME,
-      url: SITE_URL,
+      "@id": ORGANIZATION_ID,
+    },
+
+    about: {
+      "@id": ORGANIZATION_ID,
     },
   };
 }

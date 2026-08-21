@@ -5,19 +5,23 @@ import { FeaturedProduct } from "@/components/sections/FeaturedProduct";
 import { HomeOverview } from "@/components/sections/HomeOverview";
 import { Testimonials } from "@/components/sections/Testimonials";
 import { Credibility } from "@/components/sections/Credibility";
+import { BrandIdentity } from "@/components/sections/BrandIdentity";
 import { JsonLd } from "@/components/blog/JsonLd";
-import { buildOrganizationJsonLd } from "@/lib/blog-seo";
-import { SITE_NAME, SITE_URL } from "@/lib/site";
+import { buildFaqJsonLd } from "@/lib/blog-seo";
+import { BRAND_FAQS } from "@/lib/brand-faqs";
+import { SITE_URL } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Brosavo | Global Technology Company & Real Estate CRM",
+  title: "Brosavo | Official Website of Brosavo Technologies",
 
   description:
-    "Brosavo is a global technology company building AI, software, SaaS platforms, and digital infrastructure, with Real Estate CRM as its flagship product.",
+    "Brosavo is the official website of Brosavo Technologies, a global technology company building AI, software, SaaS platforms, and digital infrastructure, with Real Estate CRM as its flagship product.",
 
   keywords: [
     "Brosavo",
     "Brosavo Technologies",
+    "brosavo.com",
+    "official Brosavo website",
     "global technology company",
     "real estate CRM",
     "real estate CRM software",
@@ -31,30 +35,23 @@ export const metadata: Metadata = {
   ],
 
   alternates: {
-    canonical: "/",
+    canonical: SITE_URL,
   },
 };
 
 export default function HomePage() {
-  const organizationSchema = buildOrganizationJsonLd();
-
-  const websiteSchema = {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    name: SITE_NAME,
-    alternateName: "Brosavo Technologies",
-    url: SITE_URL,
-  };
+  const faqSchema = buildFaqJsonLd(BRAND_FAQS);
 
   return (
     <>
-      <JsonLd data={[organizationSchema, websiteSchema]} />
+      <JsonLd data={[faqSchema]} />
 
       <Hero />
       <FeaturedProduct />
       <HomeOverview />
       <Credibility showHeader={false} compact />
       <Testimonials />
+      <BrandIdentity />
     </>
   );
 }

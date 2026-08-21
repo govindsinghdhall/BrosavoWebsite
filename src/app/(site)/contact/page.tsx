@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
 import { Contact } from "@/components/sections/Contact";
+import { SITE_URL } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Contact Brosavo | Software, AI & Business Solutions",
@@ -9,14 +10,14 @@ export const metadata: Metadata = {
     "Contact Brosavo to discuss software development, AI solutions, SaaS products, business automation, digital infrastructure, or our flagship Real Estate CRM.",
 
   alternates: {
-    canonical: "https://www.brosavo.com/contact",
+    canonical: `${SITE_URL}/contact`,
   },
 
   openGraph: {
     title: "Contact Brosavo | Software, AI & Business Solutions",
     description:
       "Talk to Brosavo about software, AI, SaaS, automation, digital infrastructure, and our flagship Real Estate CRM.",
-    url: "https://www.brosavo.com/contact",
+    url: `${SITE_URL}/contact`,
     siteName: "Brosavo",
     type: "website",
   },

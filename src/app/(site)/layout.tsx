@@ -7,6 +7,18 @@ import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import { ScrollToTop } from "@/components/providers/ScrollToTop";
 import { ContactPopup } from "@/components/ui/ContactPopup";
 import { GoogleTagManager } from "@next/third-parties/google";
+import { JsonLd } from "@/components/blog/JsonLd";
+import {
+  buildOrganizationJsonLd,
+  buildWebsiteJsonLd,
+} from "@/lib/blog-seo";
+import {
+  COMPANY_DESCRIPTION,
+  DEFAULT_OG_IMAGE,
+  LEGAL_NAME,
+  SITE_NAME,
+  SITE_URL,
+} from "@/lib/site";
 import "../globals.css";
 
 export const viewport: Viewport = {
@@ -16,16 +28,13 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: "Brosavo | Global Technology Company & Real Estate CRM",
+  metadataBase: new URL(SITE_URL),
 
-  description:
-    "Brosavo is a global technology company building real estate CRM, AI solutions, SaaS platforms, custom software, WhatsApp automation, and digital products for modern businesses.",
+  title: "Brosavo | Official Website of Brosavo Technologies",
 
-  metadataBase: new URL("https://www.brosavo.com"),
+  description: COMPANY_DESCRIPTION,
 
-  alternates: {
-    canonical: "/",
-  },
+  applicationName: SITE_NAME,
 
   icons: {
     icon: "/favicon.svg",
@@ -34,6 +43,10 @@ export const metadata: Metadata = {
 
   keywords: [
     "Brosavo",
+    "Brosavo Technologies",
+    "brosavo.com",
+    "Brosavo CRM",
+    "official Brosavo website",
     "real estate CRM",
     "real estate CRM software",
     "CRM for real estate agents",
@@ -45,33 +58,45 @@ export const metadata: Metadata = {
     "enterprise software",
   ],
 
-  authors: [{ name: "Brosavo Technologies" }],
+  authors: [{ name: LEGAL_NAME, url: SITE_URL }],
+
+  creator: LEGAL_NAME,
+  publisher: LEGAL_NAME,
 
   openGraph: {
-    title: "Brosavo | Global Technology Company & Real Estate CRM",
-
+    title: "Brosavo | Official Website of Brosavo Technologies",
     description:
       "Brosavo builds real estate CRM, AI solutions, SaaS platforms, WhatsApp automation, and custom software for modern businesses.",
-
-    url: "https://www.brosavo.com",
-
-    siteName: "Brosavo",
-
+    url: SITE_URL,
+    siteName: SITE_NAME,
     type: "website",
+    locale: "en_US",
+    images: [
+      {
+        url: DEFAULT_OG_IMAGE,
+        alt: "Brosavo — official website of Brosavo Technologies",
+      },
+    ],
   },
 
   twitter: {
     card: "summary_large_image",
-
-    title: "Brosavo | Global Technology Company & Real Estate CRM",
-
+    title: "Brosavo | Official Website of Brosavo Technologies",
     description:
       "Real estate CRM, AI solutions, SaaS platforms, WhatsApp automation, and custom software by Brosavo.",
+  },
+
+  verification: {
+    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
   },
 
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+    },
   },
 };
 
@@ -83,6 +108,10 @@ export default function SiteLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className="w-full max-w-full overflow-x-hidden antialiased bg-background text-foreground">
+        <JsonLd
+          data={[buildOrganizationJsonLd(), buildWebsiteJsonLd()]}
+        />
+
         {/* Reset scroll position when navigating to a new page */}
         <ScrollToTop />
 

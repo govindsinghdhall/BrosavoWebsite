@@ -54,7 +54,25 @@ async function verifyAccessToken(token: string) {
   );
 }
 
+function redirectApexToWww(request: NextRequest) {
+  const host = request.headers.get("host")?.split(":")[0] ?? "";
+
+  if (host !== "brosavo.com") {
+    return null;
+  }
+
+  const url = request.nextUrl.clone();
+  url.hostname = "www.brosavo.com";
+  url.protocol = "https:";
+  return NextResponse.redirect(url, 308);
+}
+
 export async function middleware(request: NextRequest) {
+  const apexRedirect = redirectApexToWww(request);
+  if (apexRedirect) {
+    return apexRedirect;
+  }
+
   const { pathname } = request.nextUrl;
 
   const isBlogAdminPage = pathname.startsWith("/admin");
@@ -96,9 +114,6 @@ export async function middleware(request: NextRequest) {
 
 export const config = {
   matcher: [
-    "/admin/:path*",
-    "/api/blog/:path*",
-    "/api/admin/:path*",
-    "/api/protected/:path*",
+    "/((?!_next/static|_next/image|favicon.ico).*)",
   ],
 };

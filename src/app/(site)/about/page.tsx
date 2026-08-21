@@ -1,17 +1,21 @@
 import type { Metadata } from "next";
 import { PageHero } from "@/components/layout/PageHero";
+import { BrandIdentity } from "@/components/sections/BrandIdentity";
 import { JsonLd } from "@/components/blog/JsonLd";
+import { buildFaqJsonLd } from "@/lib/blog-seo";
+import { BRAND_FAQS } from "@/lib/brand-faqs";
 import {
-  COMPANY_DESCRIPTION,
   LEGAL_NAME,
+  ORGANIZATION_ID,
   SITE_NAME,
   SITE_URL,
+  WEBSITE_ID,
 } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "About Brosavo — Brosavo Technologies",
   description:
-    "Brosavo Technologies is a global technology company building modern websites, AI-powered software, SaaS platforms, automation solutions, and industry-specific business systems across Canada and India.",
+    "Brosavo Technologies is a global technology company building modern websites, AI-powered software, SaaS platforms, automation solutions, and industry-specific business systems across Canada and India. Official website: www.brosavo.com.",
   alternates: {
     canonical: "/about",
   },
@@ -25,55 +29,35 @@ export const metadata: Metadata = {
   },
 };
 
-const organizationSchema = {
+const aboutPageSchema = {
   "@context": "https://schema.org",
-  "@type": "Organization",
-  name: SITE_NAME,
-  legalName: LEGAL_NAME,
-  url: SITE_URL,
-  logo: `${SITE_URL}/favicon.png`,
-  description: COMPANY_DESCRIPTION,
-  sameAs: [
-    "https://www.linkedin.com/company/brosavo/",
-    "https://github.com/brosavotechnologies",
-    "https://www.youtube.com/@brosavo",
-    "https://www.instagram.com/brosavo/",
-    "https://www.facebook.com/brosavo/",
-    "https://www.twitter.com/hellobrosavo/",
-    // "https://www.tiktok.com/@brosavotechnologies/",
-    // "https://www.pinterest.com/brosavotechnologies/",
-    // "https://www.reddit.com/r/brosavotechnologies/",
-  ],
-};
-
-const websiteSchema = {
-  "@context": "https://schema.org",
-  "@type": "WebPage",
+  "@type": "AboutPage",
   name: "About Brosavo",
   description:
     "Learn about Brosavo Technologies, a global technology company building websites, software, AI, SaaS, automation, and industry-specific business systems.",
   url: `${SITE_URL}/about`,
   isPartOf: {
-    "@type": "WebSite",
-    name: SITE_NAME,
-    url: SITE_URL,
+    "@id": WEBSITE_ID,
   },
   about: {
-    "@type": "Organization",
+    "@id": ORGANIZATION_ID,
     name: SITE_NAME,
+    legalName: LEGAL_NAME,
     url: SITE_URL,
   },
 };
 
 export default function AboutPage() {
+  const faqSchema = buildFaqJsonLd(BRAND_FAQS);
+
   return (
     <>
-      <JsonLd data={[organizationSchema, websiteSchema]} />
+      <JsonLd data={[aboutPageSchema, faqSchema]} />
 
       <PageHero
         label="About Brosavo"
-        title="Building the Future of Digital Infrastructure"
-        description="Brosavo Technologies builds modern digital products, software platforms, AI solutions, and business systems for ambitious companies worldwide."
+        title="About Brosavo Technologies"
+        description="Brosavo Technologies builds modern digital products, software platforms, AI solutions, and business systems for ambitious companies worldwide. Official site: www.brosavo.com."
       />
 
       <main className="container-wide">
@@ -235,6 +219,8 @@ export default function AboutPage() {
           </div>
         </section>
       </main>
+
+      <BrandIdentity />
     </>
   );
 }

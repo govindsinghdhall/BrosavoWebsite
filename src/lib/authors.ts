@@ -1,3 +1,5 @@
+import { SITE_URL } from "@/lib/site";
+
 export interface AuthorProfile {
   id: string;
   name: string;
@@ -16,7 +18,7 @@ export const AUTHORS: Record<string, AuthorProfile> = {
     bio: "Govind Dhall is the Founder of Brosavo and a software engineer with 6+ years of experience building CRM platforms, SaaS products, and enterprise applications. He specializes in real estate technology, automation, AI-powered workflows, and scalable cloud infrastructure, helping agencies streamline operations and increase sales.",
     avatar: "/images/authors/govind-dhall.jpg",
     linkedin: "https://linkedin.com/in/govinddhall",
-    website: "https://brosavo.com",
+    website: SITE_URL,
   },
   "brosavo-editorial": {
     id: "brosavo-editorial",
@@ -24,7 +26,7 @@ export const AUTHORS: Record<string, AuthorProfile> = {
     role: "Research & Content Team",
     bio: "The Brosavo Editorial Team publishes in-depth guides, industry research, software comparisons, and best practices for real estate professionals. Every article is reviewed for accuracy and updated regularly to reflect the latest trends in the real estate industry.",
     avatar: "/images/authors/editorial-team.jpg",
-    website: "https://brosavo.com",
+    website: SITE_URL,
   },
 };
 
@@ -63,7 +65,7 @@ export function resolveAuthor(authorNameOrId?: string | null): AuthorProfile {
     role: "Contributor",
     bio: `${raw} contributes insights on real estate technology and CRM best practices for Brosavo.`,
     avatar: "/images/authors/editorial-team.jpg",
-    website: "https://brosavo.com",
+    website: SITE_URL,
   };
 }
 
