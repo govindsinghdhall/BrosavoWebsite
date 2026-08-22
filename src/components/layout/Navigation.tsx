@@ -755,14 +755,14 @@ export function Navigation() {
               MOBILE ACTIONS
           ================================================= */}
 
-          <div className="flex items-center gap-1.5 xl:hidden">
+          <div className="flex items-center gap-1 sm:gap-1.5 xl:hidden">
             <ThemeToggle />
 
             {!mobileOpen && (
               <MagneticButton
                 href="/contact"
                 variant="primary"
-                className="!px-3 !py-2 !text-xs sm:!px-4 sm:!py-2.5 sm:!text-sm"
+                className="!hidden !px-4 !py-2.5 !text-sm sm:!inline-flex"
                 onClick={() =>
                   startNavigation("/contact")
                 }

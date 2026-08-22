@@ -215,6 +215,7 @@ export function Hero() {
           className="
             flex
             w-full
+            min-w-0
             flex-col
             items-center
             text-center
@@ -222,6 +223,8 @@ export function Hero() {
             lg:items-start
             lg:text-left
             xl:max-w-[880px]
+            max-lg:!translate-x-0
+            max-lg:!translate-y-0
           "
         >
           {/* =====================================================
@@ -242,11 +245,14 @@ export function Hero() {
             }}
             className="
               mb-7
+              w-full
+              min-w-0
               max-w-[880px]
               px-0
               font-black
-              tracking-[-0.055em]
+              tracking-[-0.04em]
               text-foreground
+              sm:tracking-[-0.055em]
             "
           >
             {/* -------------------------------------------------
@@ -255,16 +261,14 @@ export function Hero() {
             <span
               className="
                 relative
+                mx-auto
                 mb-4
                 block
                 w-fit
                 text-foreground/60
-                text-[1.8rem]
+                text-[clamp(1.5rem,6vw,2.5rem)]
                 leading-none
-                sm:text-[2rem]
-                md:text-[2.2rem]
-                lg:text-[2.35rem]
-                xl:text-[2.5rem]
+                lg:mx-0
               "
             >
               BROS
@@ -306,13 +310,11 @@ export function Hero() {
             <span
               className="
                 block
-                whitespace-nowrap
-                text-[2.4rem]
-                leading-[1.02]
-                sm:text-[3.25rem]
-                md:text-[3.6rem]
-                lg:text-[4rem]
-                xl:text-[4.25rem]
+                text-[clamp(1.7rem,7.4vw,4.25rem)]
+                leading-[1.12]
+                text-balance
+                sm:leading-[1.06]
+                lg:leading-[1.02]
               "
             >
               Software &amp; Technology
@@ -323,17 +325,16 @@ export function Hero() {
             ------------------------------------------------- */}
             <span
               className="
-                mt-2
+                mt-1
                 block
-                whitespace-nowrap
                 bg-[length:200%_100%]
                 text-gradient-accent
-                text-[2.4rem]
-                leading-[1.02]
-                sm:text-[3.25rem]
-                md:text-[3.6rem]
-                lg:text-[4rem]
-                xl:text-[4.25rem]
+                text-[clamp(1.7rem,7.4vw,4.25rem)]
+                leading-[1.12]
+                text-balance
+                sm:mt-2
+                sm:leading-[1.06]
+                lg:leading-[1.02]
               "
             >
               for Modern Businesses
@@ -399,10 +400,14 @@ export function Hero() {
             }}
             className="
               flex
+              w-full
+              min-w-0
               flex-col
-              items-center
+              items-stretch
               gap-3
+              sm:w-auto
               sm:flex-row
+              sm:items-center
               sm:gap-4
             "
           >
@@ -410,9 +415,12 @@ export function Hero() {
               href="/services"
               variant="primary"
               className="
-                !px-8
+                w-full
+                justify-center
+                !px-6
                 !py-3.5
                 !text-sm
+                sm:w-auto
                 sm:!px-10
                 sm:!py-4
               "
@@ -425,9 +433,12 @@ export function Hero() {
               href="/contact"
               variant="secondary"
               className="
-                !px-8
+                w-full
+                justify-center
+                !px-6
                 !py-3.5
                 !text-sm
+                sm:w-auto
                 sm:!px-10
                 sm:!py-4
               "

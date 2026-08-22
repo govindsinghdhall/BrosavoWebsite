@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+
 import { PageHero } from "@/components/layout/PageHero";
 import { Services } from "@/components/sections/Services";
 import { SITE_URL } from "@/lib/site";
@@ -35,14 +36,24 @@ export const metadata: Metadata = {
 
 export default function ServicesPage() {
   return (
-    <>
-      <PageHero
-        label="Software & Technology"
-        title="Technology Solutions Built Around Your Business"
-        description="Brosavo designs and builds custom software, AI solutions, SaaS platforms, automation systems, cloud infrastructure, and industry-specific technology that helps businesses operate, automate, and scale."
-      />
+    <main className="w-full overflow-x-hidden">
+      {/* ============================================================
+          HERO
+          ============================================================ */}
+      <section className="relative min-h-[100svh] w-full">
+        <PageHero
+          label="Software & Technology"
+          title="Technology Solutions Built Around Your Business"
+          description="Brosavo designs and builds custom software, AI solutions, SaaS platforms, automation systems, cloud infrastructure, and industry-specific technology that helps businesses operate, automate, and scale."
+        />
+      </section>
 
-      <Services showHeader={false} />
-    </>
+      {/* ============================================================
+          SERVICES
+          ============================================================ */}
+      <section className="relative min-h-[100svh] w-full">
+        <Services showHeader={false} />
+      </section>
+    </main>
   );
 }
