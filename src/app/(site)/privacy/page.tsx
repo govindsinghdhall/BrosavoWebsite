@@ -7,7 +7,7 @@ import { PRIVACY_SECTIONS } from "@/lib/legal";
 export const metadata: Metadata = {
   title: "Privacy Policy — BROSAVO",
   description:
-    "How BROSAVO collects, uses, and protects your personal information.",
+    "Read the BROSAVO Privacy Policy to learn how we collect, use, protect and manage information when you use our website and services.",
 };
 
 export default function PrivacyPage() {

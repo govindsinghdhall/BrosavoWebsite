@@ -85,13 +85,11 @@ const STATIC_ROUTES = [
     priority: 1.0,
     changeFrequency: "weekly" as const,
   },
-
   {
     route: "/best-real-estate-crm",
     priority: 0.95,
     changeFrequency: "monthly" as const,
   },
-
   {
     route: "/real-estate-crm-pricing",
     priority: 0.9,
@@ -107,25 +105,21 @@ const STATIC_ROUTES = [
     priority: 0.9,
     changeFrequency: "monthly" as const,
   },
-
   {
     route: "/real-estate-crm-for-realtors",
     priority: 0.9,
     changeFrequency: "monthly" as const,
   },
-
   {
     route: "/real-estate-crm-for-brokers",
     priority: 0.9,
     changeFrequency: "monthly" as const,
   },
-
   {
     route: "/real-estate-crm-for-brokerages",
     priority: 0.9,
     changeFrequency: "monthly" as const,
   },
-
   {
     route: "/real-estate-crm-for-developers",
     priority: 0.9,
@@ -141,19 +135,16 @@ const STATIC_ROUTES = [
     priority: 0.95,
     changeFrequency: "monthly" as const,
   },
-
   {
     route: "/real-estate-sales-crm",
     priority: 0.9,
     changeFrequency: "monthly" as const,
   },
-
   {
     route: "/whatsapp-crm-for-real-estate",
     priority: 0.9,
     changeFrequency: "monthly" as const,
   },
-
   {
     route: "/property-management-crm",
     priority: 0.85,
@@ -171,6 +162,31 @@ const STATIC_ROUTES = [
   },
 
   // ============================================================
+  // REAL ESTATE WEBSITE — COMMERCIAL PAGES
+  // ============================================================
+
+  {
+    route: "/real-estate-website-development",
+    priority: 0.85,
+    changeFrequency: "monthly" as const,
+  },
+  {
+    route: "/real-estate-website-for-agents",
+    priority: 0.8,
+    changeFrequency: "monthly" as const,
+  },
+  {
+    route: "/real-estate-website-for-brokers",
+    priority: 0.8,
+    changeFrequency: "monthly" as const,
+  },
+  {
+    route: "/real-estate-website-for-developers",
+    priority: 0.8,
+    changeFrequency: "monthly" as const,
+  },
+
+  // ============================================================
   // LEGAL
   // ============================================================
 
@@ -179,7 +195,6 @@ const STATIC_ROUTES = [
     priority: 0.3,
     changeFrequency: "yearly" as const,
   },
-
   {
     route: "/privacy",
     priority: 0.3,
@@ -218,7 +233,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         priority: 0.85,
       };
 
-      const cityEntries: MetadataRoute.Sitemap =
+      const cityEntries: MetadataRoute.Sitemap[number][] =
         country.cities.map((city) => ({
           url: `${SITE_URL}/real-estate-crm/${country.slug}/${city.slug}`,
           changeFrequency: "monthly",
