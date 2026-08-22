@@ -1,9 +1,8 @@
-import type { Metadata, Viewport } from "next";
+import type { Metadata } from "next";
 import { Navigation } from "@/components/layout/Navigation";
 import { Footer } from "@/components/layout/Footer";
 import { SmoothScroll } from "@/components/providers/SmoothScroll";
 import { GSAPProvider } from "@/components/providers/GSAPProvider";
-import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import { ScrollToTop } from "@/components/providers/ScrollToTop";
 import { ContactPopup } from "@/components/ui/ContactPopup";
 import { GoogleTagManager } from "@next/third-parties/google";
@@ -19,13 +18,6 @@ import {
   SITE_NAME,
   SITE_URL,
 } from "@/lib/site";
-import "../globals.css";
-
-export const viewport: Viewport = {
-  width: "device-width",
-  initialScale: 1,
-  viewportFit: "cover",
-};
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -106,35 +98,30 @@ export default function SiteLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className="w-full max-w-full overflow-x-hidden antialiased bg-background text-foreground">
-        <JsonLd
-          data={[buildOrganizationJsonLd(), buildWebsiteJsonLd()]}
-        />
+    <>
+      <JsonLd data={[buildOrganizationJsonLd(), buildWebsiteJsonLd()]} />
 
-        {/* Reset scroll position when navigating to a new page */}
-        <ScrollToTop />
+      <ScrollToTop />
 
+      {process.env.NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID ? (
         <GoogleTagManager
-          gtmId={process.env.NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID!}
+          gtmId={process.env.NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID}
         />
+      ) : null}
 
-        <ThemeProvider>
-          <SmoothScroll>
-            <GSAPProvider>
-              <Navigation />
+      <SmoothScroll>
+        <GSAPProvider>
+          <Navigation />
 
-              <main className="w-full max-w-full overflow-x-hidden">
-                {children}
-              </main>
+          <main className="w-full max-w-full overflow-x-hidden">
+            {children}
+          </main>
 
-              <Footer />
+          <Footer />
 
-              <ContactPopup />
-            </GSAPProvider>
-          </SmoothScroll>
-        </ThemeProvider>
-      </body>
-    </html>
+          <ContactPopup />
+        </GSAPProvider>
+      </SmoothScroll>
+    </>
   );
 }

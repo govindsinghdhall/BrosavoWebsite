@@ -47,8 +47,6 @@ export function Hero() {
 
         {/* ---------------------------------------------------------
             Desktop Background Only
-            ---------------------------------------------------------
-            Hidden below lg so mobile/tablet has a clean background.
         --------------------------------------------------------- */}
         <div className="absolute bottom-0 right-0 top-24 hidden w-[56%] mask-[linear-gradient(to_right,transparent,black_22%)] lg:block">
           <Image
@@ -191,16 +189,20 @@ export function Hero() {
           min-h-screen
           w-full
           max-w-[1440px]
-          items-center
+          flex-col
+          justify-between
           px-6
-          py-24
+          py-8
           sm:px-8
-          lg:justify-start
           lg:px-12
           xl:px-16
-          lg:pt-32
+          lg:py-10
+          pt-20
+          sm:pt-24
+          lg:pt-28
         "
       >
+        {/* Main content wrapper - centered vertically */}
         <motion.div
           animate={{
             x: pointer.x * 0.45,
@@ -215,14 +217,13 @@ export function Hero() {
           className="
             flex
             w-full
-            min-w-0
+            flex-1
             flex-col
             items-center
+            justify-center
             text-center
-            lg:max-w-[860px]
             lg:items-start
             lg:text-left
-            xl:max-w-[880px]
             max-lg:!translate-x-0
             max-lg:!translate-y-0
           "
@@ -244,11 +245,9 @@ export function Hero() {
               duration: 0.9,
             }}
             className="
-              mb-7
+              mb-6
               w-full
-              min-w-0
               max-w-[880px]
-              px-0
               font-black
               tracking-[-0.04em]
               text-foreground
@@ -262,11 +261,11 @@ export function Hero() {
               className="
                 relative
                 mx-auto
-                mb-4
+                mb-3
                 block
                 w-fit
                 text-foreground/60
-                text-[clamp(1.5rem,6vw,2.5rem)]
+                text-[clamp(1.2rem,4vw,2rem)]
                 leading-none
                 lg:mx-0
               "
@@ -293,7 +292,7 @@ export function Hero() {
                   -bottom-2
                   left-0
                   h-0.75
-                  w-12
+                  w-10
                   rounded-full
                   bg-linear-to-r
                   from-accent-blue
@@ -310,7 +309,7 @@ export function Hero() {
             <span
               className="
                 block
-                text-[clamp(1.7rem,7.4vw,4.25rem)]
+                text-[clamp(1.5rem,6vw,3.5rem)]
                 leading-[1.12]
                 text-balance
                 sm:leading-[1.06]
@@ -329,7 +328,7 @@ export function Hero() {
                 block
                 bg-[length:200%_100%]
                 text-gradient-accent
-                text-[clamp(1.7rem,7.4vw,4.25rem)]
+                text-[clamp(1.5rem,6vw,3.5rem)]
                 leading-[1.12]
                 text-balance
                 sm:mt-2
@@ -358,14 +357,14 @@ export function Hero() {
               duration: 0.8,
             }}
             className="
-              mb-9
+              mb-8
               max-w-[640px]
-              text-base
+              text-sm
               leading-7
               text-muted
-              sm:text-lg
+              sm:text-base
               sm:leading-8
-              lg:text-[1.1rem]
+              lg:text-[1rem]
               lg:leading-8
             "
           >
@@ -383,7 +382,7 @@ export function Hero() {
           </motion.p>
 
           {/* =====================================================
-              CTA BUTTONS
+              CTA BUTTONS - FIXED VERSION
           ===================================================== */}
           <motion.div
             initial={{
@@ -401,7 +400,6 @@ export function Hero() {
             className="
               flex
               w-full
-              min-w-0
               flex-col
               items-stretch
               gap-3
@@ -417,16 +415,19 @@ export function Hero() {
               className="
                 w-full
                 justify-center
-                !px-6
+                whitespace-nowrap
+                !px-4
                 !py-3.5
-                !text-sm
+                !text-xs
                 sm:w-auto
-                sm:!px-10
+                sm:!px-8
                 sm:!py-4
+                sm:!text-sm
+                lg:!px-10
               "
             >
               Explore Our Solutions
-              <ArrowRight className="h-4 w-4" />
+              <ArrowRight className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
             </MagneticButton>
 
             <MagneticButton
@@ -435,253 +436,280 @@ export function Hero() {
               className="
                 w-full
                 justify-center
-                !px-6
+                whitespace-nowrap
+                !px-4
                 !py-3.5
-                !text-sm
+                !text-xs
                 sm:w-auto
-                sm:!px-10
+                sm:!px-8
                 sm:!py-4
+                sm:!text-sm
+                lg:!px-10
               "
             >
               Build With Brosavo
             </MagneticButton>
           </motion.div>
+        </motion.div>
 
-          {/* =====================================================
-              TRUST / VALUE CARDS
-          ===================================================== */}
-          <motion.div
-            initial={{
-              opacity: 0,
-              y: 20,
-            }}
-            animate={{
-              opacity: 1,
-              y: 0,
-            }}
-            transition={{
-              delay: 0.6,
-              duration: 0.8,
-            }}
+        {/* =====================================================
+            TRUST / VALUE CARDS
+        ===================================================== */}
+        <motion.div
+          initial={{
+            opacity: 0,
+            y: 20,
+          }}
+          animate={{
+            opacity: 1,
+            y: 0,
+          }}
+          transition={{
+            delay: 0.6,
+            duration: 0.8,
+          }}
+          className="
+            mt-8
+            grid
+            w-full
+            grid-cols-2
+            gap-2
+            sm:grid-cols-4
+            sm:gap-3
+            lg:mt-6
+          "
+        >
+          {/* -------------------------------------------------
+              GLOBAL REACH
+          ------------------------------------------------- */}
+          <div
             className="
-              mt-10
-              grid
-              w-full
-              grid-cols-1
-              gap-3
-              sm:grid-cols-2
-              lg:grid-cols-4
-              lg:gap-3
+              group
+              flex
+              min-h-[60px]
+              items-center
+              gap-2.5
+              rounded-xl
+              border
+              border-border/60
+              bg-background/60
+              px-3
+              py-2.5
+              backdrop-blur-md
+              transition-all
+              duration-300
+              hover:-translate-y-1
+              hover:border-accent-blue/30
+              hover:bg-background/80
+              sm:min-h-[76px]
+              sm:gap-3
+              sm:px-4
+              sm:py-3.5
             "
           >
-            {/* -------------------------------------------------
-                GLOBAL REACH
-            ------------------------------------------------- */}
             <div
               className="
-                group
                 flex
-                min-h-[76px]
+                h-8
+                w-8
+                shrink-0
                 items-center
-                gap-3
-                rounded-xl
-                border
-                border-border/60
-                bg-background/60
-                px-3
-                py-3
-                backdrop-blur-md
-                transition-all
+                justify-center
+                rounded-lg
+                bg-accent-blue/10
+                transition-transform
                 duration-300
-                hover:-translate-y-1
-                hover:border-accent-blue/30
-                hover:bg-background/80
+                group-hover:scale-105
+                sm:h-10
+                sm:w-10
               "
             >
-              <div
-                className="
-                  flex
-                  h-10
-                  w-10
-                  shrink-0
-                  items-center
-                  justify-center
-                  rounded-lg
-                  bg-accent-blue/10
-                  transition-transform
-                  duration-300
-                  group-hover:scale-105
-                "
-              >
-                <Globe2 className="h-5 w-5 text-accent-blue" />
-              </div>
-
-              <div className="min-w-0">
-                <p className="truncate text-xs font-semibold text-foreground">
-                  Global Reach
-                </p>
-                <p className="mt-0.5 text-[11px] leading-4 text-muted">
-                  Serving businesses worldwide
-                </p>
-              </div>
+              <Globe2 className="h-4 w-4 text-accent-blue sm:h-5 sm:w-5" />
             </div>
 
-            {/* -------------------------------------------------
-                BUSINESS FOCUS
-            ------------------------------------------------- */}
+            <div className="min-w-0">
+              <p className="truncate text-[10px] font-semibold text-foreground sm:text-xs">
+                Global Reach
+              </p>
+              <p className="mt-0.5 truncate text-[10px] leading-3 text-muted sm:text-[11px] sm:leading-4">
+                Serving worldwide
+              </p>
+            </div>
+          </div>
+
+          {/* -------------------------------------------------
+              BUSINESS FOCUS
+          ------------------------------------------------- */}
+          <div
+            className="
+              group
+              flex
+              min-h-[60px]
+              items-center
+              gap-2.5
+              rounded-xl
+              border
+              border-border/60
+              bg-background/60
+              px-3
+              py-2.5
+              backdrop-blur-md
+              transition-all
+              duration-300
+              hover:-translate-y-1
+              hover:border-accent-blue/30
+              hover:bg-background/80
+              sm:min-h-[76px]
+              sm:gap-3
+              sm:px-4
+              sm:py-3.5
+            "
+          >
             <div
               className="
-                group
                 flex
-                min-h-[76px]
+                h-8
+                w-8
+                shrink-0
                 items-center
-                gap-3
-                rounded-xl
-                border
-                border-border/60
-                bg-background/60
-                px-3
-                py-3
-                backdrop-blur-md
-                transition-all
+                justify-center
+                rounded-lg
+                bg-accent-blue/10
+                transition-transform
                 duration-300
-                hover:-translate-y-1
-                hover:border-accent-blue/30
-                hover:bg-background/80
+                group-hover:scale-105
+                sm:h-10
+                sm:w-10
               "
             >
-              <div
-                className="
-                  flex
-                  h-10
-                  w-10
-                  shrink-0
-                  items-center
-                  justify-center
-                  rounded-lg
-                  bg-accent-blue/10
-                  transition-transform
-                  duration-300
-                  group-hover:scale-105
-                "
-              >
-                <Users className="h-5 w-5 text-accent-blue" />
-              </div>
-
-              <div className="min-w-0">
-                <p className="truncate text-xs font-semibold text-foreground">
-                  Business Focus
-                </p>
-                <p className="mt-0.5 text-[11px] leading-4 text-muted">
-                  Built for modern teams
-                </p>
-              </div>
+              <Users className="h-4 w-4 text-accent-blue sm:h-5 sm:w-5" />
             </div>
 
-            {/* -------------------------------------------------
-                TRUSTED TECHNOLOGY
-            ------------------------------------------------- */}
+            <div className="min-w-0">
+              <p className="truncate text-[10px] font-semibold text-foreground sm:text-xs">
+                Business Focus
+              </p>
+              <p className="mt-0.5 truncate text-[10px] leading-3 text-muted sm:text-[11px] sm:leading-4">
+                For modern teams
+              </p>
+            </div>
+          </div>
+
+          {/* -------------------------------------------------
+              TRUSTED TECHNOLOGY
+          ------------------------------------------------- */}
+          <div
+            className="
+              group
+              flex
+              min-h-[60px]
+              items-center
+              gap-2.5
+              rounded-xl
+              border
+              border-border/60
+              bg-background/60
+              px-3
+              py-2.5
+              backdrop-blur-md
+              transition-all
+              duration-300
+              hover:-translate-y-1
+              hover:border-accent-violet/30
+              hover:bg-background/80
+              sm:min-h-[76px]
+              sm:gap-3
+              sm:px-4
+              sm:py-3.5
+            "
+          >
             <div
               className="
-                group
                 flex
-                min-h-[76px]
+                h-8
+                w-8
+                shrink-0
                 items-center
-                gap-3
-                rounded-xl
-                border
-                border-border/60
-                bg-background/60
-                px-3
-                py-3
-                backdrop-blur-md
-                transition-all
+                justify-center
+                rounded-lg
+                bg-accent-violet/10
+                transition-transform
                 duration-300
-                hover:-translate-y-1
-                hover:border-accent-violet/30
-                hover:bg-background/80
+                group-hover:scale-105
+                sm:h-10
+                sm:w-10
               "
             >
-              <div
-                className="
-                  flex
-                  h-10
-                  w-10
-                  shrink-0
-                  items-center
-                  justify-center
-                  rounded-lg
-                  bg-accent-violet/10
-                  transition-transform
-                  duration-300
-                  group-hover:scale-105
-                "
-              >
-                <ShieldCheck className="h-5 w-5 text-accent-violet" />
-              </div>
-
-              <div className="min-w-0">
-                <p className="truncate text-xs font-semibold text-foreground">
-                  Trusted Technology
-                </p>
-                <p className="mt-0.5 text-[11px] leading-4 text-muted">
-                  Secure &amp; reliable
-                </p>
-              </div>
+              <ShieldCheck className="h-4 w-4 text-accent-violet sm:h-5 sm:w-5" />
             </div>
 
-            {/* -------------------------------------------------
-                INNOVATIVE SOLUTIONS
-            ------------------------------------------------- */}
+            <div className="min-w-0">
+              <p className="truncate text-[10px] font-semibold text-foreground sm:text-xs">
+                Trusted Technology
+              </p>
+              <p className="mt-0.5 truncate text-[10px] leading-3 text-muted sm:text-[11px] sm:leading-4">
+                Secure &amp; reliable
+              </p>
+            </div>
+          </div>
+
+          {/* -------------------------------------------------
+              INNOVATIVE SOLUTIONS
+          ------------------------------------------------- */}
+          <div
+            className="
+              group
+              flex
+              min-h-[60px]
+              items-center
+              gap-2.5
+              rounded-xl
+              border
+              border-border/60
+              bg-background/60
+              px-3
+              py-2.5
+              backdrop-blur-md
+              transition-all
+              duration-300
+              hover:-translate-y-1
+              hover:border-accent-cyan/30
+              hover:bg-background/80
+              sm:min-h-[76px]
+              sm:gap-3
+              sm:px-4
+              sm:py-3.5
+            "
+          >
             <div
               className="
-                group
                 flex
-                min-h-[76px]
+                h-8
+                w-8
+                shrink-0
                 items-center
-                gap-3
-                rounded-xl
-                border
-                border-border/60
-                bg-background/60
-                px-3
-                py-3
-                backdrop-blur-md
-                transition-all
+                justify-center
+                rounded-lg
+                bg-accent-cyan/10
+                transition-transform
                 duration-300
-                hover:-translate-y-1
-                hover:border-accent-cyan/30
-                hover:bg-background/80
+                group-hover:scale-105
+                sm:h-10
+                sm:w-10
               "
             >
-              <div
-                className="
-                  flex
-                  h-10
-                  w-10
-                  shrink-0
-                  items-center
-                  justify-center
-                  rounded-lg
-                  bg-accent-cyan/10
-                  transition-transform
-                  duration-300
-                  group-hover:scale-105
-                "
-              >
-                <Rocket className="h-5 w-5 text-accent-cyan" />
-              </div>
-
-              <div className="min-w-0">
-                <p className="truncate text-xs font-semibold text-foreground">
-                  Innovative Solutions
-                </p>
-                <p className="mt-0.5 text-[11px] leading-4 text-muted">
-                  Built for growth
-                </p>
-              </div>
+              <Rocket className="h-4 w-4 text-accent-cyan sm:h-5 sm:w-5" />
             </div>
-          </motion.div>
+
+            <div className="min-w-0">
+              <p className="truncate text-[10px] font-semibold text-foreground sm:text-xs">
+                Innovative Solutions
+              </p>
+              <p className="mt-0.5 truncate text-[10px] leading-3 text-muted sm:text-[11px] sm:leading-4">
+                Built for growth
+              </p>
+            </div>
+          </div>
         </motion.div>
       </motion.div>
 

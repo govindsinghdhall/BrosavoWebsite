@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import "../globals.css";
 
 export const metadata: Metadata = {
   title: "Blog Admin",
@@ -12,10 +11,8 @@ export default function BlogAdminLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className="min-h-screen antialiased bg-background text-foreground">
-        {children}
-      </body>
-    </html>
+    <div className="min-h-screen antialiased bg-background text-foreground">
+      {children}
+    </div>
   );
 }
