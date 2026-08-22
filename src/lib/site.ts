@@ -71,7 +71,7 @@ export const PRODUCT_CTA = {
   text: "Brosavo Real Estate CRM helps real estate professionals capture leads, automate follow-ups, manage properties, organize customer relationships, and streamline their daily operations from one modern platform.",
   primaryLabel: "Book a Free Demo",
   primaryHref: "/contact",
-  secondaryLabel: "Explore Brosavo Real Estate CRM",
+  secondaryLabel: "Read the Real Estate CRM overview",
   secondaryHref: "/real-estate-crm",
 } as const;
 

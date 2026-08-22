@@ -65,7 +65,7 @@ const plans = [
       "Advanced Permissions",
       "Data Migration",
     ],
-    href: "/contact?plan=enterprise",
+    href: "/contact",
     primary: false,
   },
 ];
@@ -124,16 +124,19 @@ export default function Pricing() {
             id="pricing-heading"
             className="mt-4 text-3xl font-semibold leading-[1.05] tracking-[-0.05em] text-foreground sm:text-4xl lg:text-[2.75rem]"
           >
-            Start small.
+            Real Estate CRM pricing plans
             <br />
             <span className="text-gradient-accent">
-              Scale when you&apos;re ready.
+              that scale with your team.
             </span>
           </h2>
 
           <p className="mx-auto mt-3 max-w-2xl text-sm leading-6 text-muted sm:text-base sm:leading-7">
-            Start with a 14-day free trial and choose the real estate CRM plan
-            that fits the way your team sells.
+            Brosavo pricing is simple: Starter at ₹999 per month, Professional
+            at ₹2,499 per month, and custom Enterprise for multi-branch teams.
+            Starter and Professional include a 14-day free trial so you can
+            evaluate lead management, property inventory and pipeline tools
+            before you commit.
           </p>
         </motion.div>
 
@@ -183,9 +186,9 @@ export default function Pricing() {
               ====================================================== */}
 
               <div className="flex flex-1 flex-col p-5 sm:p-6">
-                <div className="pr-24 text-sm font-semibold text-foreground">
-                  {plan.name}
-                </div>
+                <h3 className="pr-24 text-sm font-semibold text-foreground">
+                  {plan.name} Plan
+                </h3>
 
                 <p className="mt-1.5 max-w-[90%] text-sm leading-5 text-muted">
                   {plan.description}
@@ -234,8 +237,10 @@ export default function Pricing() {
                   }`}
                 >
                   {plan.name === "Enterprise"
-                    ? "Book Live Demo"
-                    : "Start Free 14-Day Trial"}
+                    ? "Request Enterprise CRM pricing"
+                    : plan.name === "Professional"
+                      ? "Start Professional plan trial"
+                      : "Start Starter plan trial"}
                 </Link>
 
                 <div className="my-5 h-px bg-border/70" />

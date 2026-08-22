@@ -118,11 +118,11 @@ export function FeaturedProduct() {
             ===================================================== */}
             <div className="mt-8 flex flex-wrap gap-3">
               <MagneticButton
-                href="/products#real-estate-crm"
+                href="/real-estate-crm"
                 variant="primary"
                 className="!px-7 !py-3.5 !text-sm"
               >
-                Explore Real Estate Solutions
+                See Brosavo Real Estate CRM
                 <ArrowRight className="h-4 w-4" />
               </MagneticButton>
 
@@ -155,9 +155,9 @@ export function FeaturedProduct() {
               PRODUCT PREVIEW
           ===================================================== */}
           <Link
-            href="/products#real-estate-crm"
+            href="/real-estate-crm"
             className="group block"
-            aria-label="Explore Brosavo Real Estate CRM"
+            aria-label="Open the Brosavo Real Estate CRM product page"
           >
             <motion.div
               initial={{

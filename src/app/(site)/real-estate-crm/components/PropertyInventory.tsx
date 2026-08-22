@@ -62,7 +62,7 @@ export default function PropertyInventory() {
             Property Inventory Management
           </span>
 
-          <h2
+          <p
             id="property-inventory-heading"
             className="mt-5 text-4xl font-semibold leading-[1.05] tracking-[-0.045em] sm:text-5xl"
           >
@@ -71,7 +71,7 @@ export default function PropertyInventory() {
               {" "}
               ready to sell.
             </span>
-          </h2>
+          </p>
 
           <p className="mt-5 max-w-xl text-base leading-7 text-muted sm:text-lg sm:leading-8">
             Manage properties, listings, availability, pricing and property
@@ -95,9 +95,9 @@ export default function PropertyInventory() {
                     {item.number}
                   </span>
 
-                  <h3 className="text-xs font-semibold text-foreground">
+                  <p className="text-xs font-semibold text-foreground">
                     {item.title}
-                  </h3>
+                  </p>
                 </div>
 
                 <p className="mt-1.5 text-[11px] leading-5 text-muted">

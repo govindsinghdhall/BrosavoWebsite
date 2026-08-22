@@ -2,115 +2,7 @@
 
 import { motion } from "framer-motion";
 
-const faqs = [
-  {
-    question: "What is a real estate CRM?",
-    answer:
-      "A real estate CRM is software that helps agents, brokers, agencies and sales teams manage leads, customers, property inventory, follow-ups and sales opportunities from one centralized platform. Instead of managing information across spreadsheets and disconnected tools, a CRM brings the sales workflow together in one place.",
-  },
-
-  {
-    question: "Who is Brosavo Real Estate CRM for?",
-    answer:
-      "Brosavo Real Estate CRM is designed for individual real estate agents, brokers, real estate agencies, sales teams and property developers. It helps teams manage leads, properties, customer requirements, follow-ups, sales pipelines and team activity from one platform.",
-  },
-
-  {
-    question: "What features are included in Brosavo Real Estate CRM?",
-    answer:
-      "Brosavo combines lead management, customer management, property inventory, property matching, sales pipeline management, follow-ups and tasks, WhatsApp workflows, website lead capture, analytics, team management and mobile CRM capabilities.",
-  },
-
-  {
-    question: "Does Brosavo include a real estate website?",
-    answer:
-      "Yes. The Starter plan includes a professional website with property listings and lead capture. The Professional plan adds advanced website capabilities, including blog, SEO tools and property portal capabilities.",
-  },
-
-  {
-    question: "Does Brosavo support WhatsApp for real estate sales?",
-    answer:
-      "Yes. Starter includes WhatsApp notifications, while the Professional plan includes WhatsApp API integration. This allows real estate teams to keep customer communication closer to their CRM sales workflow.",
-  },
-
-  {
-    question: "Does Brosavo integrate with 99acres?",
-    answer:
-      "99acres integration is available as part of the Professional website and property portal capabilities. The specific integration capabilities depend on the supported workflow and configuration.",
-  },
-
-  {
-    question: "Does Brosavo integrate with Magicbricks and Housing.com?",
-    answer:
-      "Brosavo is designed to bring property channels, listings, enquiries and customer requirements closer to the same CRM workflow. Specific portal integrations and supported capabilities depend on the available integration and configuration.",
-  },
-
-  {
-    question: "Does Brosavo have AI features?",
-    answer:
-      "Yes. Brosavo includes AI capabilities designed to help real estate teams work more efficiently, surface customer insights and support recommendations and next-best actions within the sales workflow.",
-  },
-
-  {
-    question: "Can Brosavo capture leads from a real estate website?",
-    answer:
-      "Yes. Brosavo can capture property enquiries from a professional real estate website and bring those enquiries into the CRM workflow so your team can qualify, assign and follow up with prospects.",
-  },
-
-  {
-    question: "Can Brosavo manage property inventory?",
-    answer:
-      "Yes. Brosavo includes property inventory management for listings, availability, pricing and property information. Teams can keep property information closer to customer requirements and sales opportunities.",
-  },
-
-  {
-    question: "Does Brosavo have a sales pipeline?",
-    answer:
-      "Yes. Brosavo provides a structured sales pipeline where teams can move opportunities through different stages, assign ownership and understand which opportunities are progressing or need attention.",
-  },
-
-  {
-    question: "Can Brosavo manage real estate team members?",
-    answer:
-      "Yes. Team management capabilities allow businesses to manage users, permissions, assignments and responsibilities from a centralized real estate CRM.",
-  },
-
-  {
-    question: "Does Brosavo have a mobile CRM app?",
-    answer:
-      "Yes. The Brosavo mobile app is available as an add-on. It is designed to keep sales teams connected to leads, customers and property information when they are away from their desks.",
-  },
-
-  {
-    question: "Does Brosavo provide calling?",
-    answer:
-      "Calling is not currently included as a standard Brosavo CRM feature.",
-  },
-
-  {
-    question: "Does Brosavo offer a free trial?",
-    answer:
-      "Yes. Starter and Professional plans include a 14-day free trial, allowing teams to evaluate the platform before choosing a paid plan.",
-  },
-
-  {
-    question: "How much does Brosavo Real Estate CRM cost?",
-    answer:
-      "Brosavo Starter costs ₹999 per month, Professional costs ₹2,499 per month and Enterprise pricing is customized based on the organization's requirements. Starter and Professional include a 14-day free trial.",
-  },
-
-  {
-    question: "Is Brosavo suitable for real estate agencies and developers?",
-    answer:
-      "Yes. Brosavo is designed for individual agents as well as brokers, agencies, sales teams and property developers. Enterprise capabilities include multiple users, websites and branches, custom integrations, API access, advanced permissions and data migration.",
-  },
-
-  {
-    question: "Can Brosavo replace spreadsheets for real estate sales?",
-    answer:
-      "Brosavo is designed to centralize the information that real estate teams commonly manage across spreadsheets and disconnected tools, including leads, customers, properties, follow-ups, sales opportunities and team activity.",
-  },
-] as const;
+import { REAL_ESTATE_CRM_FAQS } from "../faqs";
 
 export default function FAQ() {
   return (
@@ -160,10 +52,10 @@ export default function FAQ() {
               id="faq-heading"
               className="mt-4 text-3xl font-semibold leading-[1.05] tracking-[-0.045em] sm:text-4xl lg:text-5xl"
             >
-              Frequently asked
+              Frequently asked questions
               <br />
               <span className="text-gradient-accent">
-                questions.
+                about real estate CRM
               </span>
             </h2>
 
@@ -179,7 +71,7 @@ export default function FAQ() {
           ======================================================== */}
 
           <div className="mt-8 space-y-2.5">
-            {faqs.map((faq, index) => (
+            {REAL_ESTATE_CRM_FAQS.map((faq, index) => (
               <motion.details
                 key={faq.question}
                 initial={{
@@ -202,9 +94,9 @@ export default function FAQ() {
                 className="group overflow-hidden rounded-2xl border border-border/70 bg-background transition-colors duration-300 hover:border-violet-500/15"
               >
                 <summary className="flex cursor-pointer list-none items-center justify-between gap-5 px-5 py-4.5 text-sm font-medium text-foreground sm:px-6 sm:py-5">
-                  <span className="pr-4">
+                  <h3 className="pr-4 text-sm font-medium">
                     {faq.question}
-                  </span>
+                  </h3>
 
                   <span
                     aria-hidden="true"

@@ -213,7 +213,7 @@ export function RealEstateCRMInteractive() {
                 Overview
               </div>
 
-              <motion.h3
+              <motion.p
                 key={active}
                 initial={{
                   opacity: 0,
@@ -229,7 +229,7 @@ export function RealEstateCRMInteractive() {
                 className="mt-1 text-lg font-semibold tracking-tight sm:text-xl"
               >
                 {active}
-              </motion.h3>
+              </motion.p>
             </div>
 
             <button

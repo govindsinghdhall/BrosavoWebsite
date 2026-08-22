@@ -528,7 +528,7 @@ export default function Page() {
                   href="/real-estate-crm"
                   className="rounded-full bg-foreground px-6 py-3.5 text-center text-sm font-medium text-background transition hover:-translate-y-0.5"
                 >
-                  Explore Brosavo Real Estate CRM
+                  View CRM for every real estate team
                 </Link>
 
                 <Link

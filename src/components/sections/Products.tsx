@@ -160,11 +160,11 @@ function FeaturedCrm() {
               </MagneticButton>
 
               <MagneticButton
-                href="#more-products"
+                href="/real-estate-crm"
                 variant="secondary"
                 className="!px-7 !py-3.5 !text-sm"
               >
-                More platforms
+                Open Real Estate CRM overview
               </MagneticButton>
             </div>
           </div>

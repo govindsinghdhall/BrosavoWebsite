@@ -110,7 +110,7 @@ export default function MobileCRM() {
 
           {/* Heading */}
 
-          <h2
+          <p
             id="mobile-crm-heading"
             className="mt-5 text-4xl font-semibold leading-[1.05] tracking-[-0.045em] sm:text-5xl"
           >
@@ -119,7 +119,7 @@ export default function MobileCRM() {
             <span className="text-gradient-accent">
               operation with you.
             </span>
-          </h2>
+          </p>
 
           {/* Description */}
 
@@ -143,9 +143,9 @@ export default function MobileCRM() {
                     {item.number}
                   </span>
 
-                  <h3 className="text-xs font-semibold text-foreground">
+                  <p className="text-xs font-semibold text-foreground">
                     {item.title}
-                  </h3>
+                  </p>
                 </div>
 
                 <p className="mt-1.5 text-[11px] leading-5 text-muted">

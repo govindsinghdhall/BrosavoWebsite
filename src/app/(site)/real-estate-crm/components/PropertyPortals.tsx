@@ -70,7 +70,7 @@ export default function PropertyPortals() {
             Property Ecosystem
           </span>
 
-          <h2
+          <p
             id="property-ecosystem-heading"
             className="mt-4 text-3xl font-semibold leading-[1.05] tracking-[-0.045em] text-foreground sm:text-4xl lg:text-[2.65rem]"
           >
@@ -79,7 +79,7 @@ export default function PropertyPortals() {
             <span className="text-gradient-accent">
               One intelligent CRM.
             </span>
-          </h2>
+          </p>
 
           <p className="mx-auto mt-3 max-w-2xl text-sm leading-6 text-muted sm:text-base sm:leading-7">
             Bring property listings, enquiries and customer requirements
@@ -154,9 +154,9 @@ export default function PropertyPortals() {
                   </span>
                 </div>
 
-                <h3 className="mt-3 text-lg font-semibold tracking-[-0.02em] text-foreground">
+                <p className="mt-3 text-lg font-semibold tracking-[-0.02em] text-foreground">
                   {portal.name}
-                </h3>
+                </p>
 
                 <p className="mt-1.5 text-sm leading-6 text-muted">
                   {portal.description}

@@ -99,7 +99,7 @@ export default async function RealEstateCrmCountryPage({
                 href="/real-estate-crm"
                 className="rounded-full bg-foreground px-6 py-3 text-sm font-medium text-background transition hover:-translate-y-0.5"
               >
-                Explore Brosavo Real Estate CRM
+                See all Real Estate CRM features
               </Link>
 
               <Link

@@ -72,7 +72,7 @@ export default function Page() {
                 Book a Website Demo
               </Link>
               <Link href="/real-estate-crm" className="rounded-full border border-border/70 bg-background px-6 py-3.5 text-sm font-medium transition hover:-translate-y-0.5">
-                Explore Real Estate CRM
+                Pair websites with Real Estate CRM
               </Link>
             </div>
           </div>
@@ -181,7 +181,7 @@ export default function Page() {
             </p>
             <div className="mt-7 flex flex-col gap-3 sm:flex-row">
               <Link href="/real-estate-crm" className="rounded-full bg-background px-6 py-3.5 text-center text-sm font-medium text-foreground">
-                Explore Real Estate CRM
+                See how CRM and websites connect
               </Link>
               <Link href="/contact" className="rounded-full border border-background/20 px-6 py-3.5 text-center text-sm font-medium text-background">
                 Talk to Brosavo

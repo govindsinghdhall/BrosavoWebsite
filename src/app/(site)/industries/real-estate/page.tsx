@@ -67,11 +67,11 @@ export default function Page() {
               BROSAVO helps real estate businesses connect their website, lead management, CRM, property workflows and digital marketing.
             </p>
             <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
-              <Link href="https://crm.brosavo.com" className="rounded-full bg-foreground px-6 py-3.5 text-sm font-medium text-background">
-                Start Free 14-Day Trial
+              <Link href="/real-estate-crm" className="rounded-full bg-foreground px-6 py-3.5 text-sm font-medium text-background">
+                Open Brosavo Real Estate CRM
               </Link>
               <Link href="/contact" className="rounded-full border border-border/70 bg-background px-6 py-3.5 text-sm font-medium">
-                Book a Demo
+                Book a real estate CRM demo
               </Link>
             </div>
           </div>
@@ -144,8 +144,8 @@ export default function Page() {
               Explore BROSAVO website development, CRM, lead management and digital marketing solutions.
             </p>
             <div className="mt-7 flex flex-col gap-3 sm:flex-row">
-              <Link href="/contact" className="rounded-full bg-foreground px-6 py-3.5 text-center text-sm font-medium text-background">
-                Talk to BROSAVO
+              <Link href="/real-estate-crm" className="rounded-full bg-foreground px-6 py-3.5 text-center text-sm font-medium text-background">
+                See CRM for real estate teams
               </Link>
               <Link href="/services" className="rounded-full border border-border/70 px-6 py-3.5 text-center text-sm font-medium">
                 Explore Services

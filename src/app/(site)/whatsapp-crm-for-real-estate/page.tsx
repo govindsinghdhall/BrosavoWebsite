@@ -280,7 +280,7 @@ export default function Page() {
                 href="/real-estate-crm"
                 className="rounded-full bg-foreground px-6 py-3.5 text-center text-sm font-medium text-background"
               >
-                Explore Brosavo Real Estate CRM
+                See the full Real Estate CRM platform
               </Link>
 
               <Link

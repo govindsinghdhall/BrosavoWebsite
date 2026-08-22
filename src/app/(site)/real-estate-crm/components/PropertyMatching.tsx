@@ -66,7 +66,7 @@ export default function PropertyMatching() {
 
           {/* Heading */}
 
-          <h2
+          <p
             id="property-matching-heading"
             className="mt-3 text-3xl font-semibold leading-[1.02] tracking-[-0.05em] text-foreground sm:text-4xl lg:text-[2.5rem]"
           >
@@ -75,7 +75,7 @@ export default function PropertyMatching() {
             <span className="text-gradient-accent">
               properties that fit.
             </span>
-          </h2>
+          </p>
 
           {/* Description */}
 

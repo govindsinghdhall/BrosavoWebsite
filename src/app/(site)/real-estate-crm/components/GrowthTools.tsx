@@ -73,16 +73,12 @@ export default function GrowthTools() {
             Growth Tools
           </span>
 
-          <h2
+          <h3
             id="growth-tools-heading"
             className="mt-4 text-3xl font-semibold leading-[1.05] tracking-[-0.045em] text-foreground sm:text-4xl lg:text-[2.65rem]"
           >
-            Extend your CRM beyond
-            <br />
-            <span className="text-gradient-accent">
-              everyday sales management.
-            </span>
-          </h2>
+            Real-time analytics &amp; reporting
+          </h3>
 
           <p className="mx-auto mt-3 max-w-2xl text-sm leading-6 text-muted sm:text-base sm:leading-7">
             Capture more enquiries, help your team work smarter and understand
@@ -162,9 +158,9 @@ export default function GrowthTools() {
                   </span>
                 </div>
 
-                <h3 className="mt-3 text-xl font-semibold leading-tight tracking-[-0.025em] text-foreground">
+                <p className="mt-3 text-xl font-semibold leading-tight tracking-[-0.025em] text-foreground">
                   {card.title}
-                </h3>
+                </p>
 
                 <p className="mt-2.5 text-sm leading-6 text-muted">
                   {card.description}

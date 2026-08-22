@@ -35,16 +35,12 @@ export default function SalesPipeline() {
             Real Estate Sales Pipeline
           </span>
 
-          <h2
+          <h3
             id="sales-pipeline-heading"
             className="mt-5 text-4xl font-semibold leading-[1.05] tracking-[-0.045em] sm:text-5xl"
           >
-            Know where every opportunity
-            <span className="text-gradient-accent">
-              {" "}
-              stands next.
-            </span>
-          </h2>
+            Smart sales pipelines
+          </h3>
 
           <p className="mt-5 max-w-xl text-base leading-7 text-muted sm:text-lg sm:leading-8">
             Move real estate leads through a structured sales pipeline, assign
@@ -68,9 +64,9 @@ export default function SalesPipeline() {
                     {stage.number}
                   </span>
 
-                  <h3 className="text-xs font-semibold text-foreground">
+                  <p className="text-xs font-semibold text-foreground">
                     {stage.title}
-                  </h3>
+                  </p>
                 </div>
 
                 <p className="mt-1.5 text-[11px] leading-5 text-muted">

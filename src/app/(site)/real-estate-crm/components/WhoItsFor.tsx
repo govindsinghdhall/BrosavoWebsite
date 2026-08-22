@@ -75,7 +75,7 @@ export default function WhoItsFor() {
             Who It&apos;s For
           </span>
 
-          <h2
+          <p
             id="who-its-for-heading"
             className="mt-4 text-3xl font-semibold leading-[1.05] tracking-[-0.045em] text-foreground sm:text-4xl lg:text-[2.65rem]"
           >
@@ -84,7 +84,7 @@ export default function WhoItsFor() {
             <span className="text-gradient-accent">
               real estate businesses work.
             </span>
-          </h2>
+          </p>
 
           <p className="mx-auto mt-3 max-w-2xl text-sm leading-6 text-muted sm:text-base sm:leading-7">
             Whether you work independently, manage a brokerage, run an agency
@@ -138,9 +138,9 @@ export default function WhoItsFor() {
 
               {/* Content */}
 
-              <h3 className="mt-5 text-lg font-semibold leading-tight tracking-[-0.02em] text-foreground">
+              <p className="mt-5 text-lg font-semibold leading-tight tracking-[-0.02em] text-foreground">
                 {audience.title}
-              </h3>
+              </p>
 
               <p className="mt-2.5 text-sm leading-6 text-muted">
                 {audience.description}

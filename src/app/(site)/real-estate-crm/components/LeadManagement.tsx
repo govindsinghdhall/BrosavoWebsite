@@ -35,22 +35,20 @@ export default function LeadManagement() {
             Real Estate Lead Management
           </span>
 
-          <h2
+          <h3
             id="lead-management-heading"
             className="mt-5 text-4xl font-semibold leading-[1.05] tracking-[-0.045em] sm:text-5xl"
           >
-            Turn every enquiry into a
-            <span className="text-gradient-accent">
-              {" "}
-              clear next action.
-            </span>
-          </h2>
+            Lead scoring &amp; AI prioritization
+          </h3>
 
           <p className="mt-5 max-w-xl text-base leading-7 text-muted sm:text-lg sm:leading-8">
-            Brosavo helps real estate teams capture, organize and follow
-            leads from the first enquiry through conversion. Give every
-            opportunity a clear owner, status and next step without relying
-            on scattered spreadsheets or disconnected workflows.
+            How does Brosavo help agents? It captures website and WhatsApp
+            enquiries, then helps you prioritize the leads most likely to
+            convert. Every opportunity gets an owner, status and next step so
+            high-intent buyers are not buried under cold follow-ups. Teams
+            spend less time hunting across spreadsheets and more time
+            contacting the right people with the right listing context.
           </p>
 
           {/* ==========================================================
@@ -68,9 +66,9 @@ export default function LeadManagement() {
                     {item.number}
                   </span>
 
-                  <h3 className="text-xs font-semibold text-foreground">
+                  <p className="text-xs font-semibold text-foreground">
                     {item.title}
-                  </h3>
+                  </p>
                 </div>
 
                 <p className="mt-1.5 text-[11px] leading-5 text-muted">

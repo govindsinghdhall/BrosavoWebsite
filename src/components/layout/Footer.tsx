@@ -286,24 +286,10 @@ export function Footer() {
 
           <div className="flex flex-wrap items-center justify-center gap-4 md:gap-6">
             <Link
-              href="/privacy"
-              className="text-xs text-muted hover:text-foreground transition-colors"
-            >
-              Privacy
-            </Link>
-
-            <Link
-              href="/terms"
-              className="text-xs text-muted hover:text-foreground transition-colors"
-            >
-              Terms
-            </Link>
-
-            <Link
               href="/contact"
               className="text-xs text-muted hover:text-foreground transition-colors"
             >
-              Contact
+              Contact Brosavo
             </Link>
           </div>
 

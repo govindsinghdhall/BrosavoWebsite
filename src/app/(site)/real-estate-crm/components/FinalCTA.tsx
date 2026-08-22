@@ -66,21 +66,24 @@ export default function FinalCTA() {
               id="final-cta-heading"
               className="mt-5 text-3xl font-semibold leading-[1.05] tracking-[-0.05em] sm:text-5xl lg:text-6xl"
             >
-              Ready to run your
+              Start growing your
               <br />
               <span className="text-background/60">
-                real estate sales operation
+                real estate business today
               </span>
-              ?
             </h2>
 
             {/* Description */}
 
             <p className="mx-auto mt-5 max-w-2xl text-sm leading-7 text-background/65 sm:text-base sm:leading-8 lg:text-lg"
             >
-              Start with Brosavo Real Estate CRM and bring your leads,
-              properties, customers, follow-ups and sales pipeline into
-              one connected workflow.
+              Start with Brosavo Real Estate CRM and bring lead management,
+              property inventory, customer records, WhatsApp follow-ups and
+              your sales pipeline into one workflow. Individual agents can
+              begin on Starter; growing teams can move to Professional or
+              talk with us about Enterprise. Start a 14-day free trial and
+              see how faster follow-ups and clearer ownership help you close
+              more deals.
             </p>
 
             {/* ========================================================
@@ -92,7 +95,7 @@ export default function FinalCTA() {
                 href="https://crm.brosavo.com"
                 className="inline-flex h-12 items-center justify-center rounded-full bg-background px-7 text-sm font-semibold text-foreground shadow-[0_10px_30px_rgba(0,0,0,0.15)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_14px_35px_rgba(0,0,0,0.2)]"
               >
-                Start Free 14-Day Trial
+                Open your Brosavo CRM trial
                 <span className="ml-2 transition-transform duration-300">
                   →
                 </span>
@@ -102,7 +105,7 @@ export default function FinalCTA() {
                 href="/contact"
                 className="inline-flex h-12 items-center justify-center rounded-full border border-background/20 bg-background/[0.04] px-7 text-sm font-semibold text-background transition-all duration-300 hover:-translate-y-0.5 hover:bg-background/[0.09]"
               >
-                Book a Demo
+                Speak with Brosavo sales
               </Link>
             </div>
 

@@ -116,7 +116,7 @@ export const NAV_LINKS = [
       },
       {
         label: "WhatsApp Automation",
-        href: "/products#whatsapp",
+        href: "/whatsapp-crm-for-real-estate",
         description: "Communication and workflow automation.",
       },
     ],
@@ -184,11 +184,11 @@ export const FOOTER_LINKS = {
   ],
 
   Products: [
-    { label: "Real Estate CRM", href: "/real-estate-crm" },
-    { label: "Lead Management", href: "/products#leads" },
-    { label: "WhatsApp Automation", href: "/products#whatsapp" },
-    { label: "AI Assistant", href: "/products#ai-assistant" },
-    { label: "Pricing", href: "/pricing" },
+    { label: "Brosavo Real Estate CRM", href: "/real-estate-crm" },
+    { label: "Lead management software", href: "/real-estate-lead-management" },
+    { label: "WhatsApp CRM for real estate", href: "/whatsapp-crm-for-real-estate" },
+    { label: "AI software platforms", href: "/products" },
+    { label: "Product pricing", href: "/pricing" },
   ],
 
   Legal: [

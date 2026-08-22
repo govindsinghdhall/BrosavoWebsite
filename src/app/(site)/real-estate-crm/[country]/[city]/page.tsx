@@ -164,7 +164,7 @@ export default async function RealEstateCrmCityPage({
                 href="/real-estate-crm"
                 className="rounded-full border border-border/70 bg-background px-6 py-3.5 text-sm font-medium transition hover:-translate-y-0.5"
               >
-                Explore Brosavo Real Estate CRM
+                See all Real Estate CRM features
               </Link>
             </div>
           </div>
@@ -296,7 +296,7 @@ export default async function RealEstateCrmCityPage({
                 href="/real-estate-crm"
                 className="inline-flex justify-center rounded-full bg-foreground px-6 py-3.5 text-sm font-medium text-background"
               >
-                Explore Brosavo Real Estate CRM
+                Open the Real Estate CRM platform
               </Link>
 
               <Link

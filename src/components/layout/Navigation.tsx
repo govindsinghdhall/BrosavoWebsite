@@ -767,7 +767,7 @@ export function Navigation() {
                   startNavigation("/contact")
                 }
               >
-                Contact Us
+                Get in touch
               </MagneticButton>
             )}
 
@@ -1150,7 +1150,7 @@ export function Navigation() {
                       closeMenus();
                     }}
                   >
-                    Contact Us
+                    Send a message
                   </MagneticButton>
                 </div>
               </motion.div>

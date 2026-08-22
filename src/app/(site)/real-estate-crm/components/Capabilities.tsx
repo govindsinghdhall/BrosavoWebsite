@@ -75,16 +75,21 @@ export default function Capabilities() {
             id="real-estate-crm-features-heading"
             className="mt-4 text-3xl font-semibold leading-[1.05] tracking-[-0.045em] text-foreground sm:text-4xl lg:text-[2.65rem]"
           >
-            Everything your real estate team needs.
+            Essential CRM features for
             <br />
             <span className="text-gradient-accent">
-              One connected CRM.
+              real estate professionals.
             </span>
           </h2>
 
           <p className="mx-auto mt-3 max-w-2xl text-sm leading-6 text-muted sm:text-base">
-            Manage leads, customers, properties and sales activity from one
-            connected real estate CRM built around your team&apos;s workflow.
+            Brosavo is built as a CRM for agents, brokers, agencies and
+            developers who need lead management and property management in
+            the same place. Capture enquiries, organize customer requirements,
+            match listings, run a sales pipeline, follow up on WhatsApp and
+            review team activity without switching tools. The sections below
+            cover how Brosavo helps agents prioritize work, move deals through
+            pipeline stages and measure what is converting.
           </p>
         </motion.div>
 
@@ -144,9 +149,9 @@ export default function Capabilities() {
 
                 {/* Content */}
 
-                <h3 className="relative mt-3.5 text-[14px] font-semibold tracking-[-0.01em] text-foreground">
+                <p className="relative mt-3.5 text-[14px] font-semibold tracking-[-0.01em] text-foreground">
                   {title}
-                </h3>
+                </p>
 
                 <p className="relative mt-1.5 text-[11px] leading-[1.55] text-muted">
                   {description}

@@ -31,7 +31,7 @@ const capabilities = [
 
 export function Hero() {
   return (
-    <section
+    <header
       aria-labelledby="real-estate-crm-heading"
       className="relative overflow-hidden pb-12 pt-20 sm:pb-16 sm:pt-24 lg:pb-20 lg:pt-28"
     >
@@ -109,23 +109,24 @@ export function Hero() {
               delay: 0.1,
               ease: [0.22, 1, 0.36, 1],
             }}
-            className="mx-auto mt-6 max-w-4xl text-center text-[3rem] font-semibold leading-[0.98] tracking-[-0.055em] text-foreground sm:text-5xl md:text-6xl lg:text-[4rem] xl:text-[4.25rem]"
+            className="mx-auto mt-6 max-w-4xl text-center text-[2.35rem] font-semibold leading-[1.02] tracking-[-0.055em] text-foreground sm:text-5xl md:text-6xl lg:text-[3.65rem]"
           >
-            <span className="block">
-              Real Estate CRM for
-            </span>
+            <span className="block">Real Estate CRM for</span>
 
-            <span className="block">
-              Agents, Brokers & Teams.
-            </span>
+            <span className="block">Agents, Brokers &amp; Teams.</span>
 
             <span className="mt-1 block text-gradient-accent">
               Everything in one place.
             </span>
+            {/* <span className="block">Real Estate CRM Software</span>
+            <span className="sr-only"> | </span>
+            <span className="mt-2 block text-gradient-accent">
+              Brosavo — Close Deals Faster
+            </span> */}
           </motion.h1>
 
           {/* ==========================================================
-              DESCRIPTION
+              SEO DESCRIPTION
           ========================================================== */}
 
           <motion.p
@@ -137,10 +138,41 @@ export function Hero() {
             }}
             className="mx-auto mt-5 max-w-2xl text-center text-[15px] leading-7 text-muted sm:text-base sm:leading-7"
           >
-            Manage real estate leads, properties, customer relationships,
-            follow-ups and sales pipelines from one intelligent CRM built
-            for modern real estate businesses.
+            Real Estate CRM software from Brosavo helps agents, brokers and
+            sales teams close deals faster. Capture leads, manage property
+            inventory, run sales pipelines, follow up on WhatsApp and track
+            conversions from one connected platform—instead of spreadsheets
+            and disconnected tools.
           </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{
+              duration: 0.65,
+              delay: 0.24,
+            }}
+            className="mx-auto mt-8 max-w-2xl text-left sm:text-center"
+          >
+            <h2
+              id="ai-powered-platform-heading"
+              className="text-lg font-semibold tracking-[-0.03em] text-foreground sm:text-xl"
+            >
+              AI-powered real estate CRM platform
+            </h2>
+
+            {/* <p className="mt-3 text-[15px] leading-7 text-muted sm:text-base sm:leading-7">
+              What is a real estate CRM? It is the system agents use to
+              capture enquiries, qualify buyers and sellers, manage listings
+              and keep follow-ups from stalling. Brosavo is an AI-powered
+              real estate CRM platform that brings lead management, property
+              management, sales pipelines, WhatsApp conversations and team
+              reporting into one workflow. Your team sees who to contact next,
+              which listings match a requirement and how opportunities move
+              from first enquiry to a closed deal—without switching between
+              inboxes, spreadsheets and disconnected chat threads.
+            </p> */}
+          </motion.div>
 
           {/* ==========================================================
               CTA
@@ -178,7 +210,9 @@ export function Hero() {
             </Link>
           </motion.div>
 
-          {/* Trust / supporting text */}
+          {/* ==========================================================
+              TRUST / SUPPORTING TEXT
+          ========================================================== */}
 
           <motion.div
             initial={{ opacity: 0 }}
@@ -230,7 +264,6 @@ export function Hero() {
 
           <div className="relative rounded-[22px] border border-black/[0.07] bg-white/90 p-1 shadow-[0_25px_70px_rgba(0,0,0,0.09)] backdrop-blur-xl dark:border-white/[0.07] dark:bg-zinc-950/90 dark:shadow-[0_25px_70px_rgba(0,0,0,0.30)] sm:rounded-[26px] sm:p-1.5">
             <div className="overflow-hidden rounded-[17px] border border-black/[0.05] bg-white dark:border-white/[0.05] dark:bg-zinc-950 sm:rounded-[20px]">
-
               {/* Browser bar */}
 
               <div className="flex h-9 items-center border-b border-black/[0.06] bg-zinc-50 px-3 dark:border-white/[0.06] dark:bg-zinc-900 sm:h-10 sm:px-4">
@@ -239,10 +272,12 @@ export function Hero() {
                     aria-hidden="true"
                     className="h-2.5 w-2.5 rounded-full bg-red-400/80"
                   />
+
                   <span
                     aria-hidden="true"
                     className="h-2.5 w-2.5 rounded-full bg-yellow-400/80"
                   />
+
                   <span
                     aria-hidden="true"
                     className="h-2.5 w-2.5 rounded-full bg-green-400/80"
@@ -366,7 +401,7 @@ export function Hero() {
           ))}
         </motion.div>
       </div>
-    </section>
+    </header>
   );
 }
 

@@ -182,37 +182,37 @@ export function HomeOverview() {
           <RealEstateSolutionCard
             title="Real Estate CRM"
             description="Centralize leads, customers, properties, activities, and sales workflows in one platform."
-            href="/products#real-estate-crm"
+            href="/real-estate-crm"
           />
 
           <RealEstateSolutionCard
             title="Lead Management"
             description="Capture, organize, assign, qualify, and track leads throughout the real estate sales journey."
-            href="/products#real-estate-crm"
+            href="/real-estate-lead-management"
           />
 
           <RealEstateSolutionCard
             title="WhatsApp Automation"
             description="Connect WhatsApp conversations with lead engagement, follow-ups, and sales workflows."
-            href="/products#real-estate-crm"
+            href="/whatsapp-crm-for-real-estate"
           />
 
           <RealEstateSolutionCard
             title="Property Management"
             description="Organize property information, inventory, availability, and customer requirements."
-            href="/products#real-estate-crm"
+            href="/property-management-crm"
           />
 
           <RealEstateSolutionCard
             title="Sales Pipeline"
             description="Track opportunities from enquiry and follow-up through site visits, negotiation, and closing."
-            href="/products#real-estate-crm"
+            href="/real-estate-sales-crm"
           />
 
           <RealEstateSolutionCard
             title="Site Visits & Follow-ups"
             description="Keep appointments, site visits, tasks, reminders, and customer interactions connected."
-            href="/products#real-estate-crm"
+            href="/real-estate-crm-for-agents"
           />
         </div>
 

@@ -8,9 +8,13 @@ import {
   PRODUCT_ONE_LINER,
   SITE_NAME,
   SITE_URL,
+  DEFAULT_OG_IMAGE,
+  ORGANIZATION_ID,
 } from "@/lib/site";
 
 import { REAL_ESTATE_CRM_LOCATIONS } from "@/data/realEstateCrmLocations";
+import { absoluteUrl } from "@/lib/blog-seo";
+import { REAL_ESTATE_CRM_FAQS } from "./faqs";
 
 import Hero from "./components/Hero";
 import Capabilities from "./components/Capabilities";
@@ -33,10 +37,10 @@ const PAGE_PATH = "/real-estate-crm";
 const PAGE_URL = `${SITE_URL}${PAGE_PATH}`;
 
 export const metadata: Metadata = {
-  title: "Real Estate CRM Software | Brosavo",
+  title: "Real Estate CRM Software | Brosavo - Close Deals Faster",
 
   description:
-    "Brosavo Real Estate CRM helps agents, brokers, agencies and sales teams manage leads, customers, properties, sales pipelines, follow-ups, websites, WhatsApp and analytics from one powerful platform.",
+    "Brosavo is real estate CRM software for agents and brokers. Manage leads, properties, WhatsApp follow-ups and pipelines. Start a 14-day free trial now.",
 
   keywords: [
     "real estate CRM",
@@ -63,17 +67,26 @@ export const metadata: Metadata = {
   },
 
   openGraph: {
-    title: "Real Estate CRM Software for Agents, Brokers & Teams | Brosavo",
-    description: PRODUCT_ONE_LINER,
+    title: "Real Estate CRM Software | Brosavo - Close Deals Faster",
+    description:
+      "Brosavo is real estate CRM software for agents and brokers. Manage leads, properties, WhatsApp follow-ups and pipelines.",
     url: PAGE_URL,
     siteName: SITE_NAME,
     type: "website",
+    images: [
+      {
+        url: absoluteUrl(DEFAULT_OG_IMAGE),
+        alt: "Brosavo Real Estate CRM software",
+      },
+    ],
   },
 
   twitter: {
     card: "summary_large_image",
-    title: "Real Estate CRM Software | Brosavo",
-    description: PRODUCT_ONE_LINER,
+    title: "Real Estate CRM Software | Brosavo - Close Deals Faster",
+    description:
+      "Brosavo is real estate CRM software for agents and brokers. Manage leads, properties, WhatsApp follow-ups and pipelines.",
+    images: [absoluteUrl(DEFAULT_OG_IMAGE)],
   },
 
   robots: {
@@ -116,6 +129,7 @@ const jsonLd = [
 
     provider: {
       "@type": "Organization",
+      "@id": ORGANIZATION_ID,
       name: SITE_NAME,
       url: SITE_URL,
     },
@@ -157,6 +171,19 @@ const jsonLd = [
       },
     ],
   },
+
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: REAL_ESTATE_CRM_FAQS.map((faq) => ({
+      "@type": "Question",
+      name: faq.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: faq.answer,
+      },
+    })),
+  },
 ];
 
 /**
@@ -178,22 +205,20 @@ function FullScreenSection({
   className?: string;
 }) {
   return (
-    <section
+    <div
       className={`relative flex min-h-[100svh] w-full items-center ${className}`}
     >
       {children}
-    </section>
+    </div>
   );
 }
 
 export default function RealEstateCrmPage() {
   return (
     <>
-      {/* ================================================================ */}
-      {/* SEO / STRUCTURED DATA                                            */}
-      {/* ================================================================ */}
-
       <JsonLd data={jsonLd} />
+
+      <article aria-labelledby="real-estate-crm-heading">
 
       {/* ================================================================ */}
       {/* HERO                                                             */}
@@ -340,7 +365,7 @@ export default function RealEstateCrmPage() {
       {/* ================================================================ */}
 
       <section
-        aria-labelledby="real-estate-crm-software-heading"
+        aria-labelledby="real-estate-crm-markets-heading"
         className="relative py-16 sm:py-20 lg:py-24"
       >
         <div className="container-wide">
@@ -355,16 +380,13 @@ export default function RealEstateCrmPage() {
                 Real Estate CRM Software
               </span>
 
-              <h2
-                id="real-estate-crm-software-heading"
-                className="mt-5 text-3xl font-semibold leading-tight tracking-[-0.045em] sm:text-4xl lg:text-5xl"
-              >
+              <p className="mt-5 text-3xl font-semibold leading-tight tracking-[-0.045em] sm:text-4xl lg:text-5xl">
                 A complete CRM for modern
                 <br />
                 <span className="text-gradient-accent">
                   real estate businesses.
                 </span>
-              </h2>
+              </p>
 
               <div className="mt-7 space-y-5 text-base leading-7 text-muted sm:text-lg sm:leading-8">
                 <p>
@@ -439,14 +461,19 @@ export default function RealEstateCrmPage() {
                     Explore by market
                   </div>
 
-                  <h3 className="mt-2 text-xl font-semibold tracking-[-0.025em] sm:text-2xl">
-                    Real estate CRM by country and city.
-                  </h3>
+                  <h2
+                    id="real-estate-crm-markets-heading"
+                    className="mt-2 text-xl font-semibold tracking-[-0.025em] sm:text-2xl"
+                  >
+                    Real estate CRM by country and city
+                  </h2>
                 </div>
 
                 <p className="max-w-md text-xs leading-5 text-muted sm:text-right">
-                  Explore Brosavo&apos;s real estate CRM for the markets and
-                  cities your team operates in.
+                  Explore Brosavo real estate CRM software by country and
+                  city. Each market page covers how agents use lead
+                  management, property inventory and local sales workflows
+                  in that region.
                 </p>
               </div>
 
@@ -474,9 +501,9 @@ export default function RealEstateCrmPage() {
                             Market
                           </div>
 
-                          <h3 className="mt-1 text-base font-semibold">
+                          <p className="mt-1 text-base font-semibold">
                             Real Estate CRM in {country.name}
-                          </h3>
+                          </p>
                         </div>
 
                         <span className="text-sm text-muted transition-transform duration-300 group-hover:translate-x-1">
@@ -493,20 +520,9 @@ export default function RealEstateCrmPage() {
                             href={`/real-estate-crm/${country.slug}/${city.slug}`}
                             className="rounded-full border border-border/60 bg-surface px-2.5 py-1 text-[10px] text-muted transition hover:border-accent-blue/25 hover:text-accent-blue"
                           >
-                            {city.name}
+                            {city.name} real estate CRM
                           </Link>
                         ))}
-                      </div>
-
-                      {/* Country page link */}
-
-                      <div className="mt-4 border-t border-border/50 pt-3">
-                        <Link
-                          href={`/real-estate-crm/${country.slug}`}
-                          className="text-[11px] font-medium text-accent-blue"
-                        >
-                          Explore {country.name} →
-                        </Link>
                       </div>
                     </article>
                   );
@@ -518,25 +534,53 @@ export default function RealEstateCrmPage() {
                 MAIN PRODUCT INTERNAL LINK
             ============================================================ */}
 
-            <div className="mt-8 flex flex-col items-start justify-between gap-4 rounded-2xl border border-accent-blue/10 bg-accent-blue/[0.03] px-5 py-4 sm:flex-row sm:items-center">
-              <div>
-                <div className="text-sm font-semibold">
-                  Looking for the complete platform?
-                </div>
-
-                <p className="mt-1 text-xs leading-5 text-muted">
-                  Explore lead management, property inventory, sales
-                  pipelines, WhatsApp, analytics and more.
-                </p>
-              </div>
-
-              <Link
-                href="/real-estate-crm"
-                className="shrink-0 rounded-full bg-foreground px-5 py-2.5 text-xs font-medium text-background transition hover:-translate-y-0.5"
-              >
-                Explore Brosavo CRM →
-              </Link>
-            </div>
+            <nav
+              aria-label="Related real estate CRM resources"
+              className="mt-8 rounded-2xl border border-accent-blue/10 bg-accent-blue/[0.03] px-5 py-5"
+            >
+              <p className="text-sm font-semibold">
+                Related real estate CRM resources
+              </p>
+              <p className="mt-1 text-xs leading-5 text-muted">
+                Continue with pricing, agent workflows, lead management and
+                comparison guides. Each page links back to this Real Estate
+                CRM overview.
+              </p>
+              <ul className="mt-4 grid gap-2 sm:grid-cols-2">
+                <li>
+                  <Link
+                    href="/real-estate-crm-pricing"
+                    className="text-[13px] font-medium text-accent-blue"
+                  >
+                    Real estate CRM pricing plans
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/real-estate-crm-for-agents"
+                    className="text-[13px] font-medium text-accent-blue"
+                  >
+                    CRM for real estate agents
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/real-estate-lead-management"
+                    className="text-[13px] font-medium text-accent-blue"
+                  >
+                    Real estate lead management software
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/best-real-estate-crm"
+                    className="text-[13px] font-medium text-accent-blue"
+                  >
+                    Best real estate CRM comparison
+                  </Link>
+                </li>
+              </ul>
+            </nav>
           </div>
         </div>
       </section>
@@ -560,6 +604,7 @@ export default function RealEstateCrmPage() {
           <FinalCTA />
         </div>
       </section>
+    </article>
     </>
   );
 }

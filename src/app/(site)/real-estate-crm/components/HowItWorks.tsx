@@ -71,7 +71,7 @@ export default function HowItWorks() {
             How It Works
           </span>
 
-          <h2
+          <p
             id="how-it-works-heading"
             className="mt-4 text-3xl font-semibold leading-[1.05] tracking-[-0.045em] text-foreground sm:text-4xl lg:text-[2.65rem]"
           >
@@ -80,7 +80,7 @@ export default function HowItWorks() {
             <span className="text-gradient-accent">
               to closed deal.
             </span>
-          </h2>
+          </p>
 
           <p className="mx-auto mt-3 max-w-2xl text-sm leading-6 text-muted sm:text-base sm:leading-7">
             Create a repeatable real estate sales process that your entire
@@ -132,9 +132,9 @@ export default function HowItWorks() {
 
                 {/* Content */}
 
-                <h3 className="mt-5 text-lg font-semibold tracking-[-0.02em] text-foreground sm:text-xl">
+                <p className="mt-5 text-lg font-semibold tracking-[-0.02em] text-foreground sm:text-xl">
                   {step.title}
-                </h3>
+                </p>
 
                 <p className="mx-auto mt-2.5 max-w-[240px] text-sm leading-6 text-muted lg:mx-0">
                   {step.text}
