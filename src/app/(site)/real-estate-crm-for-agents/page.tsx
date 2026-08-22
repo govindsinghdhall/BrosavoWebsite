@@ -23,7 +23,7 @@ type PageConfig = {
 };
 
 const config: PageConfig = {
-  title: "Real Estate CRM for Agents | Lead & Follow-Up Management | Brosavo",
+  title: "Real Estate CRM for Agents | Brosavo",
 
   description:
     "Brosavo is a real estate CRM for agents that helps capture leads, manage properties, schedule follow-ups, match customers and track sales.",

@@ -24,7 +24,7 @@ type PageConfig = {
 };
 
 const config: PageConfig = {
-  "title": "Best Real Estate CRM Software for Agents, Brokers & Teams | Brosavo",
+  "title": "Best Real Estate CRM Software | Brosavo",
   "description": "Compare what to look for in real estate CRM software and see how Brosavo helps agents, brokers, agencies and developers manage leads, properties, follow-ups and sales.",
   "eyebrow": "Real Estate CRM Comparison",
   "heading": "Find the right real estate CRM for your sales team.",

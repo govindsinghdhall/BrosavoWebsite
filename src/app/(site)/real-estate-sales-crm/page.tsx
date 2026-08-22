@@ -24,7 +24,7 @@ type PageConfig = {
 };
 
 const config: PageConfig = {
-  "title": "Real Estate Sales CRM | Pipeline, Leads & Follow-Ups | Brosavo",
+  "title": "Real Estate Sales CRM | Brosavo",
   "description": "Brosavo real estate sales CRM helps teams manage opportunities, sales pipelines, follow-ups, properties and customer relationships.",
   "eyebrow": "Real Estate Sales CRM",
   "heading": "See every real estate opportunity and what happens next.",

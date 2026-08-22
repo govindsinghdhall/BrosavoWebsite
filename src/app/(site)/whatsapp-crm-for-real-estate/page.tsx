@@ -24,7 +24,7 @@ type PageConfig = {
 };
 
 const config: PageConfig = {
-  "title": "WhatsApp CRM for Real Estate | WhatsApp Sales & Lead Management | Brosavo",
+  "title": "WhatsApp CRM for Real Estate | Brosavo",
   "description": "Brosavo connects WhatsApp notifications and API-powered engagement workflows with real estate leads, opportunities and sales processes.",
   "eyebrow": "WhatsApp CRM for Real Estate",
   "heading": "Keep WhatsApp conversations connected to your real estate sales workflow.",

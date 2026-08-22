@@ -30,7 +30,7 @@ type PageConfig = {
 };
 
 const config: PageConfig = {
-  title: "Real Estate CRM for Developers | Project Sales & Inventory | Brosavo",
+  title: "Real Estate CRM for Developers | Brosavo",
 
   description:
     "Brosavo is a real estate CRM for developers that helps manage project leads, unit inventory, sales pipelines, customer requirements, teams and analytics.",

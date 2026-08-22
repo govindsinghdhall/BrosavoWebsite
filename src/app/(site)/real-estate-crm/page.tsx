@@ -33,7 +33,7 @@ const PAGE_PATH = "/real-estate-crm";
 const PAGE_URL = `${SITE_URL}${PAGE_PATH}`;
 
 export const metadata: Metadata = {
-  title: "Real Estate CRM Software for Agents, Brokers & Teams | Brosavo",
+  title: "Real Estate CRM Software | Brosavo",
 
   description:
     "Brosavo Real Estate CRM helps agents, brokers, agencies and sales teams manage leads, customers, properties, sales pipelines, follow-ups, websites, WhatsApp and analytics from one powerful platform.",

@@ -44,33 +44,11 @@ export function Hero() {
           HERO BACKGROUND
       ========================================================= */}
       <div className="absolute inset-0 z-0 pointer-events-none">
-        {/* ---------------------------------------------------------
-            Mobile & Tablet Background
-        --------------------------------------------------------- */}
-        <div className="absolute inset-x-0 bottom-0 top-16 lg:hidden">
-          <Image
-            src="/wallpapers/hero-day.png"
-            alt="Brosavo software and technology solutions"
-            fill
-            priority
-            sizes="100vw"
-            className="object-cover object-center dark:hidden"
-          />
-
-          <Image
-            src="/wallpapers/hero-night.png"
-            alt="Brosavo software and technology solutions"
-            fill
-            priority
-            sizes="100vw"
-            className="hidden object-cover object-center dark:block"
-          />
-
-          <div className="absolute inset-0 bg-linear-to-b from-background/70 via-background/40 to-background" />
-        </div>
 
         {/* ---------------------------------------------------------
-            Desktop Background
+            Desktop Background Only
+            ---------------------------------------------------------
+            Hidden below lg so mobile/tablet has a clean background.
         --------------------------------------------------------- */}
         <div className="absolute bottom-0 right-0 top-24 hidden w-[56%] mask-[linear-gradient(to_right,transparent,black_22%)] lg:block">
           <Image
@@ -95,36 +73,97 @@ export function Hero() {
         {/* Desktop Gradient */}
         <div className="absolute inset-0 hidden bg-linear-to-r from-background via-background/20 to-transparent lg:block" />
 
-        {/* Bottom Fade */}
+        {/* Desktop Bottom Fade */}
         <div className="absolute inset-x-0 bottom-0 hidden h-40 bg-linear-to-t from-background to-transparent lg:block" />
       </div>
 
       {/* =========================================================
           PARTICLES
       ========================================================= */}
-      <ParticleScene className="pointer-events-none absolute inset-0 z-0 h-full w-full opacity-40" />
+      <ParticleScene
+        className="
+          pointer-events-none
+          absolute
+          inset-0
+          z-0
+          h-full
+          w-full
+          opacity-40
+        "
+      />
 
       {/* =========================================================
           VISUAL EFFECTS
       ========================================================= */}
       <div className="pointer-events-none absolute inset-0 z-0">
+
         {/* Radial gradients */}
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_20%,rgba(59,130,246,0.16),transparent_35%),radial-gradient(circle_at_80%_30%,rgba(139,92,246,0.16),transparent_30%),radial-gradient(circle_at_20%_80%,rgba(6,182,212,0.12),transparent_35%)]" />
+        <div
+          className="
+            absolute
+            inset-0
+            bg-[radial-gradient(circle_at_50%_20%,rgba(59,130,246,0.16),transparent_35%),radial-gradient(circle_at_80%_30%,rgba(139,92,246,0.16),transparent_30%),radial-gradient(circle_at_20%_80%,rgba(6,182,212,0.12),transparent_35%)]
+          "
+        />
 
         {/* Center glow */}
-        <div className="absolute left-1/2 top-1/2 h-[34rem] w-[34rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent-cyan/10 blur-[140px]" />
+        <div
+          className="
+            absolute
+            left-1/2
+            top-1/2
+            h-[34rem]
+            w-[34rem]
+            -translate-x-1/2
+            -translate-y-1/2
+            rounded-full
+            bg-accent-cyan/10
+            blur-[140px]
+          "
+        />
 
         {/* Left glow */}
-        <div className="absolute left-[8%] top-[18%] h-40 w-40 rounded-full bg-accent-blue/20 blur-[90px] animate-float" />
+        <div
+          className="
+            absolute
+            left-[8%]
+            top-[18%]
+            h-40
+            w-40
+            rounded-full
+            bg-accent-blue/20
+            blur-[90px]
+            animate-float
+          "
+        />
 
         {/* Right glow */}
         <div
-          className="absolute bottom-[10%] right-[8%] h-56 w-56 rounded-full bg-accent-violet/20 blur-[110px] animate-float"
+          className="
+            absolute
+            bottom-[10%]
+            right-[8%]
+            h-56
+            w-56
+            rounded-full
+            bg-accent-violet/20
+            blur-[110px]
+            animate-float
+          "
           style={{ animationDelay: "-3.5s" }}
         />
 
         {/* Grid */}
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:72px_72px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,black_55%,transparent_100%)] opacity-40" />
+        <div
+          className="
+            absolute
+            inset-0
+            bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)]
+            bg-[size:72px_72px]
+            [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,black_55%,transparent_100%)]
+            opacity-40
+          "
+        />
       </div>
 
       {/* =========================================================
@@ -145,9 +184,16 @@ export function Hero() {
           })
         }
         className="
-          relative z-10 mx-auto flex min-h-screen w-full
-          max-w-[1440px] items-center
-          px-6 py-24
+          relative
+          z-10
+          mx-auto
+          flex
+          min-h-screen
+          w-full
+          max-w-[1440px]
+          items-center
+          px-6
+          py-24
           sm:px-8
           lg:justify-start
           lg:px-12
@@ -167,10 +213,14 @@ export function Hero() {
             mass: 0.2,
           }}
           className="
-            flex w-full flex-col
-            items-center text-center
+            flex
+            w-full
+            flex-col
+            items-center
+            text-center
             lg:max-w-[860px]
-            lg:items-start lg:text-left
+            lg:items-start
+            lg:text-left
             xl:max-w-[880px]
           "
         >
@@ -203,49 +253,52 @@ export function Hero() {
                 BRAND NAME
             ------------------------------------------------- */}
             <span
-  className="
-    relative mb-4 block w-fit
-    text-foreground/60
-    text-[1.8rem]
-    leading-none
-    sm:text-[2rem]
-    md:text-[2.2rem]
-    lg:text-[2.35rem]
-    xl:text-[2.5rem]
-  "
->
-  BROS
-  <span
-    className="
-      bg-linear-to-r
-      from-accent-blue
-      via-accent-violet
-      to-accent-cyan
-      bg-clip-text
-      text-transparent
-    "
-  >
-    A
-  </span>
-  VO
+              className="
+                relative
+                mb-4
+                block
+                w-fit
+                text-foreground/60
+                text-[1.8rem]
+                leading-none
+                sm:text-[2rem]
+                md:text-[2.2rem]
+                lg:text-[2.35rem]
+                xl:text-[2.5rem]
+              "
+            >
+              BROS
+              <span
+                className="
+                  bg-linear-to-r
+                  from-accent-blue
+                  via-accent-violet
+                  to-accent-cyan
+                  bg-clip-text
+                  text-transparent
+                "
+              >
+                A
+              </span>
+              VO
 
-  {/* Brand accent line */}
-  <span
-    className="
-      absolute
-      -bottom-2
-      left-0
-      h-0.75
-      w-12
-      rounded-full
-      bg-linear-to-r
-      from-accent-blue
-      via-accent-violet
-      to-accent-cyan
-      opacity-70
-    "
-  />
-</span>
+              {/* Brand accent line */}
+              <span
+                className="
+                  absolute
+                  -bottom-2
+                  left-0
+                  h-0.75
+                  w-12
+                  rounded-full
+                  bg-linear-to-r
+                  from-accent-blue
+                  via-accent-violet
+                  to-accent-cyan
+                  opacity-70
+                "
+              />
+            </span>
 
             {/* -------------------------------------------------
                 MAIN HEADLINE
@@ -254,8 +307,8 @@ export function Hero() {
               className="
                 block
                 whitespace-nowrap
-                text-[2.65rem]
-                leading-[0.98]
+                text-[2.4rem]
+                leading-[1.02]
                 sm:text-[3.25rem]
                 md:text-[3.6rem]
                 lg:text-[4rem]
@@ -275,8 +328,8 @@ export function Hero() {
                 whitespace-nowrap
                 bg-[length:200%_100%]
                 text-gradient-accent
-                text-[2.65rem]
-                leading-[0.98]
+                text-[2.4rem]
+                leading-[1.02]
                 sm:text-[3.25rem]
                 md:text-[3.6rem]
                 lg:text-[4rem]
