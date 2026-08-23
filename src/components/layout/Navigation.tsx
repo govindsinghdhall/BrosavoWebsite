@@ -27,6 +27,13 @@ const NAVIGATION = [
     description: "Technology services for modern businesses.",
     items: [
       {
+        label: "Real Estate Website Development",
+        href: "/real-estate-website-development",
+        description:
+          "High-converting websites for realtors, agencies, builders and property developers.",
+        featured: true,
+      },
+      {
         label: "Software Development",
         href: "/services",
         description:
@@ -322,7 +329,7 @@ export function Navigation() {
             "shadow-[0_4px_24px_var(--nav-shadow)]",
             "transition-all duration-500",
             scrolled &&
-            "shadow-[0_8px_32px_var(--nav-shadow)]"
+              "shadow-[0_8px_32px_var(--nav-shadow)]"
           )}
         >
           {/* =================================================
@@ -435,7 +442,7 @@ export function Navigation() {
                       className={cn(
                         "transition-transform duration-300",
                         openDropdown === item.label &&
-                        "rotate-180"
+                          "rotate-180"
                       )}
                     />
 
@@ -483,23 +490,14 @@ export function Navigation() {
                           className={cn(
                             "overflow-hidden rounded-2xl",
                             "border border-black/10 dark:border-white/10",
-
-                            /*
-                             * IMPORTANT:
-                             * Dropdown is intentionally opaque.
-                             */
                             "bg-white dark:bg-[#08080D]",
-
                             "shadow-[0_24px_80px_rgba(0,0,0,0.18)]",
                             "dark:shadow-[0_24px_80px_rgba(0,0,0,0.65)]",
-
-                            item.label ===
-                              "Products"
+                            item.label === "Products"
                               ? "w-[440px]"
-                              : item.label ===
-                                "Company"
-                                ? "w-[410px]"
-                                : "w-[400px]"
+                              : item.label === "Company"
+                              ? "w-[410px]"
+                              : "w-[400px]"
                           )}
                         >
                           {/* =================================
@@ -526,8 +524,7 @@ export function Navigation() {
                             {item.items?.map(
                               (subItem) => {
                                 const featured =
-                                  "featured" in
-                                  subItem &&
+                                  "featured" in subItem &&
                                   subItem.featured;
 
                                 /* ---------------------------
@@ -537,19 +534,13 @@ export function Navigation() {
                                 if (featured) {
                                   return (
                                     <Link
-                                      key={
-                                        subItem.label
-                                      }
-                                      href={
-                                        subItem.href
-                                      }
+                                      key={subItem.label}
+                                      href={subItem.href}
                                       onClick={() => {
                                         startNavigation(
                                           subItem.href
                                         );
-                                        setOpenDropdown(
-                                          null
-                                        );
+                                        setOpenDropdown(null);
                                       }}
                                       className={cn(
                                         "group relative mb-2 block overflow-hidden rounded-xl",
@@ -572,20 +563,20 @@ export function Navigation() {
                                             </span>
 
                                             <span className="text-sm font-bold text-zinc-900 dark:text-white">
-                                              {
-                                                subItem.label
-                                              }
+                                              {subItem.label}
                                             </span>
                                           </div>
 
                                           <p className="mt-2 max-w-[330px] text-xs font-medium leading-5 text-zinc-600 dark:text-zinc-400">
-                                            {
-                                              subItem.description
-                                            }
+                                            {subItem.description}
                                           </p>
 
                                           <div className="mt-3 text-[11px] font-semibold text-accent-blue">
-                                            Explore Real Estate CRM
+                                            {subItem.label ===
+                                            "Real Estate Website Development"
+                                              ? "Explore Real Estate Website Development"
+                                              : "Explore Real Estate CRM"}
+
                                             <span className="ml-1 inline-block transition-transform duration-300 group-hover:translate-x-1">
                                               →
                                             </span>
@@ -607,19 +598,13 @@ export function Navigation() {
 
                                 return (
                                   <Link
-                                    key={
-                                      subItem.label
-                                    }
-                                    href={
-                                      subItem.href
-                                    }
+                                    key={subItem.label}
+                                    href={subItem.href}
                                     onClick={() => {
                                       startNavigation(
                                         subItem.href
                                       );
-                                      setOpenDropdown(
-                                        null
-                                      );
+                                      setOpenDropdown(null);
                                     }}
                                     className="group flex items-start gap-3 rounded-xl p-3 transition-all duration-200 hover:bg-zinc-100 dark:hover:bg-white/[0.06]"
                                   >
@@ -630,9 +615,7 @@ export function Navigation() {
                                     <div className="min-w-0 flex-1">
                                       <div className="flex items-center justify-between gap-3">
                                         <span className="text-sm font-semibold text-zinc-900 dark:text-zinc-100">
-                                          {
-                                            subItem.label
-                                          }
+                                          {subItem.label}
                                         </span>
 
                                         <ArrowUpRight
@@ -642,9 +625,7 @@ export function Navigation() {
                                       </div>
 
                                       <p className="mt-1 text-[11px] font-medium leading-5 text-zinc-500 dark:text-zinc-400">
-                                        {
-                                          subItem.description
-                                        }
+                                        {subItem.description}
                                       </p>
                                     </div>
                                   </Link>
@@ -657,55 +638,49 @@ export function Navigation() {
                               FOOTER LINK
                           ================================= */}
 
-                          {item.label ===
-                            "Products" && (
-                              <div className="border-t border-black/10 bg-black/[0.02] px-5 py-3 dark:border-white/10 dark:bg-white/[0.02]">
-                                <Link
-                                  href="/products"
-                                  onClick={() => {
-                                    startNavigation(
-                                      "/products"
-                                    );
-                                    setOpenDropdown(
-                                      null
-                                    );
-                                  }}
-                                  className="group flex items-center justify-between text-[11px] font-semibold text-zinc-500 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
-                                >
-                                  View all products
+                          {item.label === "Products" && (
+                            <div className="border-t border-black/10 bg-black/[0.02] px-5 py-3 dark:border-white/10 dark:bg-white/[0.02]">
+                              <Link
+                                href="/products"
+                                onClick={() => {
+                                  startNavigation(
+                                    "/products"
+                                  );
+                                  setOpenDropdown(null);
+                                }}
+                                className="group flex items-center justify-between text-[11px] font-semibold text-zinc-500 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
+                              >
+                                View all products
 
-                                  <ArrowUpRight
-                                    size={13}
-                                    className="transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
-                                  />
-                                </Link>
-                              </div>
-                            )}
+                                <ArrowUpRight
+                                  size={13}
+                                  className="transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                                />
+                              </Link>
+                            </div>
+                          )}
 
-                          {item.label ===
-                            "Services" && (
-                              <div className="border-t border-black/10 bg-black/[0.02] px-5 py-3 dark:border-white/10 dark:bg-white/[0.02]">
-                                <Link
-                                  href="/services"
-                                  onClick={() => {
-                                    startNavigation(
-                                      "/services"
-                                    );
-                                    setOpenDropdown(
-                                      null
-                                    );
-                                  }}
-                                  className="group flex items-center justify-between text-[11px] font-semibold text-zinc-500 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
-                                >
-                                  Explore all services
+                          {item.label === "Services" && (
+                            <div className="border-t border-black/10 bg-black/[0.02] px-5 py-3 dark:border-white/10 dark:bg-white/[0.02]">
+                              <Link
+                                href="/services"
+                                onClick={() => {
+                                  startNavigation(
+                                    "/services"
+                                  );
+                                  setOpenDropdown(null);
+                                }}
+                                className="group flex items-center justify-between text-[11px] font-semibold text-zinc-500 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
+                              >
+                                Explore all services
 
-                                  <ArrowUpRight
-                                    size={13}
-                                    className="transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
-                                  />
-                                </Link>
-                              </div>
-                            )}
+                                <ArrowUpRight
+                                  size={13}
+                                  className="transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                                />
+                              </Link>
+                            </div>
+                          )}
                         </div>
                       </motion.div>
                     )}
@@ -725,9 +700,7 @@ export function Navigation() {
             <Link
               href="/authentication"
               onClick={() =>
-                startNavigation(
-                  "/authentication"
-                )
+                startNavigation("/authentication")
               }
               className={cn(
                 "px-3 py-2 text-sm transition-colors",
@@ -904,6 +877,7 @@ export function Navigation() {
                     );
 
                     /* SIMPLE LINK */
+
                     if (!item.dropdown) {
                       return (
                         <motion.div
@@ -917,8 +891,7 @@ export function Navigation() {
                             x: 0,
                           }}
                           transition={{
-                            delay:
-                              index * 0.04,
+                            delay: index * 0.04,
                           }}
                         >
                           <Link
@@ -963,8 +936,7 @@ export function Navigation() {
                           x: 0,
                         }}
                         transition={{
-                          delay:
-                            index * 0.04,
+                          delay: index * 0.04,
                         }}
                         className="border-b border-black/10 dark:border-white/10"
                       >
@@ -988,14 +960,12 @@ export function Navigation() {
 
                           <motion.span
                             animate={{
-                              rotate:
-                                expanded
-                                  ? 180
-                                  : 0,
+                              rotate: expanded
+                                ? 180
+                                : 0,
                             }}
                             transition={{
-                              duration:
-                                0.25,
+                              duration: 0.25,
                             }}
                           >
                             <ChevronDown
@@ -1022,8 +992,7 @@ export function Navigation() {
                                 opacity: 0,
                               }}
                               transition={{
-                                duration:
-                                  0.25,
+                                duration: 0.25,
                                 ease: [
                                   0.22,
                                   1,
@@ -1040,7 +1009,7 @@ export function Navigation() {
                                   ) => {
                                     const featured =
                                       "featured" in
-                                      subItem &&
+                                        subItem &&
                                       subItem.featured;
 
                                     return (
@@ -1080,9 +1049,7 @@ export function Navigation() {
                                           </div>
 
                                           <ArrowUpRight
-                                            size={
-                                              14
-                                            }
+                                            size={14}
                                             className="shrink-0 text-muted"
                                           />
                                         </div>

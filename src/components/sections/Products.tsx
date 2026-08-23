@@ -78,18 +78,155 @@ function CrmDashboardVisual({ priority = false }: { priority?: boolean }) {
   );
 }
 
+// function FeaturedCrm() {
+//   return (
+//     <section id="real-estate-crm" className="relative scroll-mt-28">
+//       <div className="container-wide">
+//         <div className="mb-10 max-w-3xl md:mb-14">
+//           <motion.span
+//             initial={{ opacity: 0, y: 12 }}
+//             whileInView={{ opacity: 1, y: 0 }}
+//             viewport={{ once: true }}
+//             className="mb-4 inline-flex items-center gap-2 rounded-full border border-accent-blue/25 bg-accent-blue/10 px-3 py-1.5 text-[11px] font-mono uppercase tracking-[0.22em] text-accent-blue"
+//           >
+//             <span>Flagship Product · Real Estate CRM</span>
+//           </motion.span>
+
+//           <motion.h1
+//             initial={{ opacity: 0, y: 18 }}
+//             whileInView={{ opacity: 1, y: 0 }}
+//             viewport={{ once: true }}
+//             transition={{ delay: 0.05 }}
+//             className="text-3xl font-semibold leading-[1.08] tracking-tight sm:text-4xl md:text-5xl lg:text-[3.25rem]"
+//           >
+//             Real Estate CRM for Realtors, Brokers &amp; Real Estate Teams
+
+//             <span className="mt-2 block text-2xl text-gradient-accent sm:text-3xl md:text-4xl">
+//               Manage Leads, Properties &amp; Sales in One Place
+//             </span>
+//           </motion.h1>
+
+//           <motion.p
+//             initial={{ opacity: 0, y: 16 }}
+//             whileInView={{ opacity: 1, y: 0 }}
+//             viewport={{ once: true }}
+//             transition={{ delay: 0.12 }}
+//             className="mt-5 max-w-2xl text-base leading-relaxed text-muted md:text-lg"
+//           >
+//             Brosavo&apos;s flagship Real Estate CRM helps realtors, brokers,
+//             property consultants, and real estate sales teams manage leads,
+//             properties, follow-ups, WhatsApp conversations, appointments, and
+//             sales from one centralized platform.
+//           </motion.p>
+//         </div>
+
+//         <div className="mb-12 md:mb-16">
+//           <CrmDashboardVisual priority />
+//         </div>
+
+//         <div className="grid items-start gap-10 lg:grid-cols-[1fr_1.15fr] lg:gap-14">
+//           <div>
+//             <motion.p
+//               initial={{ opacity: 0, y: 14 }}
+//               whileInView={{ opacity: 1, y: 0 }}
+//               viewport={{ once: true }}
+//               className="text-sm leading-relaxed text-foreground/80 md:text-base"
+//             >
+//               A complete real estate CRM designed to bring lead management,
+//               property inventory, customer communication, follow-ups, team
+//               workflows, appointments, and sales tracking together in one
+//               platform.
+//             </motion.p>
+
+//             <div className="mt-6 flex flex-wrap gap-2">
+//               {FEATURED_PRODUCT.stack.map((tech) => (
+//                 <span
+//                   key={tech}
+//                   className="rounded-full border border-border/70 bg-surface/50 px-3 py-1.5 text-xs font-mono text-foreground/70"
+//                 >
+//                   {tech}
+//                 </span>
+//               ))}
+//             </div>
+
+//             <div className="mt-8 flex flex-wrap gap-3">
+//               <MagneticButton
+//                 href="/contact"
+//                 variant="primary"
+//                 className="!px-7 !py-3.5 !text-sm"
+//               >
+//                 Request a demo
+//                 <ArrowRight className="h-4 w-4" />
+//               </MagneticButton>
+
+//               <MagneticButton
+//                 href="/real-estate-crm"
+//                 variant="secondary"
+//                 className="!px-7 !py-3.5 !text-sm"
+//               >
+//                 Open Real Estate CRM overview
+//               </MagneticButton>
+//             </div>
+//           </div>
+
+//           <div className="grid gap-3 sm:grid-cols-2">
+//             {FEATURED_PRODUCT.capabilities.map((capability, i) => {
+//               const Icon = CAPABILITY_ICONS[i] ?? Building2;
+
+//               return (
+//                 <motion.div
+//                   key={capability.title}
+//                   initial={{ opacity: 0, y: 16 }}
+//                   whileInView={{ opacity: 1, y: 0 }}
+//                   viewport={{ once: true }}
+//                   transition={{ delay: 0.05 * i }}
+//                   className="rounded-2xl border border-border/60 bg-background/40 p-4"
+//                 >
+//                   <div className="mb-2 flex h-8 w-8 items-center justify-center rounded-lg bg-accent-blue/10 text-accent-blue">
+//                     <Icon className="h-4 w-4" />
+//                   </div>
+
+//                   <h2 className="text-sm font-semibold tracking-tight">
+//                     {capability.title}
+//                   </h2>
+
+//                   <p className="mt-1 text-xs leading-relaxed text-muted">
+//                     {capability.description}
+//                   </p>
+//                 </motion.div>
+//               );
+//             })}
+//           </div>
+//         </div>
+//       </div>
+//     </section>
+//   );
+// }
+
 function FeaturedCrm() {
   return (
-    <section id="real-estate-crm" className="relative scroll-mt-28">
-      <div className="container-wide">
-        <div className="mb-10 max-w-3xl md:mb-14">
+    <section 
+      id="real-estate-crm" 
+      className="relative scroll-mt-28 overflow-hidden py-12 md:py-20"
+    >
+      {/* Background gradient accent */}
+      <div className="absolute -top-40 -right-40 h-[600px] w-[600px] rounded-full bg-accent-blue/5 blur-3xl" />
+      <div className="absolute -bottom-40 -left-40 h-[500px] w-[500px] rounded-full bg-accent-purple/5 blur-3xl" />
+
+      <div className="container-wide relative z-10">
+        {/* Header Section */}
+        <div className="mb-12 max-w-3xl md:mb-16">
           <motion.span
             initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="mb-4 inline-flex items-center gap-2 rounded-full border border-accent-blue/25 bg-accent-blue/10 px-3 py-1.5 text-[11px] font-mono uppercase tracking-[0.22em] text-accent-blue"
+            className="mb-5 inline-flex items-center gap-2 rounded-full border border-accent-blue/25 bg-accent-blue/10 px-4 py-1.5 text-[10px] font-mono uppercase tracking-[0.25em] text-accent-blue backdrop-blur-sm"
           >
-            <span>Flagship Product · Real Estate CRM</span>
+            <span className="relative flex h-2 w-2">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent-blue opacity-75" />
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-accent-blue" />
+            </span>
+            Flagship Product · Real Estate CRM
           </motion.span>
 
           <motion.h1
@@ -97,11 +234,15 @@ function FeaturedCrm() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.05 }}
-            className="text-3xl font-semibold leading-[1.08] tracking-tight sm:text-4xl md:text-5xl lg:text-[3.25rem]"
+            className="text-4xl font-bold leading-[1.08] tracking-tight sm:text-5xl md:text-6xl lg:text-[3.75rem]"
           >
-            Real Estate CRM for Realtors, Brokers &amp; Real Estate Teams
-
-            <span className="mt-2 block text-2xl text-gradient-accent sm:text-3xl md:text-4xl">
+            Real Estate CRM for 
+            <span className="relative inline-block">
+              <span className="relative z-10">Realtors, Brokers</span>
+              <span className="absolute -bottom-1 left-0 h-3 w-full bg-accent-blue/20 rounded-full blur-sm" />
+            </span>
+            <br />
+            <span className="text-3xl font-semibold text-gradient-accent sm:text-4xl md:text-5xl lg:text-[2.75rem]">
               Manage Leads, Properties &amp; Sales in One Place
             </span>
           </motion.h1>
@@ -111,7 +252,7 @@ function FeaturedCrm() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.12 }}
-            className="mt-5 max-w-2xl text-base leading-relaxed text-muted md:text-lg"
+            className="mt-6 max-w-2xl text-base leading-relaxed text-muted md:text-lg"
           >
             Brosavo&apos;s flagship Real Estate CRM helps realtors, brokers,
             property consultants, and real estate sales teams manage leads,
@@ -120,17 +261,26 @@ function FeaturedCrm() {
           </motion.p>
         </div>
 
-        <div className="mb-12 md:mb-16">
+        {/* Dashboard Visual */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.08 }}
+          className="mb-14 rounded-2xl border border-border/50 bg-background/30 p-2 shadow-2xl shadow-accent-blue/5 backdrop-blur-sm md:mb-20 md:p-3"
+        >
           <CrmDashboardVisual priority />
-        </div>
+        </motion.div>
 
-        <div className="grid items-start gap-10 lg:grid-cols-[1fr_1.15fr] lg:gap-14">
+        {/* Bottom Section */}
+        <div className="grid items-start gap-12 lg:grid-cols-[1fr_1.15fr] lg:gap-16">
+          {/* Left Column */}
           <div>
             <motion.p
               initial={{ opacity: 0, y: 14 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="text-sm leading-relaxed text-foreground/80 md:text-base"
+              className="text-base leading-relaxed text-foreground/80 md:text-lg"
             >
               A complete real estate CRM designed to bring lead management,
               property inventory, customer communication, follow-ups, team
@@ -138,37 +288,56 @@ function FeaturedCrm() {
               platform.
             </motion.p>
 
-            <div className="mt-6 flex flex-wrap gap-2">
+            {/* Tech Stack */}
+            <motion.div
+              initial={{ opacity: 0, y: 12 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.06 }}
+              className="mt-8 flex flex-wrap items-center gap-2"
+            >
+              <span className="mr-1 text-xs font-medium uppercase tracking-wider text-muted">
+                Tech Stack
+              </span>
+              <span className="h-4 w-px bg-border/60" />
               {FEATURED_PRODUCT.stack.map((tech) => (
                 <span
                   key={tech}
-                  className="rounded-full border border-border/70 bg-surface/50 px-3 py-1.5 text-xs font-mono text-foreground/70"
+                  className="rounded-full border border-border/60 bg-surface/40 px-3.5 py-1.5 text-xs font-mono font-medium text-foreground/70 transition-all hover:border-accent-blue/30 hover:bg-accent-blue/5 hover:text-foreground"
                 >
                   {tech}
                 </span>
               ))}
-            </div>
+            </motion.div>
 
-            <div className="mt-8 flex flex-wrap gap-3">
+            {/* CTA Buttons */}
+            <motion.div
+              initial={{ opacity: 0, y: 14 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+              className="mt-10 flex flex-wrap gap-3"
+            >
               <MagneticButton
                 href="/contact"
                 variant="primary"
-                className="!px-7 !py-3.5 !text-sm"
+                className="group !px-8 !py-4 !text-sm shadow-lg shadow-accent-blue/20 transition-all hover:shadow-accent-blue/30"
               >
-                Request a demo
-                <ArrowRight className="h-4 w-4" />
+                <span>Request a demo</span>
+                <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
               </MagneticButton>
 
               <MagneticButton
                 href="/real-estate-crm"
                 variant="secondary"
-                className="!px-7 !py-3.5 !text-sm"
+                className="!px-8 !py-4 !text-sm"
               >
-                Open Real Estate CRM overview
+                Open overview →
               </MagneticButton>
-            </div>
+            </motion.div>
           </div>
 
+          {/* Right Column - Capabilities Grid */}
           <div className="grid gap-3 sm:grid-cols-2">
             {FEATURED_PRODUCT.capabilities.map((capability, i) => {
               const Icon = CAPABILITY_ICONS[i] ?? Building2;
@@ -179,18 +348,22 @@ function FeaturedCrm() {
                   initial={{ opacity: 0, y: 16 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ delay: 0.05 * i }}
-                  className="rounded-2xl border border-border/60 bg-background/40 p-4"
+                  transition={{ delay: 0.05 * i + 0.1 }}
+                  whileHover={{ 
+                    y: -4,
+                    transition: { duration: 0.2 }
+                  }}
+                  className="group rounded-2xl border border-border/50 bg-background/40 p-5 transition-all duration-300 hover:border-accent-blue/20 hover:bg-background/60 hover:shadow-lg hover:shadow-accent-blue/5"
                 >
-                  <div className="mb-2 flex h-8 w-8 items-center justify-center rounded-lg bg-accent-blue/10 text-accent-blue">
-                    <Icon className="h-4 w-4" />
+                  <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-accent-blue/10 text-accent-blue transition-colors duration-300 group-hover:bg-accent-blue/20">
+                    <Icon className="h-5 w-5" />
                   </div>
 
-                  <h2 className="text-sm font-semibold tracking-tight">
+                  <h3 className="text-sm font-semibold tracking-tight">
                     {capability.title}
-                  </h2>
+                  </h3>
 
-                  <p className="mt-1 text-xs leading-relaxed text-muted">
+                  <p className="mt-1.5 text-xs leading-relaxed text-muted">
                     {capability.description}
                   </p>
                 </motion.div>
