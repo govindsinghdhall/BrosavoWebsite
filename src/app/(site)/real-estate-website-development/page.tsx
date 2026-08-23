@@ -258,27 +258,21 @@ export default function RealEstateWebsiteDevelopmentClient() {
               transition={{ duration: 0.8, ease: "easeOut" }}
               className="relative z-20 text-center lg:text-left"
             >
-              <motion.div
-                initial={{ opacity: 0, y: 12 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.1, duration: 0.6 }}
-                className="mb-6 inline-flex items-center gap-2 rounded-full border border-accent-blue/20 bg-accent-blue/5 px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.2em] text-accent-blue backdrop-blur-md"
-              >
-                <span className="h-1.5 w-1.5 rounded-full bg-accent-blue animate-pulse" />
-                Real Estate Website Development
-              </motion.div>
-
               <motion.h1
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2, duration: 0.8 }}
-                className="text-balance text-[clamp(2.15rem,7.2vw,4.75rem)] font-black leading-[1.05] tracking-[-0.05em]"
-              >
-                Websites Built to Turn
-                <span className="block bg-gradient-to-r from-accent-blue via-accent-violet to-accent-cyan bg-clip-text text-transparent">
-                  Property Searches Into Sales.
-                </span>
-              </motion.h1>
+  initial={{ opacity: 0, y: 20 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ delay: 0.2, duration: 0.8 }}
+  className="text-balance font-black leading-[1.2]"
+>
+  <span className="block text-[clamp(1.5rem,5vw,4rem)]">
+    <span className="block tracking-[0.001em] text-foreground">
+      Websites Built to Turn
+    </span>
+    <span className="block whitespace-nowrap bg-gradient-to-r from-accent-blue via-accent-violet to-accent-cyan bg-clip-text text-transparent tracking-[0.001em] text-[clamp(1.5rem,5vw,4rem)]">
+      Property Searches Into Sales.
+    </span>
+  </span>
+</motion.h1>
 
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
