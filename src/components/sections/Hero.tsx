@@ -371,6 +371,7 @@ export function Hero() {
             Brosavo is a global software and technology company
             building custom software, AI solutions, SaaS platforms,
             and digital products for modern businesses — including{" "}
+            <br />
             <strong className="font-semibold text-foreground">
               Real Estate CRM
             </strong>
