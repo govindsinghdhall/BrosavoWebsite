@@ -25,7 +25,7 @@ const COMPANY_DESCRIPTION =
   "Brosavo Technologies is a global technology company building software products, AI solutions, SaaS platforms, cloud solutions, automation systems, and digital products for businesses worldwide. We specialize in software development, web and mobile applications, CRM solutions, artificial intelligence, business automation, and digital transformation. Brosavo is also the developer of Brosavo Real Estate CRM, a platform designed for real estate agents, brokers, agencies, developers, and teams. We combine modern technology, product design, and business-focused engineering to build secure, scalable, and practical digital solutions that help businesses build, modernize, automate, and scale their digital operations.";
 
 const COMPANY_SHORT_DESCRIPTION =
-  "Brosavo Technologies is a global software company building software products, AI solutions, SaaS platforms, cloud solutions, automation systems, CRM solutions, and digital products for businesses worldwide.";
+  "Brosavo Technologies is a global technology company building software products, AI solutions, SaaS platforms, cloud solutions, automation systems, and digital products. We also develop Brosavo Real Estate CRM for real estate businesses.";
 
 const SOCIAL_PROFILES = [
   "https://www.linkedin.com/company/143083050",
