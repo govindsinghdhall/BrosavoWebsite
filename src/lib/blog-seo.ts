@@ -309,6 +309,12 @@ export function buildRealEstateCrmJsonLd() {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
 
+    /*
+     * Stable identifier for the Brosavo Real Estate CRM
+     * entity across structured data.
+     */
+    "@id": `${SITE_URL}/#real-estate-crm`,
+
     name: PRODUCT_NAME,
 
     applicationCategory:
