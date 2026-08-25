@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+
 import { SITE_URL } from "@/lib/site";
 
 export default function robots(): MetadataRoute.Robots {
@@ -6,6 +7,11 @@ export default function robots(): MetadataRoute.Robots {
     rules: [
       {
         userAgent: "*",
+        allow: "/",
+        disallow: ["/admin", "/authentication", "/api/"],
+      },
+      {
+        userAgent: "OAI-SearchBot",
         allow: "/",
         disallow: ["/admin", "/authentication", "/api/"],
       },
