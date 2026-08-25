@@ -42,25 +42,95 @@ export const metadata: Metadata = {
   description:
     "Brosavo is real estate CRM software for agents and brokers. Manage leads, properties, WhatsApp follow-ups and pipelines. Start a 14-day free trial now.",
 
-  keywords: [
-    "real estate CRM",
-    "real estate CRM software",
-    "CRM for real estate agents",
-    "CRM for realtors",
-    "CRM for brokers",
-    "real estate lead management",
-    "real estate sales CRM",
-    "WhatsApp CRM for real estate",
-    "property management CRM",
-    "real estate CRM pricing",
-    "real estate CRM cost",
-    "real estate agent CRM",
-    "best real estate CRM",
-    "real estate follow-up software",
-    "property CRM",
-    "Brosavo Real Estate CRM",
-    "Brosavo",
-  ],
+    keywords: [
+      // Primary keywords
+      "real estate CRM",
+      "real estate CRM software",
+      "real estate CRM platform",
+      "real estate CRM system",
+      "real estate CRM solution",
+      "real estate CRM tools",
+      "real estate CRM technology",
+    
+      // Audience / customer type
+      "CRM for real estate agents",
+      "CRM for realtors",
+      "CRM for brokers",
+      "real estate agent CRM",
+      "real estate broker CRM",
+      "CRM for real estate agencies",
+      "CRM for real estate companies",
+      "CRM for property dealers",
+      "CRM for real estate professionals",
+      "CRM for real estate teams",
+    
+      // Lead & sales management
+      "real estate lead management",
+      "real estate lead management software",
+      "real estate lead tracking software",
+      "real estate lead CRM",
+      "real estate sales CRM",
+      "real estate sales management software",
+      "real estate pipeline management",
+      "real estate sales pipeline",
+      "real estate lead tracking",
+      "real estate lead management system",
+      "real estate customer management software",
+      "real estate client management software",
+    
+      // Follow-ups & automation
+      "real estate follow-up software",
+      "real estate follow up CRM",
+      "real estate lead follow-up software",
+      "real estate sales automation",
+      "real estate CRM automation",
+      "real estate lead automation",
+      "real estate agent follow-up software",
+    
+      // WhatsApp / communication
+      "WhatsApp CRM for real estate",
+      "real estate WhatsApp CRM",
+      "WhatsApp CRM for realtors",
+      "WhatsApp CRM for real estate agents",
+      "real estate WhatsApp marketing CRM",
+      "real estate CRM WhatsApp integration",
+      "real estate lead management WhatsApp",
+    
+      // Property management
+      "property management CRM",
+      "property CRM",
+      "real estate property CRM",
+      "property sales CRM",
+      "property management software CRM",
+      "real estate inventory management software",
+      "real estate property management software",
+    
+      // Pricing / commercial intent
+      "real estate CRM pricing",
+      "real estate CRM cost",
+      "real estate CRM price",
+      "real estate CRM software pricing",
+      "real estate CRM software cost",
+      "affordable real estate CRM",
+      "real estate CRM for small business",
+    
+      // Best / evaluation intent
+      "best real estate CRM",
+      "best real estate CRM software",
+      "best CRM for real estate agents",
+      "best CRM for realtors",
+      "best CRM for real estate brokers",
+      "top real estate CRM",
+      "top real estate CRM software",
+      "best real estate lead management software",
+    
+      // Brand
+      "Brosavo",
+      "Brosavo Real Estate CRM",
+      "Brosavo CRM",
+      "Brosavo real estate software",
+      "Brosavo CRM software",
+    ],
 
   alternates: {
     canonical: PAGE_URL,

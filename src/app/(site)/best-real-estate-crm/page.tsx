@@ -24,66 +24,142 @@ type PageConfig = {
 };
 
 const config: PageConfig = {
-  "title": "Best Real Estate CRM Software | Brosavo",
-  "description": "Compare what to look for in real estate CRM software and see how Brosavo helps agents, brokers, agencies and developers manage leads, properties, follow-ups and sales.",
-  "eyebrow": "Real Estate CRM Comparison",
-  "heading": "Find the right real estate CRM for your sales team.",
-  "intro": "The best real estate CRM depends on how your team captures leads, manages property inventory, follows up with prospects and measures sales performance. Brosavo brings these workflows together in one platform.",
-  "audience": "",
-  "primaryKeywords": [
-    "Real Estate CRM",
-    "Lead Management",
-    "Property Inventory",
-    "Sales Pipeline",
-    "WhatsApp Workflows",
-    "Analytics"
+  title: "Best Real Estate CRM Software | Brosavo",
+  description:
+    "Compare what to look for in real estate CRM software and see how Brosavo helps agents, brokers, agencies and developers manage leads, properties, follow-ups and sales.",
+  eyebrow: "Real Estate CRM Comparison",
+  heading: "Find the right real estate CRM for your sales team.",
+  intro:
+    "The best real estate CRM depends on how your team captures leads, manages property inventory, follows up with prospects and measures sales performance. Brosavo brings these workflows together in one platform.",
+  audience: "",
+  primaryKeywords: [
+    // Core
+    "best real estate CRM",
+    "best real estate CRM software",
+    "top real estate CRM",
+    "top real estate CRM software",
+    "best CRM for real estate",
+    "best CRM for real estate agents",
+    "best CRM for realtors",
+    "best CRM for real estate brokers",
+    "best real estate CRM platform",
+    "best real estate CRM system",
+
+    // Evaluation / comparison
+    "real estate CRM comparison",
+    "real estate CRM software comparison",
+    "real estate CRM platforms comparison",
+    "top CRM software for real estate",
+    "best real estate CRM platforms",
+    "best real estate CRM tools",
+    "best real estate sales CRM",
+    "best real estate lead management software",
+
+    // Lead Management
+    "real estate lead management",
+    "real estate lead management software",
+    "best real estate lead management",
+    "real estate lead tracking",
+    "real estate lead tracking software",
+
+    // Property Inventory
+    "real estate property management CRM",
+    "property management CRM",
+    "property inventory management",
+    "real estate inventory management",
+    "property inventory software",
+    "real estate property CRM",
+
+    // Sales Pipeline
+    "real estate sales pipeline",
+    "real estate sales pipeline software",
+    "real estate sales CRM",
+    "real estate pipeline management",
+    "real estate deal management",
+
+    // WhatsApp
+    "WhatsApp CRM for real estate",
+    "best WhatsApp CRM for real estate",
+    "real estate WhatsApp CRM",
+    "WhatsApp CRM for realtors",
+    "real estate CRM WhatsApp integration",
+    "real estate WhatsApp automation",
+
+    // Automation
+    "real estate CRM automation",
+    "real estate follow-up software",
+    "real estate lead follow-up software",
+    "real estate sales automation",
+    "real estate workflow automation",
+
+    // Analytics
+    "real estate CRM analytics",
+    "real estate sales analytics",
+    "real estate lead analytics",
+    "real estate reporting software",
+    "real estate sales reporting",
+
+    // Pricing / affordability
+    "best affordable real estate CRM",
+    "best real estate CRM for small business",
+    "best real estate CRM for small teams",
+    "real estate CRM pricing",
+    "real estate CRM cost",
+
+    // Brand
+    "Brosavo",
+    "Brosavo CRM",
+    "Brosavo Real Estate CRM",
+    "Brosavo best real estate CRM",
   ],
-  "sections": [
+  sections: [
     {
-      "title": "What makes a good real estate CRM?",
-      "paragraphs": [
+      title: "What makes a good real estate CRM?",
+      paragraphs: [
         "A useful real estate CRM should make it easier to capture enquiries, understand customer requirements, manage property information, assign ownership and keep every opportunity moving.",
-        "Brosavo is designed around the day-to-day workflow of agents, brokers, agencies and developers rather than treating real estate sales like a generic CRM workflow."
+        "Brosavo is designed around the day-to-day workflow of agents, brokers, agencies and developers rather than treating real estate sales like a generic CRM workflow.",
       ],
-      "bullets": [
+      bullets: [
         "Lead capture and management",
         "Customer and property records",
         "Sales pipeline management",
         "Follow-ups and tasks",
         "WhatsApp engagement",
-        "Reporting and analytics"
-      ]
+        "Reporting and analytics",
+      ],
     },
     {
-      "title": "Why teams choose Brosavo",
-      "paragraphs": [
+      title: "Why teams choose Brosavo",
+      paragraphs: [
         "Brosavo combines CRM, property inventory, website lead capture, sales pipelines, WhatsApp workflows and analytics in one connected platform.",
-        "Teams can move from first enquiry to qualification, follow-up and conversion without relying on disconnected spreadsheets and communication tools."
+        "Teams can move from first enquiry to qualification, follow-up and conversion without relying on disconnected spreadsheets and communication tools.",
       ],
-      "bullets": [
+      bullets: [
         "14-day free trial",
         "Real estate-focused workflows",
         "Website lead capture",
         "Property matching",
         "Team management",
-        "Mobile app add-on"
-      ]
-    }
+        "Mobile app add-on",
+      ],
+    },
   ],
-  "faqs": [
+  faqs: [
     {
-      "question": "What is the best real estate CRM?",
-      "answer": "The best real estate CRM is the one that matches a team's lead, property, follow-up and sales workflow. Brosavo is designed for agents, brokers, agencies and developers."
+      question: "What is the best real estate CRM?",
+      answer:
+        "The best real estate CRM is the one that matches a team's lead, property, follow-up and sales workflow. Brosavo is designed for agents, brokers, agencies and developers.",
     },
     {
-      "question": "Is Brosavo a real estate CRM?",
-      "answer": "Yes. Brosavo is a real estate CRM platform covering leads, customers, properties, sales pipelines, follow-ups, WhatsApp workflows and analytics."
+      question: "Is Brosavo a real estate CRM?",
+      answer:
+        "Yes. Brosavo is a real estate CRM platform covering leads, customers, properties, sales pipelines, follow-ups, WhatsApp workflows and analytics.",
     },
     {
-      "question": "Does Brosavo offer a free trial?",
-      "answer": "Yes. Brosavo offers a 14-day free trial on eligible plans."
-    }
-  ]
+      question: "Does Brosavo offer a free trial?",
+      answer: "Yes. Brosavo offers a 14-day free trial on eligible plans.",
+    },
+  ],
 };
 
 export const metadata: Metadata = {
@@ -280,9 +356,9 @@ export default function Page() {
             </h2>
 
             <p className="mt-4 max-w-2xl text-base leading-7 text-muted">
-              Explore the complete Brosavo Real Estate CRM for lead
-              management, property inventory, sales pipelines, WhatsApp
-              workflows, analytics and team management.
+              Explore the complete Brosavo Real Estate CRM for lead management,
+              property inventory, sales pipelines, WhatsApp workflows, analytics
+              and team management.
             </p>
 
             <div className="mt-7 flex flex-col gap-3 sm:flex-row">
