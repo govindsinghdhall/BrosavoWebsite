@@ -330,9 +330,7 @@ export function buildRealEstateCrmJsonLd() {
       "Real Estate CRM software by Brosavo for real estate teams, brokers, and property businesses to manage leads, properties, WhatsApp conversations, follow-ups, sales pipelines, and customer relationships.",
 
     creator: {
-      "@type": "Organization",
-      name: SITE_NAME,
-      url: SITE_URL,
+      "@id": ORGANIZATION_ID,
     },
 
     featureList: [
@@ -345,6 +343,7 @@ export function buildRealEstateCrmJsonLd() {
     ],
   };
 }
+
 
 /* ============================================================
    HEADING SLUG
