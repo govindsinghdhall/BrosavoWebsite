@@ -64,8 +64,7 @@ export default function ContactPage() {
           </h2>
 
           <p className="mt-3 max-w-2xl text-muted">
-            Visit our office in Gurugram. Find us at 101-R, near Gaba Ki
-            Kothi, New Colony, Sector 7.
+            Visit our office in Gurugram. Find us at 101 R, New Colony, Sector 7, Gurugram, Haryana 122001.
           </p>
         </div>
 
