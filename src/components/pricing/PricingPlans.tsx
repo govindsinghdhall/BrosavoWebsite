@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import { Check, Sparkles } from "lucide-react";
 import { CurrencySelector } from "@/components/pricing/CurrencySelector";
@@ -99,12 +100,12 @@ function StickyNav() {
                 {section.label}
               </a>
             ))}
-            <a
+            <Link
               href="/contact?intent=trial"
               className="ml-1 rounded-full bg-linear-to-r from-accent-blue to-accent-violet px-4 py-1.5 text-xs font-semibold text-white"
             >
               Start Free Trial
-            </a>
+            </Link>
           </nav>
         </motion.div>
       ) : null}

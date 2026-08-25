@@ -13,6 +13,11 @@ import {
 } from "@/lib/blogs";
 
 import {
+  blogPostPath,
+  isReservedBlogSlug,
+} from "@/lib/blog-urls";
+
+import {
   normalizeTagsInput,
   normalizeTakeawaysInput,
   publishBlogSchema,
@@ -136,6 +141,15 @@ export async function POST(request: Request) {
       lower: true,
       strict: true,
     });
+
+    if (isReservedBlogSlug(slug)) {
+      return NextResponse.json(
+        {
+          error: `Slug "${slug}" conflicts with an existing website page. Choose a different slug (for example, add -guide).`,
+        },
+        { status: 409 }
+      );
+    }
 
     const tags = normalizeTagsInput(data.tags);
 
@@ -431,7 +445,7 @@ export async function POST(request: Request) {
         imagePath,
 
       url:
-        `/blog/${slug}`,
+        blogPostPath(slug),
     });
   } catch (error) {
     /*

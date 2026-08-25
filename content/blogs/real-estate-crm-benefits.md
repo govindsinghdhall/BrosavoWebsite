@@ -165,7 +165,7 @@ Use current figures from reputable sources when you publish or refresh this arti
 
 Always replace placeholder references with the latest published statistics and link out to the original reports.
 
-For deeper reading on choosing tools, see our guides on the [best CRM for realtors](/blog/best-crm-for-realtors-canada) and [best CRM for real estate agents](/blog/best-crm-for-real-estate-agents).
+For deeper reading on choosing tools, see our guides on the [best CRM for realtors](/best-crm-for-realtors-canada) and [best CRM for real estate agents](/best-crm-for-real-estate-agents).
 
 ## Conclusion
 

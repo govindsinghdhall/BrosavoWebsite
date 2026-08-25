@@ -18,7 +18,7 @@ tags:
   - "real estate CRM pricing"
 image: "/blog/best-real-estate-crm/cover.webp"
 imageAlt: "Best real estate CRM software comparison"
-slug: "best-real-estate-crm"
+slug: "best-real-estate-crm-guide"
 seoTitle: "Best Real Estate CRM Software in 2026: 6 Platforms Compared | Brosavo"
 seoDescription: "Compare the best real estate CRM software in 2026, including lead management, follow-up automation, team features, integrations, pricing, and usability."
 ---

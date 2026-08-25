@@ -24,6 +24,7 @@ import {
   getAllBlogs,
   getBlogBySlug,
 } from "@/lib/blogs";
+import { blogPostAbsoluteUrl, blogPostPath } from "@/lib/blog-urls";
 import { BLOG_TITLE_SUFFIX, PRODUCT_CTA, SITE_NAME, SITE_URL } from "@/lib/site";
 
 export const revalidate = 60;
@@ -51,7 +52,7 @@ export async function generateMetadata({
 
   const title = blog.seoTitle || `${blog.title}${BLOG_TITLE_SUFFIX}`;
   const description = blog.seoDescription || blog.description;
-  const canonical = `${SITE_URL}/blog/${blog.slug}`;
+  const canonical = blogPostAbsoluteUrl(blog.slug, SITE_URL);
   const imageUrl = absoluteUrl(blog.image);
   const imageAlt = blog.imageAlt || blog.title;
 
@@ -108,7 +109,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const breadcrumbSchema = buildBreadcrumbJsonLd([
     { name: "Home", url: "/" },
     { name: "Blog", url: "/blog" },
-    { name: blog.title, url: `/blog/${blog.slug}` },
+    { name: blog.title, url: blogPostPath(blog.slug) },
   ]);
   const faqSchema = buildFaqJsonLd(faqs);
 
