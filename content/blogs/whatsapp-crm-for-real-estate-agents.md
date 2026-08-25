@@ -643,4 +643,4 @@ Brosavo is designed around connected real estate workflows that can bring lead m
 
 ## Explore More Real Estate CRM Guides
 
-If you are researching real estate CRM software, explore our guides on [the best CRM for real estate agents](/blog/best-crm-for-real-estate-agents), [the best CRM for realtors in Canada](/blog/best-crm-for-realtors-canada), and [real estate CRM benefits](/blog/real-estate-crm-benefits).
+If you are researching real estate CRM software, explore our guides on [the best CRM for real estate agents](/best-crm-for-real-estate-agents), [the best CRM for realtors in Canada](/best-crm-for-realtors-canada), and [real estate CRM benefits](/real-estate-crm-benefits).

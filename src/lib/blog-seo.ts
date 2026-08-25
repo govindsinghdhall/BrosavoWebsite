@@ -73,9 +73,7 @@ export function buildArticleJsonLd(
 
     mainEntityOfPage: {
       "@type": "WebPage",
-      "@id": absoluteUrl(
-        `/blog/${post.slug}`
-      ),
+      "@id": absoluteUrl(`/${post.slug}`),
     },
 
     keywords: post.tags.join(", "),

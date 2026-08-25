@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ArrowRight, CalendarDays } from "lucide-react";
 import type { BlogMeta } from "@/types/blog";
 import { formatBlogDate } from "@/lib/blogs";
+import { blogPostPath } from "@/lib/blog-urls";
 import { cn } from "@/lib/utils";
 
 interface BlogCardProps {
@@ -12,7 +13,7 @@ interface BlogCardProps {
 }
 
 export function BlogCard({ blog, priority = false, className }: BlogCardProps) {
-  const href = `/blog/${blog.slug}`;
+  const href = blogPostPath(blog.slug);
 
   return (
     <article

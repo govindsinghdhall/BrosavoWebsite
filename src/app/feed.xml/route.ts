@@ -17,7 +17,7 @@ export function GET() {
 
   const items = blogs
     .map((blog) => {
-      const url = `${SITE_URL}/blog/${blog.slug}`;
+      const url = `${SITE_URL}/${blog.slug}`;
       return `
       <item>
         <title>${escapeXml(blog.title)}</title>

@@ -1,6 +1,6 @@
 ---
 title: "Real Estate CRM: Complete Guide to Real Estate CRM Software"
-slug: "real-estate-crm"
+slug: "real-estate-software-free-demo"
 description: "Learn how real estate CRM software helps agents, brokers, developers and sales teams manage leads, properties, follow-ups and sales pipelines."
 category: "Real Estate CRM"
 author: "Govind Dhall — Founder & Product Engineer at Brosavo"
