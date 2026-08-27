@@ -37,6 +37,21 @@ export const CONTACT = {
       handle: "brosavo",
       href: "https://github.com/brosavotechnologies",
     },
+    pinterest: {
+      label: "Pinterest",
+      handle: "brosavo",
+      href: "https://in.pinterest.com/brosavo/",
+    },
+    vimeo: {
+      label: "Vimeo",
+      handle: "brosavo",
+      href: "https://vimeo.com/brosavo",
+    },
+    sortlist: {
+      label: "Sortlist",
+      handle: "brosavo",
+      href: "https://app.sortlist.com/brosavo/",
+    },
   },
 
   phones: [
