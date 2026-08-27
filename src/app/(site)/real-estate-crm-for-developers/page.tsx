@@ -159,6 +159,23 @@ const config: PageConfig = {
         "Sales reporting",
       ],
     },
+
+    {
+      title: "Report by holding, subsidiary, project, and unit",
+
+      paragraphs: [
+        "Property developers and constructor groups often need a hierarchy: holding company, subsidiary or brand, project, then unit. Sales pipelines can differ by brand or channel while leadership still needs aggregated reporting at each level.",
+
+        "Brosavo is built for project inventory and team sales operations. Use projects, unit inventory, ownership and pipeline reporting to keep that hierarchy visible without running a separate spreadsheet for each brand.",
+      ],
+
+      bullets: [
+        "Project and unit inventory",
+        "Pipelines by team or channel",
+        "Aggregated sales reporting",
+        "Permissions by role",
+      ],
+    },
   ],
 
   faqs: [
@@ -202,6 +219,14 @@ const config: PageConfig = {
 
       answer:
         "Yes. Brosavo includes reporting and analytics capabilities for understanding leads, conversions, pipeline performance and team activity.",
+    },
+
+    {
+      question:
+        "Can Brosavo model holding, subsidiary, project and unit reporting?",
+
+      answer:
+        "Brosavo supports project-level inventory, unit availability, team pipelines and aggregated reporting. Constructor groups that sell through multiple brands or channels can keep those pipelines separate while reviewing activity at the project and organization level.",
     },
   ],
 };

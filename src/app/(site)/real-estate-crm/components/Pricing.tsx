@@ -311,7 +311,7 @@ export default function Pricing() {
           ========================================================== */}
 
           <Link
-            href="/real-estate-crm-pricing"
+            href="/pricing"
             className="group inline-flex items-center gap-2 text-sm font-medium text-foreground transition-colors hover:text-accent-blue"
           >
             Compare Brosavo real estate CRM plans

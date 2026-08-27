@@ -1,29 +1,34 @@
 "use client";
 
+import Link from "next/link";
 import { motion } from "framer-motion";
 
 const audiences = [
   {
     number: "01",
     title: "Real Estate Agents",
+    href: "/real-estate-crm-for-agents",
     description:
       "Manage leads, properties and follow-ups from one place instead of relying on spreadsheets and scattered tools.",
   },
   {
     number: "02",
     title: "Real Estate Brokers",
+    href: "/real-estate-crm-for-brokers",
     description:
-      "Give your brokerage a centralized system for managing sales, property inventory, leads and team activity.",
+      "Give your desk a broker CRM for lead assignment, inventory, pipelines and team activity.",
   },
   {
     number: "03",
     title: "Real Estate Agencies",
+    href: "/real-estate-crm-for-brokerages",
     description:
       "Connect website enquiries, property listings, customer requirements and team workflows in one CRM.",
   },
   {
     number: "04",
     title: "Property Developers",
+    href: "/real-estate-crm-for-developers",
     description:
       "Build scalable sales operations across projects, teams, inventory and customer opportunities.",
   },
@@ -146,6 +151,13 @@ export default function WhoItsFor() {
                 {audience.description}
               </p>
 
+              <Link
+                href={audience.href}
+                className="mt-4 inline-flex text-sm font-medium text-accent-blue"
+              >
+                Open this CRM page →
+              </Link>
+
               {/* Bottom accent */}
 
               <div
@@ -179,7 +191,10 @@ export default function WhoItsFor() {
           <span className="h-px w-8 bg-border" />
 
           <span>
-            Agents · Brokers · Agencies · Developers
+            Agents · Brokers · Agencies · Developers ·{" "}
+            <Link href="/real-estate-crm-for-realtors" className="text-muted">
+              Realtors
+            </Link>
           </span>
 
           <span className="h-px w-8 bg-border" />

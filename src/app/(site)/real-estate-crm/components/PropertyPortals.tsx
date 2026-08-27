@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { motion } from "framer-motion";
 
 const portals = [
@@ -70,7 +71,7 @@ export default function PropertyPortals() {
             Property Ecosystem
           </span>
 
-          <p
+          <h2
             id="property-ecosystem-heading"
             className="mt-4 text-3xl font-semibold leading-[1.05] tracking-[-0.045em] text-foreground sm:text-4xl lg:text-[2.65rem]"
           >
@@ -79,11 +80,12 @@ export default function PropertyPortals() {
             <span className="text-gradient-accent">
               One intelligent CRM.
             </span>
-          </p>
+          </h2>
 
           <p className="mx-auto mt-3 max-w-2xl text-sm leading-6 text-muted sm:text-base sm:leading-7">
-            Bring property listings, enquiries and customer requirements
-            closer to the same sales workflow your team already uses.
+            Bring 99acres, MagicBricks and Housing.com listings, enquiries and
+            customer requirements closer to the same sales workflow your team
+            already uses.
           </p>
         </motion.div>
 
@@ -191,15 +193,24 @@ export default function PropertyPortals() {
             duration: 0.5,
             delay: 0.2,
           }}
-          className="mt-7 flex items-center justify-center gap-3 text-[9px] uppercase tracking-[0.16em] text-muted/50"
+          className="mt-7 flex flex-col items-center justify-center gap-3 text-center"
         >
-          <span className="h-px w-8 bg-border" />
+          <Link
+            href="/how-to-sync-99acres-and-magicbricks-leads-to-crm"
+            className="text-sm font-medium text-accent-blue"
+          >
+            Sync 99acres and MagicBricks leads
+          </Link>
 
-          <span>
-            Listings · Enquiries · Customer Requirements
-          </span>
+          <div className="flex items-center justify-center gap-3 text-[9px] uppercase tracking-[0.16em] text-muted/50">
+            <span className="h-px w-8 bg-border" />
 
-          <span className="h-px w-8 bg-border" />
+            <span>
+              Listings · Enquiries · Customer Requirements
+            </span>
+
+            <span className="h-px w-8 bg-border" />
+          </div>
         </motion.div>
       </div>
     </section>

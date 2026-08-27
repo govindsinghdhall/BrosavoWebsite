@@ -24,11 +24,11 @@ type PageConfig = {
 };
 
 const config: PageConfig = {
-  "title": "Real Estate Sales CRM | Brosavo",
-  "description": "Brosavo real estate sales CRM helps teams manage opportunities, sales pipelines, follow-ups, properties and customer relationships.",
+  "title": "Real Estate Sales CRM Software | Brosavo",
+  "description": "Brosavo real estate sales CRM software helps teams manage property sales opportunities, pipelines, follow-ups, listings and customer relationships.",
   "eyebrow": "Real Estate Sales CRM",
   "heading": "See every real estate opportunity and what happens next.",
-  "intro": "Brosavo connects leads, properties, customers, tasks and pipeline stages so real estate teams can build a repeatable sales process.",
+  "intro": "Brosavo is real estate sales software for property sales teams: leads, listings, follow-ups and pipeline stages sit on one record so the next action is visible.",
   "audience": "",
   "primaryKeywords": [
     "Sales Pipeline",
@@ -52,9 +52,9 @@ const config: PageConfig = {
       ]
     },
     {
-      "title": "From enquiry to closed deal",
+      "title": "From enquiry to closed property sale",
       "paragraphs": [
-        "Connect capture, qualification, follow-up and closing into one workflow so teams can manage the full real estate sales process."
+        "Connect capture, qualification, follow-up and closing into one property sales CRM workflow so teams can manage the full real estate sales process."
       ],
       "bullets": [
         "Capture",
@@ -68,6 +68,10 @@ const config: PageConfig = {
     {
       "question": "What is a real estate sales CRM?",
       "answer": "A real estate sales CRM helps teams manage leads, opportunities, follow-ups, customers and sales pipelines."
+    },
+    {
+      "question": "Is Brosavo property sales CRM software?",
+      "answer": "Yes. Brosavo is built around property sales: the listing, the buyer requirement, the follow-up and the pipeline stage stay connected."
     },
     {
       "question": "Does Brosavo include a sales pipeline?",

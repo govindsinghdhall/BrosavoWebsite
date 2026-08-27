@@ -85,16 +85,6 @@ const STATIC_ROUTES = [
     priority: 1.0,
     changeFrequency: "weekly" as const,
   },
-  {
-    route: "/best-real-estate-crm",
-    priority: 0.95,
-    changeFrequency: "monthly" as const,
-  },
-  {
-    route: "/real-estate-crm-pricing",
-    priority: 0.9,
-    changeFrequency: "monthly" as const,
-  },
 
   // ============================================================
   // REAL ESTATE CRM — AUDIENCE

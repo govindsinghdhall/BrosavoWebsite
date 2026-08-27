@@ -39,4 +39,9 @@ export const REAL_ESTATE_CRM_FAQS = [
     answer:
       "Yes. Individual agents can start on Starter, while brokerages, agencies and developers can use Professional or Enterprise. Enterprise supports multiple users, websites and branches, custom integrations, API access, advanced permissions and data migration for larger real estate operations.",
   },
+  {
+    question: "Can Brosavo take 99acres and MagicBricks leads?",
+    answer:
+      "Portal enquiries can sit in Brosavo when your 99acres or MagicBricks account supports a lead-delivery method the CRM can use, including approved integrations, email-based intake, or CSV import. See the 99acres and MagicBricks sync guide for the intake options.",
+  },
 ] as const;

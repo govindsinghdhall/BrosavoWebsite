@@ -9,20 +9,10 @@ export const metadata: Metadata = {
     "Explore Brosavo's software products and business platforms, including our real estate CRM for managing leads, properties, follow-ups, WhatsApp conversations, and sales.",
 
   keywords: [
-    "real estate CRM",
-    "real estate CRM software",
-    "CRM for real estate",
-    "CRM for realtors",
-    "CRM for real estate agents",
-    "real estate lead management",
-    "real estate sales CRM",
-    "property management CRM",
-    "real estate CRM India",
-    "Brosavo",
-    "Brosavo real estate CRM",
+    "Brosavo products",
+    "Brosavo Real Estate CRM",
     "business software",
     "SaaS platforms",
-    "AI software",
   ],
 
   alternates: {

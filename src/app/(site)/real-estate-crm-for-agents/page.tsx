@@ -89,6 +89,21 @@ const config: PageConfig = {
         "Activity visibility",
       ],
     },
+
+    {
+      title: "Buyer’s agent workflows",
+
+      paragraphs: [
+        "Buyer’s agents work from a search brief rather than a listing desk. Brosavo can store the buyer requirement, matched properties and follow-ups on one record. Australian buyer’s agents should also use the Australia CRM page for local context.",
+      ],
+
+      bullets: [
+        "Search briefs",
+        "Property matching",
+        "Shortlists",
+        "Client follow-up",
+      ],
+    },
   ],
 
   faqs: [
@@ -433,10 +448,10 @@ export default function Page() {
                 </Link>
 
                 <Link
-                  href="/contact"
+                  href="/real-estate-crm/australia"
                   className="rounded-full border border-border/70 px-6 py-3.5 text-center text-sm font-medium transition hover:-translate-y-0.5"
                 >
-                  Talk to Brosavo
+                  Real estate CRM in Australia
                 </Link>
               </div>
             </div>

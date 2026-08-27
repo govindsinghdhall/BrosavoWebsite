@@ -24,11 +24,11 @@ type PageConfig = {
 };
 
 const config: PageConfig = {
-  "title": "Real Estate CRM for Realtors | Brosavo",
-  "description": "Brosavo helps realtors manage leads, clients, property inventory, follow-ups and sales opportunities from one real estate CRM.",
+  "title": "CRM for Realtors | Brosavo",
+  "description": "Brosavo is a realtor CRM for leads, clients, listings, follow-ups and closings. Built for realtors who need one record for each client relationship.",
   "eyebrow": "CRM for Realtors",
-  "heading": "Keep your realtor workflow organized from lead to closing.",
-  "intro": "Brosavo gives realtors one place to manage client requirements, property interests, follow-ups, opportunities and sales activity.",
+  "heading": "Realtor CRM for leads, clients, and closings.",
+  "intro": "Brosavo gives realtors one place for client requirements, listing interest, follow-ups and the next pipeline step. Comparison of CRM platforms lives on the best-CRM guide; this page is the product.",
   "audience": "",
   "primaryKeywords": [
     "Realtor CRM",
@@ -68,6 +68,10 @@ const config: PageConfig = {
     {
       "question": "Is Brosavo a CRM for realtors?",
       "answer": "Yes. Brosavo provides lead, customer, property, follow-up and sales pipeline capabilities for realtors."
+    },
+    {
+      "question": "Is this the best CRM for realtors?",
+      "answer": "Whether Brosavo is the right CRM depends on your workflow. Use this page to see the realtor product. Use the 2026 comparison guide if you are still evaluating several platforms."
     },
     {
       "question": "Can realtors manage property inventory?",
@@ -284,10 +288,10 @@ export default function Page() {
               </Link>
 
               <Link
-                href="/contact"
+                href="/best-real-estate-crm-guide"
                 className="rounded-full border border-border/70 px-6 py-3.5 text-center text-sm font-medium"
               >
-                Talk to Brosavo
+                Compare real estate CRMs
               </Link>
             </div>
           </div>

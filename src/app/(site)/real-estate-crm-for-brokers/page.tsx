@@ -24,11 +24,11 @@ type PageConfig = {
 };
 
 const config: PageConfig = {
-  "title": "Real Estate CRM for Brokers | Brosavo",
-  "description": "Brosavo helps real estate brokers centralize leads, property inventory, sales pipelines, assignments and team activity.",
-  "eyebrow": "CRM for Real Estate Brokers",
-  "heading": "Give your brokerage one connected sales workspace.",
-  "intro": "Brosavo helps brokers replace fragmented lead and property workflows with a centralized CRM for managing opportunities, teams and inventory.",
+  "title": "Real Estate Broker CRM | Brosavo",
+  "description": "Brosavo is a real estate broker CRM for lead assignment, property inventory, sales pipelines and team activity.",
+  "eyebrow": "Real Estate Broker CRM",
+  "heading": "Real estate broker CRM for leads, inventory, and teams.",
+  "intro": "Brosavo gives real estate brokers one CRM to assign leads, track inventory, run a sales pipeline and see what the desk is working on. Multi-agent firms that need shared reporting should use the brokerages page.",
   "audience": "",
   "primaryKeywords": [
     "Broker CRM",
@@ -52,6 +52,18 @@ const config: PageConfig = {
       ]
     },
     {
+      "title": "Assign and track broker leads",
+      "paragraphs": [
+        "A lead management tool for real estate brokers has to make ownership obvious. Brosavo captures the enquiry, assigns it, and keeps the next follow-up on the same record so leads do not sit unowned between portal inboxes and spreadsheets."
+      ],
+      "bullets": [
+        "Lead capture",
+        "Assignment rules",
+        "Follow-up tasks",
+        "Source tracking"
+      ]
+    },
+    {
       "title": "Improve accountability across the team",
       "paragraphs": [
         "Structured tasks, assignments and reporting help brokerage leaders understand activity and identify opportunities that need attention."
@@ -72,6 +84,10 @@ const config: PageConfig = {
     {
       "question": "Can brokers manage team assignments?",
       "answer": "Yes. Team management, assignments and permissions are part of Brosavo's CRM capabilities."
+    },
+    {
+      "question": "What is the difference between a broker CRM and a brokerage CRM?",
+      "answer": "The broker page is for a broker or small desk that needs lead assignment and inventory in one product. The brokerage page is for a multi-agent firm that needs shared pipelines, permissions and team reporting."
     }
   ]
 };
@@ -280,14 +296,14 @@ export default function Page() {
                 href="/real-estate-crm"
                 className="rounded-full bg-foreground px-6 py-3.5 text-center text-sm font-medium text-background"
               >
-                Open CRM for real estate brokers
+                Open the Real Estate CRM platform
               </Link>
 
               <Link
-                href="/contact"
+                href="/real-estate-crm-for-brokerages"
                 className="rounded-full border border-border/70 px-6 py-3.5 text-center text-sm font-medium"
               >
-                Talk to Brosavo
+                CRM for real estate brokerages
               </Link>
             </div>
           </div>

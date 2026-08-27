@@ -284,10 +284,10 @@ export default function Page() {
               </Link>
 
               <Link
-                href="/contact"
+                href="/real-estate-crm-for-brokers"
                 className="rounded-full border border-border/70 px-6 py-3.5 text-center text-sm font-medium"
               >
-                Talk to Brosavo
+                Real estate broker CRM
               </Link>
             </div>
           </div>

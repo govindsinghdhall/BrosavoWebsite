@@ -473,16 +473,10 @@ A modern real estate CRM can give your business a centralized system for managin
 
 Brosavo is building a modern CRM for Canadian real estate professionals, including Ontario realtors, teams, and brokerages.
 
+See the product pages for [real estate CRM in Canada](/real-estate-crm/canada) and [real estate CRM in Toronto](/real-estate-crm/canada/toronto). The [Ontario-focused comparison](/best-crm-for-realtors-canada) stays on the Canada best-CRM article.
+
 ### Ready to See Brosavo?
 
-**Book a Demo**
+[Book a Demo](/contact)
 
-See how Brosavo can fit into your real estate workflow.
-
-**Explore the Real Estate CRM**
-
-Explore the features designed for managing leads, clients, properties, and opportunities.
-
-**Contact Brosavo**
-
-Tell us about your real estate business and the workflow you want to improve.
+[Explore the Real Estate CRM](/real-estate-crm)

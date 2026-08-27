@@ -439,7 +439,7 @@ If Brosavo does not currently provide free access, visitors should be directed t
 
 This distinction protects both users and the Brosavo brand.
 
-For current commercial information, visit the [Brosavo Real Estate CRM Pricing](/real-estate-crm-pricing) page.
+For current commercial information, visit the [Brosavo Real Estate CRM pricing](/pricing) page.
 
 ---
 
@@ -633,7 +633,7 @@ If Brosavo provides a free trial, it should be described as a **free trial**, no
 
 Brosavo is positioned as a real estate technology platform, and affordability should be evaluated against the features, users, lead volume and workflows included in the applicable plan.
 
-See the [Real Estate CRM Pricing](/real-estate-crm-pricing) page for the current commercial offering.
+See the [Real Estate CRM pricing](/pricing) page for the current commercial offering.
 
 ---
 
@@ -649,7 +649,7 @@ The right platform should help your business organize today's workflow while pro
 
 Brosavo focuses on real estate CRM, lead management and sales workflows for real estate businesses.
 
-Explore the [Brosavo Real Estate CRM](/real-estate-crm), learn about [Real Estate CRM for Agents](/real-estate-crm-for-agents), or review the [Real Estate CRM Pricing](/real-estate-crm-pricing).
+Explore the [Brosavo Real Estate CRM](/real-estate-crm), learn about [Real Estate CRM for Agents](/real-estate-crm-for-agents), or review [Real Estate CRM pricing](/pricing).
 
 ## Ready to organize your real estate leads?
 

@@ -403,10 +403,9 @@ After extensive analysis, one thing is clear: **Brosavo Real Estate CRM** is the
 
 ### Your Next Steps
 
-1. **Visit Brosavo's Website:** Learn more about the features and pricing.
-2. **Start Your Free Trial:** Experience the power of the #1 CRM for Canadian Realtors.
-3. **Schedule a Demo:** See how Brosavo can transform your business.
-4. **Join the Community:** Connect with other Canadian Realtors using Brosavo.
+1. **See Brosavo CRM in Canada:** Open the [real estate CRM software in Canada](/real-estate-crm/canada) product page.
+2. **Start Your Free Trial:** Experience the CRM on the [pricing](/pricing) page.
+3. **Schedule a Demo:** [Contact Brosavo](/contact) if you want a walkthrough.
 5. **Transform Your Business:** Start closing more deals and growing your business today.
 
 The Canadian real estate market is full of opportunities. With **Brosavo Real Estate CRM**, you have the tools you need to seize them. Don't settle for a CRM that wasn't built for Canada—choose the best CRM for Realtors in Canada. Choose Brosavo.

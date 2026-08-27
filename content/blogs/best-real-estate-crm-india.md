@@ -1353,8 +1353,8 @@ Brosavo is building a modern real estate CRM designed for agents, teams, brokera
 
 Manage leads, properties, follow-ups, pipelines, and sales workflows from one centralized platform.
 
-**[Explore Brosavo Real Estate CRM](/products#real-estate-crm)**
+**[Explore Brosavo Real Estate CRM in India](/real-estate-crm/india)**
 
-**[Request a Demo](/contact?intent=demo)**
+**[See the Brosavo product](/real-estate-crm)**
 
-**[Talk to Brosavo](/contact)**
+**[Request a Demo](/contact)**

@@ -66,13 +66,32 @@ export default async function RealEstateCrmCountryPage({
   }
 
   const canonical = `${SITE_URL}/real-estate-crm/${country.slug}`;
+  const heading =
+    country.heading ?? `Real Estate CRM Software in ${country.name}`;
+  const bodyHeading =
+    country.bodyHeading ??
+    "Manage your real estate sales operation from one platform.";
+  const bodyIntro =
+    country.bodyIntro ??
+    "Brosavo helps real estate agents, brokers, agencies and property teams manage leads, customers, property inventory, follow-ups, sales pipelines and communication from one connected CRM.";
+
+  const faqSchema = country.faqs?.length
+    ? {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: country.faqs.map((faq) => ({
+          "@type": "Question",
+          name: faq.question,
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: faq.answer,
+          },
+        })),
+      }
+    : null;
 
   return (
     <main>
-      {/* ============================================================
-          HERO
-      ============================================================ */}
-
       <section className="relative overflow-hidden py-20 sm:py-24 lg:py-28">
         <div className="container-wide px-6 lg:px-10">
           <div className="mx-auto max-w-4xl text-center">
@@ -84,10 +103,7 @@ export default async function RealEstateCrmCountryPage({
             </Link>
 
             <h1 className="mt-7 text-4xl font-semibold tracking-[-0.05em] sm:text-5xl lg:text-6xl">
-              Real Estate CRM Software in{" "}
-              <span className="text-gradient-accent">
-                {country.name}
-              </span>
+              {heading}
             </h1>
 
             <p className="mx-auto mt-6 max-w-3xl text-base leading-8 text-muted sm:text-lg">
@@ -113,10 +129,6 @@ export default async function RealEstateCrmCountryPage({
         </div>
       </section>
 
-      {/* ============================================================
-          COUNTRY CONTENT
-      ============================================================ */}
-
       <section className="relative py-16 sm:py-20">
         <div className="container-wide px-6 lg:px-10">
           <div className="mx-auto max-w-4xl">
@@ -125,14 +137,11 @@ export default async function RealEstateCrmCountryPage({
             </span>
 
             <h2 className="mt-5 text-3xl font-semibold tracking-[-0.04em] sm:text-4xl">
-              Manage your real estate sales operation from one platform.
+              {bodyHeading}
             </h2>
 
             <p className="mt-5 text-base leading-8 text-muted sm:text-lg">
-              Brosavo helps real estate agents, brokers, agencies and
-              property teams manage leads, customers, property inventory,
-              follow-ups, sales pipelines and communication from one
-              connected CRM.
+              {bodyIntro}
             </p>
 
             <div className="mt-8 grid gap-4 sm:grid-cols-2">
@@ -153,7 +162,9 @@ export default async function RealEstateCrmCountryPage({
                   </div>
 
                   <h3 className="mt-4 text-xl font-semibold">
-                    Real Estate CRM in {city.name}
+                    {country.slug === "united-kingdom"
+                      ? `Estate agent CRM in ${city.name}`
+                      : `Real Estate CRM in ${city.name}`}
                   </h3>
 
                   <p className="mt-2 text-sm leading-6 text-muted">
@@ -167,9 +178,94 @@ export default async function RealEstateCrmCountryPage({
         </div>
       </section>
 
-      {/* ============================================================
-          HIGHLIGHTS
-      ============================================================ */}
+      {country.sections?.map((section) => (
+        <section
+          key={section.title}
+          className="border-t border-border/50 py-16 sm:py-20"
+        >
+          <div className="container-wide px-6 lg:px-10">
+            <div className="mx-auto max-w-4xl">
+              <h2 className="text-3xl font-semibold tracking-[-0.04em] sm:text-4xl">
+                {section.title}
+              </h2>
+
+              <div className="mt-6 space-y-5 text-base leading-8 text-muted">
+                {section.paragraphs.map((paragraph) => (
+                  <p key={paragraph}>{paragraph}</p>
+                ))}
+              </div>
+
+              {section.bullets?.length ? (
+                <ul className="mt-7 grid gap-3 sm:grid-cols-2">
+                  {section.bullets.map((bullet) => (
+                    <li
+                      key={bullet}
+                      className="rounded-xl border border-border/60 bg-surface px-4 py-3 text-sm text-muted"
+                    >
+                      <span className="mr-2 text-accent-blue">✓</span>
+                      {bullet}
+                    </li>
+                  ))}
+                </ul>
+              ) : null}
+            </div>
+          </div>
+        </section>
+      ))}
+
+      {country.relatedLinks?.length ? (
+        <section className="border-t border-border/50 py-16 sm:py-20">
+          <div className="container-wide px-6 lg:px-10">
+            <div className="mx-auto max-w-4xl">
+              <h2 className="text-3xl font-semibold tracking-[-0.04em] sm:text-4xl">
+                Related resources
+              </h2>
+              <ul className="mt-6 space-y-3">
+                {country.relatedLinks.map((link) => (
+                  <li key={link.href}>
+                    <Link
+                      href={link.href}
+                      className="text-sm font-medium text-accent-blue"
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </section>
+      ) : null}
+
+      {country.faqs?.length ? (
+        <section className="border-t border-border/50 bg-surface py-16 sm:py-20">
+          <div className="container-wide px-6 lg:px-10">
+            <div className="mx-auto max-w-4xl">
+              <h2 className="text-3xl font-semibold tracking-[-0.04em] sm:text-4xl">
+                Frequently asked questions
+              </h2>
+              <div className="mt-8 space-y-3">
+                {country.faqs.map((faq) => (
+                  <details
+                    key={faq.question}
+                    className="group rounded-2xl border border-border/70 bg-background"
+                  >
+                    <summary className="flex cursor-pointer list-none items-center justify-between gap-5 px-6 py-5 text-sm font-medium">
+                      <span>{faq.question}</span>
+                      <span className="text-xl text-muted transition-transform duration-300 group-open:rotate-45">
+                        +
+                      </span>
+                    </summary>
+                    <div className="border-t border-border/60 px-6 py-5 text-sm leading-7 text-muted">
+                      {faq.answer}
+                    </div>
+                  </details>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+      ) : null}
 
       <section className="bg-surface py-16 sm:py-20">
         <div className="container-wide px-6 lg:px-10">
@@ -187,13 +283,11 @@ export default async function RealEstateCrmCountryPage({
                 >
                   <span className="text-accent-blue">✦</span>
 
-                  <h3 className="mt-4 text-sm font-semibold">
-                    {item}
-                  </h3>
+                  <h3 className="mt-4 text-sm font-semibold">{item}</h3>
 
                   <p className="mt-2 text-xs leading-5 text-muted">
-                    Manage this part of your real estate operation from
-                    one connected platform.
+                    Manage this part of your real estate operation from one
+                    connected platform.
                   </p>
                 </div>
               ))}
@@ -201,10 +295,6 @@ export default async function RealEstateCrmCountryPage({
           </div>
         </div>
       </section>
-
-      {/* ============================================================
-          BREADCRUMBS
-      ============================================================ */}
 
       <script
         type="application/ld+json"
@@ -235,6 +325,14 @@ export default async function RealEstateCrmCountryPage({
           }),
         }}
       />
+      {faqSchema ? (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(faqSchema),
+          }}
+        />
+      ) : null}
     </main>
   );
 }

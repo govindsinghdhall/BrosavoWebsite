@@ -42,6 +42,20 @@ const nextConfig: NextConfig = {
     );
 
     return [
+      // Comparison intent lives on the guide, not a duplicate product URL
+      {
+        source: "/best-real-estate-crm",
+        destination: "/best-real-estate-crm-guide",
+        statusCode: 301,
+      },
+
+      // Commercial pricing owner is /pricing
+      {
+        source: "/real-estate-crm-pricing",
+        destination: "/pricing",
+        statusCode: 301,
+      },
+
       // Renamed posts that conflicted with marketing pages
       ...renamedFromBlog,
 

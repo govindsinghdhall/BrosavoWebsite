@@ -105,25 +105,6 @@ export const metadata: Metadata = {
       "real estate inventory management software",
       "real estate property management software",
     
-      // Pricing / commercial intent
-      "real estate CRM pricing",
-      "real estate CRM cost",
-      "real estate CRM price",
-      "real estate CRM software pricing",
-      "real estate CRM software cost",
-      "affordable real estate CRM",
-      "real estate CRM for small business",
-    
-      // Best / evaluation intent
-      "best real estate CRM",
-      "best real estate CRM software",
-      "best CRM for real estate agents",
-      "best CRM for realtors",
-      "best CRM for real estate brokers",
-      "top real estate CRM",
-      "top real estate CRM software",
-      "best real estate lead management software",
-    
       // Brand
       "Brosavo",
       "Brosavo Real Estate CRM",
@@ -619,7 +600,7 @@ export default function RealEstateCrmPage() {
               <ul className="mt-4 grid gap-2 sm:grid-cols-2">
                 <li>
                   <Link
-                    href="/real-estate-crm-pricing"
+                    href="/pricing"
                     className="text-[13px] font-medium text-accent-blue"
                   >
                     Real estate CRM pricing plans
@@ -635,18 +616,50 @@ export default function RealEstateCrmPage() {
                 </li>
                 <li>
                   <Link
-                    href="/real-estate-lead-management"
+                    href="/real-estate-crm-for-realtors"
                     className="text-[13px] font-medium text-accent-blue"
                   >
-                    Real estate lead management software
+                    CRM for realtors
                   </Link>
                 </li>
                 <li>
                   <Link
-                    href="/best-real-estate-crm"
+                    href="/real-estate-crm-for-brokers"
                     className="text-[13px] font-medium text-accent-blue"
                   >
-                    Best real estate CRM comparison
+                    CRM for real estate brokers
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/real-estate-sales-crm"
+                    className="text-[13px] font-medium text-accent-blue"
+                  >
+                    Real estate sales CRM
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/real-estate-crm/australia"
+                    className="text-[13px] font-medium text-accent-blue"
+                  >
+                    Real estate CRM in Australia
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/how-to-sync-99acres-and-magicbricks-leads-to-crm"
+                    className="text-[13px] font-medium text-accent-blue"
+                  >
+                    Sync 99acres and MagicBricks leads
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/best-real-estate-crm-guide"
+                    className="text-[13px] font-medium text-accent-blue"
+                  >
+                    Compare real estate CRMs
                   </Link>
                 </li>
               </ul>

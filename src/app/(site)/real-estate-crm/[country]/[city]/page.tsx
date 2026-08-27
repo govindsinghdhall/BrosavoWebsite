@@ -141,11 +141,15 @@ export default async function RealEstateCrmCityPage({
             </Link>
 
             <h1 className="mt-7 text-4xl font-semibold tracking-[-0.05em] sm:text-5xl lg:text-6xl">
-              Real Estate CRM Software
-              <br />
-              <span className="text-gradient-accent">
-                for {city.name}.
-              </span>
+              {city.heading ?? (
+                <>
+                  Real Estate CRM Software
+                  <br />
+                  <span className="text-gradient-accent">
+                    for {city.name}.
+                  </span>
+                </>
+              )}
             </h1>
 
             <p className="mx-auto mt-6 max-w-3xl text-base leading-8 text-muted sm:text-lg">
