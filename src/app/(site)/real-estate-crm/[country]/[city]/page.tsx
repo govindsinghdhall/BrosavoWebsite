@@ -2,7 +2,18 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
+import { LocationHeroImage } from "@/components/real-estate-crm/LocationHeroImage";
+import {
+  buildFaqSchema,
+  LocationFaqs,
+  LocationRelatedLinks,
+  LocationSections,
+} from "@/components/real-estate-crm/LocationPageSections";
 import { REAL_ESTATE_CRM_LOCATIONS } from "@/data/realEstateCrmLocations";
+import {
+  getCityHeroImageAlt,
+  getCityHeroImagePath,
+} from "@/lib/real-estate-crm-location-images";
 import { SITE_URL } from "@/lib/site";
 
 type Props = {
@@ -19,9 +30,7 @@ function getCity(countrySlug: string, citySlug: string) {
 
   if (!country) return null;
 
-  const city = country.cities.find(
-    (item) => item.slug === citySlug
-  );
+  const city = country.cities.find((item) => item.slug === citySlug);
 
   if (!city) return null;
 
@@ -37,9 +46,7 @@ export function generateStaticParams() {
   );
 }
 
-export async function generateMetadata({
-  params,
-}: Props): Promise<Metadata> {
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { country: countrySlug, city: citySlug } = await params;
 
   const result = getCity(countrySlug, citySlug);
@@ -50,8 +57,9 @@ export async function generateMetadata({
 
   const { city } = result;
 
-  const canonical =
-    `${SITE_URL}/real-estate-crm/${countrySlug}/${citySlug}`;
+  const canonical = `${SITE_URL}/real-estate-crm/${countrySlug}/${citySlug}`;
+  const heroImage = getCityHeroImagePath(countrySlug, citySlug);
+  const heroAlt = getCityHeroImageAlt(city.name, city.countryName);
 
   return {
     title: city.title,
@@ -68,13 +76,12 @@ export async function generateMetadata({
       description: city.description,
       url: canonical,
       type: "website",
+      images: [{ url: `${SITE_URL}${heroImage}`, alt: heroAlt }],
     },
   };
 }
 
-export default async function RealEstateCrmCityPage({
-  params,
-}: Props) {
+export default async function RealEstateCrmCityPage({ params }: Props) {
   const { country: countrySlug, city: citySlug } = await params;
 
   const result = getCity(countrySlug, citySlug);
@@ -85,8 +92,10 @@ export default async function RealEstateCrmCityPage({
 
   const { country, city } = result;
 
-  const canonical =
-    `${SITE_URL}/real-estate-crm/${countrySlug}/${citySlug}`;
+  const canonical = `${SITE_URL}/real-estate-crm/${countrySlug}/${citySlug}`;
+  const heroImage = getCityHeroImagePath(countrySlug, citySlug);
+  const heroAlt = getCityHeroImageAlt(city.name, city.countryName);
+  const faqSchema = city.faqs?.length ? buildFaqSchema(city.faqs) : null;
 
   const breadcrumbSchema = {
     "@context": "https://schema.org",
@@ -127,8 +136,14 @@ export default async function RealEstateCrmCityPage({
           __html: JSON.stringify(breadcrumbSchema),
         }}
       />
-
-      {/* HERO */}
+      {faqSchema ? (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(faqSchema),
+          }}
+        />
+      ) : null}
 
       <section className="relative overflow-hidden py-20 sm:py-24 lg:py-28">
         <div className="container-wide px-6 lg:px-10">
@@ -156,6 +171,15 @@ export default async function RealEstateCrmCityPage({
               {city.intro}
             </p>
 
+            <div className="mx-auto mt-10 max-w-4xl">
+              <LocationHeroImage
+                src={heroImage}
+                alt={heroAlt}
+                label={`${city.name}, ${city.countryName} real estate CRM hero`}
+                priority
+              />
+            </div>
+
             <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
               <Link
                 href="https://crm.brosavo.com"
@@ -175,8 +199,6 @@ export default async function RealEstateCrmCityPage({
         </div>
       </section>
 
-      {/* CITY CONTENT */}
-
       <section className="relative py-16 sm:py-20">
         <div className="container-wide px-6 lg:px-10">
           <div className="mx-auto max-w-4xl">
@@ -185,14 +207,13 @@ export default async function RealEstateCrmCityPage({
             </span>
 
             <h2 className="mt-5 text-3xl font-semibold tracking-[-0.04em] sm:text-4xl">
-              Manage your real estate sales workflow from one platform.
+              {city.bodyHeading ??
+                `Manage your real estate sales workflow in ${city.name}.`}
             </h2>
 
             <p className="mt-5 text-base leading-8 text-muted sm:text-lg">
-              Brosavo helps real estate agents, brokers, agencies and
-              property teams in {city.name} manage leads, customers,
-              property inventory, follow-ups and sales opportunities
-              from one connected CRM.
+              {city.bodyIntro ??
+                `Brosavo helps real estate teams in ${city.name} manage leads, customers, property inventory, follow-ups and sales opportunities from one connected CRM.`}
             </p>
 
             <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -203,9 +224,7 @@ export default async function RealEstateCrmCityPage({
                 >
                   <span className="text-accent-blue">✦</span>
 
-                  <h3 className="mt-4 text-sm font-semibold">
-                    {highlight}
-                  </h3>
+                  <h3 className="mt-4 text-sm font-semibold">{highlight}</h3>
 
                   <p className="mt-2 text-xs leading-5 text-muted">
                     Keep this part of your real estate sales operation
@@ -218,103 +237,15 @@ export default async function RealEstateCrmCityPage({
         </div>
       </section>
 
-      {/* CAPABILITIES */}
+      {city.sections?.length ? (
+        <LocationSections sections={city.sections} />
+      ) : null}
 
-      <section className="bg-surface py-16 sm:py-20">
-        <div className="container-wide px-6 lg:px-10">
-          <div className="mx-auto max-w-4xl">
-            <span className="text-xs font-mono uppercase tracking-[0.2em] text-accent-violet">
-              CRM capabilities
-            </span>
+      {city.relatedLinks?.length ? (
+        <LocationRelatedLinks links={city.relatedLinks} />
+      ) : null}
 
-            <h2 className="mt-5 text-3xl font-semibold tracking-[-0.04em] sm:text-4xl">
-              A complete real estate CRM for {city.name}.
-            </h2>
-
-            <div className="mt-8 grid gap-4 sm:grid-cols-2">
-              {[
-                [
-                  "Lead Management",
-                  `Capture and organize real estate enquiries from ${city.name} prospects.`,
-                ],
-                [
-                  "Property Inventory",
-                  "Keep listings, availability, pricing and property information organized.",
-                ],
-                [
-                  "Customer Management",
-                  "Keep customer requirements, property interests and interactions connected.",
-                ],
-                [
-                  "Sales Pipeline",
-                  "Track opportunities from qualification through closing.",
-                ],
-                [
-                  "Follow-ups & Tasks",
-                  "Keep next actions, reminders and sales activity visible to your team.",
-                ],
-                [
-                  "WhatsApp",
-                  "Connect customer engagement workflows with your CRM sales process.",
-                ],
-              ].map(([title, description]) => (
-                <article
-                  key={title}
-                  className="rounded-2xl border border-border/70 bg-background p-6"
-                >
-                  <h3 className="text-base font-semibold">
-                    {title}
-                  </h3>
-
-                  <p className="mt-2 text-sm leading-6 text-muted">
-                    {description}
-                  </p>
-                </article>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* INTERNAL LINKS */}
-
-      <section className="py-16 sm:py-20">
-        <div className="container-wide px-6 lg:px-10">
-          <div className="mx-auto max-w-4xl rounded-3xl border border-border/70 bg-surface p-8 sm:p-12">
-            <span className="text-xs font-mono uppercase tracking-[0.2em] text-accent-blue">
-              Explore Brosavo
-            </span>
-
-            <h2 className="mt-5 text-3xl font-semibold tracking-[-0.04em] sm:text-4xl">
-              Build a better real estate sales process.
-            </h2>
-
-            <p className="mt-4 max-w-2xl text-base leading-7 text-muted">
-              Explore the complete Brosavo Real Estate CRM and see how
-              lead management, property inventory, sales pipelines,
-              WhatsApp workflows and analytics work together.
-            </p>
-
-            <div className="mt-7 flex flex-col gap-3 sm:flex-row">
-              <Link
-                href="/real-estate-crm"
-                className="inline-flex justify-center rounded-full bg-foreground px-6 py-3.5 text-sm font-medium text-background"
-              >
-                Open the Real Estate CRM platform
-              </Link>
-
-              <Link
-                href={`/real-estate-crm/${countrySlug}`}
-                className="inline-flex justify-center rounded-full border border-border/70 bg-background px-6 py-3.5 text-sm font-medium"
-              >
-                Real Estate CRM in {country.name}
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* FINAL CTA */}
+      {city.faqs?.length ? <LocationFaqs faqs={city.faqs} /> : null}
 
       <section className="pb-20 sm:pb-24">
         <div className="container-wide px-6 lg:px-10">
@@ -324,8 +255,8 @@ export default async function RealEstateCrmCityPage({
             </h2>
 
             <p className="mt-4 text-muted">
-              Start with Brosavo Real Estate CRM and build a repeatable
-              sales workflow for your team.
+              Start with Brosavo Real Estate CRM and build a repeatable sales
+              workflow for your team in {city.name}.
             </p>
 
             <Link

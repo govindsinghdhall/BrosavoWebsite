@@ -1,47 +1,16 @@
-export type LocationFaq = {
-  question: string;
-  answer: string;
-};
+import { REAL_ESTATE_CRM_LOCATIONS_ENRICHED } from "./realEstateCrmLocationContent";
 
-export type LocationSection = {
-  title: string;
-  paragraphs: string[];
-  bullets?: string[];
-};
+export type {
+  LocationFaq,
+  LocationSection,
+  LocationLink,
+  CityLocation,
+  CountryLocation,
+} from "./realEstateCrmLocationTypes";
 
-export type LocationLink = {
-  href: string;
-  label: string;
-};
+import type { CountryLocation } from "./realEstateCrmLocationTypes";
 
-export type CityLocation = {
-  slug: string;
-  name: string;
-  countrySlug: string;
-  countryName: string;
-  title: string;
-  description: string;
-  intro: string;
-  highlights: string[];
-  heading?: string;
-};
-
-export type CountryLocation = {
-  slug: string;
-  name: string;
-  title: string;
-  description: string;
-  intro: string;
-  heading?: string;
-  bodyHeading?: string;
-  bodyIntro?: string;
-  sections?: LocationSection[];
-  faqs?: LocationFaq[];
-  relatedLinks?: LocationLink[];
-  cities: CityLocation[];
-};
-
-export const REAL_ESTATE_CRM_LOCATIONS: CountryLocation[] = [
+const BASE_REAL_ESTATE_CRM_LOCATIONS: CountryLocation[] = [
   {
     slug: "india",
     name: "India",
@@ -185,12 +154,139 @@ export const REAL_ESTATE_CRM_LOCATIONS: CountryLocation[] = [
     name: "Canada",
     title: "Real Estate CRM Software in Canada | Brosavo",
     description:
-      "Brosavo is a real estate CRM for Canadian agents, brokers, agencies and real estate teams.",
+      "Brosavo is real estate CRM software for Canadian agents, realtors, brokers and agencies. Manage leads, properties, follow-ups and sales pipelines from one platform.",
     intro:
-      "Brosavo Real Estate CRM helps Canadian real estate businesses organize leads, properties, customer relationships, follow-ups and sales pipelines from one platform.",
-    bodyHeading: "A real estate CRM for Canadian agents and brokerages.",
+      "Brosavo Real Estate CRM helps Canadian real estate businesses organize leads, property inventory, customer requirements, follow-ups and sales pipelines from one connected platform.",
+    bodyHeading: "Real estate CRM software for Canadian sales teams.",
     bodyIntro:
-      "Use Brosavo to run lead intake, listing inventory, follow-ups and pipelines in one product. Comparison articles for Canadian realtors stay on the blog; this page is the software itself.",
+      "Run enquiries, listing inventory, follow-ups and pipelines in one product. If you are comparing CRM platforms for Canadian realtors, use the comparison article linked below. This page describes the Brosavo CRM itself.",
+    sections: [
+      {
+        title: "Real estate CRM for Canadian agents and realtors",
+        paragraphs: [
+          "Canadian agents and realtors handle a steady flow of buyer and seller enquiries, property questions and follow-ups. Brosavo keeps leads, customer requirements, property information and sales opportunities on one record so the next action is always visible.",
+          "Instead of splitting work across spreadsheets, email and messaging apps, teams can manage the day-to-day realtor workflow in one CRM built around property sales.",
+        ],
+        bullets: [
+          "Lead and enquiry management",
+          "Customer requirement tracking",
+          "Property inventory",
+          "Follow-up tasks and reminders",
+          "Sales opportunity tracking",
+        ],
+      },
+      {
+        title: "Real estate lead management in Canada",
+        paragraphs: [
+          "Incoming enquiries from websites, campaigns and referrals need a clear owner and status. Brosavo helps Canadian teams capture leads, assign responsibility, track customer activity and maintain follow-up history in one place.",
+          "Centralized lead management gives agents and managers a clearer view of which prospects are active, which need attention and which are moving toward conversion.",
+        ],
+        bullets: [
+          "Lead capture and intake",
+          "Lead assignment and ownership",
+          "Customer activity history",
+          "Follow-up workflows",
+          "Conversion tracking",
+        ],
+      },
+      {
+        title: "Property and customer management",
+        paragraphs: [
+          "Real estate sales depend on matching the right property to the right customer. Brosavo connects customer requirements with property inventory so teams can see listings, availability and buyer or seller context together.",
+          "When property information sits next to the lead and opportunity, follow-ups become easier to prioritize and conversations stay grounded in current inventory.",
+        ],
+        bullets: [
+          "Property inventory management",
+          "Customer and contact records",
+          "Property matching",
+          "Lead-to-property context",
+          "Opportunity records",
+        ],
+      },
+      {
+        title: "Real estate sales pipeline and follow-up management",
+        paragraphs: [
+          "A repeatable sales process helps Canadian teams move from first enquiry to closed deal with fewer dropped conversations. Brosavo supports a structured workflow: enquiry, qualification, property matching, follow-up and conversion.",
+          "Pipeline stages, tasks and reminders keep opportunities moving while giving managers visibility into what is progressing and what is stalled.",
+        ],
+        bullets: [
+          "Sales pipeline stages",
+          "Qualification and next actions",
+          "Property matching in the sales flow",
+          "Follow-up management",
+          "Pipeline reporting",
+        ],
+      },
+      {
+        title: "CRM for Canadian real estate brokerages and agencies",
+        paragraphs: [
+          "The same CRM can support an individual agent, a small team, a brokerage desk or a multi-agent agency. Brosavo provides team management, assignments, permissions and reporting so larger organizations can run a consistent sales process.",
+          "Brokers and agency leaders can see pipeline activity across the team while each agent keeps a clear view of their own leads, properties and follow-ups.",
+        ],
+        bullets: [
+          "Team and user management",
+          "Lead assignment",
+          "Permissions and ownership",
+          "Shared pipeline visibility",
+          "Activity and sales reporting",
+        ],
+      },
+      {
+        title: "Real estate CRM for Toronto, Vancouver, Calgary and Edmonton",
+        paragraphs: [
+          "Brosavo includes dedicated pages for Toronto, Vancouver, Calgary and Edmonton. Use this Canada page for national product context, then open the city page that matches your market for localized information.",
+          "Each city page covers how Brosavo supports lead management, property inventory, follow-ups and sales pipelines for real estate businesses in that area.",
+        ],
+        bullets: [
+          "Real estate CRM in Toronto",
+          "Real estate CRM in Vancouver",
+          "Real estate CRM in Calgary",
+          "Real estate CRM in Edmonton",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        question: "What is a real estate CRM?",
+        answer:
+          "A real estate CRM is software that helps agents, brokers and agencies manage leads, customers, property information, follow-ups and sales opportunities from one platform instead of scattered tools.",
+      },
+      {
+        question: "Is Brosavo a real estate CRM in Canada?",
+        answer:
+          "Yes. Brosavo is real estate CRM software that Canadian agents, realtors, brokers and agencies can use to manage leads, properties, follow-ups and sales pipelines.",
+      },
+      {
+        question: "What is a good CRM for Canadian realtors?",
+        answer:
+          "A good CRM for Canadian realtors should make daily work practical: lead intake, client requirements, property context, follow-ups and a visible sales pipeline. Brosavo is built around that workflow. For a platform comparison, see the best CRM for realtors in Canada article linked on this page.",
+      },
+      {
+        question: "Can Canadian real estate brokers use Brosavo?",
+        answer:
+          "Yes. Brokers can use Brosavo for lead assignment, property inventory, pipeline visibility and team activity. Brokerages with multiple agents can use team management, assignments and reporting on Professional and Enterprise plans.",
+      },
+      {
+        question: "Does Brosavo support real estate lead management?",
+        answer:
+          "Yes. Brosavo includes lead capture, qualification, assignment, follow-up tracking and conversion workflows as core CRM capabilities.",
+      },
+      {
+        question: "Can Brosavo manage property inventory?",
+        answer:
+          "Yes. Brosavo includes property inventory management and property matching so customer requirements can be connected to available listings within the sales workflow.",
+      },
+      {
+        question: "Can Brosavo be used by real estate agencies?",
+        answer:
+          "Yes. Agencies and brokerages can use Brosavo for team collaboration, lead ownership, permissions, shared pipelines and reporting across agents.",
+      },
+      {
+        question: "Does Brosavo support real estate sales pipelines?",
+        answer:
+          "Yes. Sales pipeline management is a core Brosavo capability. Teams can track opportunities through defined stages from enquiry through follow-up and conversion.",
+      },
+    ],
     relatedLinks: [
       {
         href: "/best-crm-for-realtors-canada",
@@ -199,6 +295,26 @@ export const REAL_ESTATE_CRM_LOCATIONS: CountryLocation[] = [
       {
         href: "/real-estate-crm-ontario",
         label: "Real estate CRM in Ontario",
+      },
+      {
+        href: "/real-estate-crm-for-realtors",
+        label: "CRM for realtors",
+      },
+      {
+        href: "/real-estate-crm-for-agents",
+        label: "CRM for real estate agents",
+      },
+      {
+        href: "/real-estate-crm-for-brokers",
+        label: "CRM for real estate brokers",
+      },
+      {
+        href: "/real-estate-lead-management",
+        label: "Real estate lead management",
+      },
+      {
+        href: "/real-estate-sales-crm",
+        label: "Real estate sales CRM",
       },
     ],
     cities: [
@@ -379,54 +495,6 @@ export const REAL_ESTATE_CRM_LOCATIONS: CountryLocation[] = [
     bodyHeading: "CRM for estate agents and estate agencies.",
     bodyIntro:
       "UK teams typically talk about estate agents, not realtors. Brosavo is the product page for that workflow: applicants, vendors, listings, viewings and a clear next action. Use the comparison guide if you are still choosing among CRM platforms.",
-    sections: [
-      {
-        title: "Estate agent CRM for independent agents",
-        paragraphs: [
-          "Independent estate agents need one place for new enquiries, applicant requirements, listing availability and follow-ups. Brosavo keeps that work on the same record as the sales pipeline so a viewing request does not get lost in WhatsApp or email.",
-        ],
-        bullets: [
-          "Applicant and vendor records",
-          "Listing inventory",
-          "Follow-up reminders",
-          "Sales pipeline stages",
-        ],
-      },
-      {
-        title: "Estate agency CRM for multi-desk offices",
-        paragraphs: [
-          "Estate agencies need ownership, assignment and a shared view of the pipeline. Brosavo is built for that office workflow, while the brokers and brokerages pages cover similar desk structures in other markets.",
-        ],
-        bullets: [
-          "Lead assignment",
-          "Team permissions",
-          "Pipeline visibility",
-          "Activity reporting",
-        ],
-      },
-    ],
-    faqs: [
-      {
-        question: "Is Brosavo an estate agent CRM?",
-        answer:
-          "Yes. Brosavo is real estate CRM software that UK estate agents and estate agencies can use to manage enquiries, listings, follow-ups and sales pipelines.",
-      },
-      {
-        question: "What is the difference between an estate agent CRM and an estate agency CRM?",
-        answer:
-          "An estate agent CRM is typically used by an individual or small desk. An estate agency CRM is the same product used across a multi-agent office with assignment, permissions and shared reporting.",
-      },
-    ],
-    relatedLinks: [
-      {
-        href: "/best-real-estate-crm-guide",
-        label: "Compare estate agent CRMs",
-      },
-      {
-        href: "/real-estate-crm-for-brokerages",
-        label: "CRM for multi-agent offices",
-      },
-    ],
     cities: [
       {
         slug: "london",
@@ -502,70 +570,6 @@ export const REAL_ESTATE_CRM_LOCATIONS: CountryLocation[] = [
     bodyHeading: "Australian agency, buyer’s agent, and property sales CRM.",
     bodyIntro:
       "Australian teams need a CRM that can handle agency listings, buyer’s agent search briefs, and a property sales pipeline without splitting contacts and inventory. This page is the Brosavo product for Australia. City pages cover Sydney, Melbourne and Brisbane.",
-    sections: [
-      {
-        title: "CRM for Australian real estate agencies",
-        paragraphs: [
-          "Agencies capture enquiries from websites, portals and campaigns. Brosavo keeps those leads next to listing inventory, ownership and the next follow-up so a sales process can run the same way in every office.",
-        ],
-        bullets: [
-          "Lead capture and ownership",
-          "Listing inventory",
-          "Follow-up tasks",
-          "Sales pipeline",
-        ],
-      },
-      {
-        title: "Buyer’s agent CRM in Australia",
-        paragraphs: [
-          "Buyer’s agents work from search briefs, shortlists and vendor conversations rather than a simple listing desk. Brosavo can hold the buyer requirement, matched properties and follow-ups on one record so the brief does not live only in email.",
-        ],
-        bullets: [
-          "Buyer requirements",
-          "Property matching",
-          "Shortlist tracking",
-          "Client follow-up",
-        ],
-      },
-      {
-        title: "Real estate sales software for Australian teams",
-        paragraphs: [
-          "Property sales CRM in Australia is the same workflow as the sales CRM product page: enquiry, qualification, matching, follow-up and close. Use this Australia page for local context and the sales CRM page for the pipeline itself.",
-        ],
-        bullets: [
-          "Opportunity stages",
-          "Next actions",
-          "Conversion tracking",
-          "Team reporting",
-        ],
-      },
-    ],
-    faqs: [
-      {
-        question: "Does Brosavo work as real estate CRM software in Australia?",
-        answer:
-          "Yes. Brosavo is real estate CRM software that Australian agencies, buyer’s agents and sales teams can use to manage leads, listings, follow-ups and pipelines.",
-      },
-      {
-        question: "Is Brosavo a buyer’s agent CRM?",
-        answer:
-          "Buyer’s agents can use Brosavo to store search briefs, match properties and keep follow-ups on the client record. There is no separate buyer’s agent product URL; that workflow lives on this Australia page and on the agents product page.",
-      },
-    ],
-    relatedLinks: [
-      {
-        href: "/real-estate-sales-crm",
-        label: "Real estate sales CRM",
-      },
-      {
-        href: "/real-estate-crm-for-agents",
-        label: "CRM for real estate agents",
-      },
-      {
-        href: "/real-estate-crm/australia/melbourne",
-        label: "Real estate CRM in Melbourne",
-      },
-    ],
     cities: [
       {
         slug: "sydney",
@@ -627,3 +631,7 @@ export const REAL_ESTATE_CRM_LOCATIONS: CountryLocation[] = [
     ],
   },
 ];
+
+export const REAL_ESTATE_CRM_LOCATIONS = REAL_ESTATE_CRM_LOCATIONS_ENRICHED(
+  BASE_REAL_ESTATE_CRM_LOCATIONS
+);
