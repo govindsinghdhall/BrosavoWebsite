@@ -440,15 +440,16 @@ export function ContactPopup() {
       }}
       className="
         fixed
-        bottom-5
-        right-4
+        bottom-4
+        right-3
         z-[9990]
         flex
         flex-col
         items-center
-        gap-3
+        gap-2.5
         sm:bottom-6
         sm:right-6
+        sm:gap-3
         lg:bottom-7
         lg:right-7
       "
@@ -468,8 +469,8 @@ export function ContactPopup() {
         }}
         className="
           flex
-          h-14
-          w-14
+          h-12
+          w-12
           items-center
           justify-center
           rounded-full
@@ -508,8 +509,8 @@ export function ContactPopup() {
         }}
         className="
           flex
-          h-14
-          w-14
+          h-12
+          w-12
           items-center
           justify-center
           rounded-full
@@ -553,12 +554,12 @@ export function ContactPopup() {
               inset-0
               z-[9999]
               flex
-              items-end
+              items-center
               justify-center
               bg-black/60
+              p-3
               backdrop-blur-md
-              sm:items-center
-              sm:px-4
+              sm:p-4
               sm:py-6
             "
             onMouseDown={(event) => {
@@ -594,35 +595,36 @@ export function ContactPopup() {
                 relative
                 flex
                 w-full
-                max-w-2xl
+                max-h-[calc(100dvh-1.5rem)]
+                max-w-[min(100%,24rem)]
                 flex-col
                 overflow-hidden
-                rounded-t-[1.75rem]
+                rounded-2xl
                 border
                 border-border
                 bg-background
                 shadow-2xl
-                sm:max-h-[92vh]
+                sm:max-h-none
+                sm:max-w-2xl
                 sm:rounded-[2rem]
                 lg:max-w-3xl
-                lg:max-h-[90vh]
               "
             >
               {/* =================================================
                   HEADER
               ================================================== */}
-              <div className="relative shrink-0 border-b border-border px-5 py-5 sm:px-8 sm:py-6">
+              <div className="relative shrink-0 border-b border-border px-4 py-3 sm:px-8 sm:py-6">
                 <button
                   type="button"
                   onClick={closePopup}
                   aria-label="Close contact form"
                   className="
                     absolute
-                    right-4
-                    top-4
+                    right-3
+                    top-3
                     flex
-                    h-9
-                    w-9
+                    h-8
+                    w-8
                     items-center
                     justify-center
                     rounded-full
@@ -635,53 +637,49 @@ export function ContactPopup() {
                     hover:text-foreground
                     sm:right-6
                     sm:top-6
+                    sm:h-9
+                    sm:w-9
                   "
                 >
-                  <X className="h-4 w-4" />
+                  <X className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
                 </button>
 
                 {!submitted ? (
-                  <div className="pr-12">
-                    <p className="text-[10px] font-mono uppercase tracking-[0.22em] text-accent-blue sm:text-xs">
+                  <div className="pr-10 sm:pr-12">
+                    <p className="text-[9px] font-mono uppercase tracking-[0.2em] text-accent-blue sm:text-xs">
                       BROSAVO
                     </p>
 
-                    <h2 className="mt-1.5 text-xl font-bold tracking-tight text-foreground sm:text-3xl">
+                    <h2 className="mt-1 text-lg font-bold tracking-tight text-foreground sm:mt-1.5 sm:text-3xl">
                       Request a Demo
                     </h2>
 
-                    <p className="mt-2 max-w-xl text-xs leading-5 text-muted sm:text-sm sm:leading-6">
-                      See how Brosavo can help
-                      your business manage
-                      leads, properties,
-                      communication, and sales
-                      more efficiently.
+                    <p className="mt-1 hidden max-w-xl text-xs leading-5 text-muted sm:block sm:mt-2 sm:text-sm sm:leading-6">
+                      See how Brosavo can help your business manage leads,
+                      properties, and sales more efficiently.
                     </p>
                   </div>
                 ) : null}
               </div>
 
               {/* =================================================
-                  SCROLLABLE CONTENT
+                  CONTENT
               ================================================== */}
-              <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain">
+              <div className="shrink-0 overflow-hidden">
                 {submitted ? (
-                  <div className="flex min-h-[430px] flex-col items-center justify-center px-5 py-10 text-center sm:px-8 sm:py-12">
-                    <CheckCircle className="h-14 w-14 text-green-400 sm:h-16 sm:w-16" />
+                  <div className="flex flex-col items-center justify-center px-4 py-6 text-center sm:px-8 sm:py-12">
+                    <CheckCircle className="h-11 w-11 text-green-400 sm:h-16 sm:w-16" />
 
-                    <h2 className="mt-5 text-2xl font-bold text-foreground sm:text-3xl">
+                    <h2 className="mt-3 text-xl font-bold text-foreground sm:mt-5 sm:text-3xl">
                       Request Received!
                     </h2>
 
-                    <p className="mt-3 max-w-md text-sm leading-6 text-muted sm:mt-4 sm:leading-7">
-                      Thank you for contacting
-                      Brosavo. One of our product
-                      specialists will contact you
-                      shortly to understand your
-                      requirements.
+                    <p className="mt-2 max-w-md text-xs leading-5 text-muted sm:mt-4 sm:text-sm sm:leading-7">
+                      Thank you for contacting Brosavo. A product specialist
+                      will reach out shortly.
                     </p>
 
-                    <div className="mt-7 grid w-full max-w-md grid-cols-1 gap-3 sm:mt-8 sm:grid-cols-2">
+                    <div className="mt-5 grid w-full max-w-md grid-cols-2 gap-2 sm:mt-8 sm:gap-3">
                       <a
                         href={
                           CONTACT.whatsapp.href
@@ -690,15 +688,15 @@ export function ContactPopup() {
                         rel="noopener noreferrer"
                         className="
                           inline-flex
-                          min-h-12
+                          min-h-10
                           items-center
                           justify-center
-                          gap-2
+                          gap-1.5
                           rounded-xl
                           bg-[#25D366]
-                          px-5
-                          py-3
-                          text-sm
+                          px-3
+                          py-2.5
+                          text-xs
                           font-semibold
                           text-white
                           shadow-[0_10px_25px_rgba(37,211,102,0.25)]
@@ -706,10 +704,15 @@ export function ContactPopup() {
                           duration-200
                           hover:-translate-y-0.5
                           hover:bg-[#1ebe57]
+                          sm:min-h-12
+                          sm:gap-2
+                          sm:px-5
+                          sm:py-3
+                          sm:text-sm
                         "
                       >
-                        <WhatsAppIcon className="h-5 w-5" />
-                        WhatsApp Us
+                        <WhatsAppIcon className="h-4 w-4 sm:h-5 sm:w-5" />
+                        WhatsApp
                       </a>
 
                       {CONTACT.phones[0] ? (
@@ -720,17 +723,17 @@ export function ContactPopup() {
                           }
                           className="
                             inline-flex
-                            min-h-12
+                            min-h-10
                             items-center
                             justify-center
-                            gap-2
+                            gap-1.5
                             rounded-xl
                             bg-gradient-to-r
                             from-accent-blue
                             to-accent-violet
-                            px-5
-                            py-3
-                            text-sm
+                            px-3
+                            py-2.5
+                            text-xs
                             font-semibold
                             text-white
                             shadow-[0_10px_25px_rgba(59,130,246,0.25)]
@@ -738,9 +741,14 @@ export function ContactPopup() {
                             duration-200
                             hover:-translate-y-0.5
                             hover:opacity-90
+                            sm:min-h-12
+                            sm:gap-2
+                            sm:px-5
+                            sm:py-3
+                            sm:text-sm
                           "
                         >
-                          <Phone className="h-5 w-5" />
+                          <Phone className="h-4 w-4 sm:h-5 sm:w-5" />
                           Call Us
                         </a>
                       ) : null}
@@ -749,7 +757,7 @@ export function ContactPopup() {
                     <button
                       type="button"
                       onClick={closePopup}
-                      className="mt-5 min-h-10 px-3 text-sm font-medium text-accent-blue transition-opacity hover:opacity-80"
+                      className="mt-4 min-h-9 px-3 text-xs font-medium text-accent-blue transition-opacity hover:opacity-80 sm:mt-5 sm:min-h-10 sm:text-sm"
                     >
                       Continue Browsing
                     </button>
@@ -759,10 +767,11 @@ export function ContactPopup() {
                     onSubmit={handleSubmit}
                     className="
                       grid
-                      grid-cols-1
-                      gap-4
-                      px-5
-                      py-5
+                      grid-cols-2
+                      gap-x-2.5
+                      gap-y-2.5
+                      px-4
+                      py-3.5
                       sm:gap-5
                       sm:px-8
                       sm:py-7
@@ -777,7 +786,7 @@ export function ContactPopup() {
                     <div>
                       <label
                         htmlFor="popup-name"
-                        className="mb-1.5 block text-[10px] font-mono uppercase tracking-wider text-muted sm:mb-2 sm:text-xs"
+                        className="mb-1 block text-[9px] font-mono uppercase tracking-wider text-muted sm:mb-2 sm:text-xs"
                       >
                         Full Name
                       </label>
@@ -800,7 +809,7 @@ export function ContactPopup() {
                           )
                         }
                         className={cn(
-                          "min-h-11 w-full rounded-xl border bg-surface px-3.5 py-2.5 text-sm outline-none transition sm:min-h-12 sm:px-4 sm:py-3",
+                          "min-h-9 w-full rounded-lg border bg-surface px-2.5 py-2 text-sm outline-none transition sm:min-h-12 sm:rounded-xl sm:px-4 sm:py-3",
                           errors.name
                             ? "border-red-500/50"
                             : "border-border focus:border-accent-blue/50"
@@ -808,7 +817,7 @@ export function ContactPopup() {
                       />
 
                       {errors.name ? (
-                        <p className="mt-1 text-[11px] text-red-400 sm:text-xs">
+                        <p className="mt-0.5 text-[10px] text-red-400 sm:mt-1 sm:text-xs">
                           {errors.name}
                         </p>
                       ) : null}
@@ -820,7 +829,7 @@ export function ContactPopup() {
                     <div>
                       <label
                         htmlFor="popup-phone"
-                        className="mb-1.5 block text-[10px] font-mono uppercase tracking-wider text-muted sm:mb-2 sm:text-xs"
+                        className="mb-1 block text-[9px] font-mono uppercase tracking-wider text-muted sm:mb-2 sm:text-xs"
                       >
                         Phone Number
                       </label>
@@ -843,7 +852,7 @@ export function ContactPopup() {
                           )
                         }
                         className={cn(
-                          "min-h-11 w-full rounded-xl border bg-surface px-3.5 py-2.5 text-sm outline-none transition sm:min-h-12 sm:px-4 sm:py-3",
+                          "min-h-9 w-full rounded-lg border bg-surface px-2.5 py-2 text-sm outline-none transition sm:min-h-12 sm:rounded-xl sm:px-4 sm:py-3",
                           errors.phone
                             ? "border-red-500/50"
                             : "border-border focus:border-accent-blue/50"
@@ -851,7 +860,7 @@ export function ContactPopup() {
                       />
 
                       {errors.phone ? (
-                        <p className="mt-1 text-[11px] text-red-400 sm:text-xs">
+                        <p className="mt-0.5 text-[10px] text-red-400 sm:mt-1 sm:text-xs">
                           {errors.phone}
                         </p>
                       ) : null}
@@ -863,7 +872,7 @@ export function ContactPopup() {
                     <div>
                       <label
                         htmlFor="popup-email"
-                        className="mb-1.5 block text-[10px] font-mono uppercase tracking-wider text-muted sm:mb-2 sm:text-xs"
+                        className="mb-1 block text-[9px] font-mono uppercase tracking-wider text-muted sm:mb-2 sm:text-xs"
                       >
                         Email Address
                       </label>
@@ -886,7 +895,7 @@ export function ContactPopup() {
                           )
                         }
                         className={cn(
-                          "min-h-11 w-full rounded-xl border bg-surface px-3.5 py-2.5 text-sm outline-none transition sm:min-h-12 sm:px-4 sm:py-3",
+                          "min-h-9 w-full rounded-lg border bg-surface px-2.5 py-2 text-sm outline-none transition sm:min-h-12 sm:rounded-xl sm:px-4 sm:py-3",
                           errors.email
                             ? "border-red-500/50"
                             : "border-border focus:border-accent-blue/50"
@@ -894,7 +903,7 @@ export function ContactPopup() {
                       />
 
                       {errors.email ? (
-                        <p className="mt-1 text-[11px] text-red-400 sm:text-xs">
+                        <p className="mt-0.5 text-[10px] text-red-400 sm:mt-1 sm:text-xs">
                           {errors.email}
                         </p>
                       ) : null}
@@ -906,7 +915,7 @@ export function ContactPopup() {
                     <div>
                       <label
                         htmlFor="popup-city"
-                        className="mb-1.5 block text-[10px] font-mono uppercase tracking-wider text-muted sm:mb-2 sm:text-xs"
+                        className="mb-1 block text-[9px] font-mono uppercase tracking-wider text-muted sm:mb-2 sm:text-xs"
                       >
                         City / Location
                       </label>
@@ -929,7 +938,7 @@ export function ContactPopup() {
                           )
                         }
                         className={cn(
-                          "min-h-11 w-full rounded-xl border bg-surface px-3.5 py-2.5 text-sm outline-none transition sm:min-h-12 sm:px-4 sm:py-3",
+                          "min-h-9 w-full rounded-lg border bg-surface px-2.5 py-2 text-sm outline-none transition sm:min-h-12 sm:rounded-xl sm:px-4 sm:py-3",
                           errors.city
                             ? "border-red-500/50"
                             : "border-border focus:border-accent-blue/50"
@@ -937,7 +946,7 @@ export function ContactPopup() {
                       />
 
                       {errors.city ? (
-                        <p className="mt-1 text-[11px] text-red-400 sm:text-xs">
+                        <p className="mt-0.5 text-[10px] text-red-400 sm:mt-1 sm:text-xs">
                           {errors.city}
                         </p>
                       ) : null}
@@ -946,12 +955,12 @@ export function ContactPopup() {
                     {/* =================================================
                         ROLE
                     ================================================== */}
-                    <div className="lg:col-span-2">
-                      <p className="mb-2 block text-[10px] font-mono uppercase tracking-wider text-muted sm:mb-3 sm:text-xs">
+                    <div className="col-span-2 lg:col-span-2">
+                      <p className="mb-1.5 block text-[9px] font-mono uppercase tracking-wider text-muted sm:mb-3 sm:text-xs">
                         I am a
                       </p>
 
-                      <div className="grid grid-cols-2 gap-2 lg:grid-cols-4">
+                      <div className="grid grid-cols-2 gap-1.5 sm:gap-2 lg:grid-cols-4">
                         {CONTACT_ROLES.map(
                           (role) => {
                             const selected =
@@ -972,7 +981,7 @@ export function ContactPopup() {
                                   )
                                 }
                                 className={cn(
-                                  "min-h-11 rounded-xl border px-3 py-2.5 text-left text-xs font-medium transition sm:min-h-12 sm:px-4 sm:py-3 sm:text-sm",
+                                  "min-h-9 rounded-lg border px-2 py-1.5 text-left text-[10px] font-medium leading-tight transition sm:min-h-12 sm:rounded-xl sm:px-4 sm:py-3 sm:text-sm",
                                   selected
                                     ? "border-accent-blue/50 bg-accent-blue/10 text-foreground"
                                     : "border-border bg-surface text-foreground/80 hover:border-glass-border hover:bg-surface-hover",
@@ -989,7 +998,7 @@ export function ContactPopup() {
                       </div>
 
                       {errors.role ? (
-                        <p className="mt-1.5 text-[11px] text-red-400 sm:mt-2 sm:text-xs">
+                        <p className="mt-1 text-[10px] text-red-400 sm:mt-2 sm:text-xs">
                           {errors.role}
                         </p>
                       ) : null}
@@ -999,7 +1008,7 @@ export function ContactPopup() {
                         SUBMIT ERROR
                     ================================================== */}
                     {submitError ? (
-                      <p className="rounded-xl border border-red-500/30 bg-red-500/5 px-3.5 py-3 text-xs leading-5 text-red-400 sm:px-4 sm:text-sm sm:leading-6 lg:col-span-2">
+                      <p className="col-span-2 rounded-lg border border-red-500/30 bg-red-500/5 px-2.5 py-2 text-[10px] leading-4 text-red-400 sm:rounded-xl sm:px-4 sm:py-3 sm:text-sm sm:leading-6 lg:col-span-2">
                         {submitError}
                       </p>
                     ) : null}
@@ -1011,18 +1020,19 @@ export function ContactPopup() {
                       type="submit"
                       disabled={submitting}
                       className="
+                        col-span-2
                         flex
-                        min-h-12
+                        min-h-10
                         w-full
                         items-center
                         justify-center
                         gap-2
-                        rounded-xl
+                        rounded-lg
                         bg-gradient-to-r
                         from-accent-blue
                         to-accent-violet
-                        px-5
-                        py-3
+                        px-4
+                        py-2.5
                         text-sm
                         font-semibold
                         text-white
@@ -1031,6 +1041,9 @@ export function ContactPopup() {
                         disabled:cursor-not-allowed
                         disabled:opacity-60
                         sm:min-h-13
+                        sm:rounded-xl
+                        sm:px-5
+                        sm:py-3
                         lg:col-span-2
                       "
                     >
@@ -1050,10 +1063,8 @@ export function ContactPopup() {
                     {/* =================================================
                         DISCLAIMER
                     ================================================== */}
-                    <p className="pb-1 text-center text-[10px] leading-4 text-muted sm:text-xs lg:col-span-2">
-                      By submitting this form,
-                      you agree to be contacted
-                      by the Brosavo team.
+                    <p className="col-span-2 pb-0.5 text-center text-[9px] leading-3.5 text-muted sm:text-xs sm:leading-4 lg:col-span-2">
+                      By submitting, you agree to be contacted by Brosavo.
                     </p>
                   </form>
                 )}
