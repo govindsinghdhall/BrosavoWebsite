@@ -1,5 +1,8 @@
 import { z } from "zod";
 
+export const CONTACT_FORM_SUBMIT_ERROR_MESSAGE =
+  "Unable to send your details. Please";
+
 export const CONTACT_ROLES = [
   // "Real Estate Agent",
   "Real Estate Broker",

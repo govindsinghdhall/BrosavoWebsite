@@ -13,6 +13,7 @@ import {
 } from "lucide-react";
 
 import { MagneticButton } from "@/components/ui/MagneticButton";
+import { ContactFormSubmitError } from "@/components/ui/ContactFormSubmitError";
 import { BlurReveal } from "@/components/animations/TextReveal";
 import { CONTACT } from "@/lib/data";
 import { CONTACT_ROLES } from "@/lib/contact";
@@ -68,7 +69,7 @@ export function Contact({ showHeader = true }: { showHeader?: boolean }) {
 
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [submitting, setSubmitting] = useState(false);
-  const [submitError, setSubmitError] = useState<string | null>(null);
+  const [submitFailed, setSubmitFailed] = useState(false);
   const [focused, setFocused] = useState<string | null>(null);
 
   useEffect(() => {
@@ -132,7 +133,7 @@ export function Contact({ showHeader = true }: { showHeader?: boolean }) {
 
     if (submitting) return;
 
-    setSubmitError(null);
+    setSubmitFailed(false);
 
     if (!validate()) return;
 
@@ -185,26 +186,14 @@ export function Contact({ showHeader = true }: { showHeader?: boolean }) {
         body: JSON.stringify(payload),
       });
 
-      let data: { error?: string } = {};
-
-      try {
-        data = (await response.json()) as { error?: string };
-      } catch {
-        // Non-JSON error body.
-      }
-
       if (!response.ok) {
-        setSubmitError(
-          data.error || "Failed to send message. Please try again."
-        );
+        setSubmitFailed(true);
         return;
       }
 
       router.push("/thank-you");
     } catch {
-      setSubmitError(
-        "Network error. Please check your connection and try again."
-      );
+      setSubmitFailed(true);
     } finally {
       setSubmitting(false);
     }
@@ -405,10 +394,8 @@ export function Contact({ showHeader = true }: { showHeader?: boolean }) {
                     ) : null}
                   </div>
 
-                  {submitError ? (
-                    <p className="rounded-xl border border-red-500/30 bg-red-500/5 px-3.5 py-3 text-xs leading-5 text-red-400 sm:px-4 sm:text-sm">
-                      {submitError}
-                    </p>
+                  {submitFailed ? (
+                    <ContactFormSubmitError className="rounded-xl border border-red-500/30 bg-red-500/5 px-3.5 py-3 text-xs leading-5 text-red-400 sm:px-4 sm:text-sm" />
                   ) : null}
 
                   <MagneticButton

@@ -3,6 +3,7 @@ import { Resend } from "resend";
 import {
   buildContactEmailHtml,
   buildContactEmailText,
+  CONTACT_FORM_SUBMIT_ERROR_MESSAGE,
   contactFormSchema,
 } from "@/lib/contact";
 
@@ -17,8 +18,9 @@ export async function POST(request: Request) {
       process.env.RESEND_FROM_EMAIL || "onboarding@resend.dev";
 
     if (!apiKey) {
+      console.error("Contact API: RESEND_API_KEY is not configured.");
       return NextResponse.json(
-        { error: "Email service is not configured." },
+        { error: CONTACT_FORM_SUBMIT_ERROR_MESSAGE },
         { status: 500 }
       );
     }
@@ -50,7 +52,7 @@ export async function POST(request: Request) {
     if (error) {
       console.error("Resend error:", error);
       return NextResponse.json(
-        { error: "Failed to send message. Please try again." },
+        { error: CONTACT_FORM_SUBMIT_ERROR_MESSAGE },
         { status: 502 }
       );
     }
@@ -59,7 +61,7 @@ export async function POST(request: Request) {
   } catch (error) {
     console.error("Contact API error:", error);
     return NextResponse.json(
-      { error: "Failed to send message. Please try again." },
+      { error: CONTACT_FORM_SUBMIT_ERROR_MESSAGE },
       { status: 500 }
     );
   }

@@ -11,6 +11,7 @@ import {
 
 import { CONTACT } from "@/lib/data";
 import { CONTACT_ROLES } from "@/lib/contact";
+import { ContactFormSubmitError } from "@/components/ui/ContactFormSubmitError";
 import { cn } from "@/lib/utils";
 
 const POPUP_LAST_SHOWN_KEY =
@@ -100,9 +101,7 @@ export function ContactPopup() {
   const [submitting, setSubmitting] =
     useState(false);
 
-  const [submitError, setSubmitError] = useState<
-    string | null
-  >(null);
+  const [submitFailed, setSubmitFailed] = useState(false);
 
   /*
    * =========================================================
@@ -204,7 +203,7 @@ export function ContactPopup() {
   }, [open]);
 
   function openContactPopup() {
-    setSubmitError(null);
+    setSubmitFailed(false);
     setOpen(true);
   }
 
@@ -292,7 +291,7 @@ export function ContactPopup() {
 
     if (submitting) return;
 
-    setSubmitError(null);
+    setSubmitFailed(false);
 
     if (!validate()) return;
 
@@ -369,24 +368,8 @@ export function ContactPopup() {
         }
       );
 
-      let data: {
-        error?: string;
-      } = {};
-
-      try {
-        data =
-          (await response.json()) as {
-            error?: string;
-          };
-      } catch {
-        // Ignore non-JSON responses.
-      }
-
       if (!response.ok) {
-        setSubmitError(
-          data.error ||
-            "Failed to send message. Please try again."
-        );
+        setSubmitFailed(true);
 
         return;
       }
@@ -402,9 +385,7 @@ export function ContactPopup() {
 
       router.push("/thank-you");
     } catch {
-      setSubmitError(
-        "Network error. Please check your connection and try again."
-      );
+      setSubmitFailed(true);
     } finally {
       setSubmitting(false);
     }
@@ -905,10 +886,8 @@ export function ContactPopup() {
                     {/* =================================================
                         SUBMIT ERROR
                     ================================================== */}
-                    {submitError ? (
-                      <p className="col-span-2 rounded-lg border border-red-500/30 bg-red-500/5 px-2.5 py-2 text-[10px] leading-4 text-red-400 sm:rounded-xl sm:px-4 sm:py-3 sm:text-sm sm:leading-6 lg:col-span-2">
-                        {submitError}
-                      </p>
+                    {submitFailed ? (
+                      <ContactFormSubmitError className="col-span-2 rounded-lg border border-red-500/30 bg-red-500/5 px-2.5 py-2 text-[10px] leading-4 text-red-400 sm:rounded-xl sm:px-4 sm:py-3 sm:text-sm sm:leading-6 lg:col-span-2" />
                     ) : null}
 
                     {/* =================================================
