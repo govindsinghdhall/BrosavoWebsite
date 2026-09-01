@@ -4,11 +4,12 @@ import Link from "next/link";
 import { JsonLd } from "@/components/blog/JsonLd";
 
 import {
+  COMPANY_DESCRIPTION,
+  LEGAL_NAME,
   PRODUCT_NAME,
   PRODUCT_ONE_LINER,
   SITE_NAME,
   SITE_URL,
-  DEFAULT_OG_IMAGE,
   ORGANIZATION_ID,
 } from "@/lib/site";
 
@@ -36,108 +37,56 @@ import FinalCTA from "./components/FinalCTA";
 const PAGE_PATH = "/real-estate-crm";
 const PAGE_URL = `${SITE_URL}${PAGE_PATH}`;
 
+const PAGE_TITLE =
+  "Real Estate CRM Software | BROSAVO Real Estate CRM";
+
+const PAGE_DESCRIPTION =
+  "BROSAVO Real Estate CRM is real estate CRM software built by BROSAVO Technologies, a global technology company. Manage leads, property inventory, sales pipelines, WhatsApp follow-ups and website enquiries in one platform. Start a 14-day free trial.";
+
 export const metadata: Metadata = {
-  title: "Real Estate CRM Software | Brosavo - Close Deals Faster",
+  title: PAGE_TITLE,
 
-  description:
-    "Brosavo is real estate CRM software for agents and brokers. Manage leads, properties, WhatsApp follow-ups and pipelines. Start a 14-day free trial now.",
+  description: PAGE_DESCRIPTION,
 
-    keywords: [
-      // Primary keywords
-      "real estate CRM",
-      "real estate CRM software",
-      "real estate CRM platform",
-      "real estate CRM system",
-      "real estate CRM solution",
-      "real estate CRM tools",
-      "real estate CRM technology",
-    
-      // Audience / customer type
-      "CRM for real estate agents",
-      "CRM for realtors",
-      "CRM for brokers",
-      "real estate agent CRM",
-      "real estate broker CRM",
-      "CRM for real estate agencies",
-      "CRM for real estate companies",
-      "CRM for property dealers",
-      "CRM for real estate professionals",
-      "CRM for real estate teams",
-    
-      // Lead & sales management
-      "real estate lead management",
-      "real estate lead management software",
-      "real estate lead tracking software",
-      "real estate lead CRM",
-      "real estate sales CRM",
-      "real estate sales management software",
-      "real estate pipeline management",
-      "real estate sales pipeline",
-      "real estate lead tracking",
-      "real estate lead management system",
-      "real estate customer management software",
-      "real estate client management software",
-    
-      // Follow-ups & automation
-      "real estate follow-up software",
-      "real estate follow up CRM",
-      "real estate lead follow-up software",
-      "real estate sales automation",
-      "real estate CRM automation",
-      "real estate lead automation",
-      "real estate agent follow-up software",
-    
-      // WhatsApp / communication
-      "WhatsApp CRM for real estate",
-      "real estate WhatsApp CRM",
-      "WhatsApp CRM for realtors",
-      "WhatsApp CRM for real estate agents",
-      "real estate WhatsApp marketing CRM",
-      "real estate CRM WhatsApp integration",
-      "real estate lead management WhatsApp",
-    
-      // Property management
-      "property management CRM",
-      "property CRM",
-      "real estate property CRM",
-      "property sales CRM",
-      "property management software CRM",
-      "real estate inventory management software",
-      "real estate property management software",
-    
-      // Brand
-      "Brosavo",
-      "Brosavo Real Estate CRM",
-      "Brosavo CRM",
-      "Brosavo real estate software",
-      "Brosavo CRM software",
-    ],
+  keywords: [
+    "real estate CRM",
+    "real estate CRM software",
+    "real estate CRM platform",
+    "best real estate CRM",
+    "best CRM for real estate",
+    "best CRM software for real estate",
+    "CRM for real estate agents",
+    "real estate sales CRM",
+    "real estate lead management",
+    "WhatsApp CRM for real estate",
+    "property management CRM",
+    "BROSAVO Real Estate CRM",
+    "BROSAVO Technologies",
+  ],
 
   alternates: {
     canonical: PAGE_URL,
   },
 
   openGraph: {
-    title: "Real Estate CRM Software | Brosavo - Close Deals Faster",
-    description:
-      "Brosavo is real estate CRM software for agents and brokers. Manage leads, properties, WhatsApp follow-ups and pipelines.",
+    title: PAGE_TITLE,
+    description: PAGE_DESCRIPTION,
     url: PAGE_URL,
     siteName: SITE_NAME,
     type: "website",
     images: [
       {
-        url: absoluteUrl(DEFAULT_OG_IMAGE),
-        alt: "Brosavo Real Estate CRM software",
+        url: absoluteUrl("/images/REAL ESTATE CRM DASHBOARD HERO.png"),
+        alt: "BROSAVO Real Estate CRM dashboard showing leads, properties and sales pipeline",
       },
     ],
   },
 
   twitter: {
     card: "summary_large_image",
-    title: "Real Estate CRM Software | Brosavo - Close Deals Faster",
-    description:
-      "Brosavo is real estate CRM software for agents and brokers. Manage leads, properties, WhatsApp follow-ups and pipelines.",
-    images: [absoluteUrl(DEFAULT_OG_IMAGE)],
+    title: PAGE_TITLE,
+    description: PAGE_DESCRIPTION,
+    images: [absoluteUrl("/images/REAL ESTATE CRM DASHBOARD HERO.png")],
   },
 
   robots: {
@@ -149,17 +98,41 @@ export const metadata: Metadata = {
 const jsonLd = [
   {
     "@context": "https://schema.org",
+    "@type": "Organization",
+    "@id": ORGANIZATION_ID,
+    name: LEGAL_NAME,
+    alternateName: [SITE_NAME, PRODUCT_NAME],
+    url: SITE_URL,
+    description: COMPANY_DESCRIPTION,
+  },
+
+  {
+    "@context": "https://schema.org",
     "@type": "SoftwareApplication",
 
     name: PRODUCT_NAME,
 
     applicationCategory: "BusinessApplication",
 
-    operatingSystem: "Web",
+    operatingSystem: "Web, iOS, Android",
 
     description: PRODUCT_ONE_LINER,
 
     url: PAGE_URL,
+
+    image: absoluteUrl("/images/REAL ESTATE CRM DASHBOARD HERO.png"),
+
+    featureList: [
+      "Lead Management",
+      "Property Inventory",
+      "Property Matching",
+      "Sales Pipeline",
+      "WhatsApp Integration",
+      "Website Lead Capture",
+      "Reports and Analytics",
+      "Team Management",
+      "Mobile CRM",
+    ],
 
     offers: [
       {
@@ -181,8 +154,14 @@ const jsonLd = [
     provider: {
       "@type": "Organization",
       "@id": ORGANIZATION_ID,
-      name: SITE_NAME,
+      name: LEGAL_NAME,
       url: SITE_URL,
+    },
+
+    manufacturer: {
+      "@type": "Organization",
+      "@id": ORGANIZATION_ID,
+      name: LEGAL_NAME,
     },
   },
 
@@ -192,7 +171,7 @@ const jsonLd = [
 
     name: "Real Estate CRM Software",
 
-    description: PRODUCT_ONE_LINER,
+    description: PAGE_DESCRIPTION,
 
     url: PAGE_URL,
 
@@ -200,6 +179,12 @@ const jsonLd = [
       "@type": "WebSite",
       name: SITE_NAME,
       url: SITE_URL,
+    },
+
+    about: {
+      "@type": "SoftwareApplication",
+      name: PRODUCT_NAME,
+      url: PAGE_URL,
     },
   },
 
@@ -428,77 +413,86 @@ export default function RealEstateCrmPage() {
 
             <div className="max-w-4xl">
               <span className="inline-flex items-center rounded-full border border-blue-500/15 bg-blue-500/[0.04] px-3.5 py-1.5 text-[10px] font-medium uppercase tracking-[0.22em] text-accent-blue">
-                Real Estate CRM Software
+                BROSAVO Real Estate CRM
               </span>
 
-              <p className="mt-5 text-3xl font-semibold leading-tight tracking-[-0.045em] sm:text-4xl lg:text-5xl">
-                A complete CRM for modern
+              <h2 className="mt-5 text-3xl font-semibold leading-tight tracking-[-0.045em] sm:text-4xl lg:text-5xl">
+                Real estate CRM software
                 <br />
                 <span className="text-gradient-accent">
-                  real estate businesses.
+                  from a global technology company.
                 </span>
-              </p>
+              </h2>
 
               <div className="mt-7 space-y-5 text-base leading-7 text-muted sm:text-lg sm:leading-8">
                 <p>
-                  Brosavo is a real estate CRM software platform for agents,
-                  brokers, agencies, property consultants and developers.
-                  Manage leads, customers, property inventory, sales pipelines,
-                  follow-ups, websites, WhatsApp workflows and analytics from
-                  one connected platform.
+                  <strong className="font-medium text-foreground">
+                    BROSAVO Technologies
+                  </strong>{" "}
+                  is a global technology company that builds websites, custom
+                  software, AI-powered applications and industry-specific
+                  business platforms.{" "}
+                  <strong className="font-medium text-foreground">
+                    BROSAVO Real Estate CRM
+                  </strong>{" "}
+                  is one of those products — a real estate CRM platform for
+                  agents, brokers, agencies, property consultants and
+                  developers who need lead management, property inventory,
+                  sales pipelines, WhatsApp workflows and reporting in one
+                  connected system.
+                </p>
+
+                <p>
+                  Teams evaluating the best real estate CRM or the best CRM
+                  software for real estate typically need the same core
+                  workflow: capture enquiries, qualify prospects, match
+                  customers with listings, follow up consistently and track
+                  what converts. BROSAVO Real Estate CRM is built around that
+                  sales process — from website lead capture and WhatsApp
+                  conversations through property matching, pipeline stages
+                  and team accountability.
                 </p>
 
                 <p>
                   Whether your team operates in India, Canada, the United
                   States, the United Kingdom, Australia or other international
-                  markets, Brosavo provides a centralized workflow for managing
-                  real estate sales and customer relationships.
-                </p>
-
-                <p>
-                  Instead of relying on spreadsheets and disconnected
-                  communication tools, your team can capture enquiries,
-                  qualify prospects, match customers with properties, follow
-                  opportunities and track conversions from one real estate
-                  sales platform.
+                  markets, the platform gives you a centralized workflow for
+                  managing real estate sales and customer relationships instead
+                  of relying on spreadsheets and disconnected tools.
                 </p>
               </div>
             </div>
 
             {/* ============================================================
-                CORE TOPICS
+                CORE CAPABILITIES
             ============================================================ */}
 
             <div className="mt-9">
               <div className="text-[10px] font-mono uppercase tracking-[0.2em] text-muted/60">
-                Platform capabilities
+                What the platform includes
               </div>
 
-              <div className="mt-4 flex flex-wrap gap-2">
+              <ul className="mt-4 grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
                 {[
-                  "Real Estate CRM",
-                  "Real Estate CRM Software",
-                  "CRM for Real Estate Agents",
-                  "Real Estate Agent CRM",
-                  "CRM for Realtors",
-                  "Real Estate Lead Management",
-                  "Real Estate Sales CRM",
-                  "Property CRM",
-                  "Real Estate Follow-up Software",
-                  "Real Estate CRM Pricing",
-                  "WhatsApp CRM for Real Estate",
-                  "Real Estate Sales Pipeline",
-                  "Property Inventory Management",
-                  "Real Estate Customer Management",
+                  "Lead management and qualification",
+                  "Property inventory and listings",
+                  "Property matching by requirements",
+                  "Sales pipeline and deal tracking",
+                  "WhatsApp integration for follow-ups",
+                  "Website lead capture",
+                  "Reports and analytics",
+                  "Team management and permissions",
+                  "Mobile CRM for field sales",
                 ].map((topic) => (
-                  <span
+                  <li
                     key={topic}
-                    className="rounded-full border border-border/60 bg-surface px-3 py-1.5 text-[11px] text-muted"
+                    className="flex items-start gap-2 rounded-xl border border-border/60 bg-surface px-3.5 py-2.5 text-[12px] text-muted"
                   >
+                    <span className="mt-0.5 text-accent-blue">✓</span>
                     {topic}
-                  </span>
+                  </li>
                 ))}
-              </div>
+              </ul>
             </div>
 
             {/* ============================================================
@@ -600,10 +594,10 @@ export default function RealEstateCrmPage() {
               <ul className="mt-4 grid gap-2 sm:grid-cols-2">
                 <li>
                   <Link
-                    href="/pricing"
+                    href="/real-estate-crm-pricing"
                     className="text-[13px] font-medium text-accent-blue"
                   >
-                    Real estate CRM pricing plans
+                    Real estate CRM pricing
                   </Link>
                 </li>
                 <li>
@@ -632,6 +626,22 @@ export default function RealEstateCrmPage() {
                 </li>
                 <li>
                   <Link
+                    href="/real-estate-crm-for-brokerages"
+                    className="text-[13px] font-medium text-accent-blue"
+                  >
+                    CRM for real estate brokerages
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/real-estate-crm-for-developers"
+                    className="text-[13px] font-medium text-accent-blue"
+                  >
+                    CRM for property developers
+                  </Link>
+                </li>
+                <li>
+                  <Link
                     href="/real-estate-sales-crm"
                     className="text-[13px] font-medium text-accent-blue"
                   >
@@ -640,26 +650,26 @@ export default function RealEstateCrmPage() {
                 </li>
                 <li>
                   <Link
-                    href="/real-estate-crm/australia"
+                    href="/real-estate-lead-management"
                     className="text-[13px] font-medium text-accent-blue"
                   >
-                    Real estate CRM in Australia
+                    Real estate lead management
                   </Link>
                 </li>
                 <li>
                   <Link
-                    href="/how-to-sync-99acres-and-magicbricks-leads-to-crm"
+                    href="/whatsapp-crm-for-real-estate"
                     className="text-[13px] font-medium text-accent-blue"
                   >
-                    Sync 99acres and MagicBricks leads
+                    WhatsApp CRM for real estate
                   </Link>
                 </li>
                 <li>
                   <Link
-                    href="/best-real-estate-crm-guide"
+                    href="/property-management-crm"
                     className="text-[13px] font-medium text-accent-blue"
                   >
-                    Compare real estate CRMs
+                    Property management CRM
                   </Link>
                 </li>
               </ul>

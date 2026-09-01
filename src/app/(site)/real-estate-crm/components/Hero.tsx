@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 
@@ -166,7 +167,7 @@ export function Hero() {
                 <span className="relative h-1.5 w-1.5 rounded-full bg-blue-500" />
               </span>
 
-              Real Estate CRM Software
+              BROSAVO Real Estate CRM
             </motion.div>
 
             {/* Headline */}
@@ -185,11 +186,11 @@ export function Hero() {
               Real Estate CRM
 
               <span className="block">
-                Built to Help You
+                Software for Agents,
               </span>
 
               <span className="block text-gradient-accent">
-                Close More Deals.
+                Brokers &amp; Teams.
               </span>
             </motion.h1>
 
@@ -204,10 +205,17 @@ export function Hero() {
               }}
               className="mt-6 max-w-xl text-[15px] leading-7 text-muted sm:text-base sm:leading-7"
             >
-              BROSAVO helps real estate agents, brokers, developers and
-              sales teams manage leads, properties, sales pipelines,
-              customer conversations and follow-ups from one powerful
-              real estate CRM.
+              <strong className="font-medium text-foreground">
+                BROSAVO Technologies
+              </strong>{" "}
+              is a global technology company.{" "}
+              <strong className="font-medium text-foreground">
+                BROSAVO Real Estate CRM
+              </strong>{" "}
+              is our real estate CRM platform — built to help agents, brokers,
+              developers and sales teams manage leads, property inventory,
+              sales pipelines, WhatsApp follow-ups and website enquiries from
+              one connected workflow.
             </motion.p>
 
             {/* Feature highlights */}
@@ -223,11 +231,11 @@ export function Hero() {
             >
               {[
                 "Lead Management",
-                "Property Management",
+                "Property Inventory",
                 "Property Matching",
                 "Sales Pipeline",
-                "WhatsApp",
-                "AI Automation",
+                "WhatsApp Integration",
+                "Reports & Analytics",
               ].map((item) => (
                 <div
                   key={item}
@@ -255,7 +263,7 @@ export function Hero() {
             >
               <Link
                 href="https://crm.brosavo.com"
-                aria-label="Start your free 14-day Brosavo Real Estate CRM trial"
+                aria-label="Start your free 14-day BROSAVO Real Estate CRM trial"
                 className="group inline-flex items-center rounded-full bg-foreground px-7 py-3.5 text-sm font-medium text-background shadow-[0_10px_30px_rgba(0,0,0,0.12)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_15px_35px_rgba(0,0,0,0.16)]"
               >
                 Start Free Trial
@@ -286,14 +294,14 @@ export function Hero() {
             >
               <span>14-day free trial</span>
               <span>·</span>
-              <span>Built for real estate teams</span>
+              <span>By BROSAVO Technologies</span>
               <span>·</span>
-              <span>Leads · Properties · Sales</span>
+              <span>Leads · Properties · Pipeline</span>
             </motion.div>
           </motion.div>
 
           {/* ============================================================
-              RIGHT — CRM VISUAL
+              RIGHT — PRODUCT SCREENSHOT
           ============================================================ */}
 
           <motion.div
@@ -304,272 +312,24 @@ export function Hero() {
               delay: 0.2,
               ease: [0.22, 1, 0.36, 1],
             }}
-            className="relative mx-auto w-full max-w-[600px]"
+            className="relative mx-auto w-full max-w-[640px]"
           >
-            {/* Glow */}
-
             <div
               aria-hidden="true"
               className="absolute left-1/2 top-1/2 h-[360px] w-[80%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-blue-500/[0.08] blur-[100px]"
             />
 
-            {/* Main CRM card */}
-
-            <div className="relative rounded-[28px] border border-border/70 bg-background/80 p-4 shadow-[0_30px_80px_rgba(0,0,0,0.10)] backdrop-blur-xl sm:p-5">
-
-              {/* Top bar */}
-
-              <div className="flex items-center justify-between border-b border-border/60 pb-4">
-                <div>
-                  <div className="text-[10px] font-semibold uppercase tracking-[0.15em] text-blue-600">
-                    BROSAVO CRM
-                  </div>
-
-                  <div className="mt-1 text-lg font-semibold tracking-[-0.03em] text-foreground">
-                    Real Estate Sales
-                  </div>
-                </div>
-
-                <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-blue-500/10 text-blue-600">
-                  ◉
-                </div>
-              </div>
-
-              {/* Metrics */}
-
-              <div className="mt-4 grid grid-cols-3 gap-2">
-                <div className="rounded-2xl border border-border/60 bg-background p-3">
-                  <div className="text-[9px] text-muted">
-                    Active Leads
-                  </div>
-
-                  <div className="mt-1 text-xl font-semibold text-foreground">
-                    248
-                  </div>
-
-                  <div className="mt-1 text-[9px] text-emerald-600">
-                    +12.4%
-                  </div>
-                </div>
-
-                <div className="rounded-2xl border border-border/60 bg-background p-3">
-                  <div className="text-[9px] text-muted">
-                    Properties
-                  </div>
-
-                  <div className="mt-1 text-xl font-semibold text-foreground">
-                    1,284
-                  </div>
-
-                  <div className="mt-1 text-[9px] text-blue-600">
-                    Inventory
-                  </div>
-                </div>
-
-                <div className="rounded-2xl border border-border/60 bg-background p-3">
-                  <div className="text-[9px] text-muted">
-                    Follow-ups
-                  </div>
-
-                  <div className="mt-1 text-xl font-semibold text-foreground">
-                    36
-                  </div>
-
-                  <div className="mt-1 text-[9px] text-orange-600">
-                    Today
-                  </div>
-                </div>
-              </div>
-
-              {/* Pipeline */}
-
-              <div className="mt-4 rounded-2xl border border-border/60 bg-background p-4">
-                <div className="flex items-center justify-between">
-                  <div className="text-xs font-semibold text-foreground">
-                    Sales Pipeline
-                  </div>
-
-                  <span className="text-[9px] text-muted">
-                    This Month
-                  </span>
-                </div>
-
-                <div className="mt-4 grid grid-cols-4 gap-2">
-
-                  <div>
-                    <div className="mb-2 text-[9px] text-muted">
-                      New
-                    </div>
-
-                    <div className="space-y-2">
-                      <div className="rounded-xl bg-blue-500/10 p-2 text-[9px] font-medium text-blue-700">
-                        Rahul · 3 BHK
-                      </div>
-
-                      <div className="rounded-xl bg-blue-500/10 p-2 text-[9px] font-medium text-blue-700">
-                        Priya · Villa
-                      </div>
-                    </div>
-                  </div>
-
-                  <div>
-                    <div className="mb-2 text-[9px] text-muted">
-                      Contacted
-                    </div>
-
-                    <div className="space-y-2">
-                      <div className="rounded-xl bg-violet-500/10 p-2 text-[9px] font-medium text-violet-700">
-                        Aman · 2 BHK
-                      </div>
-
-                      <div className="rounded-xl bg-violet-500/10 p-2 text-[9px] font-medium text-violet-700">
-                        Neha · Plot
-                      </div>
-                    </div>
-                  </div>
-
-                  <div>
-                    <div className="mb-2 text-[9px] text-muted">
-                      Site Visit
-                    </div>
-
-                    <div className="space-y-2">
-                      <div className="rounded-xl bg-orange-500/10 p-2 text-[9px] font-medium text-orange-700">
-                        Karan · 4 BHK
-                      </div>
-
-                      <div className="rounded-xl bg-orange-500/10 p-2 text-[9px] font-medium text-orange-700">
-                        Simran · Villa
-                      </div>
-                    </div>
-                  </div>
-
-                  <div>
-                    <div className="mb-2 text-[9px] text-muted">
-                      Closed
-                    </div>
-
-                    <div className="space-y-2">
-                      <div className="rounded-xl bg-emerald-500/10 p-2 text-[9px] font-medium text-emerald-700">
-                        Arjun · 3 BHK
-                      </div>
-
-                      <div className="rounded-xl bg-emerald-500/10 p-2 text-[9px] font-medium text-emerald-700">
-                        Meera · Villa
-                      </div>
-                    </div>
-                  </div>
-
-                </div>
-              </div>
-
-              {/* Bottom cards */}
-
-              <div className="mt-3 grid gap-3 sm:grid-cols-2">
-
-                {/* WhatsApp */}
-
-                <div className="rounded-2xl border border-emerald-100 bg-emerald-50/70 p-4">
-                  <div className="flex items-center gap-2">
-                    <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-emerald-500 text-[9px] font-bold text-white">
-                      WA
-                    </div>
-
-                    <div>
-                      <div className="text-[10px] font-semibold text-foreground">
-                        WhatsApp
-                      </div>
-
-                      <div className="text-[9px] text-emerald-600">
-                        Connected
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="mt-3 rounded-xl bg-white p-2.5 text-[9px] text-muted shadow-sm">
-                    New property enquiry received
-                  </div>
-                </div>
-
-                {/* AI */}
-
-                <div className="rounded-2xl border border-violet-100 bg-violet-50/70 p-4">
-                  <div className="flex items-center gap-2">
-                    <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-violet-500 text-[9px] font-bold text-white">
-                      AI
-                    </div>
-
-                    <div>
-                      <div className="text-[10px] font-semibold text-foreground">
-                        AI Automation
-                      </div>
-
-                      <div className="text-[9px] text-violet-600">
-                        Active
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="mt-3 rounded-xl bg-white p-2.5 text-[9px] text-muted shadow-sm">
-                    Follow-up scheduled automatically
-                  </div>
-                </div>
-
-              </div>
+            <div className="relative overflow-hidden rounded-[28px] border border-border/70 bg-background p-2 shadow-[0_30px_80px_rgba(0,0,0,0.10)] sm:p-3">
+              <Image
+                src="/images/REAL ESTATE CRM DASHBOARD HERO.png"
+                alt="BROSAVO Real Estate CRM dashboard showing lead management, property inventory and sales pipeline"
+                width={1800}
+                height={1100}
+                priority
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                className="h-auto w-full rounded-[22px] object-contain"
+              />
             </div>
-
-            {/* Floating Property Match */}
-
-            <motion.div
-              initial={{ opacity: 0, x: -15 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{
-                duration: 0.6,
-                delay: 0.8,
-              }}
-              className="absolute -bottom-5 -left-3 hidden rounded-2xl border border-border/70 bg-background/90 p-3 shadow-[0_15px_40px_rgba(0,0,0,0.08)] backdrop-blur-xl sm:block lg:-left-7"
-            >
-              <div className="text-[9px] uppercase tracking-[0.12em] text-muted">
-                Property Match
-              </div>
-
-              <div className="mt-1 text-xs font-semibold text-foreground">
-                8 matching properties
-              </div>
-
-              <div className="mt-1 text-[9px] text-emerald-600">
-                Based on lead requirements
-              </div>
-            </motion.div>
-
-            {/* Floating Follow-up */}
-
-            <motion.div
-              initial={{ opacity: 0, x: 15 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{
-                duration: 0.6,
-                delay: 0.9,
-              }}
-              className="absolute -right-3 top-[18%] hidden rounded-2xl border border-border/70 bg-background/90 p-3 shadow-[0_15px_40px_rgba(0,0,0,0.08)] backdrop-blur-xl sm:block lg:-right-7"
-            >
-              <div className="flex items-center gap-2">
-                <span className="flex h-6 w-6 items-center justify-center rounded-lg bg-orange-500/10 text-orange-600">
-                  ✓
-                </span>
-
-                <div>
-                  <div className="text-[10px] font-semibold text-foreground">
-                    Follow-up Reminder
-                  </div>
-
-                  <div className="text-[9px] text-muted">
-                    3 leads need attention
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-
           </motion.div>
         </div>
 
@@ -598,13 +358,14 @@ export function Hero() {
             </p>
 
             <h2 className="mt-2 text-2xl font-semibold tracking-[-0.04em] text-foreground sm:text-3xl">
-              One CRM for Your Entire Real Estate Sales Process
+              One real estate CRM platform for your entire sales process
             </h2>
 
             <p className="mx-auto mt-3 max-w-2xl text-sm leading-6 text-muted">
-              Capture leads, manage properties, match requirements,
-              communicate with prospects, automate follow-ups and
-              track your sales — all from BROSAVO.
+              Capture leads from your website, manage property inventory,
+              match requirements with listings, run a sales pipeline,
+              follow up on WhatsApp and review team performance — all
+              within BROSAVO Real Estate CRM.
             </p>
           </div>
 

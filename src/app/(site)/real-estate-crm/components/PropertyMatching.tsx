@@ -80,8 +80,10 @@ export default function PropertyMatching() {
           {/* Description */}
 
           <p className="mx-auto mt-2.5 max-w-2xl text-sm leading-6 text-muted sm:text-base">
-            Turn customer requirements into relevant property recommendations
-            without manually searching through your inventory.
+            Connect customer requirements — property type, location, budget
+            and preferences — with relevant listings from your inventory.
+            Agents can recommend properties faster and move qualified
+            opportunities into the sales pipeline with the right context.
           </p>
         </motion.div>
 

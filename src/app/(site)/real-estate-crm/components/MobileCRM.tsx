@@ -124,8 +124,11 @@ export default function MobileCRM() {
           {/* Description */}
 
           <p className="mt-5 max-w-xl text-base leading-7 text-muted sm:text-lg sm:leading-8">
-            Keep your team connected to leads, customers and property
-            information even when they are away from their desks.
+            Access leads, customers and property information from your mobile
+            device while meeting prospects or visiting properties. BROSAVO
+            Real Estate CRM keeps field teams connected to follow-ups,
+            pipeline updates and customer context without waiting to get back
+            to the office.
           </p>
 
           {/* ==========================================================

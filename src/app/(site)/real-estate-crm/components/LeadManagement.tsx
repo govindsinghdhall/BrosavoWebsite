@@ -39,16 +39,17 @@ export default function LeadManagement() {
             id="lead-management-heading"
             className="mt-5 text-4xl font-semibold leading-[1.05] tracking-[-0.045em] sm:text-5xl"
           >
-            Lead scoring &amp; AI prioritization
+            Real estate lead management
           </h3>
 
           <p className="mt-5 max-w-xl text-base leading-7 text-muted sm:text-lg sm:leading-8">
-            How does Brosavo help agents? It captures website and WhatsApp
-            enquiries, then helps you prioritize the leads most likely to
-            convert. Every opportunity gets an owner, status and next step so
-            high-intent buyers are not buried under cold follow-ups. Teams
-            spend less time hunting across spreadsheets and more time
-            contacting the right people with the right listing context.
+            Capture website and WhatsApp enquiries, then organize every
+            opportunity with a clear owner, status and next step. BROSAVO
+            Real Estate CRM keeps lead management connected to property
+            interests and pipeline stages, so high-intent buyers are not
+            buried under cold follow-ups. Teams spend less time hunting
+            across spreadsheets and more time contacting the right people
+            with the right listing context.
           </p>
 
           {/* ==========================================================

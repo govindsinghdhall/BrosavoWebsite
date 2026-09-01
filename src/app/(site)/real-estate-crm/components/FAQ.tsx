@@ -60,8 +60,8 @@ export default function FAQ() {
             </h2>
 
             <p className="mt-3 max-w-2xl text-sm leading-6 text-muted sm:text-base sm:leading-7">
-              Answers to common questions about Brosavo Real Estate CRM,
-              features, pricing, integrations and how it fits into a real
+              Answers to common questions about BROSAVO Real Estate CRM,
+              pricing, integrations and how the platform fits into a real
               estate sales workflow.
             </p>
           </motion.div>

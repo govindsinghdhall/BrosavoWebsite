@@ -1,11 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 import {
-  CheckCircle,
   Loader2,
-  Phone,
   Send,
   X,
 } from "lucide-react";
@@ -82,6 +81,7 @@ function WhatsAppIcon({
 }
 
 export function ContactPopup() {
+  const router = useRouter();
   const [open, setOpen] = useState(false);
 
   const [formState, setFormState] =
@@ -98,9 +98,6 @@ export function ContactPopup() {
   >({});
 
   const [submitting, setSubmitting] =
-    useState(false);
-
-  const [submitted, setSubmitted] =
     useState(false);
 
   const [submitError, setSubmitError] = useState<
@@ -403,7 +400,7 @@ export function ContactPopup() {
         // Ignore storage errors.
       }
 
-      setSubmitted(true);
+      router.push("/thank-you");
     } catch {
       setSubmitError(
         "Network error. Please check your connection and try again."
@@ -644,126 +641,27 @@ export function ContactPopup() {
                   <X className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
                 </button>
 
-                {!submitted ? (
-                  <div className="pr-10 sm:pr-12">
-                    <p className="text-[9px] font-mono uppercase tracking-[0.2em] text-accent-blue sm:text-xs">
-                      BROSAVO
-                    </p>
+                <div className="pr-10 sm:pr-12">
+                  <p className="text-[9px] font-mono uppercase tracking-[0.2em] text-accent-blue sm:text-xs">
+                    BROSAVO
+                  </p>
 
-                    <h2 className="mt-1 text-lg font-bold tracking-tight text-foreground sm:mt-1.5 sm:text-3xl">
-                      Request a Demo
-                    </h2>
+                  <h2 className="mt-1 text-lg font-bold tracking-tight text-foreground sm:mt-1.5 sm:text-3xl">
+                    Request a Demo
+                  </h2>
 
-                    <p className="mt-1 hidden max-w-xl text-xs leading-5 text-muted sm:block sm:mt-2 sm:text-sm sm:leading-6">
-                      See how Brosavo can help your business manage leads,
-                      properties, and sales more efficiently.
-                    </p>
-                  </div>
-                ) : null}
+                  <p className="mt-1 hidden max-w-xl text-xs leading-5 text-muted sm:block sm:mt-2 sm:text-sm sm:leading-6">
+                    See how Brosavo can help your business manage leads,
+                    properties, and sales more efficiently.
+                  </p>
+                </div>
               </div>
 
               {/* =================================================
                   CONTENT
               ================================================== */}
               <div className="shrink-0 overflow-hidden">
-                {submitted ? (
-                  <div className="flex flex-col items-center justify-center px-4 py-6 text-center sm:px-8 sm:py-12">
-                    <CheckCircle className="h-11 w-11 text-green-400 sm:h-16 sm:w-16" />
-
-                    <h2 className="mt-3 text-xl font-bold text-foreground sm:mt-5 sm:text-3xl">
-                      Request Received!
-                    </h2>
-
-                    <p className="mt-2 max-w-md text-xs leading-5 text-muted sm:mt-4 sm:text-sm sm:leading-7">
-                      Thank you for contacting Brosavo. A product specialist
-                      will reach out shortly.
-                    </p>
-
-                    <div className="mt-5 grid w-full max-w-md grid-cols-2 gap-2 sm:mt-8 sm:gap-3">
-                      <a
-                        href={
-                          CONTACT.whatsapp.href
-                        }
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="
-                          inline-flex
-                          min-h-10
-                          items-center
-                          justify-center
-                          gap-1.5
-                          rounded-xl
-                          bg-[#25D366]
-                          px-3
-                          py-2.5
-                          text-xs
-                          font-semibold
-                          text-white
-                          shadow-[0_10px_25px_rgba(37,211,102,0.25)]
-                          transition-all
-                          duration-200
-                          hover:-translate-y-0.5
-                          hover:bg-[#1ebe57]
-                          sm:min-h-12
-                          sm:gap-2
-                          sm:px-5
-                          sm:py-3
-                          sm:text-sm
-                        "
-                      >
-                        <WhatsAppIcon className="h-4 w-4 sm:h-5 sm:w-5" />
-                        WhatsApp
-                      </a>
-
-                      {CONTACT.phones[0] ? (
-                        <a
-                          href={
-                            CONTACT.phones[0]
-                              .href
-                          }
-                          className="
-                            inline-flex
-                            min-h-10
-                            items-center
-                            justify-center
-                            gap-1.5
-                            rounded-xl
-                            bg-gradient-to-r
-                            from-accent-blue
-                            to-accent-violet
-                            px-3
-                            py-2.5
-                            text-xs
-                            font-semibold
-                            text-white
-                            shadow-[0_10px_25px_rgba(59,130,246,0.25)]
-                            transition-all
-                            duration-200
-                            hover:-translate-y-0.5
-                            hover:opacity-90
-                            sm:min-h-12
-                            sm:gap-2
-                            sm:px-5
-                            sm:py-3
-                            sm:text-sm
-                          "
-                        >
-                          <Phone className="h-4 w-4 sm:h-5 sm:w-5" />
-                          Call Us
-                        </a>
-                      ) : null}
-                    </div>
-
-                    <button
-                      type="button"
-                      onClick={closePopup}
-                      className="mt-4 min-h-9 px-3 text-xs font-medium text-accent-blue transition-opacity hover:opacity-80 sm:mt-5 sm:min-h-10 sm:text-sm"
-                    >
-                      Continue Browsing
-                    </button>
-                  </div>
-                ) : (
-                  <form
+                <form
                     onSubmit={handleSubmit}
                     className="
                       grid
@@ -1067,7 +965,6 @@ export function ContactPopup() {
                       By submitting, you agree to be contacted by Brosavo.
                     </p>
                   </form>
-                )}
               </div>
             </motion.div>
           </motion.div>

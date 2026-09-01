@@ -76,10 +76,11 @@ export default function WhatsAppCRM() {
           </p>
 
           <p className="mt-5 max-w-xl text-base leading-7 text-muted sm:text-lg sm:leading-8">
-            Connect WhatsApp engagement with your real estate sales workflow.
-            Use notifications and API-powered workflows to respond faster
-            while keeping important customer conversations connected to leads
-            and opportunities.
+            Connect WhatsApp to your real estate sales workflow with
+            notifications on Starter and WhatsApp API integration on
+            Professional. Keep customer conversations linked to leads and
+            pipeline stages so follow-ups stay in context and ownership stays
+            clear across your team.
           </p>
 
           {/* ==========================================================

@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
@@ -35,32 +35,34 @@ export function MagneticButton({
   disabled = false,
 }: MagneticButtonProps) {
   const pathname = usePathname();
-
   const buttonRef = useRef<HTMLButtonElement>(null);
   const anchorRef = useRef<HTMLAnchorElement>(null);
-
-  const [position, setPosition] = useState({
-    x: 0,
-    y: 0,
-  });
-
+  const [position, setPosition] = useState({ x: 0, y: 0 });
   const [loading, setLoading] = useState(false);
+  const [isMounted, setIsMounted] = useState(true);
 
   const isDisabled = disabled || loading;
 
+  // Reset loading state on route changes
+  useEffect(() => {
+    // Reset loading when pathname changes
+    setLoading(false);
+  }, [pathname]);
+
+  // Cleanup on unmount
+  useEffect(() => {
+    return () => {
+      setIsMounted(false);
+    };
+  }, []);
+
   const normalizePath = (value: string) => {
     if (!value) return "";
-
     const withoutQuery = value.split("?")[0];
     const withoutHash = withoutQuery.split("#")[0];
-
-    if (
-      withoutHash.length > 1 &&
-      withoutHash.endsWith("/")
-    ) {
+    if (withoutHash.length > 1 && withoutHash.endsWith("/")) {
       return withoutHash.slice(0, -1);
     }
-
     return withoutHash || "/";
   };
 
@@ -71,68 +73,36 @@ export function MagneticButton({
     !href.startsWith("tel:") &&
     normalizePath(href) === normalizePath(pathname);
 
-  const handleMouse = (
-    e: React.MouseEvent<HTMLElement>
-  ) => {
+  const handleMouse = (e: React.MouseEvent<HTMLElement>) => {
     if (isDisabled) return;
-
-    const el =
-      anchorRef.current ||
-      buttonRef.current;
-
+    const el = anchorRef.current || buttonRef.current;
     if (!el) return;
-
     const rect = el.getBoundingClientRect();
-
-    const x =
-      e.clientX -
-      rect.left -
-      rect.width / 2;
-
-    const y =
-      e.clientY -
-      rect.top -
-      rect.height / 2;
-
-    setPosition({
-      x: x * 0.3,
-      y: y * 0.3,
-    });
+    const x = e.clientX - rect.left - rect.width / 2;
+    const y = e.clientY - rect.top - rect.height / 2;
+    setPosition({ x: x * 0.3, y: y * 0.3 });
   };
 
   const reset = () => {
-    setPosition({
-      x: 0,
-      y: 0,
-    });
+    setPosition({ x: 0, y: 0 });
   };
 
   const variants = {
     primary:
       "bg-gradient-to-r from-accent-blue via-accent-violet to-accent-cyan text-white hover:shadow-[0_0_40px_rgba(59,130,246,0.35)]",
-
     secondary:
       "glass text-foreground hover:bg-surface-hover hover:border-glass-border",
-
-    ghost:
-      "text-foreground/70 hover:text-foreground hover:bg-surface",
+    ghost: "text-foreground/70 hover:text-foreground hover:bg-surface",
   };
 
   const baseClassName = cn(
     "relative inline-flex items-center justify-center gap-2 rounded-full px-8 py-3.5 text-sm font-medium transition-all duration-300",
     "cursor-pointer",
     variants[variant],
-    isDisabled &&
-      "cursor-not-allowed opacity-60",
+    isDisabled && "cursor-not-allowed opacity-60",
     className
   );
 
-  /*
-   * Keep the original content in the layout.
-   *
-   * This prevents the button from changing width
-   * when the loader appears.
-   */
   const buttonContent = (
     <>
       <span
@@ -153,12 +123,8 @@ export function MagneticButton({
       {variant === "primary" && !loading && (
         <motion.div
           className="absolute inset-0 rounded-full bg-white/10 opacity-0"
-          whileHover={{
-            opacity: 1,
-          }}
-          transition={{
-            duration: 0.3,
-          }}
+          whileHover={{ opacity: 1 }}
+          transition={{ duration: 0.3 }}
         />
       )}
     </>
@@ -174,25 +140,13 @@ export function MagneticButton({
       href.startsWith("mailto:") ||
       href.startsWith("tel:");
 
-    /* ==========================================================
-       EXTERNAL LINK
-    ========================================================== */
-
     if (isExternal) {
       return (
         <motion.a
           ref={anchorRef}
           href={isDisabled ? undefined : href}
-          target={
-            href.startsWith("http")
-              ? "_blank"
-              : undefined
-          }
-          rel={
-            href.startsWith("http")
-              ? "noopener noreferrer"
-              : undefined
-          }
+          target={href.startsWith("http") ? "_blank" : undefined}
+          rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
           aria-disabled={isDisabled}
           aria-busy={loading}
           onClick={(event) => {
@@ -200,32 +154,19 @@ export function MagneticButton({
               event.preventDefault();
               return;
             }
-
             setLoading(true);
             onClick?.();
           }}
           onMouseMove={handleMouse}
           onMouseLeave={reset}
-          animate={{
-            x: position.x,
-            y: position.y,
-          }}
-          transition={{
-            type: "spring",
-            stiffness: 150,
-            damping: 15,
-            mass: 0.1,
-          }}
+          animate={{ x: position.x, y: position.y }}
+          transition={{ type: "spring", stiffness: 150, damping: 15, mass: 0.1 }}
           className={baseClassName}
         >
           {buttonContent}
         </motion.a>
       );
     }
-
-    /* ==========================================================
-       INTERNAL LINK
-    ========================================================== */
 
     return (
       <Link
@@ -235,12 +176,6 @@ export function MagneticButton({
         aria-busy={loading}
         tabIndex={isDisabled ? -1 : undefined}
         onClick={(event) => {
-          /*
-           * IMPORTANT:
-           *
-           * If we're already on this page, do NOT activate
-           * the loading spinner.
-           */
           if (isSamePage) {
             event.preventDefault();
             onClick?.();
@@ -255,26 +190,14 @@ export function MagneticButton({
           setLoading(true);
           onClick?.();
         }}
-        className={cn(
-          "inline-block",
-          className?.includes("w-full") &&
-            "block w-full"
-        )}
+        className={cn("inline-block", className?.includes("w-full") && "block w-full")}
       >
         <motion.span
           ref={anchorRef}
           onMouseMove={handleMouse}
           onMouseLeave={reset}
-          animate={{
-            x: position.x,
-            y: position.y,
-          }}
-          transition={{
-            type: "spring",
-            stiffness: 150,
-            damping: 15,
-            mass: 0.1,
-          }}
+          animate={{ x: position.x, y: position.y }}
+          transition={{ type: "spring", stiffness: 150, damping: 15, mass: 0.1 }}
           className={baseClassName}
         >
           {buttonContent}
@@ -295,18 +218,15 @@ export function MagneticButton({
       aria-busy={loading}
       onMouseMove={handleMouse}
       onMouseLeave={reset}
-      animate={{
-        x: position.x,
-        y: position.y,
-      }}
-      transition={{
-        type: "spring",
-        stiffness: 150,
-        damping: 15,
-        mass: 0.1,
-      }}
+      animate={{ x: position.x, y: position.y }}
+      transition={{ type: "spring", stiffness: 150, damping: 15, mass: 0.1 }}
       className={baseClassName}
-      onClick={onClick}
+      onClick={() => {
+        setLoading(true);
+        onClick?.();
+        // Reset loading after async operation
+        setTimeout(() => setLoading(false), 5000); // Fallback timeout
+      }}
     >
       {buttonContent}
     </motion.button>

@@ -77,12 +77,18 @@ export default function GrowthTools() {
             id="growth-tools-heading"
             className="mt-4 text-3xl font-semibold leading-[1.05] tracking-[-0.045em] text-foreground sm:text-4xl lg:text-[2.65rem]"
           >
-            Real-time analytics &amp; reporting
+            Website lead capture, analytics
+            <br />
+            <span className="text-gradient-accent">
+              and sales reporting.
+            </span>
           </h3>
 
           <p className="mx-auto mt-3 max-w-2xl text-sm leading-6 text-muted sm:text-base sm:leading-7">
-            Capture more enquiries, help your team work smarter and understand
-            what is driving performance across your real estate business.
+            Turn your real estate website into a lead channel, give your
+            team intelligent assistance on customer conversations and track
+            leads, conversions, pipeline performance and team activity from
+            one reporting layer.
           </p>
         </motion.div>
 

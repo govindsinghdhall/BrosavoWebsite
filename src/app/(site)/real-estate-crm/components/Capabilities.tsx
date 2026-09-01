@@ -83,13 +83,14 @@ export default function Capabilities() {
           </h2>
 
           <p className="mx-auto mt-3 max-w-2xl text-sm leading-6 text-muted sm:text-base">
-            Brosavo is built as a CRM for agents, brokers, agencies and
-            developers who need lead management and property management in
-            the same place. Capture enquiries, organize customer requirements,
+            BROSAVO Real Estate CRM is a real estate CRM platform developed by
+            BROSAVO Technologies for agents, brokers, agencies and developers
+            who need lead management and property management in the same
+            workflow. Capture enquiries, organize customer requirements,
             match listings, run a sales pipeline, follow up on WhatsApp and
             review team activity without switching tools. The sections below
-            cover how Brosavo helps agents prioritize work, move deals through
-            pipeline stages and measure what is converting.
+            show how each part of the platform supports your daily sales
+            process.
           </p>
         </motion.div>
 

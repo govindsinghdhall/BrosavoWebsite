@@ -77,13 +77,13 @@ export default function FinalCTA() {
 
             <p className="mx-auto mt-5 max-w-2xl text-sm leading-7 text-background/65 sm:text-base sm:leading-8 lg:text-lg"
             >
-              Start with Brosavo Real Estate CRM and bring lead management,
-              property inventory, customer records, WhatsApp follow-ups and
-              your sales pipeline into one workflow. Individual agents can
-              begin on Starter; growing teams can move to Professional or
-              talk with us about Enterprise. Start a 14-day free trial and
-              see how faster follow-ups and clearer ownership help you close
-              more deals.
+              BROSAVO Real Estate CRM brings lead management, property
+              inventory, customer records, WhatsApp follow-ups and your sales
+              pipeline into one workflow — developed by BROSAVO Technologies.
+              Individual agents can begin on Starter; growing teams can move to
+              Professional or talk with us about Enterprise. Start a 14-day free
+              trial and see how clearer ownership and faster follow-ups help
+              your team close more deals.
             </p>
 
             {/* ========================================================
@@ -95,7 +95,7 @@ export default function FinalCTA() {
                 href="https://crm.brosavo.com"
                 className="inline-flex h-12 items-center justify-center rounded-full bg-background px-7 text-sm font-semibold text-foreground shadow-[0_10px_30px_rgba(0,0,0,0.15)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_14px_35px_rgba(0,0,0,0.2)]"
               >
-                Open your Brosavo CRM trial
+                Open your BROSAVO CRM trial
                 <span className="ml-2 transition-transform duration-300">
                   →
                 </span>
@@ -105,9 +105,18 @@ export default function FinalCTA() {
                 href="/contact"
                 className="inline-flex h-12 items-center justify-center rounded-full border border-background/20 bg-background/[0.04] px-7 text-sm font-semibold text-background transition-all duration-300 hover:-translate-y-0.5 hover:bg-background/[0.09]"
               >
-                Speak with Brosavo sales
+                Book a demo
               </Link>
             </div>
+
+            <p className="mt-4 text-sm text-background/50">
+              <Link
+                href="/real-estate-crm-pricing"
+                className="font-medium text-background/70 underline-offset-4 transition hover:text-background hover:underline"
+              >
+                View real estate CRM pricing
+              </Link>
+            </p>
 
             {/* ========================================================
                 TRUST MICRO-COPY
