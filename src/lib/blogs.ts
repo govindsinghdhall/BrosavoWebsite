@@ -85,9 +85,9 @@ function normalizeFrontmatter(
   const authorRaw = String(data.author ?? DEFAULT_AUTHOR_ID).trim();
   const author = resolveAuthor(authorRaw).name;
   const category = String(data.category ?? "Real Estate Tech").trim();
-  const image = String(
-    data.image ?? DEFAULT_BLOG_COVER ?? DEFAULT_OG_IMAGE
-  ).trim();
+  const image = resolveBlogImage(
+    String(data.image ?? DEFAULT_BLOG_COVER ?? DEFAULT_OG_IMAGE).trim()
+  );
   const imageAlt = data.imageAlt
     ? String(data.imageAlt).trim()
     : undefined;
@@ -122,6 +122,18 @@ async function markdownToHtml(markdown: string): Promise<string> {
     .use(rehypeStringify, { allowDangerousHtml: true })
     .process(markdown);
   return String(result);
+}
+
+function resolveBlogImage(src: string): string {
+  if (!src.startsWith("/")) return src || DEFAULT_BLOG_COVER;
+
+  const fullPath = path.join(process.cwd(), "public", src.replace(/^\//, ""));
+
+  if (fs.existsSync(fullPath)) {
+    return src;
+  }
+
+  return DEFAULT_BLOG_COVER;
 }
 
 function listMarkdownFiles(): string[] {

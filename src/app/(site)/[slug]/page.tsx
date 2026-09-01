@@ -28,6 +28,7 @@ import { blogPostAbsoluteUrl, blogPostPath } from "@/lib/blog-urls";
 import { BLOG_TITLE_SUFFIX, PRODUCT_CTA, SITE_NAME, SITE_URL } from "@/lib/site";
 
 export const revalidate = 60;
+export const dynamicParams = true;
 
 export function generateStaticParams() {
   return getAllBlogs().map((blog) => ({ slug: blog.slug }));

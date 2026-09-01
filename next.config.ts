@@ -25,6 +25,14 @@ const nextConfig: NextConfig = {
     formats: ["image/avif", "image/webp"],
   },
 
+  // Keep markdown posts inside the serverless bundle so /{slug}
+  // can resolve newly published files after a production deploy.
+  outputFileTracingIncludes: {
+    "/[slug]": ["./content/blogs/**/*"],
+    "/blog": ["./content/blogs/**/*"],
+    "/sitemap.xml": ["./content/blogs/**/*"],
+  },
+
   async redirects() {
     const renamedFromBlog = Object.entries(BLOG_SLUG_REDIRECTS).flatMap(
       ([oldSlug, newSlug]) => [

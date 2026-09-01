@@ -416,12 +416,9 @@ export default function NewBlogAdminPage() {
 
       setToast({
         type: "success",
-        message:
-          `Published successfully${
-            data.slug
-              ? `: ${data.slug}`
-              : ""
-          }`,
+        message: data.slug
+          ? `Published. Live URL after deploy: https://www.brosavo.com/${data.slug}`
+          : "Published successfully",
       });
 
       /*

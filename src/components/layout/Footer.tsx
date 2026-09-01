@@ -286,6 +286,12 @@ export function Footer() {
 
           <div className="flex flex-wrap items-center justify-center gap-4 md:gap-6">
             <Link
+              href="/careers"
+              className="text-xs text-muted hover:text-foreground transition-colors"
+            >
+              Careers
+            </Link>
+            <Link
               href="/contact"
               className="text-xs text-muted hover:text-foreground transition-colors"
             >
