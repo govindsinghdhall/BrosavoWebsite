@@ -85,6 +85,12 @@ export const NAV_LINKS = [
     description: "Technology services for modern businesses.",
     items: [
       {
+        label: "Website Development",
+        href: "/website-development",
+        description: "SEO, AEO, GEO and conversion-focused websites.",
+        featured: true,
+      },
+      {
         label: "Software Development",
         href: "/services",
         description: "Custom software and digital products.",
@@ -192,10 +198,12 @@ export const FOOTER_LINKS = {
   ],
 
   Services: [
-    { label: "AI Solutions", href: "/services" },
+    { label: "Website Development", href: "/website-development" },
+    { label: "SEO", href: "/seo" },
+    { label: "AEO", href: "/aeo" },
+    { label: "GEO", href: "/geo" },
+    { label: "Digital Marketing", href: "/digital-marketing" },
     { label: "Software Development", href: "/services" },
-    { label: "Cloud Infrastructure", href: "/services" },
-    { label: "Digital Transformation", href: "/services" },
   ],
 
   Products: [

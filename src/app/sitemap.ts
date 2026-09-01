@@ -1,6 +1,11 @@
 import type { MetadataRoute } from "next";
 
 import { getAllBlogs } from "@/lib/blogs";
+import { AGENCY_MARKETS } from "@/data/agencyMarkets";
+import {
+  DIGITAL_GROWTH_PILLARS,
+  DIGITAL_GROWTH_SERVICES,
+} from "@/data/digitalGrowthServices";
 import { REAL_ESTATE_CRM_LOCATIONS } from "@/data/realEstateCrmLocations";
 import { SITE_URL } from "@/lib/site";
 
@@ -177,6 +182,21 @@ const STATIC_ROUTES = [
   },
 
   // ============================================================
+  // WEBSITE, SEO, AEO, GEO, DIGITAL MARKETING
+  // ============================================================
+
+  ...DIGITAL_GROWTH_SERVICES.map((service) => ({
+    route: `/${service.slug}`,
+    priority: service.slug === "website-development" ? 0.95 : 0.9,
+    changeFrequency: "weekly" as const,
+  })),
+  ...DIGITAL_GROWTH_PILLARS.map((service) => ({
+    route: `/${service.slug}`,
+    priority: 0.8,
+    changeFrequency: "monthly" as const,
+  })),
+
+  // ============================================================
   // LEGAL
   // ============================================================
 
@@ -215,6 +235,27 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // /real-estate-crm/india/gurgaon
   // ============================================================
 
+  const digitalLocationEntries: MetadataRoute.Sitemap =
+    DIGITAL_GROWTH_SERVICES.filter((service) => service.hasLocations).flatMap(
+      (service) =>
+        AGENCY_MARKETS.flatMap((country) => {
+          const countryEntry: MetadataRoute.Sitemap[number] = {
+            url: `${SITE_URL}/${service.slug}/${country.slug}`,
+            changeFrequency: "monthly",
+            priority: 0.8,
+          };
+
+          const cityEntries: MetadataRoute.Sitemap[number][] =
+            country.cities.map((city) => ({
+              url: `${SITE_URL}/${service.slug}/${country.slug}/${city.slug}`,
+              changeFrequency: "monthly",
+              priority: 0.7,
+            }));
+
+          return [countryEntry, ...cityEntries];
+        })
+    );
+
   const locationEntries: MetadataRoute.Sitemap =
     REAL_ESTATE_CRM_LOCATIONS.flatMap((country) => {
       const countryEntry: MetadataRoute.Sitemap[number] = {
@@ -251,6 +292,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     ...staticEntries,
     ...locationEntries,
+    ...digitalLocationEntries,
     ...blogEntries,
   ];
 }

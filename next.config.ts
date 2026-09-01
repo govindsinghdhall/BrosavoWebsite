@@ -42,6 +42,32 @@ const nextConfig: NextConfig = {
     );
 
     return [
+      {
+        source: "/website-development-delhi",
+        destination: "/website-development/india/delhi",
+        statusCode: 301,
+      },
+      {
+        source: "/website-development-gurgaon",
+        destination: "/website-development/india/gurgaon",
+        statusCode: 301,
+      },
+      {
+        source: "/website-development-noida",
+        destination: "/website-development/india/noida",
+        statusCode: 301,
+      },
+      {
+        source: "/digital-marketing-delhi",
+        destination: "/digital-marketing/india/delhi",
+        statusCode: 301,
+      },
+      {
+        source: "/digital-marketing-gurgaon",
+        destination: "/digital-marketing/india/gurgaon",
+        statusCode: 301,
+      },
+
       // Comparison intent lives on the guide, not a duplicate product URL
       {
         source: "/best-real-estate-crm",

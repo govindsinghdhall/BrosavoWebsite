@@ -1,7 +1,7 @@
 import { DigitalHubPage, digitalHubMetadata } from "@/components/digital-growth/DigitalHubPage";
 
-export const metadata = digitalHubMetadata("digital-marketing");
+export const metadata = digitalHubMetadata("landing-page-development");
 
 export default function Page() {
-  return <DigitalHubPage slug="digital-marketing" />;
+  return <DigitalHubPage slug="landing-page-development" />;
 }
