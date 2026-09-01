@@ -12,7 +12,6 @@ import {
   Sparkles,
 } from "lucide-react";
 
-import { MagneticButton } from "@/components/ui/MagneticButton";
 import { ContactFormSubmitError } from "@/components/ui/ContactFormSubmitError";
 import { BlurReveal } from "@/components/animations/TextReveal";
 import { CONTACT } from "@/lib/data";
@@ -398,11 +397,10 @@ export function Contact({ showHeader = true }: { showHeader?: boolean }) {
                     <ContactFormSubmitError className="rounded-xl border border-red-500/30 bg-red-500/5 px-3.5 py-3 text-xs leading-5 text-red-400 sm:px-4 sm:text-sm" />
                   ) : null}
 
-                  <MagneticButton
+                  <button
                     type="submit"
-                    variant="primary"
-                    className="group w-full !rounded-xl !py-3.5 !text-sm"
                     disabled={submitting}
+                    className="group flex w-full min-h-12 items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-accent-blue via-accent-violet to-accent-cyan px-5 py-3.5 text-sm font-medium text-white transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60"
                   >
                     {submitting ? (
                       <>
@@ -416,7 +414,7 @@ export function Contact({ showHeader = true }: { showHeader?: boolean }) {
                         <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                       </>
                     )}
-                  </MagneticButton>
+                  </button>
 
                   <p className="text-center text-[9px] leading-4 text-muted">
                     By submitting this form, you agree to be contacted by

@@ -222,10 +222,14 @@ export function MagneticButton({
       transition={{ type: "spring", stiffness: 150, damping: 15, mass: 0.1 }}
       className={baseClassName}
       onClick={() => {
-        setLoading(true);
+        // Submit buttons must stay enabled through the click so the
+        // browser can fire the form's submit event. Parent `disabled`
+        // (e.g. submitting) owns loading for those cases.
+        if (type !== "submit") {
+          setLoading(true);
+          setTimeout(() => setLoading(false), 5000);
+        }
         onClick?.();
-        // Reset loading after async operation
-        setTimeout(() => setLoading(false), 5000); // Fallback timeout
       }}
     >
       {buttonContent}
