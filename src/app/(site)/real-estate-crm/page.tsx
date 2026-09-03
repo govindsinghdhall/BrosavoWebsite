@@ -38,10 +38,10 @@ const PAGE_PATH = "/real-estate-crm";
 const PAGE_URL = `${SITE_URL}${PAGE_PATH}`;
 
 const PAGE_TITLE =
-  "Real Estate CRM Software | BROSAVO Real Estate CRM";
+  "Real Estate CRM Software for Agents, Brokers & Agencies | BROSAVO";
 
 const PAGE_DESCRIPTION =
-  "BROSAVO Real Estate CRM is real estate CRM software built by BROSAVO Technologies, a global technology company. Manage leads, property inventory, sales pipelines, WhatsApp follow-ups and website enquiries in one platform. Start a 14-day free trial.";
+  "BROSAVO is real estate CRM software for agents, brokers and agencies. Manage leads, properties, follow-ups, sales pipelines, WhatsApp conversations and website enquiries in one platform. Start a 14-day free trial.";
 
 export const metadata: Metadata = {
   title: PAGE_TITLE,
