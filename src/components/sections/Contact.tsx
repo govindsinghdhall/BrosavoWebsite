@@ -467,7 +467,22 @@ export function Contact({ showHeader = true }: { showHeader?: boolean }) {
                   </div>
                 </a>
 
-                {CONTACT.phones.slice(0, 1).map((phone) => (
+                <div className="flex min-w-0 items-center gap-3 rounded-xl border border-border/70 bg-surface/40 px-3.5 py-3 backdrop-blur-sm">
+                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-green-500/10">
+                    <span className="h-2 w-2 animate-pulse rounded-full bg-green-400" />
+                  </div>
+
+                  <div>
+                    <p className="text-[9px] uppercase tracking-wider text-muted">
+                      Availability
+                    </p>
+                    <p className="text-xs font-medium text-green-400">
+                      Response within 2h
+                    </p>
+                  </div>
+                </div>
+
+                {CONTACT.phones.map((phone) => (
                   <a
                     key={phone.href}
                     href={phone.href}
@@ -503,20 +518,7 @@ export function Contact({ showHeader = true }: { showHeader?: boolean }) {
                   </div>
                 </div>
 
-                <div className="flex min-w-0 items-center gap-3 rounded-xl border border-border/70 bg-surface/40 px-3.5 py-3 backdrop-blur-sm">
-                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-green-500/10">
-                    <span className="h-2 w-2 animate-pulse rounded-full bg-green-400" />
-                  </div>
-
-                  <div>
-                    <p className="text-[9px] uppercase tracking-wider text-muted">
-                      Availability
-                    </p>
-                    <p className="text-xs font-medium text-green-400">
-                      Response within 2h
-                    </p>
-                  </div>
-                </div>
+                
               </div>
             </BlurReveal>
           </div>
