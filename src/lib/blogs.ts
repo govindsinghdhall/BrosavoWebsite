@@ -14,6 +14,7 @@ import {
   extractKeyTakeawaysFromMarkdown,
   stripMarkdownSection,
 } from "@/lib/blog-seo";
+import { BLOG_SLUG_REDIRECTS } from "@/lib/blog-urls";
 import { DEFAULT_BLOG_COVER, DEFAULT_OG_IMAGE } from "@/lib/site";
 import type {
   BlogFaq,
@@ -173,7 +174,11 @@ export function getAllBlogs(): BlogMeta[] {
   });
 
   return sortBlogsByDate(
-    blogs.filter((blog) => Boolean(blog.title && blog.slug && blog.date))
+    blogs.filter(
+      (blog) =>
+        Boolean(blog.title && blog.slug && blog.date) &&
+        !BLOG_SLUG_REDIRECTS[blog.slug]
+    )
   );
 }
 

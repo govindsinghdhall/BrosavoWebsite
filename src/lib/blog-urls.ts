@@ -30,6 +30,7 @@ export const BLOG_SLUG_REDIRECTS: Record<string, string> = {
   "real-estate-lead-management": "real-estate-lead-management-guide",
   "real-estate-sales-crm": "real-estate-sales-crm-guide",
   "whatsapp-crm-for-real-estate": "whatsapp-crm-for-real-estate-guide",
+  "convert-real-estate-leads-crm": "how-to-convert-real-estate-leads-with-crm",
 };
 
 /**

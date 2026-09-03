@@ -14,6 +14,7 @@ import {
   getAgencyCity,
   getAgencyCountry,
   getDigitalServiceOrThrow,
+  isIndexedDigitalCity,
   locationJsonLd,
   relatedServiceLinks,
 } from "@/lib/digital-growth";
@@ -71,11 +72,15 @@ export async function digitalCityMetadata(
     result.city.slug
   )}`;
 
+  const indexed = isIndexedDigitalCity(result.country.slug, result.city.slug);
+
   return {
     title: copy.title,
     description: copy.description,
     alternates: { canonical },
-    robots: { index: true, follow: true },
+    robots: indexed
+      ? { index: true, follow: true }
+      : { index: false, follow: true },
     openGraph: {
       title: copy.title,
       description: copy.description,
@@ -121,7 +126,7 @@ export async function DigitalCountryPage({
   const related = relatedServiceLinks(service.slug);
 
   return (
-    <main>
+    <div>
       <JsonLd
         data={locationJsonLd({
           service,
@@ -273,7 +278,7 @@ export async function DigitalCountryPage({
           </div>
         </div>
       </section>
-    </main>
+    </div>
   );
 }
 
@@ -294,7 +299,7 @@ export async function DigitalCityPage({
   const canonical = `${SITE_URL}${digitalCityPath(service.slug, country.slug, city.slug)}`;
 
   return (
-    <main>
+    <div>
       <JsonLd
         data={locationJsonLd({
           service,
@@ -402,6 +407,6 @@ export async function DigitalCityPage({
           </div>
         </div>
       </section>
-    </main>
+    </div>
   );
 }

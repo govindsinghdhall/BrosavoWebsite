@@ -7,6 +7,7 @@ import {
   DIGITAL_GROWTH_SERVICES,
 } from "@/data/digitalGrowthServices";
 import { REAL_ESTATE_CRM_LOCATIONS } from "@/data/realEstateCrmLocations";
+import { isIndexedDigitalCity } from "@/lib/digital-growth";
 import { SITE_URL } from "@/lib/site";
 
 const STATIC_ROUTES = [
@@ -68,6 +69,11 @@ const STATIC_ROUTES = [
   {
     route: "/contact",
     priority: 0.7,
+    changeFrequency: "monthly" as const,
+  },
+  {
+    route: "/careers",
+    priority: 0.5,
     changeFrequency: "monthly" as const,
   },
 
@@ -246,11 +252,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
           };
 
           const cityEntries: MetadataRoute.Sitemap[number][] =
-            country.cities.map((city) => ({
-              url: `${SITE_URL}/${service.slug}/${country.slug}/${city.slug}`,
-              changeFrequency: "monthly",
-              priority: 0.7,
-            }));
+            country.cities
+              .filter((city) => isIndexedDigitalCity(country.slug, city.slug))
+              .map((city) => ({
+                url: `${SITE_URL}/${service.slug}/${country.slug}/${city.slug}`,
+                changeFrequency: "monthly" as const,
+                priority: 0.7,
+              }));
 
           return [countryEntry, ...cityEntries];
         })

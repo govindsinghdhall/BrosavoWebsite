@@ -205,7 +205,7 @@ export function RealEstateCRMInteractive() {
         {/* MAIN CONTENT                                                */}
         {/* ========================================================== */}
 
-        <main className="min-w-0 p-4 sm:p-6 lg:p-7">
+        <div className="min-w-0 p-4 sm:p-6 lg:p-7">
           {/* Header */}
           <div className="flex items-start justify-between gap-4">
             <div>
@@ -500,7 +500,7 @@ export function RealEstateCRMInteractive() {
               </div>
             </div>
           </div>
-        </main>
+        </div>
       </div>
 
       {/* ============================================================ */}

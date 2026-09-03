@@ -249,7 +249,7 @@ function FeatureCard({
 
 export default function Page() {
   return (
-    <main>
+    <div>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -763,6 +763,6 @@ export default function Page() {
           </div>
         </div>
       </section>
-    </main>
+    </div>
   );
 }

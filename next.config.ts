@@ -16,6 +16,7 @@ const BLOG_SLUG_REDIRECTS: Record<string, string> = {
   "real-estate-lead-management": "real-estate-lead-management-guide",
   "real-estate-sales-crm": "real-estate-sales-crm-guide",
   "whatsapp-crm-for-real-estate": "whatsapp-crm-for-real-estate-guide",
+  "convert-real-estate-leads-crm": "how-to-convert-real-estate-leads-with-crm",
 };
 
 const nextConfig: NextConfig = {
@@ -73,6 +74,42 @@ const nextConfig: NextConfig = {
       {
         source: "/digital-marketing-gurgaon",
         destination: "/digital-marketing/india/gurgaon",
+        statusCode: 301,
+      },
+
+      {
+        source: "/lead-management-system",
+        destination: "/real-estate-lead-management",
+        statusCode: 301,
+      },
+      {
+        source: "/lead-management-system-delhi",
+        destination: "/real-estate-crm/india/delhi",
+        statusCode: 301,
+      },
+      {
+        source: "/lead-management-system-gurgaon",
+        destination: "/real-estate-crm/india/gurgaon",
+        statusCode: 301,
+      },
+      {
+        source: "/industries",
+        destination: "/real-estate-crm",
+        statusCode: 301,
+      },
+      {
+        source: "/industries/real-estate",
+        destination: "/real-estate-crm",
+        statusCode: 301,
+      },
+      {
+        source: "/industries/realtors",
+        destination: "/real-estate-crm-for-realtors",
+        statusCode: 301,
+      },
+      {
+        source: "/convert-real-estate-leads-crm",
+        destination: "/how-to-convert-real-estate-leads-with-crm",
         statusCode: 301,
       },
 

@@ -200,7 +200,7 @@ const faqSchema = {
 
 export default function Page() {
   return (
-    <main>
+    <div>
       {/* ============================================================
           STRUCTURED DATA
       ============================================================ */}
@@ -458,6 +458,6 @@ export default function Page() {
           </div>
         </div>
       </section>
-    </main>
+    </div>
   );
 }

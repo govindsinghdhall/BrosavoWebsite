@@ -98,7 +98,7 @@ export default async function RealEstateCrmCountryPage({
   const heroAlt = getCountryHeroImageAlt(country.name);
 
   return (
-    <main>
+    <div>
       <section className="relative overflow-hidden py-20 sm:py-24 lg:py-28">
         <div className="container-wide px-6 lg:px-10">
           <div className="mx-auto max-w-4xl text-center">
@@ -278,6 +278,6 @@ export default async function RealEstateCrmCountryPage({
           }}
         />
       ) : null}
-    </main>
+    </div>
   );
 }

@@ -54,7 +54,7 @@ export function DigitalGrowthLanding({
   const locationServices = getLocationServices();
 
   return (
-    <main className="overflow-hidden bg-background">
+    <div className="overflow-hidden bg-background">
       <section className="relative overflow-hidden bg-background mesh-gradient noise-overlay">
         <div className="pointer-events-none absolute inset-0">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_65%_20%,rgba(59,130,246,0.16),transparent_28%),radial-gradient(circle_at_82%_45%,rgba(139,92,246,0.17),transparent_30%),radial-gradient(circle_at_45%_90%,rgba(6,182,212,0.11),transparent_30%)]" />
@@ -466,6 +466,6 @@ export function DigitalGrowthLanding({
           </div>
         </div>
       </section>
-    </main>
+    </div>
   );
 }

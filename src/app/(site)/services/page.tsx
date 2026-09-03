@@ -36,7 +36,7 @@ export const metadata: Metadata = {
 
 export default function ServicesPage() {
   return (
-    <main className="w-full overflow-x-hidden">
+    <div className="w-full overflow-x-hidden">
       {/* ============================================================
           HERO
           ============================================================ */}
@@ -54,6 +54,6 @@ export default function ServicesPage() {
       <section className="relative min-h-[100svh] w-full">
         <Services showHeader={false} />
       </section>
-    </main>
+    </div>
   );
 }

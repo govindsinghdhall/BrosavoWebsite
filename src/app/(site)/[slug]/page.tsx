@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { notFound } from "next/navigation";
+import { notFound, permanentRedirect } from "next/navigation";
 import { ArrowLeft, CalendarDays, Clock, RefreshCw, User } from "lucide-react";
 import { AuthorCard } from "@/components/blog/AuthorCard";
 import { BlogBreadcrumbs } from "@/components/blog/BlogBreadcrumbs";
@@ -24,7 +24,7 @@ import {
   getAllBlogs,
   getBlogBySlug,
 } from "@/lib/blogs";
-import { blogPostAbsoluteUrl, blogPostPath } from "@/lib/blog-urls";
+import { blogPostAbsoluteUrl, blogPostPath, BLOG_SLUG_REDIRECTS } from "@/lib/blog-urls";
 import { BLOG_TITLE_SUFFIX, PRODUCT_CTA, SITE_NAME, SITE_URL } from "@/lib/site";
 
 export const revalidate = 60;
@@ -42,6 +42,10 @@ export async function generateMetadata({
   params,
 }: BlogPostPageProps): Promise<Metadata> {
   const { slug } = await params;
+  const redirectedSlug = BLOG_SLUG_REDIRECTS[slug];
+  if (redirectedSlug) {
+    permanentRedirect(`/${redirectedSlug}`);
+  }
   const blog = await getBlogBySlug(slug);
 
   if (!blog) {
@@ -96,6 +100,10 @@ export async function generateMetadata({
 
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const { slug } = await params;
+  const redirectedSlug = BLOG_SLUG_REDIRECTS[slug];
+  if (redirectedSlug) {
+    permanentRedirect(`/${redirectedSlug}`);
+  }
   const blog = await getBlogBySlug(slug);
 
   if (!blog) {

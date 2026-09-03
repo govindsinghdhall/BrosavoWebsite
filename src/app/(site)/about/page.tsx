@@ -240,7 +240,7 @@ export default function AboutPage() {
         description="Brosavo Technologies is a global technology company building software products, AI solutions, SaaS platforms, cloud solutions, automation systems, and digital products for businesses worldwide."
       />
 
-      <main className="container-wide">
+      <div className="container-wide">
         {/* ======================================================
             WHO WE ARE
         ====================================================== */}
@@ -1124,7 +1124,7 @@ export default function AboutPage() {
             </p>
           </div>
         </section>
-      </main>
+      </div>
 
       <BrandIdentity />
     </>

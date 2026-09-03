@@ -129,7 +129,7 @@ export default async function RealEstateCrmCityPage({ params }: Props) {
   };
 
   return (
-    <main>
+    <div>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -268,6 +268,6 @@ export default async function RealEstateCrmCityPage({ params }: Props) {
           </div>
         </div>
       </section>
-    </main>
+    </div>
   );
 }
