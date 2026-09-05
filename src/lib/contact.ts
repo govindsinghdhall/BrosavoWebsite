@@ -57,9 +57,14 @@ export const contactFormSchema = z.object({
   email: z.string().trim().email("Invalid email").max(200),
   company: z.string().trim().max(160).optional().or(z.literal("")),
   city: z.string().trim().min(2, "City / Location is required").max(120),
-  role: z.enum(CONTACT_ROLES, {
-    message: "Please select who you are",
-  }),
+  role: z.preprocess(
+    (val) => (val === "" || val == null ? undefined : val),
+    z
+      .enum(CONTACT_ROLES, {
+        message: "Please select who you are",
+      })
+      .optional()
+  ),
   teamSize: z.preprocess(
     (val) => (val === "" || val == null ? undefined : val),
     z
@@ -110,7 +115,7 @@ export function buildContactEmailHtml(input: ContactFormInput): string {
     ["Email", input.email],
     ["Agency / Builder / Brokerage", input.company || "—"],
     ["City / Location", input.city],
-    ["I am a", input.role],
+    ["I am a", input.role || "—"],
     ["Team Size", input.teamSize || "—"],
     ["Interested in", input.interest || "—"],
     ["Plan", input.plan || "—"],
@@ -159,7 +164,7 @@ export function buildContactEmailText(input: ContactFormInput): string {
     `Email: ${input.email}`,
     `Agency / Builder / Brokerage: ${input.company || "—"}`,
     `City / Location: ${input.city}`,
-    `I am a: ${input.role}`,
+    `I am a: ${input.role || "—"}`,
     `Team Size: ${input.teamSize || "—"}`,
     `Interested in: ${input.interest || "—"}`,
     `Plan: ${input.plan || "—"}`,
