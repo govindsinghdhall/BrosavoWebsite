@@ -10,7 +10,6 @@ import {
 } from "lucide-react";
 
 import { CONTACT } from "@/lib/data";
-import { CONTACT_ROLES } from "@/lib/contact";
 import { ContactFormSubmitError } from "@/components/ui/ContactFormSubmitError";
 import { cn } from "@/lib/utils";
 
@@ -33,8 +32,8 @@ type FormState = {
   name: string;
   phone: string;
   email: string;
+  company: string;
   city: string;
-  role: string;
 };
 
 function isValidPhone(value: string) {
@@ -83,6 +82,7 @@ function WhatsAppIcon({
 
 export function ContactPopup() {
   const router = useRouter();
+
   const [open, setOpen] = useState(false);
 
   const [formState, setFormState] =
@@ -90,8 +90,8 @@ export function ContactPopup() {
       name: "",
       phone: "",
       email: "",
+      company: "",
       city: "",
-      role: "",
     });
 
   const [errors, setErrors] = useState<
@@ -101,7 +101,8 @@ export function ContactPopup() {
   const [submitting, setSubmitting] =
     useState(false);
 
-  const [submitFailed, setSubmitFailed] = useState(false);
+  const [submitFailed, setSubmitFailed] =
+    useState(false);
 
   /*
    * =========================================================
@@ -266,15 +267,8 @@ export function ContactPopup() {
         "Invalid email";
     }
 
-    if (!formState.city.trim()) {
-      nextErrors.city =
-        "City / Location is required";
-    }
-
-    if (!formState.role.trim()) {
-      nextErrors.role =
-        "Please select who you are";
-    }
+    // City / Location is intentionally optional.
+    // Company / Organization is also optional.
 
     setErrors(nextErrors);
 
@@ -304,14 +298,21 @@ export function ContactPopup() {
         );
 
       const payload = {
-        ...formState,
+        name: formState.name,
+        phone: formState.phone,
+        email: formState.email,
+        company: formState.company,
+        city: formState.city,
 
+        // Preserve compatibility with the existing API.
+        role: "",
         teamSize: undefined,
         interest: undefined,
         plan: "",
         intent: "",
         addon: "",
 
+        // UTM attribution
         utm_source:
           searchParams.get(
             "utm_source"
@@ -337,6 +338,7 @@ export function ContactPopup() {
             "utm_content"
           ) || "",
 
+        // Tracking
         referrer:
           document.referrer || "",
 
@@ -370,7 +372,6 @@ export function ContactPopup() {
 
       if (!response.ok) {
         setSubmitFailed(true);
-
         return;
       }
 
@@ -397,119 +398,115 @@ export function ContactPopup() {
           FLOATING ACTION BUTTONS
       ====================================================== */}
 
-<AnimatePresence>
-  {!open && (
-    <motion.div
-      initial={{
-        opacity: 0,
-        y: 20,
-      }}
-      animate={{
-        opacity: 1,
-        y: 0,
-      }}
-      exit={{
-        opacity: 0,
-        y: 20,
-      }}
-      transition={{
-        duration: 0.35,
-        ease: "easeOut",
-      }}
-      className="
-        fixed
-        bottom-4
-        right-3
-        z-[9990]
-        flex
-        flex-col
-        items-center
-        gap-2.5
-        sm:bottom-6
-        sm:right-6
-        sm:gap-3
-        lg:bottom-7
-        lg:right-7
-      "
-    >
-      {/* =================================================
-          CONTACT US
-      ================================================== */}
-      <motion.button
-        type="button"
-        onClick={openContactPopup}
-        whileHover={{
-          y: -2,
-          scale: 1.08,
-        }}
-        whileTap={{
-          scale: 0.92,
-        }}
-        className="
-          flex
-          h-12
-          w-12
-          items-center
-          justify-center
-          rounded-full
-          border
-          border-white/10
-          bg-gradient-to-br
-          from-accent-blue
-          to-accent-violet
-          text-white
-          shadow-[0_10px_30px_rgba(59,130,246,0.30)]
-          transition-all
-          duration-300
-          hover:shadow-[0_14px_40px_rgba(59,130,246,0.45)]
-          sm:h-15
-          sm:w-15
-        "
-        aria-label="Open Contact Us form"
-        title="Contact Us"
-      >
-        <Send className="h-5 w-5 sm:h-6 sm:w-6" />
-      </motion.button>
+      <AnimatePresence>
+        {!open && (
+          <motion.div
+            initial={{
+              opacity: 0,
+              y: 20,
+            }}
+            animate={{
+              opacity: 1,
+              y: 0,
+            }}
+            exit={{
+              opacity: 0,
+              y: 20,
+            }}
+            transition={{
+              duration: 0.35,
+              ease: "easeOut",
+            }}
+            className="
+              fixed
+              bottom-4
+              right-3
+              z-[9990]
+              flex
+              flex-col
+              items-center
+              gap-2.5
+              sm:bottom-6
+              sm:right-6
+              sm:gap-3
+              lg:bottom-7
+              lg:right-7
+            "
+          >
+            {/* CONTACT */}
+            <motion.button
+              type="button"
+              onClick={openContactPopup}
+              whileHover={{
+                y: -2,
+                scale: 1.08,
+              }}
+              whileTap={{
+                scale: 0.92,
+              }}
+              className="
+                flex
+                h-12
+                w-12
+                items-center
+                justify-center
+                rounded-full
+                border
+                border-white/10
+                bg-gradient-to-br
+                from-accent-blue
+                to-accent-violet
+                text-white
+                shadow-[0_10px_30px_rgba(59,130,246,0.30)]
+                transition-all
+                duration-300
+                hover:shadow-[0_14px_40px_rgba(59,130,246,0.45)]
+                sm:h-15
+                sm:w-15
+              "
+              aria-label="Open Contact Us form"
+              title="Contact Us"
+            >
+              <Send className="h-5 w-5 sm:h-6 sm:w-6" />
+            </motion.button>
 
-      {/* =================================================
-          WHATSAPP
-      ================================================== */}
-      <motion.a
-        href={CONTACT.whatsapp.href}
-        target="_blank"
-        rel="noopener noreferrer"
-        whileHover={{
-          y: -2,
-          scale: 1.08,
-        }}
-        whileTap={{
-          scale: 0.92,
-        }}
-        className="
-          flex
-          h-12
-          w-12
-          items-center
-          justify-center
-          rounded-full
-          bg-[#25D366]
-          text-white
-          shadow-[0_10px_30px_rgba(37,211,102,0.30)]
-          transition-all
-          duration-300
-          hover:bg-[#20bd5a]
-          hover:shadow-[0_14px_40px_rgba(37,211,102,0.45)]
-          sm:h-15
-          sm:w-15
-        "
-        aria-label="Chat with Brosavo on WhatsApp"
-        title="WhatsApp"
-      >
-        <WhatsAppIcon className="h-6 w-6 sm:h-7 sm:w-7" />
-      </motion.a>
-    </motion.div>
-  )}
-</AnimatePresence>
+            {/* WHATSAPP */}
+            <motion.a
+              href={CONTACT.whatsapp.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={{
+                y: -2,
+                scale: 1.08,
+              }}
+              whileTap={{
+                scale: 0.92,
+              }}
+              className="
+                flex
+                h-12
+                w-12
+                items-center
+                justify-center
+                rounded-full
+                bg-[#25D366]
+                text-white
+                shadow-[0_10px_30px_rgba(37,211,102,0.30)]
+                transition-all
+                duration-300
+                hover:bg-[#20bd5a]
+                hover:shadow-[0_14px_40px_rgba(37,211,102,0.45)]
+                sm:h-15
+                sm:w-15
+              "
+              aria-label="Chat with Brosavo on WhatsApp"
+              title="WhatsApp"
+            >
+              <WhatsAppIcon className="h-6 w-6 sm:h-7 sm:w-7" />
+            </motion.a>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* =======================================================
           CONTACT MODAL
@@ -591,6 +588,7 @@ export function ContactPopup() {
               {/* =================================================
                   HEADER
               ================================================== */}
+
               <div className="relative shrink-0 border-b border-border px-4 py-3 sm:px-8 sm:py-6">
                 <button
                   type="button"
@@ -628,322 +626,393 @@ export function ContactPopup() {
                   </p>
 
                   <h2 className="mt-1 text-lg font-bold tracking-tight text-foreground sm:mt-1.5 sm:text-3xl">
-                    Request a Demo
+                    Let&apos;s Talk
                   </h2>
 
-                  <p className="mt-1 hidden max-w-xl text-xs leading-5 text-muted sm:block sm:mt-2 sm:text-sm sm:leading-6">
-                    See how Brosavo can help your business manage leads,
-                    properties, and sales more efficiently.
+                  <p className="mt-1 max-w-xl text-xs leading-5 text-muted sm:mt-2 sm:text-sm sm:leading-6">
+                    Have a question, an idea, or a
+                    business requirement? Get in
+                    touch with our team.
                   </p>
                 </div>
               </div>
 
               {/* =================================================
-                  CONTENT
+                  FORM
               ================================================== */}
+
               <div className="shrink-0 overflow-hidden">
                 <form
-                    onSubmit={handleSubmit}
-                    className="
-                      grid
-                      grid-cols-2
-                      gap-x-2.5
-                      gap-y-2.5
-                      px-4
-                      py-3.5
-                      sm:gap-5
-                      sm:px-8
-                      sm:py-7
-                      lg:grid-cols-2
-                      lg:gap-x-5
-                      lg:gap-y-4
-                    "
-                  >
-                    {/* =================================================
-                        NAME
-                    ================================================== */}
-                    <div>
-                      <label
-                        htmlFor="popup-name"
-                        className="mb-1 block text-[9px] font-mono uppercase tracking-wider text-muted sm:mb-2 sm:text-xs"
-                      >
-                        Full Name
-                      </label>
+                  onSubmit={handleSubmit}
+                  className="
+                    grid
+                    grid-cols-2
+                    gap-x-2.5
+                    gap-y-2.5
+                    px-4
+                    py-3.5
+                    sm:gap-5
+                    sm:px-8
+                    sm:py-7
+                    lg:gap-x-5
+                    lg:gap-y-4
+                  "
+                >
 
-                      <input
-                        id="popup-name"
-                        type="text"
-                        autoComplete="name"
-                        placeholder="John Doe"
-                        value={
-                          formState.name
-                        }
-                        disabled={
-                          submitting
-                        }
-                        onChange={(event) =>
-                          updateField(
-                            "name",
-                            event.target.value
-                          )
-                        }
-                        className={cn(
-                          "min-h-9 w-full rounded-lg border bg-surface px-2.5 py-2 text-sm outline-none transition sm:min-h-12 sm:rounded-xl sm:px-4 sm:py-3",
-                          errors.name
-                            ? "border-red-500/50"
-                            : "border-border focus:border-accent-blue/50"
-                        )}
-                      />
+                  {/* =================================================
+                      FULL NAME
+                  ================================================== */}
 
-                      {errors.name ? (
-                        <p className="mt-0.5 text-[10px] text-red-400 sm:mt-1 sm:text-xs">
-                          {errors.name}
-                        </p>
-                      ) : null}
-                    </div>
-
-                    {/* =================================================
-                        PHONE
-                    ================================================== */}
-                    <div>
-                      <label
-                        htmlFor="popup-phone"
-                        className="mb-1 block text-[9px] font-mono uppercase tracking-wider text-muted sm:mb-2 sm:text-xs"
-                      >
-                        Phone Number
-                      </label>
-
-                      <input
-                        id="popup-phone"
-                        type="tel"
-                        autoComplete="tel"
-                        placeholder="+91 98765 43210"
-                        value={
-                          formState.phone
-                        }
-                        disabled={
-                          submitting
-                        }
-                        onChange={(event) =>
-                          updateField(
-                            "phone",
-                            event.target.value
-                          )
-                        }
-                        className={cn(
-                          "min-h-9 w-full rounded-lg border bg-surface px-2.5 py-2 text-sm outline-none transition sm:min-h-12 sm:rounded-xl sm:px-4 sm:py-3",
-                          errors.phone
-                            ? "border-red-500/50"
-                            : "border-border focus:border-accent-blue/50"
-                        )}
-                      />
-
-                      {errors.phone ? (
-                        <p className="mt-0.5 text-[10px] text-red-400 sm:mt-1 sm:text-xs">
-                          {errors.phone}
-                        </p>
-                      ) : null}
-                    </div>
-
-                    {/* =================================================
-                        EMAIL
-                    ================================================== */}
-                    <div>
-                      <label
-                        htmlFor="popup-email"
-                        className="mb-1 block text-[9px] font-mono uppercase tracking-wider text-muted sm:mb-2 sm:text-xs"
-                      >
-                        Email Address
-                      </label>
-
-                      <input
-                        id="popup-email"
-                        type="email"
-                        autoComplete="email"
-                        placeholder="john@company.com"
-                        value={
-                          formState.email
-                        }
-                        disabled={
-                          submitting
-                        }
-                        onChange={(event) =>
-                          updateField(
-                            "email",
-                            event.target.value
-                          )
-                        }
-                        className={cn(
-                          "min-h-9 w-full rounded-lg border bg-surface px-2.5 py-2 text-sm outline-none transition sm:min-h-12 sm:rounded-xl sm:px-4 sm:py-3",
-                          errors.email
-                            ? "border-red-500/50"
-                            : "border-border focus:border-accent-blue/50"
-                        )}
-                      />
-
-                      {errors.email ? (
-                        <p className="mt-0.5 text-[10px] text-red-400 sm:mt-1 sm:text-xs">
-                          {errors.email}
-                        </p>
-                      ) : null}
-                    </div>
-
-                    {/* =================================================
-                        CITY
-                    ================================================== */}
-                    <div>
-                      <label
-                        htmlFor="popup-city"
-                        className="mb-1 block text-[9px] font-mono uppercase tracking-wider text-muted sm:mb-2 sm:text-xs"
-                      >
-                        City / Location
-                      </label>
-
-                      <input
-                        id="popup-city"
-                        type="text"
-                        autoComplete="address-level2"
-                        placeholder="Gurugram"
-                        value={
-                          formState.city
-                        }
-                        disabled={
-                          submitting
-                        }
-                        onChange={(event) =>
-                          updateField(
-                            "city",
-                            event.target.value
-                          )
-                        }
-                        className={cn(
-                          "min-h-9 w-full rounded-lg border bg-surface px-2.5 py-2 text-sm outline-none transition sm:min-h-12 sm:rounded-xl sm:px-4 sm:py-3",
-                          errors.city
-                            ? "border-red-500/50"
-                            : "border-border focus:border-accent-blue/50"
-                        )}
-                      />
-
-                      {errors.city ? (
-                        <p className="mt-0.5 text-[10px] text-red-400 sm:mt-1 sm:text-xs">
-                          {errors.city}
-                        </p>
-                      ) : null}
-                    </div>
-
-                    {/* =================================================
-                        ROLE
-                    ================================================== */}
-                    <div className="col-span-2 lg:col-span-2">
-                      <p className="mb-1.5 block text-[9px] font-mono uppercase tracking-wider text-muted sm:mb-3 sm:text-xs">
-                        I am a
-                      </p>
-
-                      <div className="grid grid-cols-2 gap-1.5 sm:gap-2 lg:grid-cols-4">
-                        {CONTACT_ROLES.map(
-                          (role) => {
-                            const selected =
-                              formState.role ===
-                              role;
-
-                            return (
-                              <button
-                                key={role}
-                                type="button"
-                                disabled={
-                                  submitting
-                                }
-                                onClick={() =>
-                                  updateField(
-                                    "role",
-                                    role
-                                  )
-                                }
-                                className={cn(
-                                  "min-h-9 rounded-lg border px-2 py-1.5 text-left text-[10px] font-medium leading-tight transition sm:min-h-12 sm:rounded-xl sm:px-4 sm:py-3 sm:text-sm",
-                                  selected
-                                    ? "border-accent-blue/50 bg-accent-blue/10 text-foreground"
-                                    : "border-border bg-surface text-foreground/80 hover:border-glass-border hover:bg-surface-hover",
-                                  errors.role &&
-                                    !formState.role &&
-                                    "border-red-500/50"
-                                )}
-                              >
-                                {role}
-                              </button>
-                            );
-                          }
-                        )}
-                      </div>
-
-                      {errors.role ? (
-                        <p className="mt-1 text-[10px] text-red-400 sm:mt-2 sm:text-xs">
-                          {errors.role}
-                        </p>
-                      ) : null}
-                    </div>
-
-                    {/* =================================================
-                        SUBMIT ERROR
-                    ================================================== */}
-                    {submitFailed ? (
-                      <ContactFormSubmitError className="col-span-2 rounded-lg border border-red-500/30 bg-red-500/5 px-2.5 py-2 text-[10px] leading-4 text-red-400 sm:rounded-xl sm:px-4 sm:py-3 sm:text-sm sm:leading-6 lg:col-span-2" />
-                    ) : null}
-
-                    {/* =================================================
-                        SUBMIT BUTTON
-                    ================================================== */}
-                    <button
-                      type="submit"
-                      disabled={submitting}
+                  <div>
+                    <label
+                      htmlFor="popup-name"
                       className="
-                        col-span-2
-                        flex
-                        min-h-10
-                        w-full
-                        items-center
-                        justify-center
-                        gap-2
-                        rounded-lg
-                        bg-gradient-to-r
-                        from-accent-blue
-                        to-accent-violet
-                        px-4
-                        py-2.5
-                        text-sm
-                        font-semibold
-                        text-white
-                        transition-opacity
-                        hover:opacity-90
-                        disabled:cursor-not-allowed
-                        disabled:opacity-60
-                        sm:min-h-13
-                        sm:rounded-xl
-                        sm:px-5
-                        sm:py-3
-                        lg:col-span-2
+                        mb-1
+                        block
+                        text-[9px]
+                        font-mono
+                        uppercase
+                        tracking-wider
+                        text-muted
+                        sm:mb-2
+                        sm:text-xs
                       "
                     >
-                      {submitting ? (
-                        <>
-                          <Loader2 className="h-4 w-4 animate-spin" />
-                          Sending...
-                        </>
-                      ) : (
-                        <>
-                          <Send className="h-4 w-4" />
-                          Request a Demo
-                        </>
-                      )}
-                    </button>
+                      Full Name
+                    </label>
 
-                    {/* =================================================
-                        DISCLAIMER
-                    ================================================== */}
-                    <p className="col-span-2 pb-0.5 text-center text-[9px] leading-3.5 text-muted sm:text-xs sm:leading-4 lg:col-span-2">
-                      By submitting, you agree to be contacted by Brosavo.
-                    </p>
-                  </form>
+                    <input
+                      id="popup-name"
+                      type="text"
+                      autoComplete="name"
+                      placeholder="John Doe"
+                      value={formState.name}
+                      disabled={submitting}
+                      onChange={(event) =>
+                        updateField(
+                          "name",
+                          event.target.value
+                        )
+                      }
+                      className={cn(
+                        "min-h-9 w-full rounded-lg border bg-surface px-2.5 py-2 text-sm outline-none transition sm:min-h-12 sm:rounded-xl sm:px-4 sm:py-3",
+                        errors.name
+                          ? "border-red-500/50"
+                          : "border-border focus:border-accent-blue/50"
+                      )}
+                    />
+
+                    {errors.name ? (
+                      <p className="mt-0.5 text-[10px] text-red-400 sm:mt-1 sm:text-xs">
+                        {errors.name}
+                      </p>
+                    ) : null}
+                  </div>
+
+                  {/* =================================================
+                      PHONE
+                  ================================================== */}
+
+                  <div>
+                    <label
+                      htmlFor="popup-phone"
+                      className="
+                        mb-1
+                        block
+                        text-[9px]
+                        font-mono
+                        uppercase
+                        tracking-wider
+                        text-muted
+                        sm:mb-2
+                        sm:text-xs
+                      "
+                    >
+                      Phone / WhatsApp
+                    </label>
+
+                    <input
+                      id="popup-phone"
+                      type="tel"
+                      autoComplete="tel"
+                      placeholder="+91 98765 43210"
+                      value={formState.phone}
+                      disabled={submitting}
+                      onChange={(event) =>
+                        updateField(
+                          "phone",
+                          event.target.value
+                        )
+                      }
+                      className={cn(
+                        "min-h-9 w-full rounded-lg border bg-surface px-2.5 py-2 text-sm outline-none transition sm:min-h-12 sm:rounded-xl sm:px-4 sm:py-3",
+                        errors.phone
+                          ? "border-red-500/50"
+                          : "border-border focus:border-accent-blue/50"
+                      )}
+                    />
+
+                    {errors.phone ? (
+                      <p className="mt-0.5 text-[10px] text-red-400 sm:mt-1 sm:text-xs">
+                        {errors.phone}
+                      </p>
+                    ) : null}
+                  </div>
+
+                  {/* =================================================
+                      EMAIL
+                  ================================================== */}
+
+                  <div>
+                    <label
+                      htmlFor="popup-email"
+                      className="
+                        mb-1
+                        block
+                        text-[9px]
+                        font-mono
+                        uppercase
+                        tracking-wider
+                        text-muted
+                        sm:mb-2
+                        sm:text-xs
+                      "
+                    >
+                      Email Address
+                    </label>
+
+                    <input
+                      id="popup-email"
+                      type="email"
+                      autoComplete="email"
+                      placeholder="john@company.com"
+                      value={formState.email}
+                      disabled={submitting}
+                      onChange={(event) =>
+                        updateField(
+                          "email",
+                          event.target.value
+                        )
+                      }
+                      className={cn(
+                        "min-h-9 w-full rounded-lg border bg-surface px-2.5 py-2 text-sm outline-none transition sm:min-h-12 sm:rounded-xl sm:px-4 sm:py-3",
+                        errors.email
+                          ? "border-red-500/50"
+                          : "border-border focus:border-accent-blue/50"
+                      )}
+                    />
+
+                    {errors.email ? (
+                      <p className="mt-0.5 text-[10px] text-red-400 sm:mt-1 sm:text-xs">
+                        {errors.email}
+                      </p>
+                    ) : null}
+                  </div>
+
+                  {/* =================================================
+                      COMPANY
+                  ================================================== */}
+
+                  <div>
+                    <label
+                      htmlFor="popup-company"
+                      className="
+                        mb-1
+                        block
+                        text-[9px]
+                        font-mono
+                        uppercase
+                        tracking-wider
+                        text-muted
+                        sm:mb-2
+                        sm:text-xs
+                      "
+                    >
+                      Company / Organization
+                    </label>
+
+                    <input
+                      id="popup-company"
+                      type="text"
+                      autoComplete="organization"
+                      placeholder="Your company name"
+                      value={formState.company}
+                      disabled={submitting}
+                      onChange={(event) =>
+                        updateField(
+                          "company",
+                          event.target.value
+                        )
+                      }
+                      className="
+                        min-h-9
+                        w-full
+                        rounded-lg
+                        border
+                        border-border
+                        bg-surface
+                        px-2.5
+                        py-2
+                        text-sm
+                        outline-none
+                        transition
+                        focus:border-accent-blue/50
+                        sm:min-h-12
+                        sm:rounded-xl
+                        sm:px-4
+                        sm:py-3
+                      "
+                    />
+                  </div>
+
+                  {/* =================================================
+                      CITY / LOCATION
+                  ================================================== */}
+
+                  <div className="col-span-2">
+                    <label
+                      htmlFor="popup-city"
+                      className="
+                        mb-1
+                        block
+                        text-[9px]
+                        font-mono
+                        uppercase
+                        tracking-wider
+                        text-muted
+                        sm:mb-2
+                        sm:text-xs
+                      "
+                    >
+                      City / Location
+                    </label>
+
+                    <input
+                      id="popup-city"
+                      type="text"
+                      autoComplete="address-level2"
+                      placeholder="Gurugram"
+                      value={formState.city}
+                      disabled={submitting}
+                      onChange={(event) =>
+                        updateField(
+                          "city",
+                          event.target.value
+                        )
+                      }
+                      className="
+                        min-h-9
+                        w-full
+                        rounded-lg
+                        border
+                        border-border
+                        bg-surface
+                        px-2.5
+                        py-2
+                        text-sm
+                        outline-none
+                        transition
+                        focus:border-accent-blue/50
+                        sm:min-h-12
+                        sm:rounded-xl
+                        sm:px-4
+                        sm:py-3
+                      "
+                    />
+                  </div>
+
+                  {/* =================================================
+                      ERROR
+                  ================================================== */}
+
+                  {submitFailed ? (
+                    <ContactFormSubmitError
+                      className="
+                        col-span-2
+                        rounded-lg
+                        border
+                        border-red-500/30
+                        bg-red-500/5
+                        px-2.5
+                        py-2
+                        text-[10px]
+                        leading-4
+                        text-red-400
+                        sm:rounded-xl
+                        sm:px-4
+                        sm:py-3
+                        sm:text-sm
+                        sm:leading-6
+                      "
+                    />
+                  ) : null}
+
+                  {/* =================================================
+                      SUBMIT
+                  ================================================== */}
+
+                  <button
+                    type="submit"
+                    disabled={submitting}
+                    className="
+                      col-span-2
+                      flex
+                      min-h-10
+                      w-full
+                      items-center
+                      justify-center
+                      gap-2
+                      rounded-lg
+                      bg-gradient-to-r
+                      from-accent-blue
+                      via-accent-violet
+                      to-accent-cyan
+                      px-4
+                      py-2.5
+                      text-sm
+                      font-semibold
+                      text-white
+                      transition-opacity
+                      hover:opacity-90
+                      disabled:cursor-not-allowed
+                      disabled:opacity-60
+                      sm:min-h-13
+                      sm:rounded-xl
+                      sm:px-5
+                      sm:py-3
+                    "
+                  >
+                    {submitting ? (
+                      <>
+                        <Loader2 className="h-4 w-4 animate-spin" />
+                        Sending...
+                      </>
+                    ) : (
+                      <>
+                        <Send className="h-4 w-4" />
+                        Send Enquiry
+                      </>
+                    )}
+                  </button>
+
+                  {/* =================================================
+                      DISCLAIMER
+                  ================================================== */}
+
+                  <p className="
+                    col-span-2
+                    pb-0.5
+                    text-center
+                    text-[9px]
+                    leading-3.5
+                    text-muted
+                    sm:text-xs
+                    sm:leading-4
+                  ">
+                    By submitting, you agree to be contacted by BROSAVO.
+                  </p>
+
+                </form>
               </div>
             </motion.div>
           </motion.div>
