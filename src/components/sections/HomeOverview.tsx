@@ -4,7 +4,15 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { HOME_LINKS } from "@/lib/data";
 import { BlurReveal } from "@/components/animations/TextReveal";
-import { ArrowUpRight, Layers, Cpu, Box, Globe, Star, Users } from "lucide-react";
+import {
+  ArrowUpRight,
+  Layers,
+  Cpu,
+  Box,
+  Globe,
+  Star,
+  Users,
+} from "lucide-react";
 
 const ICON_MAP = {
   layers: Layers,
@@ -53,10 +61,76 @@ const DURGA_SOLUTIONS = [
   },
 ] as const;
 
+const TRUSTED_CLIENTS = [
+  {
+    name: "Durga Property",
+    location: "Real Estate",
+    logo: "/clients/durga-property.png",
+  },
+  {
+    name: "One Click Enterprises",
+    location: "Jabalpur",
+    logo: "/clients/one-click-enterprises.png",
+  },
+] as const;
+
 export function HomeOverview() {
   return (
     <section className="relative section-padding !py-16 md:!py-20">
       <div className="container-wide">
+        {/* =========================================================
+          TRUSTED CLIENTS BAR
+          ========================================================= */}
+        <BlurReveal delay={0}>
+          <div className="mb-10 md:mb-14">
+            <div className="text-center">
+              <span className="block text-[10px] font-mono uppercase tracking-[0.25em] text-muted">
+                Trusted by Businesses
+              </span>
+
+              <p className="mt-2 text-sm text-muted">
+                Technology helping businesses build, operate, and grow.
+              </p>
+            </div>
+
+            <div className="mt-6 overflow-hidden rounded-2xl border border-border/60 bg-background/40">
+              <div className="flex min-h-[96px] items-center">
+                <div className="flex w-full items-stretch overflow-x-auto scrollbar-hide">
+                  {TRUSTED_CLIENTS.map((client, index) => (
+                    <div
+                      key={client.name}
+                      className={`group flex min-w-[240px] flex-1 items-center justify-center px-6 py-5 transition-colors ${
+                        index !== 0 ? "border-l border-border/60" : ""
+                      }`}
+                    >
+                      {client.logo ? (
+                        /* Logo available → show ONLY logo */
+                        <div className="flex h-12 w-full items-center justify-center opacity-70 transition-opacity duration-300 group-hover:opacity-100">
+                          <img
+                            src={client.logo}
+                            alt={client.name}
+                            className="max-h-12 max-w-[190px] object-contain"
+                          />
+                        </div>
+                      ) : (
+                        /* No logo → show ONLY name + location */
+                        <div className="text-center opacity-70 transition-opacity duration-300 group-hover:opacity-100">
+                          <div className="text-sm font-semibold tracking-tight">
+                            {client.name}
+                          </div>
+
+                          <div className="mt-1 text-[10px] uppercase tracking-wider text-muted">
+                            {client.location}
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </BlurReveal>
 
         {/* =========================================================
             REAL CLIENT / PROOF SECTION
@@ -64,12 +138,10 @@ export function HomeOverview() {
         <BlurReveal delay={0.03}>
           <div className="mb-16 md:mb-20">
             <div className="relative overflow-hidden rounded-[2rem] border border-border/70 bg-gradient-to-br from-background via-background/95 to-accent-cyan/5 p-6 shadow-[0_20px_80px_rgba(0,0,0,0.08)] md:p-8">
-
               {/* Background glow */}
               <div className="pointer-events-none absolute -right-20 -top-20 h-64 w-64 rounded-full bg-accent-blue/10 blur-[100px]" />
 
               <div className="relative z-10">
-
                 {/* Header */}
                 <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
                   <div className="max-w-3xl">
@@ -104,9 +176,7 @@ export function HomeOverview() {
                         Durga Property
                       </div>
 
-                      <div className="mt-1 text-xs text-muted">
-                        Real Estate
-                      </div>
+                      <div className="mt-1 text-xs text-muted">Real Estate</div>
                     </div>
                   </div>
                 </div>
@@ -140,9 +210,7 @@ export function HomeOverview() {
                         </span>
                       </div>
 
-                      <h3 className="text-sm font-semibold">
-                        {item.label}
-                      </h3>
+                      <h3 className="text-sm font-semibold">{item.label}</h3>
 
                       <p className="mt-2 text-xs leading-5 text-muted">
                         {item.description}
@@ -150,7 +218,6 @@ export function HomeOverview() {
                     </motion.div>
                   ))}
                 </div>
-
               </div>
             </div>
           </div>
@@ -172,8 +239,8 @@ export function HomeOverview() {
             <p className="mx-auto mt-4 max-w-2xl text-sm leading-7 text-muted md:text-base">
               From capturing the first lead to managing properties,
               conversations, follow-ups, site visits, and sales pipelines,
-              Brosavo connects the technology real estate teams need to
-              operate and grow.
+              Brosavo connects the technology real estate teams need to operate
+              and grow.
             </p>
           </div>
         </BlurReveal>
@@ -232,8 +299,8 @@ export function HomeOverview() {
             <p className="mx-auto mt-4 max-w-2xl text-sm leading-7 text-muted md:text-base">
               Real estate is one of Brosavo&apos;s core industries, but our
               technology capabilities extend to AI products, SaaS platforms,
-              custom software, and digital infrastructure for businesses
-              across industries.
+              custom software, and digital infrastructure for businesses across
+              industries.
             </p>
           </div>
         </BlurReveal>
@@ -303,13 +370,9 @@ function RealEstateSolutionCard({
 
           <div className="flex flex-1 items-start justify-between gap-3">
             <div>
-              <h3 className="mb-1.5 text-lg font-semibold">
-                {title}
-              </h3>
+              <h3 className="mb-1.5 text-lg font-semibold">{title}</h3>
 
-              <p className="text-sm leading-6 text-muted">
-                {description}
-              </p>
+              <p className="text-sm leading-6 text-muted">{description}</p>
             </div>
 
             <ArrowUpRight className="h-5 w-5 shrink-0 text-foreground/30 transition-colors group-hover:text-foreground" />
