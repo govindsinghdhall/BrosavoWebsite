@@ -61,7 +61,13 @@ const DURGA_SOLUTIONS = [
   },
 ] as const;
 
-const TRUSTED_CLIENTS = [
+type TrustedClient = {
+  name: string;
+  location: string;
+  logo?: string;
+};
+
+const TRUSTED_CLIENTS: TrustedClient[] = [
   {
     name: "Durga Property",
     location: "Real Estate",
@@ -72,7 +78,7 @@ const TRUSTED_CLIENTS = [
     location: "Jabalpur",
     logo: "/clients/one-click-enterprises.png",
   },
-] as const;
+];
 
 export function HomeOverview() {
   return (
