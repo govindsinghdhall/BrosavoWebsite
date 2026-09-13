@@ -103,16 +103,21 @@ const integrations = [
   },
 ];
 
+const featureHighlights = [
+  "Lead Management",
+  "Property Inventory",
+  "Property Matching",
+  "Sales Pipeline",
+  "WhatsApp Integration",
+  "Reports & Analytics",
+];
+
 export function Hero() {
   return (
     <header
       aria-labelledby="real-estate-crm-heading"
       className="relative overflow-hidden pb-14 pt-16 sm:pb-20 sm:pt-20 lg:pb-24 lg:pt-24"
     >
-      {/* ============================================================
-          BACKGROUND
-      ============================================================ */}
-
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 -z-10 overflow-hidden"
@@ -134,17 +139,7 @@ export function Hero() {
       </div>
 
       <div className="container-wide relative px-6 lg:px-10">
-
-        {/* ============================================================
-            MAIN HERO
-        ============================================================ */}
-
         <div className="grid items-center gap-12 lg:grid-cols-[0.95fr_1.05fr] lg:gap-14">
-
-          {/* ============================================================
-              LEFT — CONTENT
-          ============================================================ */}
-
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
@@ -154,8 +149,6 @@ export function Hero() {
             }}
             className="max-w-2xl"
           >
-            {/* Eyebrow */}
-
             <motion.div
               initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
@@ -167,10 +160,8 @@ export function Hero() {
                 <span className="relative h-1.5 w-1.5 rounded-full bg-blue-500" />
               </span>
 
-              BROSAVO Real Estate CRM
+              BROSAVO Real Estate CRM Software
             </motion.div>
-
-            {/* Headline */}
 
             <motion.h1
               id="real-estate-crm-heading"
@@ -184,17 +175,11 @@ export function Hero() {
               className="mt-6 text-[2.7rem] font-semibold leading-[1.02] tracking-[-0.055em] text-foreground sm:text-5xl md:text-6xl lg:text-[4.15rem]"
             >
               Real Estate CRM
-
-              <span className="block">
-                Software for Agents,
-              </span>
-
+              <span className="block">Software for Agents,</span>
               <span className="block text-gradient-accent">
                 Brokers &amp; Teams.
               </span>
             </motion.h1>
-
-            {/* Description */}
 
             <motion.p
               initial={{ opacity: 0, y: 12 }}
@@ -208,17 +193,16 @@ export function Hero() {
               <strong className="font-medium text-foreground">
                 BROSAVO Technologies
               </strong>{" "}
-              is a global technology company.{" "}
+              is a global software company building practical tools for
+              growing businesses.{" "}
               <strong className="font-medium text-foreground">
                 BROSAVO Real Estate CRM
               </strong>{" "}
-              is our real estate CRM platform — built to help agents, brokers,
-              developers and sales teams manage leads, property inventory,
-              sales pipelines, WhatsApp follow-ups and website enquiries from
-              one connected workflow.
+              helps real estate agents, brokers, developers and sales teams
+              manage leads, property inventory, buyer requirements, sales
+              pipelines, WhatsApp conversations and website enquiries from one
+              connected platform.
             </motion.p>
-
-            {/* Feature highlights */}
 
             <motion.div
               initial={{ opacity: 0, y: 10 }}
@@ -229,14 +213,7 @@ export function Hero() {
               }}
               className="mt-6 flex flex-wrap gap-x-5 gap-y-3"
             >
-              {[
-                "Lead Management",
-                "Property Inventory",
-                "Property Matching",
-                "Sales Pipeline",
-                "WhatsApp Integration",
-                "Reports & Analytics",
-              ].map((item) => (
+              {featureHighlights.map((item) => (
                 <div
                   key={item}
                   className="flex items-center gap-2 text-xs font-medium text-foreground"
@@ -250,8 +227,6 @@ export function Hero() {
               ))}
             </motion.div>
 
-            {/* CTA */}
-
             <motion.div
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
@@ -263,7 +238,7 @@ export function Hero() {
             >
               <Link
                 href="https://crm.brosavo.com"
-                aria-label="Start your free 14-day BROSAVO Real Estate CRM trial"
+                aria-label="Start a free 14-day BROSAVO Real Estate CRM trial"
                 className="group inline-flex items-center rounded-full bg-foreground px-7 py-3.5 text-sm font-medium text-background shadow-[0_10px_30px_rgba(0,0,0,0.12)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_15px_35px_rgba(0,0,0,0.16)]"
               >
                 Start Free Trial
@@ -281,8 +256,6 @@ export function Hero() {
               </Link>
             </motion.div>
 
-            {/* Trust */}
-
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -298,11 +271,40 @@ export function Hero() {
               <span>·</span>
               <span>Leads · Properties · Pipeline</span>
             </motion.div>
-          </motion.div>
 
-          {/* ============================================================
-              RIGHT — PRODUCT SCREENSHOT
-          ============================================================ */}
+            <nav
+              aria-label="Real estate CRM resources"
+              className="mt-6 flex flex-wrap gap-x-4 gap-y-2 text-xs text-muted"
+            >
+              <Link
+                href="/real-estate-crm-for-agents"
+                className="underline-offset-4 transition-colors hover:text-foreground hover:underline"
+              >
+                CRM for real estate agents
+              </Link>
+
+              <Link
+                href="/real-estate-crm-for-brokers"
+                className="underline-offset-4 transition-colors hover:text-foreground hover:underline"
+              >
+                CRM for brokers
+              </Link>
+
+              <Link
+                href="/real-estate-sales-crm"
+                className="underline-offset-4 transition-colors hover:text-foreground hover:underline"
+              >
+                Real estate sales CRM
+              </Link>
+
+              <Link
+                href="/real-estate-crm-pricing"
+                className="underline-offset-4 transition-colors hover:text-foreground hover:underline"
+              >
+                CRM pricing
+              </Link>
+            </nav>
+          </motion.div>
 
           <motion.div
             initial={{ opacity: 0, x: 25, scale: 0.97 }}
@@ -319,23 +321,24 @@ export function Hero() {
               className="absolute left-1/2 top-1/2 h-[360px] w-[80%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-blue-500/[0.08] blur-[100px]"
             />
 
-            <div className="relative overflow-hidden rounded-[28px] border border-border/70 bg-background p-2 shadow-[0_30px_80px_rgba(0,0,0,0.10)] sm:p-3">
+            <figure className="relative overflow-hidden rounded-[28px] border border-border/70 bg-background p-2 shadow-[0_30px_80px_rgba(0,0,0,0.10)] sm:p-3">
               <Image
                 src="/images/REAL ESTATE CRM DASHBOARD HERO.png"
-                alt="BROSAVO Real Estate CRM dashboard showing lead management, property inventory and sales pipeline"
+                alt="BROSAVO real estate CRM software dashboard displaying lead management, property inventory, property matching, sales pipeline and team activity"
                 width={1800}
                 height={1100}
                 priority
                 sizes="(max-width: 1024px) 100vw, 50vw"
                 className="h-auto w-full rounded-[22px] object-contain"
               />
-            </div>
+
+              <figcaption className="sr-only">
+                BROSAVO Real Estate CRM dashboard for managing property leads,
+                listings, sales activities and customer follow-ups.
+              </figcaption>
+            </figure>
           </motion.div>
         </div>
-
-        {/* ============================================================
-            FEATURE SECTION
-        ============================================================ */}
 
         <motion.div
           initial={{
@@ -354,18 +357,18 @@ export function Hero() {
         >
           <div className="mx-auto mb-7 max-w-3xl text-center">
             <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-blue-600">
-              Everything Your Real Estate Team Needs
+              Complete Real Estate CRM Features
             </p>
 
             <h2 className="mt-2 text-2xl font-semibold tracking-[-0.04em] text-foreground sm:text-3xl">
-              One real estate CRM platform for your entire sales process
+              Everything your real estate team needs in one CRM
             </h2>
 
             <p className="mx-auto mt-3 max-w-2xl text-sm leading-6 text-muted">
-              Capture leads from your website, manage property inventory,
-              match requirements with listings, run a sales pipeline,
-              follow up on WhatsApp and review team performance — all
-              within BROSAVO Real Estate CRM.
+              Capture enquiries from your website, organize property listings,
+              match buyers with suitable properties, manage follow-ups,
+              monitor sales activities and improve team performance with
+              BROSAVO Real Estate CRM software.
             </p>
           </div>
 
@@ -418,10 +421,6 @@ export function Hero() {
           </div>
         </motion.div>
 
-        {/* ============================================================
-            INTEGRATIONS
-        ============================================================ */}
-
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -454,14 +453,10 @@ export function Hero() {
                 +
               </span>
 
-              APIs & Integrations
+              APIs &amp; Integrations
             </div>
           </div>
         </motion.div>
-
-        {/* ============================================================
-            TRUST BAR
-        ============================================================ */}
 
         <motion.div
           initial={{ opacity: 0, y: 10 }}
@@ -473,9 +468,7 @@ export function Hero() {
           className="mx-auto mt-4 grid max-w-5xl overflow-hidden rounded-2xl border border-border/70 bg-background/80 shadow-sm backdrop-blur-md sm:grid-cols-4"
         >
           <div className="flex items-center justify-center gap-3 border-b border-border/60 px-4 py-4 sm:border-b-0 sm:border-r">
-            <span className="text-lg text-blue-600">
-              ✓
-            </span>
+            <span className="text-lg text-blue-600">✓</span>
 
             <div>
               <div className="text-xs font-semibold text-foreground">
@@ -483,15 +476,13 @@ export function Hero() {
               </div>
 
               <div className="text-[9px] text-muted">
-                No credit card required
+                Explore the CRM platform
               </div>
             </div>
           </div>
 
           <div className="flex items-center justify-center gap-3 border-b border-border/60 px-4 py-4 sm:border-b-0 sm:border-r">
-            <span className="text-lg text-violet-600">
-              ⚡
-            </span>
+            <span className="text-lg text-violet-600">⚡</span>
 
             <div>
               <div className="text-xs font-semibold text-foreground">
@@ -499,15 +490,13 @@ export function Hero() {
               </div>
 
               <div className="text-[9px] text-muted">
-                Get started quickly
+                Start organizing your workflow
               </div>
             </div>
           </div>
 
           <div className="flex items-center justify-center gap-3 border-b border-border/60 px-4 py-4 sm:border-b-0 sm:border-r">
-            <span className="text-lg text-emerald-600">
-              ◇
-            </span>
+            <span className="text-lg text-emerald-600">◇</span>
 
             <div>
               <div className="text-xs font-semibold text-foreground">
@@ -521,22 +510,19 @@ export function Hero() {
           </div>
 
           <div className="flex items-center justify-center gap-3 px-4 py-4">
-            <span className="text-lg text-orange-600">
-              ✦
-            </span>
+            <span className="text-lg text-orange-600">✦</span>
 
             <div>
               <div className="text-xs font-semibold text-foreground">
-                AI & Automation
+                AI &amp; Automation
               </div>
 
               <div className="text-[9px] text-muted">
-                Automate repetitive work
+                Reduce repetitive work
               </div>
             </div>
           </div>
         </motion.div>
-
       </div>
     </header>
   );
