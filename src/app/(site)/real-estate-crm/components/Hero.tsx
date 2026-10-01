@@ -159,8 +159,7 @@ export function Hero() {
                 <span className="absolute h-full w-full animate-ping rounded-full bg-blue-500 opacity-40" />
                 <span className="relative h-1.5 w-1.5 rounded-full bg-blue-500" />
               </span>
-
-              BROSAVO Real Estate CRM Software
+              Real Estate CRM Software
             </motion.div>
 
             <motion.h1
@@ -177,7 +176,7 @@ export function Hero() {
               Real Estate CRM
               <span className="block">Software for Agents,</span>
               <span className="block text-gradient-accent">
-                Brokers &amp; Teams.
+                Brokers &amp; Agencies.
               </span>
             </motion.h1>
 
@@ -193,15 +192,15 @@ export function Hero() {
               <strong className="font-medium text-foreground">
                 BROSAVO Technologies
               </strong>{" "}
-              is a global software company building practical tools for
-              growing businesses.{" "}
+              is a global software company building practical tools for growing
+              businesses.{" "}
               <strong className="font-medium text-foreground">
                 BROSAVO Real Estate CRM
               </strong>{" "}
-              helps real estate agents, brokers, developers and sales teams
-              manage leads, property inventory, buyer requirements, sales
-              pipelines, WhatsApp conversations and website enquiries from one
-              connected platform.
+              is real estate CRM software for agents, brokers, developers and
+              sales teams. It helps businesses manage leads, property inventory,
+              buyer requirements, sales pipelines, WhatsApp conversations and
+              website enquiries from one connected platform.
             </motion.p>
 
             <motion.div
@@ -242,7 +241,6 @@ export function Hero() {
                 className="group inline-flex items-center rounded-full bg-foreground px-7 py-3.5 text-sm font-medium text-background shadow-[0_10px_30px_rgba(0,0,0,0.12)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_15px_35px_rgba(0,0,0,0.16)]"
               >
                 Start Free Trial
-
                 <span className="ml-2 transition-transform duration-300 group-hover:translate-x-1">
                   →
                 </span>
@@ -324,7 +322,7 @@ export function Hero() {
             <figure className="relative overflow-hidden rounded-[28px] border border-border/70 bg-background p-2 shadow-[0_30px_80px_rgba(0,0,0,0.10)] sm:p-3">
               <Image
                 src="/images/REAL ESTATE CRM DASHBOARD HERO.png"
-                alt="BROSAVO real estate CRM software dashboard displaying lead management, property inventory, property matching, sales pipeline and team activity"
+                alt="BROSAVO real estate CRM software dashboard"
                 width={1800}
                 height={1100}
                 priority
@@ -361,14 +359,14 @@ export function Hero() {
             </p>
 
             <h2 className="mt-2 text-2xl font-semibold tracking-[-0.04em] text-foreground sm:text-3xl">
-              Everything your real estate team needs in one CRM
+              Everything You Need in Real Estate CRM Software
             </h2>
 
             <p className="mx-auto mt-3 max-w-2xl text-sm leading-6 text-muted">
               Capture enquiries from your website, organize property listings,
-              match buyers with suitable properties, manage follow-ups,
-              monitor sales activities and improve team performance with
-              BROSAVO Real Estate CRM software.
+              match buyers with suitable properties, manage follow-ups, monitor
+              sales activities and improve team performance with BROSAVO Real
+              Estate CRM software.
             </p>
           </div>
 
@@ -452,7 +450,6 @@ export function Hero() {
               <span className="flex h-6 w-6 items-center justify-center rounded-full bg-white text-[10px] shadow-sm">
                 +
               </span>
-
               APIs &amp; Integrations
             </div>
           </div>
