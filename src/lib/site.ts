@@ -44,7 +44,7 @@ export const PRODUCT_ONE_LINER =
 export const COMPANY_DESCRIPTION =
   "Brosavo Technologies is a global technology company building modern websites, custom software, AI-powered applications, SaaS products, automation solutions, and industry-specific business management systems for businesses worldwide.";
 
-export const DEFAULT_OG_IMAGE = "/images/og/default-blog.webp";
+export const DEFAULT_OG_IMAGE = "/images/og/brosavo-og.webp";
 
 export const DEFAULT_BLOG_COVER =
   "/images/blog/real-estate-crm-benefits.webp";
