@@ -71,12 +71,27 @@ export type DigitalLocationCopy = {
 };
 
 const INDEXED_DIGITAL_CITY_KEYS = new Set([
-  "india:gurgaon",
   "india:delhi",
-  "india:noida",
+  "india:gurgaon",
   "india:mumbai",
+  "india:noida",
+  "india:bangalore",
+  "india:hyderabad",
+  "india:pune",
   "canada:toronto",
   "canada:vancouver",
+  "canada:calgary",
+  "canada:edmonton",
+  "united-kingdom:london",
+  "united-kingdom:manchester",
+  "united-kingdom:birmingham",
+  "australia:sydney",
+  "australia:melbourne",
+  "australia:brisbane",
+  "united-states:new-york",
+  "united-states:miami",
+  "united-states:los-angeles",
+  "united-states:dallas",
 ]);
 
 export function isIndexedDigitalCity(countrySlug: string, citySlug: string) {
