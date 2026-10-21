@@ -6,7 +6,7 @@ import { ArrowLeft, CalendarDays, Clock, RefreshCw, User } from "lucide-react";
 import { AuthorCard } from "@/components/blog/AuthorCard";
 import { BlogBreadcrumbs } from "@/components/blog/BlogBreadcrumbs";
 import { BlogContent } from "@/components/blog/BlogContent";
-import { BlogCta } from "@/components/blog/BlogCta";
+import { BlogCtaImproved } from "@/components/blog/BlogCtaImproved";
 import { FaqSection } from "@/components/blog/FaqSection";
 import { JsonLd } from "@/components/blog/JsonLd";
 import { KeyTakeaways } from "@/components/blog/KeyTakeaways";
@@ -211,7 +211,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
             {faqs.length > 0 ? <FaqSection faqs={faqs} /> : null}
 
-            <BlogCta
+            <BlogCtaImproved
               heading={PRODUCT_CTA.heading}
               text={PRODUCT_CTA.text}
               primaryLabel={PRODUCT_CTA.primaryLabel}

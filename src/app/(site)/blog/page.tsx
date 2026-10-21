@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { BlogCard } from "@/components/blog/BlogCard";
+import { BlogCardImproved } from "@/components/blog/BlogCardImproved";
 import { getAllBlogs } from "@/lib/blogs";
 import {
   COMPANY_DESCRIPTION,
@@ -68,7 +68,7 @@ export default function BlogPage() {
           {blogs.length > 0 ? (
             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {blogs.map((blog, index) => (
-                <BlogCard key={blog.slug} blog={blog} priority={index < 3} />
+                <BlogCardImproved key={blog.slug} blog={blog} priority={index < 3} />
               ))}
             </div>
           ) : (
