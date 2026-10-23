@@ -41,7 +41,7 @@ const PAGE_TITLE =
   "Real Estate CRM Software for Agents, Brokers & Agencies | BROSAVO";
 
 const PAGE_DESCRIPTION =
-  "BROSAVO is real estate CRM software for agents, brokers and agencies. Manage leads, properties, follow-ups, sales pipelines, WhatsApp conversations and website enquiries in one platform. Start a 14-day free trial.";
+  "BROSAVO is real estate CRM software for agents, brokers and agencies. Manage leads, properties, follow-ups, sales pipelines, WhatsApp conversations and website enquiries in one platform. Start a 14-day free trial. AI-powered CRM with mobile app, property matching, sales progression tools.";
 
 export const metadata: Metadata = {
   title: PAGE_TITLE,
@@ -68,6 +68,44 @@ export const metadata: Metadata = {
     "property sales CRM",
     "sales progression CRM",
     "brokerage CRM",
+    "real estate CRM for agents",
+    "real estate CRM for brokers",
+    "real estate CRM for agencies",
+    "real estate CRM Australia",
+    "real estate CRM India",
+    "real estate CRM Canada",
+    "real estate CRM UK",
+    "CRM for estate agents",
+    "CRM for brokers",
+    "real estate broker CRM software",
+    "estate agency CRM software",
+    "real estate team management",
+    "real estate automation",
+    "real estate reporting tools",
+    "real estate lead tracking",
+    "property matching CRM",
+    "sales pipeline CRM",
+    "real estate follow-up software",
+    "real estate customer management",
+    "real estate workflow automation",
+    "real estate business management",
+    "real estate sales process",
+    "real estate CRM integration",
+    "AI real estate CRM",
+    "real estate CRM with AI",
+    "real estate CRM dashboard",
+    "real estate CRM features",
+    "real estate CRM comparison",
+    "real estate CRM reviews",
+    "real estate CRM pricing",
+    "real estate CRM for property developers",
+    "real estate CRM for builders",
+    "real estate CRM for consultants",
+    "real estate CRM for agencies",
+    "real estate CRM for brokerages",
+    "real estate CRM for realtors",
+    "real estate CRM for sales teams",
+    "real estate CRM for channel partners",
   ],
 
   alternates: {

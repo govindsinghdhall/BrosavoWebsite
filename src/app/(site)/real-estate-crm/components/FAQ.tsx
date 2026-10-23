@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { JsonLd } from "@/components/blog/JsonLd";
 
 import { REAL_ESTATE_CRM_FAQS } from "../faqs";
 
@@ -130,6 +131,22 @@ export default function FAQ() {
           </div>
         </div>
       </div>
+
+      {/* Add FAQPage structured data schema */}
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": REAL_ESTATE_CRM_FAQS.map((faq) => ({
+            "@type": "Question",
+            "name": faq.question,
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": faq.answer
+            }
+          }))
+        }}
+      />
     </section>
   );
 }
