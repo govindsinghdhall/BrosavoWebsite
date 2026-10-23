@@ -62,6 +62,12 @@ export const metadata: Metadata = {
     "property management CRM",
     "BROSAVO Real Estate CRM",
     "BROSAVO Technologies",
+    "real estate broker CRM",
+    "estate agency CRM",
+    "real estate CRM with mobile app",
+    "property sales CRM",
+    "sales progression CRM",
+    "brokerage CRM",
   ],
 
   alternates: {
