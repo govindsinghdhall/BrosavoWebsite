@@ -7,7 +7,7 @@ import {
   COMPANY_DESCRIPTION,
   LEGAL_NAME,
   PRODUCT_NAME,
-  PRODUCT_ONE_LINER,
+  // Removed unused PRODUCT_ONE_LINER
   SITE_NAME,
   SITE_URL,
   ORGANIZATION_ID,
@@ -17,7 +17,7 @@ import { REAL_ESTATE_CRM_LOCATIONS } from "@/data/realEstateCrmLocations";
 import { absoluteUrl } from "@/lib/blog-seo";
 import { REAL_ESTATE_CRM_FAQS } from "./faqs";
 
-import Hero from "./components/Hero";
+import Hero from "./components/HeroNew";
 import Capabilities from "./components/Capabilities";
 import LeadManagement from "./components/LeadManagement";
 import PropertyInventory from "./components/PropertyInventory";
@@ -30,9 +30,19 @@ import MobileCRM from "./components/MobileCRM";
 import PropertyPortals from "./components/PropertyPortals";
 import WhoItsFor from "./components/WhoItsFor";
 import HowItWorks from "./components/HowItWorks";
+import EnterpriseArchitecture from "./components/EnterpriseArchitecture";
+import OmnichannelLeadManagement from "./components/OmnichannelLeadManagement";
+import InventoryAndBookingManagement from "./components/InventoryAndBookingManagement";
+import CommunicationAndCTIAutomation from "./components/CommunicationAndCTIAutomation";
+import FieldForceAndSiteVisits from "./components/FieldForceAndSiteVisits";
+import ChannelPartners from "./components/ChannelPartners";
+import AIAndPredictiveIntelligence from "./components/AIAndPredictiveIntelligence";
 import Pricing from "./components/Pricing";
 import FAQ from "./components/FAQ";
 import FinalCTA from "./components/FinalCTA";
+
+// New enterprise sections - imported at the top
+// (Imported in JSX below)
 
 const PAGE_PATH = "/real-estate-crm";
 const PAGE_URL = `${SITE_URL}${PAGE_PATH}`;
@@ -427,6 +437,75 @@ export default function RealEstateCrmPage() {
         <FullScreenSection>
           <div className="w-full">
             <HowItWorks />
+          </div>
+        </FullScreenSection>
+        {/* ================================================================ */}
+        {/* ENTERPRISE ARCHITECTURE                                              */}
+        {/* ================================================================ */}
+
+        <FullScreenSection>
+          <div className="w-full">
+            <EnterpriseArchitecture />
+          </div>
+        </FullScreenSection>
+
+        {/* ================================================================ */}
+        {/* OMNICHANNEL LEAD MANAGEMENT                                          */}
+        {/* ================================================================ */}
+
+        <FullScreenSection>
+          <div className="w-full">
+            <OmnichannelLeadManagement />
+          </div>
+        </FullScreenSection>
+
+        {/* ================================================================ */}
+        {/* INVENTORY AND BOOKING MANAGEMENT                                     */}
+        {/* ================================================================ */}
+
+        <FullScreenSection>
+          <div className="w-full">
+            <InventoryAndBookingManagement />
+          </div>
+        </FullScreenSection>
+
+        {/* ================================================================ */}
+        {/* COMMUNICATION AND CTA AUTOMATION                                     */}
+        {/* ================================================================ */}
+
+        <FullScreenSection>
+          <div className="w-full">
+            <CommunicationAndCTIAutomation />
+          </div>
+        </FullScreenSection>
+
+        {/* ================================================================ */}
+        {/* FIELD FORCE AND SITE VISITS                                          */}
+        {/* ================================================================ */}
+
+        <FullScreenSection>
+          <div className="w-full">
+            <FieldForceAndSiteVisits />
+          </div>
+        </FullScreenSection>
+
+        {/* ================================================================ */}
+        {/* CHANNEL PARTNERS                                                     */}
+        {/* ================================================================ */}
+
+        <FullScreenSection>
+          <div className="w-full">
+            <ChannelPartners />
+          </div>
+        </FullScreenSection>
+
+        {/* ================================================================ */}
+        {/* AI AND PREDICTIVE INTELLIGENCE                                       */}
+        {/* ================================================================ */}
+
+        <FullScreenSection>
+          <div className="w-full">
+            <AIAndPredictiveIntelligence />
           </div>
         </FullScreenSection>
 

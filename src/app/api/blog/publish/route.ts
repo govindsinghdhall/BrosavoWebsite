@@ -26,7 +26,7 @@ import {
 import {
   GitHubPublishError,
   publishBlogToGitHub,
-  publishImageToGitHub,
+  // Removed unused publishImageToGitHub import
 } from "@/lib/github";
 
 import { BLOG_TITLE_SUFFIX } from "@/lib/site";
